@@ -9,6 +9,7 @@ import { SectionTitle } from '@/components/ui/SectionTitle'
 import { copy, langAttr, type Locale } from '@/i18n/config'
 import { date, num } from '@/i18n/format'
 import { getLang } from '@/i18n/server'
+import { outletName } from '@/lib/press'
 import type { PressCoverage } from '@/payload-types'
 
 const T = copy(
@@ -87,7 +88,7 @@ function PressCard({ item, lang }: { item: PressCoverage; lang: Locale }) {
       className="flex w-[300px] shrink-0 flex-col gap-3 rounded-3xl bg-white/[0.07] p-5 text-white transition-colors hover:bg-white/[0.12] sm:w-[360px] sm:p-6"
     >
       <span className="flex flex-wrap gap-2">
-        <span className="rounded bg-[image:var(--gradient)] px-2 py-1 text-[0.85rem] font-semibold leading-tight">{item.outlet}</span>
+        <span className="rounded bg-[image:var(--gradient)] px-2 py-1 text-[0.85rem] font-semibold leading-tight">{outletName(item.outlet, lang)}</span>
         <span className="rounded bg-success px-2 py-1 text-[0.85rem] font-semibold leading-tight">{date(lang, item.publishedAt, 'short')}</span>
       </span>
       <span lang={langAttr(lang, item.headline)} className="line-clamp-2 text-[1.1rem] font-semibold leading-snug">

@@ -6,15 +6,37 @@ import { PhotoGrid, type Photo } from '@/components/content/PhotoGrid'
 import { ShareBar } from '@/components/content/ShareBar'
 import { ArrowRight } from '@/components/ui/Icons'
 import { vars } from '@/components/ui/SectionTitle'
-import { formatDate, toBnDigits } from '@/lib/bn'
+import { copy, langAttr, localePath } from '@/i18n/config'
+import { date, num } from '@/i18n/format'
+import { pageMeta } from '@/i18n/metadata'
+import { getLang } from '@/i18n/server'
 import { getAllAlbumSlugs, getAlbumBySlug } from '@/lib/cms'
 import { pickImage } from '@/lib/media'
-import { absoluteUrl, SITE } from '@/lib/site'
+import { absoluteUrl, siteName, siteShortName } from '@/lib/site'
 import type { Media } from '@/payload-types'
 
 export const revalidate = 3600
 
 type Props = { params: Promise<{ slug: string }> }
+
+const T = copy(
+  {
+    home: 'হোম',
+    gallery: 'গ্যালারি',
+    crumbs: 'ব্রেডক্রাম্ব',
+    photos: (n: string) => `${n}টি ছবি`,
+    about: (title: string, site: string) => `${title} — ছবির অ্যালবাম, ${site}।`,
+    all: 'সব অ্যালবাম',
+  },
+  {
+    home: 'Home',
+    gallery: 'Gallery',
+    crumbs: 'Breadcrumb',
+    photos: (n: string) => `${n} photos`,
+    about: (title: string, site: string) => `${title}: photo album, ${site}.`,
+    all: 'All albums',
+  },
+)
 
 export async function generateStaticParams() {
   const slugs = await getAllAlbumSlugs()
@@ -23,27 +45,32 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const album = await getAlbumBySlug(slug)
+  const lang = await getLang()
+  const album = await getAlbumBySlug(slug, lang)
   if (!album) return {}
   const cover = pickImage(Array.isArray(album.photos) ? album.photos[0] : null, 'og')
-  const description = album.description || `${album.title} — ছবির অ্যালবাম, ${SITE.shortName}।`
-  return {
+  const description = album.description || T[lang].about(album.title, siteShortName(lang))
+  const path = `/gallery/${album.slug}`
+  return pageMeta(lang, path, {
     title: album.title,
     description,
-    alternates: { canonical: `/gallery/${album.slug}` },
     openGraph: {
       type: 'article',
+      siteName: siteName(lang),
+      locale: lang === 'en' ? 'en_US' : 'bn_BD',
       title: album.title,
       description,
-      url: `/gallery/${album.slug}`,
+      url: localePath(lang, path),
       images: cover ? [{ url: cover.src, width: cover.width, height: cover.height, alt: cover.alt }] : undefined,
     },
-  }
+  })
 }
 
 export default async function AlbumPage({ params }: Props) {
   const { slug } = await params
-  const album = await getAlbumBySlug(slug)
+  const lang = await getLang()
+  const t = T[lang]
+  const album = await getAlbumBySlug(slug, lang)
   if (!album) notFound()
 
   const photos: Photo[] = (Array.isArray(album.photos) ? album.photos : [])
@@ -55,7 +82,7 @@ export default async function AlbumPage({ params }: Props) {
       return [{ id: m.id, thumb: thumb.src, full: full.src, width: thumb.width, height: thumb.height, alt: m.alt || '', caption: m.caption }]
     })
 
-  const url = absoluteUrl(`/gallery/${album.slug}`)
+  const url = absoluteUrl(localePath(lang, `/gallery/${album.slug}`))
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ImageGallery',
@@ -71,24 +98,24 @@ export default async function AlbumPage({ params }: Props) {
       <header className="hero-wash relative isolate overflow-hidden pb-12 pt-8 md:pb-16 md:pt-14">
         <div aria-hidden="true" className="grid-paper absolute inset-0 -z-10" />
         <div className="wrap max-w-4xl">
-          <nav aria-label="ব্রেডক্রাম্ব" className="load-up mb-6 flex flex-wrap gap-x-2 text-[0.92rem] text-subtle">
+          <nav aria-label={t.crumbs} className="load-up mb-6 flex flex-wrap gap-x-2 text-[0.92rem] text-subtle">
             <Link href="/" className="hover:text-primary">
-              হোম
+              {t.home}
             </Link>
             <span aria-hidden="true">/</span>
             <Link href="/gallery" className="hover:text-primary">
-              গ্যালারি
+              {t.gallery}
             </Link>
           </nav>
           <p className="load-up flex flex-wrap items-center gap-3 text-[0.95rem] text-subtle" style={vars({ '--d': '80ms' })}>
-            <span className="chip">{toBnDigits(photos.length)}টি ছবি</span>
-            <time dateTime={album.date}>{formatDate(album.date)}</time>
+            <span className="chip">{t.photos(num(lang, photos.length))}</span>
+            <time dateTime={album.date}>{date(lang, album.date)}</time>
           </p>
-          <h1 className="load-rise mt-4 text-[1.9rem] font-bold leading-[1.35] text-ink md:text-[2.6rem]" style={vars({ '--d': '160ms' })}>
+          <h1 lang={langAttr(lang, album.title)} className="load-rise mt-4 text-[1.9rem] font-bold leading-[1.35] text-ink md:text-[2.6rem]" style={vars({ '--d': '160ms' })}>
             {album.title}
           </h1>
           {album.description && (
-            <p className="load-up mt-4 max-w-[65ch] text-[1.05rem] leading-relaxed text-muted" style={vars({ '--d': '240ms' })}>
+            <p lang={langAttr(lang, album.description)} className="load-up mt-4 max-w-[65ch] text-[1.05rem] leading-relaxed text-muted" style={vars({ '--d': '240ms' })}>
               {album.description}
             </p>
           )}
@@ -100,7 +127,7 @@ export default async function AlbumPage({ params }: Props) {
         <div className="mx-auto mt-12 max-w-4xl">
           <ShareBar url={url} title={album.title} />
           <Link href="/gallery" className="btn btn-outline-blue btn-sm mt-8">
-            সব অ্যালবাম
+            {t.all}
             <ArrowRight />
           </Link>
         </div>

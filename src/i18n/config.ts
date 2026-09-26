@@ -44,6 +44,9 @@ export function alternates(lang: Locale, path: string) {
   }
 }
 
+/** A heading as parts; `{ hl }` parts get the highlight (word order differs between the languages). */
+export type TitleCopy = (string | { hl: string })[]
+
 /** Keep the Bangla and English copy of a component side by side; English must match Bangla's shape. */
 export const copy = <T,>(bn: T, en: NoInfer<T>): Record<Locale, T> => ({ bn, en })
 

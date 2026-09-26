@@ -5,7 +5,14 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { ChevronLeft, ChevronRight, Close } from '@/components/ui/Icons'
 import { vars } from '@/components/ui/SectionTitle'
-import { toBnDigits } from '@/lib/bn'
+import { copy } from '@/i18n/config'
+import { num } from '@/i18n/format'
+import { useLang } from '@/i18n/LangProvider'
+
+const T = copy(
+  { view: (n: string) => `ছবি ${n} বড় করে দেখুন`, close: 'বন্ধ করুন', prev: 'আগের ছবি', next: 'পরের ছবি' },
+  { view: (n: string) => `View photo ${n} large`, close: 'Close', prev: 'Previous photo', next: 'Next photo' },
+)
 
 export type Photo = {
   id: number
@@ -23,6 +30,8 @@ export type Photo = {
  */
 export function PhotoGrid({ photos, title }: { photos: Photo[]; title: string }) {
   const dialog = useRef<HTMLDialogElement>(null)
+  const lang = useLang()
+  const t = T[lang]
   const [index, setIndex] = useState<number | null>(null)
   const touchX = useRef<number | null>(null)
 
@@ -63,7 +72,7 @@ export function PhotoGrid({ photos, title }: { photos: Photo[]; title: string })
               type="button"
               onClick={() => open(i)}
               className="group block w-full overflow-hidden rounded-2xl bg-pale"
-              aria-label={`ছবি ${toBnDigits(i + 1)} বড় করে দেখুন${p.alt ? `: ${p.alt}` : ''}`}
+              aria-label={`${t.view(num(lang, i + 1))}${p.alt ? `: ${p.alt}` : ''}`}
             >
               <Image
                 src={p.thumb}
@@ -95,14 +104,14 @@ export function PhotoGrid({ photos, title }: { photos: Photo[]; title: string })
           <div className="flex h-full flex-col">
             <div className="flex items-center justify-between gap-4 px-4 py-3 md:px-6">
               <p className="text-[0.95rem] text-white/75" aria-live="polite">
-                {toBnDigits(index! + 1)} / {toBnDigits(photos.length)}
+                {num(lang, index! + 1)} / {num(lang, photos.length)}
               </p>
               <button
                 type="button"
                 onClick={close}
                 autoFocus
                 className="grid size-11 place-items-center rounded-full bg-white/10 hover:bg-white hover:text-ink"
-                aria-label="বন্ধ করুন"
+                aria-label={t.close}
               >
                 <Close className="size-5" />
               </button>
@@ -123,7 +132,7 @@ export function PhotoGrid({ photos, title }: { photos: Photo[]; title: string })
                   type="button"
                   onClick={() => step(-1)}
                   className="absolute left-3 top-1/2 grid size-12 -translate-y-1/2 place-items-center rounded-full bg-white/10 hover:bg-white hover:text-ink md:left-6"
-                  aria-label="আগের ছবি"
+                  aria-label={t.prev}
                 >
                   <ChevronLeft className="size-6" />
                 </button>
@@ -131,7 +140,7 @@ export function PhotoGrid({ photos, title }: { photos: Photo[]; title: string })
                   type="button"
                   onClick={() => step(1)}
                   className="absolute right-3 top-1/2 grid size-12 -translate-y-1/2 place-items-center rounded-full bg-white/10 hover:bg-white hover:text-ink md:right-6"
-                  aria-label="পরের ছবি"
+                  aria-label={t.next}
                 >
                   <ChevronRight className="size-6" />
                 </button>
