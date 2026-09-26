@@ -19,6 +19,7 @@ import { Users } from './collections/Users'
 import { Videos } from './collections/Videos'
 import { SiteSettings } from './globals/SiteSettings'
 import { generateShareImageTask } from './jobs/generateShareImage'
+import { purgeSubmissionsTask } from './jobs/purgeSubmissions'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -54,9 +55,9 @@ export default buildConfig({
   db: postgresAdapter({
     pool: { connectionString: process.env.DATABASE_URL || '' },
   }),
-  // Runs scheduled publish/unpublish jobs on the long-running VPS server.
+  // Runs share-image, scheduled-publish and retention jobs on the long-running VPS server.
   jobs: {
-    tasks: [generateShareImageTask],
+    tasks: [generateShareImageTask, purgeSubmissionsTask],
     autoRun: [{ cron: '* * * * *', queue: 'default', limit: 20 }],
     shouldAutoRun: () => process.env.PAYLOAD_DISABLE_JOBS !== 'true',
   },
