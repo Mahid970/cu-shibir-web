@@ -69,4 +69,15 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default withPayload(nextConfig, { devBundleServerPackages: false })
+const config = withPayload(nextConfig, { devBundleServerPackages: false })
+
+// Payload sends Accept-CH / Critical-CH / Vary for the admin's colour scheme on *every* path. On the
+// public site that makes Chrome repeat first navigations, splits the CDN cache and breaks service
+// worker registration, so keep those headers on /admin only.
+const withPayloadHeaders = config.headers
+config.headers = async () =>
+  ((await withPayloadHeaders?.()) ?? []).map((rule) =>
+    rule.source === '/:path*' && rule.headers.some((h) => h.key === 'Critical-CH') ? { ...rule, source: '/admin/:path*' } : rule,
+  )
+
+export default config
