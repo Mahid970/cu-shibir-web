@@ -6,7 +6,8 @@ import type { Palette } from '@/lib/sky'
  */
 export function CampusPoster({ palette }: { palette: Palette }) {
   const p = palette
-  const sunY = 300 - Math.max(-0.3, p.sunHeight) * 220
+  // The sun sinks with the day; after dark the moon hangs high instead.
+  const sunY = p.sunHeight > -0.05 ? 300 - p.sunHeight * 220 : 110
   const lit = p.lamps > 0.3
   return (
     <svg viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 size-full" aria-hidden="true">
