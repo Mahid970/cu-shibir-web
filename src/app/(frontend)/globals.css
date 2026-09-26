@@ -899,3 +899,22 @@
     animation: none !important;
   }
 }
+
+/* ---------- শহীদ স্মরণ: slow, quiet twinkle (none with reduced motion) ---------- */
+.motion .memorial-star {
+  animation: memorial-twinkle 7s ease-in-out infinite;
+}
+@keyframes memorial-twinkle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+.prose-dark,
+.prose-dark h2,
+.prose-dark h3 {
+  color: rgb(226 232 240);
+}

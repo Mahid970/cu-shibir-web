@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 
 import { SYLLABUS } from '@/content/syllabus'
-import { getAllAlbumSlugs, getAllPeopleSlugs, getAllPostSlugs } from '@/lib/cms'
+import { getAllAlbumSlugs, getAllPeopleSlugs, getAllPostSlugs, getMartyrs } from '@/lib/cms'
 import { absoluteUrl } from '@/lib/site'
 
 export const revalidate = 3600
@@ -27,7 +27,7 @@ const PAGES: { path: string; priority: number; freq: 'daily' | 'weekly' | 'month
 ]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [posts, albums, people] = await Promise.all([getAllPostSlugs(), getAllAlbumSlugs(), getAllPeopleSlugs()])
+  const [posts, albums, people, martyrs] = await Promise.all([getAllPostSlugs(), getAllAlbumSlugs(), getAllPeopleSlugs(), getMartyrs('bn')])
   return [
     ...PAGES.map((p) => ({
       url: absoluteUrl(p.path),
@@ -36,6 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ...(p.path === '/' && { alternates: { languages: { 'bn-BD': absoluteUrl('/'), en: absoluteUrl('/en') } } }),
     })),
     ...SYLLABUS.map((l) => ({ url: absoluteUrl(`/syllabus/${l.key}`), changeFrequency: 'yearly' as const, priority: 0.5 })),
+    ...(martyrs.length ? [{ url: absoluteUrl('/martyrs'), changeFrequency: 'yearly' as const, priority: 0.6 }] : []),
     { url: absoluteUrl('/en'), changeFrequency: 'monthly', priority: 0.6, alternates: { languages: { 'bn-BD': absoluteUrl('/'), en: absoluteUrl('/en') } } },
     ...posts.filter((p) => p.slug).map((p) => ({ url: absoluteUrl(`/news/${p.slug}`), lastModified: p.updatedAt, changeFrequency: 'monthly' as const, priority: 0.7 })),
     ...albums.filter((a) => a.slug).map((a) => ({ url: absoluteUrl(`/gallery/${a.slug}`), lastModified: a.updatedAt, changeFrequency: 'yearly' as const, priority: 0.4 })),

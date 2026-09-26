@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { ParticleEmblem } from '@/components/about/ParticleEmblem'
 import { RailTimeline } from '@/components/about/RailTimeline'
@@ -9,7 +10,7 @@ import { Journey } from '@/components/home/Journey'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { vars } from '@/components/ui/SectionTitle'
 import { HISTORY } from '@/content/history'
-import { getAlbums, getSiteSettings } from '@/lib/cms'
+import { getAlbums, getMartyrs, getSiteSettings } from '@/lib/cms'
 import { pickImage } from '@/lib/media'
 
 export const revalidate = 3600
@@ -36,7 +37,7 @@ const PILLARS = [
 ]
 
 export default async function AboutPage() {
-  const [settings, albums] = await Promise.all([getSiteSettings('bn'), getAlbums(1, 'bn')])
+  const [settings, albums, martyrs] = await Promise.all([getSiteSettings('bn'), getAlbums(1, 'bn'), getMartyrs('bn')])
   const photo =
     pickImage(Array.isArray(albums[0]?.photos) ? albums[0].photos[1] ?? albums[0].photos[0] : null, 'hero') ??
     pickImage(settings.heroImage, 'hero')
@@ -99,6 +100,14 @@ export default async function AboutPage() {
       </section>
 
       <RailTimeline stops={HISTORY} />
+      {martyrs.length > 0 && (
+        <div className="bg-deep pb-14">
+          <Link href="/martyrs" className="wrap flex items-center justify-center gap-3 text-center font-semibold text-slate-200 hover:text-white">
+            <span aria-hidden="true" className="size-2 rounded-full bg-sky-200 shadow-[0_0_12px_#e0f2fe]" />
+            শহীদ স্মরণ: যাঁদের ত্যাগে এই পথচলা
+          </Link>
+        </div>
+      )}
       <Journey />
       <FivePoints />
       <Faq />
