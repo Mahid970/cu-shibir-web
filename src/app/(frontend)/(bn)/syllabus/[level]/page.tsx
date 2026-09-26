@@ -27,12 +27,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-function Lists({ lists, level }: { lists: SyllabusList[]; level: string }) {
+function Lists({ lists, level, heading: H = 'h3' }: { lists: SyllabusList[]; level: string; heading?: 'h3' | 'h4' }) {
   return (
     <div className="mt-5 grid gap-5">
       {lists.map((list) => (
         <div key={list.label}>
-          <h4 className="w-fit rounded-lg bg-pale-2 px-3 py-1 text-[0.88rem] font-bold text-primary">{list.label}</h4>
+          <H className="w-fit rounded-lg bg-pale-2 px-3 py-1 text-[0.88rem] font-bold text-primary">{list.label}</H>
           <ul className="mt-3 grid gap-2">
             {list.items.map((item) => (
               <li key={item.text} className="flex items-start gap-3 rounded-xl px-1 py-1">
@@ -94,7 +94,7 @@ export default async function LevelPage({ params }: Props) {
                 <div key={x.heading} className="mt-6 border-t border-border pt-5">
                   <h3 className="text-[1.1rem] font-bold text-ink">{x.heading}</h3>
                   <Objectives items={x.objectives} />
-                  {x.lists.length > 0 && <Lists lists={x.lists} level={level.key} />}
+                  {x.lists.length > 0 && <Lists lists={x.lists} level={level.key} heading="h4" />}
                 </div>
               ))}
             </section>

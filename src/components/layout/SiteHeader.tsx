@@ -14,14 +14,14 @@ export function Logo({ tone = 'dark', locale = 'bn' }: { tone?: 'dark' | 'light'
     <Link
       href={en ? '/en' : '/'}
       className="flex shrink-0 items-center gap-2.5 whitespace-nowrap"
-      aria-label={en ? 'Home: Bangladesh Islami Chhatrashibir, University of Chittagong' : 'হোম — বাংলাদেশ ইসলামী ছাত্রশিবির, চট্টগ্রাম বিশ্ববিদ্যালয়'}
     >
+      <span className="sr-only">{en ? 'Home: ' : 'হোম: '}</span>
       <Image src="/brand/logo-legacy.png" alt="" width={42} height={42} priority className="size-[42px]" />
       <span className="leading-none">
         <span className={`block font-bold ${en ? 'font-[family-name:var(--font-en)] text-[1.05rem]' : 'text-[1.2rem]'} ${tone === 'light' ? 'text-white' : 'text-ink'}`}>
           {en ? 'CU Chhatrashibir' : 'চবি ছাত্রশিবির'}
         </span>
-        <span className={`mt-1 block text-[0.72rem] font-medium ${tone === 'light' ? 'text-white/70' : 'text-subtle'}`}>
+        <span className={`mt-1 block text-[0.72rem] ${tone === 'light' ? 'text-white/70' : 'text-subtle'}`}>
           {en ? 'University of Chittagong branch' : 'চট্টগ্রাম বিশ্ববিদ্যালয় শাখা'}
         </span>
       </span>

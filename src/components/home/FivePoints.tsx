@@ -54,11 +54,11 @@ export function FivePoints() {
                     <h3 className="text-[1.7rem] font-bold leading-snug md:text-[2.3rem]" style={{ color: p.ink }}>
                       {p.title}
                     </h3>
-                    <p className="mt-3 max-w-xl text-[1.02rem] leading-relaxed opacity-85 md:text-[1.1rem]">{p.body}</p>
+                    <p className="mt-3 max-w-xl text-[1.02rem] leading-relaxed md:text-[1.1rem]">{p.body}</p>
                     <p className="mt-5 font-bold">সাম্প্রতিক কাজ</p>
                     <ul className="mt-2 space-y-1.5">
                       {p.items.map((item) => (
-                        <li key={item} className="flex items-start gap-2.5 text-[1rem] opacity-90">
+                        <li key={item} className="flex items-start gap-2.5 text-[1rem]">
                           <span aria-hidden="true" className="mt-[0.6em] size-1.5 shrink-0 rounded-full bg-current" />
                           {item}
                         </li>

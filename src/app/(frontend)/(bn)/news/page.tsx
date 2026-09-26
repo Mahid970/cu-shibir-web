@@ -68,7 +68,7 @@ export default async function NewsIndex({ searchParams }: Props) {
           <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
             {result.docs.map((post, i) => (
               <li key={post.id}>
-                <PostCard post={post} index={i} priority={i < 3} />
+                <PostCard post={post} index={i} priority={i < 3} as="h2" />
               </li>
             ))}
           </ul>

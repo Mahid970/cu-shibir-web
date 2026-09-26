@@ -25,11 +25,23 @@ export function PostMeta({ category, publishedAt }: { category: string; publishe
 }
 
 /** Phitron course-card style: white, soft shadow, rounded image, lifts on hover. */
-export function PostCard({ post, index = 0, priority = false }: { post: PostSummary; index?: number; priority?: boolean }) {
+export function PostCard({
+  post,
+  index = 0,
+  priority = false,
+  as: Heading = 'h3',
+}: {
+  post: PostSummary
+  index?: number
+  priority?: boolean
+  /** h2 when the card list sits directly under the page's h1 */
+  as?: 'h2' | 'h3'
+}) {
   const img = pickImage(post.heroImage, 'card')
   return (
     <article
-      data-reveal="fade"
+      // Above-the-fold cards (priority) are shown at once so they don't wait for the reveal observer.
+      data-reveal={priority ? undefined : 'fade'}
       style={vars({ '--d': `${(index % 3) * 90}ms` })}
       className="group relative flex h-full flex-col gap-4 rounded-2xl bg-white p-4 shadow-[0_4px_24px_rgb(11_15_46/0.06)] transition-shadow duration-300 hover:shadow-[0_18px_40px_rgb(11_15_46/0.12)] md:rounded-3xl md:p-5"
     >
@@ -50,11 +62,11 @@ export function PostCard({ post, index = 0, priority = false }: { post: PostSumm
         )}
       </div>
       <PostMeta category={post.category} publishedAt={post.publishedAt} />
-      <h3 className="text-[1.15rem] font-bold leading-snug text-ink md:text-[1.25rem]">
+      <Heading className="text-[1.15rem] font-bold leading-snug text-ink md:text-[1.25rem]">
         <Link href={`/news/${post.slug}`} className="after:absolute after:inset-0 group-hover:text-primary">
           {post.title}
         </Link>
-      </h3>
+      </Heading>
       {post.excerpt && <p className="line-clamp-2 text-[0.95rem] text-ink/70">{post.excerpt}</p>}
       <span className="mt-auto inline-flex items-center gap-2 pt-1 font-semibold text-primary">
         পড়ুন
