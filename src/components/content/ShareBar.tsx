@@ -3,10 +3,15 @@
 import { useState } from 'react'
 
 import { Facebook, Telegram } from '@/components/ui/Icons'
+import { copy } from '@/i18n/config'
+import { useLang } from '@/i18n/LangProvider'
+
+const T = copy({ share: 'শেয়ার করুন', copied: 'লিংক কপি হয়েছে', copy: 'লিংক কপি করুন' }, { share: 'Share', copied: 'Link copied', copy: 'Copy link' })
 
 /** Share targets that matter in Bangladesh: Facebook, Messenger/WhatsApp, Telegram, copy. */
 export function ShareBar({ url, title }: { url: string; title: string }) {
   const [copied, setCopied] = useState(false)
+  const words = T[useLang()]
   const u = encodeURIComponent(url)
   const t = encodeURIComponent(title)
   const links = [
@@ -31,7 +36,7 @@ export function ShareBar({ url, title }: { url: string; title: string }) {
 
   return (
     <div className="flex flex-wrap items-center gap-2.5 border-t border-border pt-6">
-      <span className="mr-2 font-bold text-ink">শেয়ার করুন</span>
+      <span className="mr-2 font-bold text-ink">{words.share}</span>
       {links.map(({ label, href, className, Icon }) => (
         <a
           key={label}
@@ -50,7 +55,7 @@ export function ShareBar({ url, title }: { url: string; title: string }) {
         className="inline-flex h-10 items-center rounded-full bg-pale-2 px-4 text-[0.92rem] font-semibold text-primary transition hover:bg-pale-3"
         aria-live="polite"
       >
-        {copied ? 'লিংক কপি হয়েছে' : 'লিংক কপি করুন'}
+        {copied ? words.copied : words.copy}
       </button>
     </div>
   )

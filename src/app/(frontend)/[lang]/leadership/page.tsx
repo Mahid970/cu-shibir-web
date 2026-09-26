@@ -5,29 +5,54 @@ import { Link } from '@/i18n/link'
 import { LeaderCard } from '@/components/home/LeadersSection'
 import { CheckCircle, Mail, SOCIAL_ICONS } from '@/components/ui/Icons'
 import { EyebrowTab, SweepTitle, vars } from '@/components/ui/SectionTitle'
+import { copy, localePath, type Locale } from '@/i18n/config'
+import { pageMeta } from '@/i18n/metadata'
+import { getLang } from '@/i18n/server'
 import { getLeaders } from '@/lib/cms'
 import { pickImage } from '@/lib/media'
-import { absoluteUrl, SITE } from '@/lib/site'
+import { personDetails, personName, personPosition } from '@/lib/people'
+import { absoluteUrl, siteName } from '@/lib/site'
 import type { Person } from '@/payload-types'
 
 export const revalidate = 3600
 
-export const metadata: Metadata = {
-  title: 'দায়িত্বশীলবৃন্দ',
-  description: 'বাংলাদেশ ইসলামী ছাত্রশিবির, চট্টগ্রাম বিশ্ববিদ্যালয় শাখার কার্যকরী পরিষদ, সেশন ২০২৬।',
-  alternates: { canonical: '/leadership' },
+const T = copy(
+  {
+    meta: {
+      title: 'দায়িত্বশীলবৃন্দ',
+      description: 'বাংলাদেশ ইসলামী ছাত্রশিবির, চট্টগ্রাম বিশ্ববিদ্যালয় শাখার কার্যকরী পরিষদ, সেশন ২০২৬।',
+    },
+    eyebrow: 'কার্যকরী পরিষদ ২০২৬',
+    title: ['চবি ছাত্রশিবিরের', 'দায়িত্বশীলবৃন্দ', ''],
+    lede: 'সেশন ২০২৬-এর কার্যকরী পরিষদ। পরামর্শ বা এহতেসাব থাকলে সংশ্লিষ্ট দায়িত্বশীলকে সরাসরি লিখুন।',
+    secretariat: { before: '', hl: 'সম্পাদক', after: 'মণ্ডলী' },
+    email: 'ইমেইল',
+  },
+  {
+    meta: {
+      title: 'Leadership',
+      description: 'The executive committee of Bangladesh Islami Chhatrashibir, University of Chittagong branch, for 2026.',
+    },
+    eyebrow: 'Executive committee 2026',
+    title: ['The', 'leadership', 'of CU Chhatrashibir'],
+    lede: 'The executive committee for 2026. If you have advice or ehtesab, write to the leader concerned directly.',
+    secretariat: { before: 'The ', hl: 'secretaries', after: '' },
+    email: 'Email',
+  },
+)
+
+export async function generateMetadata(): Promise<Metadata> {
+  const lang = await getLang()
+  return pageMeta(lang, '/leadership', T[lang].meta)
 }
 
 const SOCIAL_KEYS = ['facebook', 'x', 'instagram', 'youtube', 'telegram'] as const
 
 /** President and secretary: wide glowing cards with every detail the profile has. */
-function LeadCard({ person, index }: { person: Person; index: number }) {
+function LeadCard({ person, index, lang }: { person: Person; index: number; lang: Locale }) {
   const img = pickImage(person.photo, 'card')
-  const details = [
-    person.department && `${person.department} বিভাগ`,
-    person.session && `সেশন ${person.session}`,
-    person.hall,
-  ].filter(Boolean) as string[]
+  const name = personName(person.name, lang)
+  const details = personDetails(person, lang)
   const socials = SOCIAL_KEYS.filter((k) => person.socials?.[k])
   return (
     <article
@@ -35,13 +60,13 @@ function LeadCard({ person, index }: { person: Person; index: number }) {
       className="load-rise grid items-center gap-5 rounded-[28px] border border-white/10 bg-white/[0.04] p-4 shadow-[0_0_60px_rgb(0_96_250/0.15)] sm:grid-cols-[200px_1fr] sm:p-5"
     >
       <div className="relative aspect-square overflow-hidden rounded-2xl bg-[radial-gradient(80%_75%_at_50%_100%,#1d4ed8,#0b1428_75%)]">
-        {img && <Image src={img.src} alt={person.name} fill sizes="200px" className="object-cover object-top" priority />}
+        {img && <Image src={img.src} alt={name} fill sizes="200px" className="object-cover object-top" priority />}
       </div>
       <div className="px-1 pb-2 sm:pb-0">
-        <p className="w-fit rounded-lg bg-tag px-3 py-1 text-[0.85rem] font-bold text-ink">{person.position}</p>
+        <p className="w-fit rounded-lg bg-tag px-3 py-1 text-[0.85rem] font-bold text-ink">{personPosition(person.position, lang)}</p>
         <h2 className="mt-3 text-[1.6rem] font-bold leading-snug text-white md:text-[2rem]">
           <Link href={`/leadership/${person.slug}`} className="hover:underline">
-            {person.name}
+            {name}
           </Link>
         </h2>
         {details.length > 0 && (
@@ -57,7 +82,7 @@ function LeadCard({ person, index }: { person: Person; index: number }) {
         {(person.email || socials.length > 0) && (
           <div className="mt-4 flex flex-wrap gap-2">
             {person.email && (
-              <a href={`mailto:${person.email}`} className="grid size-10 place-items-center rounded-xl bg-white/10 text-white hover:bg-white hover:text-ink" aria-label={`ইমেইল: ${person.email}`}>
+              <a href={`mailto:${person.email}`} className="grid size-10 place-items-center rounded-xl bg-white/10 text-white hover:bg-white hover:text-ink" aria-label={`${T[lang].email}: ${person.email}`}>
                 <Mail className="size-5" />
               </a>
             )}
@@ -77,16 +102,22 @@ function LeadCard({ person, index }: { person: Person; index: number }) {
 }
 
 export default async function LeadershipPage() {
-  const leaders = await getLeaders('bn')
+  const lang = await getLang()
+  const t = T[lang]
+  const leaders = await getLeaders(lang)
   const top = leaders.slice(0, 2)
   const others = leaders.slice(2)
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: SITE.name,
-    url: absoluteUrl('/'),
-    member: leaders.map((p) => ({ '@type': 'OrganizationRole', roleName: p.position, member: { '@type': 'Person', name: p.name } })),
+    name: siteName(lang),
+    url: absoluteUrl(localePath(lang, '/')),
+    member: leaders.map((p) => ({
+      '@type': 'OrganizationRole',
+      roleName: personPosition(p.position, lang),
+      member: { '@type': 'Person', name: personName(p.name, lang) },
+    })),
   }
 
   return (
@@ -97,27 +128,27 @@ export default async function LeadershipPage() {
         <div className="absolute left-1/2 top-24 h-[420px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(0_96_250/0.4),transparent)] blur-2xl" />
       </div>
 
-      <EyebrowTab text="কার্যকরী পরিষদ ২০২৬" />
+      <EyebrowTab text={t.eyebrow} />
       <header className="wrap mt-8 text-center md:mt-10">
         <SweepTitle as="h1" className="mx-auto max-w-3xl text-[2.1rem] font-bold leading-snug text-white sm:text-[3rem]">
-          চবি ছাত্রশিবিরের <span className="lime">দায়িত্বশীলবৃন্দ</span>
+          {t.title[0]} <span className="lime">{t.title[1]}</span> {t.title[2]}
         </SweepTitle>
-        <p className="mx-auto mt-4 max-w-2xl text-[1.05rem] leading-relaxed text-slate-400">
-          সেশন ২০২৬-এর কার্যকরী পরিষদ। পরামর্শ বা এহতেসাব থাকলে সংশ্লিষ্ট দায়িত্বশীলকে সরাসরি লিখুন।
-        </p>
+        <p className="mx-auto mt-4 max-w-2xl text-[1.05rem] leading-relaxed text-slate-400">{t.lede}</p>
       </header>
 
       <div className="wrap mt-12">
         <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-2">
           {top.map((p, i) => (
-            <LeadCard key={p.id} person={p} index={i} />
+            <LeadCard key={p.id} person={p} index={i} lang={lang} />
           ))}
         </div>
 
         {others.length > 0 && (
           <section className="mt-20" aria-labelledby="secretariat">
             <h2 id="secretariat" className="text-center text-[1.9rem] font-bold text-white md:text-[2.5rem]">
-              <span className="text-mint">সম্পাদক</span>মণ্ডলী
+              {t.secretariat.before}
+              <span className="text-mint">{t.secretariat.hl}</span>
+              {t.secretariat.after}
             </h2>
             <ul className="mx-auto mt-10 grid max-w-6xl grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
               {others.map((p, i) => (

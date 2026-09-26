@@ -127,6 +127,12 @@ export const Lock = (p: P) => (
     <path d="M8 11V8a4 4 0 0 1 8 0v3" />
   </Line>
 )
+export const Globe = (p: P) => (
+  <Line {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+  </Line>
+)
 export const Clock = (p: P) => (
   <Line {...p}>
     <circle cx="12" cy="12" r="9" />
