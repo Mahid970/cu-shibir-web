@@ -1,8 +1,10 @@
+import Link from 'next/link'
 import type { ReactNode } from 'react'
 
 import { BallotBox, Medal, Trophy3D } from '@/components/art/Icons3D'
 import { CountUp } from '@/components/motion/CountUp'
 import { Marquee } from '@/components/motion/Marquee'
+import { ArrowRight } from '@/components/ui/Icons'
 import { SectionTitle } from '@/components/ui/SectionTitle'
 import { formatDate } from '@/lib/bn'
 import type { PressCoverage } from '@/payload-types'
@@ -110,6 +112,12 @@ export function TrustSection({ press }: { press: PressCoverage[] }) {
                 <PressCard key={item.id} item={item} />
               ))}
             </Marquee>
+          </div>
+          <div className="mt-8 flex justify-center px-4">
+            <Link href="/press" className="btn btn-ghost-light">
+              সব প্রতিবেদন দেখুন
+              <ArrowRight />
+            </Link>
           </div>
         </div>
       )}

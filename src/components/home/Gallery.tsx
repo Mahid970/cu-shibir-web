@@ -1,6 +1,7 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
-import { YouTube } from '@/components/ui/Icons'
+import { ArrowRight, YouTube } from '@/components/ui/Icons'
 import { SectionTitle, vars } from '@/components/ui/SectionTitle'
 import { formatDate } from '@/lib/bn'
 import { pickImage } from '@/lib/media'
@@ -62,17 +63,31 @@ export function Gallery({
                   <p
                     className={`mt-0.5 line-clamp-2 font-semibold leading-snug ${i === 0 ? 'text-[1.1rem] md:text-[1.35rem]' : 'text-[0.9rem]'}`}
                   >
-                    {album.title}
+                    <Link href={`/gallery/${album.slug}`} className="after:absolute after:inset-0">
+                      {album.title}
+                    </Link>
                   </p>
                 </div>
               </li>
             ))}
           </ul>
         )}
+        {items.length > 0 && (
+          <div className="mt-8 flex justify-center">
+            <Link href="/gallery" className="btn btn-outline-blue btn-sm">
+              সব অ্যালবাম
+              <ArrowRight />
+            </Link>
+          </div>
+        )}
         {videos.length > 0 && (
           <div className="mx-auto mt-12 max-w-[1100px]">
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <h3 className="text-[1.4rem] font-bold text-ink md:text-[1.7rem]">ভিডিও</h3>
+              <h3 className="text-[1.4rem] font-bold text-ink md:text-[1.7rem]">
+                <Link href="/videos" className="hover:text-primary">
+                  ভিডিও
+                </Link>
+              </h3>
               {youtube && (
                 <a
                   href={youtube}
