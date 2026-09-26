@@ -84,7 +84,7 @@ export default async function AlbumPage({ params }: Props) {
             <span className="chip">{toBnDigits(photos.length)}টি ছবি</span>
             <time dateTime={album.date}>{formatDate(album.date)}</time>
           </p>
-          <h1 className="load-up mt-4 text-[1.9rem] font-bold leading-[1.35] text-ink md:text-[2.6rem]" style={vars({ '--d': '160ms' })}>
+          <h1 className="load-rise mt-4 text-[1.9rem] font-bold leading-[1.35] text-ink md:text-[2.6rem]" style={vars({ '--d': '160ms' })}>
             {album.title}
           </h1>
           {album.description && (

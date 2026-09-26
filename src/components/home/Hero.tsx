@@ -79,13 +79,13 @@ export function Hero({
 
       <div className="wrap grid items-center gap-12 pb-28 pt-10 sm:pt-14 lg:grid-cols-[1fr_1.05fr] lg:gap-8 lg:pb-36 lg:pt-16">
         <div className="text-center lg:text-left">
-          <p className="load-up inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-1.5 pr-4 text-[0.9rem] font-semibold text-ink shadow-[0_4px_24px_rgb(11_15_46/0.08)] sm:text-[0.95rem]">
+          <p className="load-rise inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-1.5 pr-4 text-[0.9rem] font-semibold text-ink shadow-[0_4px_24px_rgb(11_15_46/0.08)] sm:text-[0.95rem]">
             <Image src="/brand/logo-legacy.png" alt="" width={28} height={28} className="size-7" />
             বাংলাদেশ ইসলামী ছাত্রশিবির · চবি শাখা
           </p>
           <h1
             id="hero-title"
-            className="load-up mt-6 text-[2.7rem] font-bold leading-[1.25] text-ink sm:text-[3.5rem] xl:text-[4.2rem]"
+            className="load-rise mt-6 text-[2.7rem] font-bold leading-[1.25] text-ink sm:text-[3.5rem] xl:text-[4.2rem]"
             style={vars({ '--d': '120ms' })}
           >
             {lead && (
@@ -103,7 +103,7 @@ export function Hero({
             </span>
           </h1>
           <p
-            className="load-up mx-auto mt-5 max-w-xl text-[1.1rem] font-medium leading-[1.75] text-ink/80 sm:text-[1.25rem] lg:mx-0"
+            className="load-rise mx-auto mt-5 max-w-xl text-[1.1rem] leading-[1.75] text-ink/85 sm:text-[1.25rem] lg:mx-0"
             style={vars({ '--d': '240ms' })}
           >
             {withHighlights(intro)}
@@ -140,22 +140,22 @@ export function Hero({
         {photo && (
           <div className="relative mx-auto aspect-[1/0.9] w-full max-w-[560px] lg:max-w-none" aria-label="ক্যাম্পাসে আমাদের কার্যক্রমের ছবি">
             <figure
-              className="load-scale absolute right-0 top-[9%] w-[86%] overflow-hidden rounded-[28px] border-[8px] border-white bg-pale-3 shadow-[0_30px_60px_rgb(11_15_46/0.18)]"
+              className="load-grow absolute right-0 top-[9%] w-[86%] overflow-hidden rounded-[28px] border-[8px] border-white bg-pale-3 shadow-[0_30px_60px_rgb(11_15_46/0.18)]"
               style={vars({ '--d': '200ms' })}
             >
               <div className="relative aspect-[4/3]">
-                <Image src={photo.src} alt={photo.alt} fill priority sizes="(min-width: 1024px) 560px, 86vw" className="object-cover" />
+                <Image src={photo.src} alt={photo.alt} fill priority sizes="(min-width: 1024px) 560px, 76vw" className="object-cover" />
               </div>
             </figure>
 
             {gallery[0] && (
               <FloatIcon className="bottom-0 left-0 w-[44%]" rotate={-5} wobble={2} drift={10} duration={7} delay={0.6}>
-                <Polaroid photo={gallery[0]} sizes="(min-width: 1024px) 260px, 44vw" />
+                <Polaroid photo={gallery[0]} sizes="(min-width: 1024px) 260px, 38vw" />
               </FloatIcon>
             )}
             {gallery[1] && (
               <FloatIcon className="left-[1%] top-0 w-[30%]" rotate={6} wobble={-2} drift={8} duration={6.2} delay={0.75}>
-                <Polaroid photo={gallery[1]} sizes="(min-width: 1024px) 180px, 30vw" />
+                <Polaroid photo={gallery[1]} sizes="(min-width: 1024px) 180px, 26vw" />
               </FloatIcon>
             )}
 

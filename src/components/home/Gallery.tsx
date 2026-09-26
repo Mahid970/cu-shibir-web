@@ -30,7 +30,7 @@ export function Gallery({
     .slice(0, 5)
   if (items.length === 0 && videos.length === 0) return null
   return (
-    <section className="py-16 md:py-22" aria-labelledby="gallery">
+    <section className="cv-auto py-16 md:py-22" aria-labelledby="gallery">
       <div className="wrap">
         <SectionTitle id="gallery" parts={['ক্যাম্পাসে', { hl: 'আমাদের দিনগুলো' }]} />
         <p className="lede">নবীনবরণ থেকে বৃক্ষরোপণ — ছবি আর ভিডিওতে আমাদের কার্যক্রম।</p>
@@ -93,7 +93,7 @@ export function Gallery({
                   href={youtube}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-semibold text-[#e62117] hover:underline"
+                  className="inline-flex items-center gap-2 font-semibold text-[#c4100b] hover:underline"
                 >
                   <YouTube className="size-5" />
                   ইউটিউব চ্যানেল

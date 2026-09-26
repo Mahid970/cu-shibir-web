@@ -59,7 +59,7 @@ export default async function AboutPage() {
 
       <section className="wrap py-14 md:py-20" aria-labelledby="who">
         <div className="grid items-center gap-10 lg:grid-cols-2">
-          <div data-reveal="up">
+          <div>
             <h2 id="who" className="text-[1.8rem] font-bold leading-snug text-ink md:text-[2.3rem]">
               আমরা কারা
             </h2>

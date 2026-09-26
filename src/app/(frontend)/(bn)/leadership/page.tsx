@@ -31,9 +31,8 @@ function LeadCard({ person, index }: { person: Person; index: number }) {
   const socials = SOCIAL_KEYS.filter((k) => person.socials?.[k])
   return (
     <article
-      data-reveal="up"
       style={vars({ '--d': `${index * 150}ms` })}
-      className="grid items-center gap-5 rounded-[28px] border border-white/10 bg-white/[0.04] p-4 shadow-[0_0_60px_rgb(0_96_250/0.15)] sm:grid-cols-[200px_1fr] sm:p-5"
+      className="load-rise grid items-center gap-5 rounded-[28px] border border-white/10 bg-white/[0.04] p-4 shadow-[0_0_60px_rgb(0_96_250/0.15)] sm:grid-cols-[200px_1fr] sm:p-5"
     >
       <div className="relative aspect-square overflow-hidden rounded-2xl bg-[radial-gradient(80%_75%_at_50%_100%,#1d4ed8,#0b1428_75%)]">
         {img && <Image src={img.src} alt={person.name} fill sizes="200px" className="object-cover object-top" priority />}

@@ -9,7 +9,7 @@ import { Swoosh } from '@/components/ui/SectionTitle'
 /** Closing banner: join, or write to us. Gradient border and a cluster of floating icons. */
 export function JoinBanner({ email }: { email: string }) {
   return (
-    <section className="wrap py-10 md:py-14" aria-labelledby="join-banner">
+    <section className="cv-auto wrap py-10 md:py-14" aria-labelledby="join-banner">
       <div
         data-reveal="up"
         className="relative overflow-hidden rounded-3xl border-4 border-transparent [background:linear-gradient(115deg,#0b2a5b,#081a3a_55%,#0c2f5c)_padding-box,linear-gradient(120deg,#5eead4,#3564ff_60%,#5eead4)_border-box]"

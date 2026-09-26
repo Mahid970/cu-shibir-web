@@ -43,7 +43,8 @@ export function SectionTitle({
   return (
     <Tag
       id={id}
-      data-reveal="title"
+      // Page titles are above the fold: they animate from the first paint instead of waiting for the observer.
+      data-reveal={Tag === 'h1' ? 'title-now' : 'title'}
       data-amount="0.15"
       className={`title ${dark ? 'title-dark' : ''} ${align === 'left' ? 'title-left' : ''} ${className}`}
     >

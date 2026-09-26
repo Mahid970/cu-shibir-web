@@ -57,10 +57,10 @@ export default async function EnglishHome() {
               <Image src="/brand/logo-legacy.png" alt="" width={22} height={22} />
               {EN.branch}
             </p>
-            <h1 id="en-title" className="load-up mt-5 text-[2.3rem] font-bold leading-[1.15] text-ink sm:text-[3rem] lg:text-[3.5rem]" style={vars({ '--d': '100ms' })}>
+            <h1 id="en-title" className="load-rise mt-5 text-[2.3rem] font-bold leading-[1.15] text-ink sm:text-[3rem] lg:text-[3.5rem]" style={vars({ '--d': '100ms' })}>
               Bangladesh Islami <span className="hl">Chhatrashibir</span>
             </h1>
-            <p className="load-up mt-5 max-w-xl text-[1.1rem] leading-relaxed text-muted" style={vars({ '--d': '200ms' })}>
+            <p className="load-rise mt-5 max-w-xl text-[1.1rem] leading-relaxed text-muted" style={vars({ '--d': '200ms' })}>
               {EN.intro}
             </p>
             <div className="load-up mt-8 flex flex-wrap gap-3" style={vars({ '--d': '300ms' })}>

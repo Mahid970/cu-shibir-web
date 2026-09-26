@@ -55,7 +55,7 @@ function PressCard({ item }: { item: PressCoverage }) {
 /** Night section: the CUCSU 2025 result, then press coverage drifting past in a marquee. */
 export function TrustSection({ press }: { press: PressCoverage[] }) {
   return (
-    <section className="relative isolate overflow-hidden bg-night pb-16 pt-14 md:pb-20 md:pt-20" aria-labelledby="trust">
+    <section className="cv-auto relative isolate overflow-hidden bg-night pb-16 pt-14 md:pb-20 md:pt-20" aria-labelledby="trust">
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-10 bg-[radial-gradient(45%_35%_at_85%_8%,rgb(53_100_255/0.35),transparent_70%),radial-gradient(40%_30%_at_5%_85%,rgb(0_251_151/0.12),transparent_70%)]"

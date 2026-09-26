@@ -12,7 +12,7 @@
   --ink: #0b0f2e;
   --text: #1a1a1a;
   --muted: #5c5c5c;
-  --subtle: #888888;
+  --subtle: #6b6b6b; /* 5.3:1 on white (WCAG AA) */
   --border: #e7e7e7;
 
   --primary: #0052d8;
@@ -622,6 +622,34 @@
   clip-path: inset(-50% 0 -50% 0);
   transition: clip-path 0.8s var(--ease-out) calc(var(--i, 0) * 0.15s + 0.3s);
 }
+/* Page titles (h1): visible from the first paint; words settle into place and the swoosh draws. */
+.motion [data-reveal='title-now'] > span {
+  animation: word-rise 0.6s var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 0.12s);
+}
+.motion [data-reveal='title-now'] > .hl {
+  animation:
+    word-rise 0.6s var(--ease-out) both,
+    shine 4s linear infinite;
+  animation-delay: calc(var(--i, 0) * 0.12s), 0s;
+}
+.motion [data-reveal='title-now'] .hl svg {
+  animation: swoosh-draw 0.8s var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 0.12s + 0.3s);
+}
+@keyframes word-rise {
+  from {
+    transform: translateY(-14px);
+  }
+}
+@keyframes swoosh-draw {
+  from {
+    clip-path: inset(-50% 100% -50% 0);
+  }
+  to {
+    clip-path: inset(-50% 0 -50% 0);
+  }
+}
 /* A line that draws itself across (milestones) */
 .motion [data-reveal='draw'] {
   transform-origin: left center;
@@ -650,6 +678,26 @@
 .load-scale {
   animation: scale-in 0.5s ease-in-out both;
   animation-delay: var(--d, 0ms);
+}
+/* Hero text rises without fading: it is visible from the first paint (it is the LCP element). */
+.load-rise {
+  animation: rise 0.6s var(--ease-out) both;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes rise {
+  from {
+    transform: translateY(18px);
+  }
+}
+/* Hero photo: grows into place without fading, so it counts as painted as soon as it loads. */
+.load-grow {
+  animation: grow 0.7s var(--ease-out) both;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes grow {
+  from {
+    transform: scale(0.94);
+  }
 }
 
 .caret {
@@ -917,4 +965,10 @@
 .prose-dark h2,
 .prose-dark h3 {
   color: rgb(226 232 240);
+}
+
+/* ---------- Below-the-fold sections: skip layout and paint until they come near ---------- */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
 }

@@ -75,7 +75,7 @@ export function LeadersSection({ leaders }: { leaders: Person[] }) {
   if (leaders.length === 0) return null
   return (
     <section
-      className="relative isolate overflow-hidden bg-night py-16 text-white md:py-24"
+      className="cv-auto relative isolate overflow-hidden bg-night py-16 text-white md:py-24"
       aria-labelledby="leaders"
     >
       <div

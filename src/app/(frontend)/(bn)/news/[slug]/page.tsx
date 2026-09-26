@@ -110,7 +110,7 @@ export default async function PostPage({ params }: Props) {
             <PostMeta category={post.category} publishedAt={post.publishedAt} />
           </div>
           <h1
-            className="load-up mt-4 text-[2rem] font-bold leading-[1.35] text-ink md:text-[2.75rem] lg:text-[3.1rem]"
+            className="load-rise mt-4 text-[2rem] font-bold leading-[1.35] text-ink md:text-[2.75rem] lg:text-[3.1rem]"
             style={vars({ '--d': '160ms' })}
           >
             {post.title}

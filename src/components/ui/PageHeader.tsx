@@ -15,7 +15,7 @@ export function PageHeader({ title, lede, children }: { title: string | TitlePar
       <div className="wrap">
         <SectionTitle as="h1" parts={typeof title === 'string' ? [title] : title} />
         {lede && (
-          <p className="lede load-up" style={vars({ '--d': '250ms' })}>
+          <p className="lede load-rise" style={vars({ '--d': '250ms' })}>
             {lede}
           </p>
         )}

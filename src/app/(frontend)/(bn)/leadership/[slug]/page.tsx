@@ -123,7 +123,7 @@ export default async function PersonPage({ params }: Props) {
             <p className="load-up w-fit rounded-lg bg-tag px-3 py-1 text-[0.9rem] font-bold text-ink" style={vars({ '--d': '80ms' })}>
               {person.position}
             </p>
-            <h1 className="load-up mt-3 text-[2rem] font-bold leading-snug text-ink md:text-[2.6rem]" style={vars({ '--d': '160ms' })}>
+            <h1 className="load-rise mt-3 text-[2rem] font-bold leading-snug text-ink md:text-[2.6rem]" style={vars({ '--d': '160ms' })}>
               {person.name}
             </h1>
             {details.length > 0 && (
