@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 
+import { ParticleEmblem } from '@/components/about/ParticleEmblem'
 import { RailTimeline } from '@/components/about/RailTimeline'
 import { Faq } from '@/components/home/Faq'
 import { FivePoints } from '@/components/home/FivePoints'
@@ -46,6 +47,14 @@ export default async function AboutPage() {
         title={['আমাদের', { hl: 'কথা' }]}
         lede="চট্টগ্রাম বিশ্ববিদ্যালয়ের শিক্ষার্থীদের নিয়ে, শিক্ষার্থীদের জন্য — আমরা কারা, কী চাই, কীভাবে কাজ করি।"
       />
+
+      <section className="relative isolate overflow-hidden bg-night" aria-label="আমাদের প্রতীক ও স্লোগান">
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(45%_70%_at_50%_50%,rgb(53_100_255/0.22),transparent_70%)]" />
+        <div className="wrap">
+          <ParticleEmblem />
+        </div>
+        <p className="sr-only">আমরা তরুণ, আমরাই পারি</p>
+      </section>
 
       <section className="wrap py-14 md:py-20" aria-labelledby="who">
         <div className="grid items-center gap-10 lg:grid-cols-2">
