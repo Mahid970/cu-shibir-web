@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 
+import { SYLLABUS } from '@/content/syllabus'
 import { getAllAlbumSlugs, getAllPeopleSlugs, getAllPostSlugs } from '@/lib/cms'
 import { absoluteUrl } from '@/lib/site'
 
@@ -34,6 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: p.priority,
       ...(p.path === '/' && { alternates: { languages: { 'bn-BD': absoluteUrl('/'), en: absoluteUrl('/en') } } }),
     })),
+    ...SYLLABUS.map((l) => ({ url: absoluteUrl(`/syllabus/${l.key}`), changeFrequency: 'yearly' as const, priority: 0.5 })),
     { url: absoluteUrl('/en'), changeFrequency: 'monthly', priority: 0.6, alternates: { languages: { 'bn-BD': absoluteUrl('/'), en: absoluteUrl('/en') } } },
     ...posts.filter((p) => p.slug).map((p) => ({ url: absoluteUrl(`/news/${p.slug}`), lastModified: p.updatedAt, changeFrequency: 'monthly' as const, priority: 0.7 })),
     ...albums.filter((a) => a.slug).map((a) => ({ url: absoluteUrl(`/gallery/${a.slug}`), lastModified: a.updatedAt, changeFrequency: 'yearly' as const, priority: 0.4 })),
