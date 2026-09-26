@@ -1,4 +1,7 @@
+import Link from 'next/link'
+
 import { ART } from '@/components/art/Icons3D'
+import { ArrowRight } from '@/components/ui/Icons'
 import { vars } from '@/components/ui/SectionTitle'
 import { SERVICES } from '@/content/home'
 
@@ -11,26 +14,42 @@ const THEMES = {
   green: { fill: '#effaf3', edge: 'linear-gradient(135deg,#22c55e,#bbf7d0 55%,#effaf3)', badge: 'bg-[#dcfce7] text-[#15803d]' },
 } as const
 
-/** Gradient-bordered "ecosystem" cards (Phitron) listing the services being built. */
-export function ServiceCards({ badge = 'শীঘ্রই' }: { badge?: string }) {
+/** Gradient-bordered "ecosystem" cards (Phitron): live services link through, the rest say when. */
+export function ServiceCards() {
+  const sorted = [...SERVICES].sort((a, b) => Number('href' in b) - Number('href' in a))
   return (
     <ul className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2 lg:grid-cols-3">
-      {SERVICES.map((s, i) => {
+      {sorted.map((s, i) => {
         const t = THEMES[s.theme]
         const Art = ART[s.icon]
+        const href = 'href' in s ? s.href : undefined
         return (
           <li
             key={s.title}
             data-reveal="fade"
             style={vars({ '--d': `${(i % 3) * 120}ms`, '--fill': t.fill, '--edge': t.edge })}
-            className="edge flex flex-col items-start gap-3 rounded-[18px] p-7 md:p-9"
+            className={`edge group relative flex flex-col items-start gap-3 rounded-[18px] p-7 md:p-9 ${href ? 'transition-transform hover:-translate-y-1' : ''}`}
           >
             <div className="flex w-full items-start justify-between gap-4">
               <Art className="art-shadow w-12" />
-              <span className={`chip ${t.badge}`}>{badge}</span>
+              <span className={`chip ${href ? 'bg-[#dcfce7] text-[#15803d]' : t.badge}`}>{href ? 'চালু আছে' : 'শীঘ্রই'}</span>
             </div>
-            <h3 className="mt-2 text-[1.25rem] font-bold leading-snug text-ink">{s.title}</h3>
+            <h3 className="mt-2 text-[1.25rem] font-bold leading-snug text-ink">
+              {href ? (
+                <Link href={href} className="after:absolute after:inset-0">
+                  {s.title}
+                </Link>
+              ) : (
+                s.title
+              )}
+            </h3>
             <p className="text-[0.98rem] leading-relaxed text-muted">{s.text}</p>
+            {href && (
+              <span className="mt-auto inline-flex items-center gap-2 pt-1 font-semibold text-primary">
+                ব্যবহার করুন
+                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            )}
           </li>
         )
       })}
