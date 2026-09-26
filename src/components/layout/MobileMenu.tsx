@@ -1,17 +1,20 @@
 'use client'
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { Close, Menu } from '@/components/ui/Icons'
+import { useBasePath, useLang } from '@/i18n/LangProvider'
+import { Link } from '@/i18n/link'
 import { SITE } from '@/lib/site'
 
-import { ALL_NAV, JOIN_HREF } from './nav'
+import { LangSwitch } from './LangSwitch'
+import { ALL_NAV, CHROME, JOIN_HREF } from './nav'
 
 /** Phone/tablet menu: a hamburger that drops a panel under the header. */
 export function MobileMenu() {
-  const pathname = usePathname()
+  const lang = useLang()
+  const t = CHROME[lang]
+  const pathname = useBasePath()
   const [open, setOpen] = useState(false)
 
   const [lastPath, setLastPath] = useState(pathname)
@@ -38,7 +41,7 @@ export function MobileMenu() {
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-controls="mobile-menu"
-        aria-label={open ? 'মেনু বন্ধ করুন' : 'মেনু খুলুন'}
+        aria-label={open ? t.closeMenu : t.openMenu}
         className="grid size-11 place-items-center rounded-lg text-primary hover:bg-pale"
       >
         {open ? <Close className="size-7" /> : <Menu className="size-7" />}
@@ -49,7 +52,7 @@ export function MobileMenu() {
         onClick={(e) => e.target === e.currentTarget && setOpen(false)}
       >
         <nav
-          aria-label="মোবাইল মেনু"
+          aria-label={t.mobileMenu}
           className={`max-h-full overflow-y-auto rounded-b-3xl bg-white px-4 pb-6 pt-2 shadow-xl transition-transform duration-300 ${open ? 'translate-y-0' : '-translate-y-4'}`}
         >
           <ul>
@@ -62,21 +65,22 @@ export function MobileMenu() {
                     aria-current={active ? 'page' : undefined}
                     className={`block border-b border-border py-3.5 text-[1.1rem] font-semibold ${active ? 'text-primary' : 'text-ink'}`}
                   >
-                    {item.label}
+                    {item.label[lang]}
                   </Link>
                 </li>
               )
             })}
           </ul>
-          <Link href="/en" hrefLang="en" lang="en" className="block border-b border-border py-3.5 font-[family-name:var(--font-en)] text-[1rem] font-semibold text-ink">
-            English
-          </Link>
+          <div className="flex items-center justify-between gap-3 border-b border-border py-3">
+            <span className="font-semibold text-ink">{t.language}</span>
+            <LangSwitch long />
+          </div>
           <div className="mt-5 grid grid-cols-2 gap-3">
             <a href={`mailto:${SITE.email}`} className="btn btn-outline">
-              যোগাযোগ
+              {t.contact}
             </a>
             <Link href={JOIN_HREF} className="btn btn-gradient">
-              সমর্থক হোন
+              {t.join}
             </Link>
           </div>
         </nav>

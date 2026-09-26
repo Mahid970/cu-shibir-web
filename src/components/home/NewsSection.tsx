@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '@/i18n/link'
 
 import { PostCard, type PostSummary } from '@/components/content/PostList'
 import { ArrowRight } from '@/components/ui/Icons'

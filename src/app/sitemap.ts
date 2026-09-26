@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 
 import { SYLLABUS } from '@/content/syllabus'
+import { localePath } from '@/i18n/config'
 import { getAllAlbumSlugs, getAllPeopleSlugs, getAllPostSlugs, getMartyrs } from '@/lib/cms'
 import { absoluteUrl } from '@/lib/site'
 
@@ -26,23 +27,33 @@ const PAGES: { path: string; priority: number; freq: 'daily' | 'weekly' | 'month
   { path: '/privacy', priority: 0.2, freq: 'yearly' },
 ]
 
+type Entry = { path: string; priority: number; freq: 'daily' | 'weekly' | 'monthly' | 'yearly'; lastModified?: string }
+
+/** Each page twice, Bangla and English, each pointing at the other (hreflang). */
+function both({ path, priority, freq, lastModified }: Entry): MetadataRoute.Sitemap {
+  const languages = { 'bn-BD': absoluteUrl(path), en: absoluteUrl(localePath('en', path)) }
+  return (['bn', 'en'] as const).map((lang) => ({
+    url: absoluteUrl(localePath(lang, path)),
+    lastModified,
+    changeFrequency: freq,
+    // The English copy of a page is a translation of the interface; the Bangla one comes first.
+    priority: lang === 'bn' ? priority : Math.round(priority * 6) / 10,
+    alternates: { languages },
+  }))
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [posts, albums, people, martyrs] = await Promise.all([getAllPostSlugs(), getAllAlbumSlugs(), getAllPeopleSlugs(), getMartyrs('bn')])
-  return [
-    ...PAGES.map((p) => ({
-      url: absoluteUrl(p.path),
-      changeFrequency: p.freq,
-      priority: p.priority,
-      ...(p.path === '/' && { alternates: { languages: { 'bn-BD': absoluteUrl('/'), en: absoluteUrl('/en') } } }),
-    })),
-    ...SYLLABUS.map((l) => ({ url: absoluteUrl(`/syllabus/${l.key}`), changeFrequency: 'yearly' as const, priority: 0.5 })),
-    ...(martyrs.length ? [{ url: absoluteUrl('/martyrs'), changeFrequency: 'yearly' as const, priority: 0.6 }] : []),
-    { url: absoluteUrl('/en'), changeFrequency: 'monthly', priority: 0.6, alternates: { languages: { 'bn-BD': absoluteUrl('/'), en: absoluteUrl('/en') } } },
-    ...posts.filter((p) => p.slug).map((p) => ({ url: absoluteUrl(`/news/${p.slug}`), lastModified: p.updatedAt, changeFrequency: 'monthly' as const, priority: 0.7 })),
-    ...albums.filter((a) => a.slug).map((a) => ({ url: absoluteUrl(`/gallery/${a.slug}`), lastModified: a.updatedAt, changeFrequency: 'yearly' as const, priority: 0.4 })),
+  const entries: Entry[] = [
+    ...PAGES.map((p) => ({ path: p.path, priority: p.priority, freq: p.freq })),
+    ...SYLLABUS.map((l) => ({ path: `/syllabus/${l.key}`, freq: 'yearly' as const, priority: 0.5 })),
+    ...(martyrs.length ? [{ path: '/martyrs', freq: 'yearly' as const, priority: 0.6 }] : []),
+    ...posts.filter((p) => p.slug).map((p) => ({ path: `/news/${p.slug}`, lastModified: p.updatedAt, freq: 'monthly' as const, priority: 0.7 })),
+    ...albums.filter((a) => a.slug).map((a) => ({ path: `/gallery/${a.slug}`, lastModified: a.updatedAt, freq: 'yearly' as const, priority: 0.4 })),
     // Only filled-in profiles; empty ones are noindex.
     ...people
       .filter((p) => p.slug && (p.profileCompleteness ?? 0) >= 50)
-      .map((p) => ({ url: absoluteUrl(`/leadership/${p.slug}`), lastModified: p.updatedAt, changeFrequency: 'monthly' as const, priority: 0.5 })),
+      .map((p) => ({ path: `/leadership/${p.slug}`, lastModified: p.updatedAt, freq: 'monthly' as const, priority: 0.5 })),
   ]
+  return entries.flatMap(both)
 }

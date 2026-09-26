@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '@/i18n/link'
 
 import { ArrowRight } from '@/components/ui/Icons'
 import { vars } from '@/components/ui/SectionTitle'

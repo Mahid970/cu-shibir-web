@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from '@/i18n/link'
 
 import { ArrowRight, CheckCircle } from '@/components/ui/Icons'
 import { FACULTIES, HALLS, NON_RESIDENT, type Option } from '@/lib/campus'

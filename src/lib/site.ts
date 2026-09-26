@@ -3,10 +3,17 @@ export const SITE = {
   name: 'বাংলাদেশ ইসলামী ছাত্রশিবির — চট্টগ্রাম বিশ্ববিদ্যালয়',
   shortName: 'চবি ছাত্রশিবির',
   nameEn: 'Bangladesh Islami Chhatrashibir — University of Chittagong',
+  shortNameEn: 'CU Chhatrashibir',
   description:
     'বাংলাদেশ ইসলামী ছাত্রশিবির, চট্টগ্রাম বিশ্ববিদ্যালয় শাখার অফিসিয়াল ওয়েবসাইট — সংবাদ, বিবৃতি, ইভেন্ট, শিক্ষার্থী সেবা ও দায়িত্বশীলবৃন্দ।',
+  descriptionEn:
+    'Official website of Bangladesh Islami Chhatrashibir, University of Chittagong branch: news, statements, events, student services and leadership.',
   facebook: 'https://www.facebook.com/cushibir',
   email: 'cuchhatrashibir@gmail.com',
 } as const
 
 export const absoluteUrl = (path = '/') => new URL(path, SITE.url).toString()
+
+/** Site name and short name in the page's language. */
+export const siteName = (lang: 'bn' | 'en') => (lang === 'en' ? SITE.nameEn : SITE.name)
+export const siteShortName = (lang: 'bn' | 'en') => (lang === 'en' ? SITE.shortNameEn : SITE.shortName)

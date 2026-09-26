@@ -2,18 +2,20 @@
  * Service worker for cushibir.org — keeps the site usable on patchy mobile data.
  *
  * - Pages: network first (4 s timeout), then the copy saved when the page was last opened,
- *   then /offline. Up to 40 pages are kept.
+ *   then /offline (/en/offline for English pages). Up to 40 pages are kept.
  * - Build assets (/_next/static): cache first; their names change with every deploy.
  * - Images: stale-while-revalidate, up to 80.
  * - Never cached: the CMS (/admin, /api except media files), POSTs (forms, server actions),
  *   search suggestions and anything cross-origin.
  */
-const VERSION = 'v1'
+const VERSION = 'v2'
 const PAGES = `pages-${VERSION}`
 const STATIC = `static-${VERSION}`
 const IMAGES = `images-${VERSION}`
 const OFFLINE_URL = '/offline'
-const PRECACHE = [OFFLINE_URL, '/icons/icon-192.png', '/brand/logo-legacy.png']
+const OFFLINE_URL_EN = '/en/offline'
+const PRECACHE = [OFFLINE_URL, OFFLINE_URL_EN, '/icons/icon-192.png', '/brand/logo-legacy.png']
+const isEnglish = (pathname) => pathname === '/en' || pathname.startsWith('/en/')
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -53,7 +55,8 @@ async function networkFirstPage(request) {
     return response
   } catch {
     const cached = await cache.match(request, { ignoreSearch: false })
-    return cached || (await cache.match(OFFLINE_URL)) || Response.error()
+    const offline = isEnglish(new URL(request.url).pathname) ? OFFLINE_URL_EN : OFFLINE_URL
+    return cached || (await cache.match(offline)) || (await cache.match(OFFLINE_URL)) || Response.error()
   }
 }
 
@@ -83,7 +86,8 @@ self.addEventListener('fetch', (event) => {
   if (request.method !== 'GET') return
   const url = new URL(request.url)
   if (url.origin !== self.location.origin) return
-  if (url.pathname.startsWith('/admin') || url.pathname.startsWith('/search/suggest') || url.pathname.startsWith('/next/')) return
+  if (url.pathname.startsWith('/admin') || url.pathname.startsWith('/next/')) return
+  if (url.pathname.startsWith('/search/suggest') || url.pathname.startsWith('/en/search/suggest')) return
   if (url.pathname.startsWith('/api/') && !url.pathname.startsWith('/api/media/file/')) return
 
   // React Server Component payloads for client navigations: let the network (and Next's own retry) handle them.

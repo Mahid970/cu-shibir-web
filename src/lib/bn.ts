@@ -88,25 +88,24 @@ export function formatDate(
 ): string {
   const date = value instanceof Date ? value : new Date(value)
   if (Number.isNaN(date.getTime())) return ''
-  if (style === 'datetime' && locale === 'bn') {
-    // "২৬ সেপ্টেম্বর ২০২৬, সন্ধ্যা ৭:১৬" — Intl alone gives "… এ ৭:১৬ PM".
-    return `${formatDate(date, { locale, style: 'long' })}, ${formatTime(date)}`
+  if (style === 'datetime') {
+    // "২৬ সেপ্টেম্বর ২০২৬, সন্ধ্যা ৭:১৬" — Intl alone gives "… এ ৭:১৬ PM". English: "26 September 2026, 7:16 pm".
+    return `${formatDate(date, { locale, style: 'long' })}, ${formatTime(date, locale)}`
   }
   const options: Intl.DateTimeFormatOptions =
-    style === 'short'
-      ? { day: 'numeric', month: 'short', year: 'numeric' }
-      : style === 'datetime'
-        ? { day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: '2-digit' }
-        : { day: 'numeric', month: 'long', year: 'numeric' }
+    style === 'short' ? { day: 'numeric', month: 'short', year: 'numeric' } : { day: 'numeric', month: 'long', year: 'numeric' }
   return new Intl.DateTimeFormat(locale === 'bn' ? 'bn-BD' : 'en-GB', {
     ...options,
     timeZone: DHAKA_TZ,
   }).format(date)
 }
 
-/** Time of day in Dhaka the way people say it: "সন্ধ্যা ৭:১৬", "সকাল ৮:০৫". */
-export function formatTime(value: string | number | Date): string {
+/** Time of day in Dhaka the way people say it: "সন্ধ্যা ৭:১৬", "সকাল ৮:০৫"; in English "7:16 pm". */
+export function formatTime(value: string | number | Date, locale: 'bn' | 'en' = 'bn'): string {
   const date = value instanceof Date ? value : new Date(value)
+  if (locale === 'en') {
+    return new Intl.DateTimeFormat('en-GB', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: DHAKA_TZ }).format(date)
+  }
   const parts = new Intl.DateTimeFormat('bn-BD', { hour: 'numeric', minute: '2-digit', dayPeriod: 'short', timeZone: DHAKA_TZ }).formatToParts(date)
   const get = (t: string) => parts.find((p) => p.type === t)?.value ?? ''
   return `${get('dayPeriod')} ${get('hour')}:${get('minute')}`.trim()

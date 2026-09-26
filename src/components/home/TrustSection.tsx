@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '@/i18n/link'
 import type { ReactNode } from 'react'
 
 import { BallotBox, Medal, Trophy3D } from '@/components/art/Icons3D'

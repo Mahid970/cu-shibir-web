@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/i18n/link'
 
 import { FloatIcon } from '@/components/art/FloatIcon'
 import { BallotBox, Book, Megaphone3D, Train } from '@/components/art/Icons3D'

@@ -1,16 +1,18 @@
 'use client'
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
 import { ChevronDown } from '@/components/ui/Icons'
+import { useBasePath, useLang } from '@/i18n/LangProvider'
+import { Link } from '@/i18n/link'
 
-import { FEATURED_NAV, MAIN_NAV, MORE_NAV } from './nav'
+import { CHROME, FEATURED_NAV, MAIN_NAV, MORE_NAV } from './nav'
 
-/** Desktop navigation: outlined featured pill, links, and an "এছাড়াও" dropdown. */
+/** Desktop navigation: outlined featured pill, links, and an "এছাড়াও" (More) dropdown. */
 export function NavLinks() {
-  const pathname = usePathname()
+  const lang = useLang()
+  const t = CHROME[lang]
+  const pathname = useBasePath()
   const [open, setOpen] = useState(false)
   const moreRef = useRef<HTMLDivElement>(null)
 
@@ -37,7 +39,7 @@ export function NavLinks() {
   const active = (href: string) => pathname.startsWith(href)
 
   return (
-    <nav aria-label="প্রধান মেনু" className="hidden lg:block">
+    <nav aria-label={t.mainMenu} className="hidden lg:block">
       <ul className="flex items-center gap-1">
         <li className="mr-2">
           <Link
@@ -47,7 +49,7 @@ export function NavLinks() {
               active(FEATURED_NAV.href) ? 'bg-primary text-white' : 'text-primary hover:bg-pale'
             }`}
           >
-            {FEATURED_NAV.label}
+            {FEATURED_NAV.label[lang]}
           </Link>
         </li>
         {MAIN_NAV.map((item) => (
@@ -59,7 +61,7 @@ export function NavLinks() {
                 active(item.href) ? 'text-primary' : 'text-ink hover:text-primary'
               }`}
             >
-              {item.label}
+              {item.label[lang]}
             </Link>
           </li>
         ))}
@@ -72,7 +74,7 @@ export function NavLinks() {
               onClick={() => setOpen((o) => !o)}
               className="flex items-center gap-1 rounded-lg px-3 py-2 text-[0.98rem] font-semibold text-ink hover:text-primary"
             >
-              এছাড়াও
+              {t.more}
               <ChevronDown className={`size-4 transition-transform ${open ? 'rotate-180' : ''}`} />
             </button>
             <ul
@@ -89,11 +91,11 @@ export function NavLinks() {
                       rel="noopener noreferrer"
                       className="block rounded-lg px-3 py-2 font-semibold text-ink hover:bg-pale hover:text-primary"
                     >
-                      {item.label}
+                      {item.label[lang]}
                     </a>
                   ) : (
                     <Link href={item.href} className="block rounded-lg px-3 py-2 font-semibold text-ink hover:bg-pale hover:text-primary">
-                      {item.label}
+                      {item.label[lang]}
                     </Link>
                   )}
                 </li>
