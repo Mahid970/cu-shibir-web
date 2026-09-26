@@ -3,6 +3,13 @@
 import { useEffect, useRef, useState } from 'react'
 
 import type { Stop } from '@/content/history'
+import { copy } from '@/i18n/config'
+import { useLang } from '@/i18n/LangProvider'
+
+const T = copy(
+  { title: ['যে পথে', 'এসেছি'], lede: '১৯৭৭ থেকে আজ পর্যন্ত, শাটলের লাইন ধরে।' },
+  { title: ['How we', 'got here'], lede: 'From 1977 to today, along the shuttle line.' },
+)
 
 const GAP = 440 // px between stations on the pinned rail
 
@@ -45,6 +52,7 @@ export function RailTimeline({ stops }: { stops: Stop[] }) {
   const track = useRef<HTMLOListElement>(null)
   const [pinned, setPinned] = useState(false)
   const [active, setActive] = useState(0)
+  const t = T[useLang()]
 
   useEffect(() => {
     const wide = matchMedia('(min-width: 1024px)')
@@ -98,9 +106,9 @@ export function RailTimeline({ stops }: { stops: Stop[] }) {
   const heading = (
     <div className="wrap">
       <h2 id="history-title" className="text-[2rem] font-bold text-white md:text-[2.6rem]">
-        যে পথে <span className="text-mint">এসেছি</span>
+        {t.title[0]} <span className="text-mint">{t.title[1]}</span>
       </h2>
-      <p className="mt-2 max-w-2xl text-[1.02rem] text-slate-400">১৯৭৭ থেকে আজ পর্যন্ত, শাটলের লাইন ধরে।</p>
+      <p className="mt-2 max-w-2xl text-[1.02rem] text-slate-400">{t.lede}</p>
     </div>
   )
 

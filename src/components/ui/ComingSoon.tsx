@@ -1,4 +1,6 @@
+import { copy } from '@/i18n/config'
 import { Link } from '@/i18n/link'
+import { getLang } from '@/i18n/server'
 
 import { ArrowRight } from './Icons'
 import { PageHeader } from './PageHeader'
@@ -13,8 +15,13 @@ const EDGES = [
   ['#effaf3', 'linear-gradient(135deg,#22c55e,#bbf7d0 55%,#effaf3)'],
 ]
 
+const T = copy(
+  { coming: 'এই পাতায় যা আসছে', soon: 'শীঘ্রই', news: 'সর্বশেষ সংবাদ', join: 'সমর্থক হোন' },
+  { coming: 'Coming to this page', soon: 'Coming soon', news: 'Latest news', join: 'Become a supporter' },
+)
+
 /** Placeholder for sections scheduled in later roadmap phases (plan §9). */
-export function ComingSoon({
+export async function ComingSoon({
   title,
   intro,
   features,
@@ -25,6 +32,7 @@ export function ComingSoon({
   features?: string[]
   children?: React.ReactNode
 }) {
+  const t = T[await getLang()]
   return (
     <>
       <PageHeader title={title} lede={intro} />
@@ -32,7 +40,7 @@ export function ComingSoon({
         {children}
         {features && (
           <>
-            <h2 className="text-center text-[1.6rem] font-bold text-ink md:text-[2rem]">এই পাতায় যা আসছে</h2>
+            <h2 className="text-center text-[1.6rem] font-bold text-ink md:text-[2rem]">{t.coming}</h2>
             <ul className="mx-auto mt-8 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {features.map((f, i) => (
                 <li
@@ -42,7 +50,7 @@ export function ComingSoon({
                   className="edge flex items-start justify-between gap-3 rounded-[18px] p-6"
                 >
                   <span className="text-[1.1rem] font-semibold text-ink">{f}</span>
-                  <span className="chip shrink-0">শীঘ্রই</span>
+                  <span className="chip shrink-0">{t.soon}</span>
                 </li>
               ))}
             </ul>
@@ -50,11 +58,11 @@ export function ComingSoon({
         )}
         <div className="mt-12 flex flex-wrap justify-center gap-3">
           <Link href="/news" className="btn btn-outline-blue">
-            সর্বশেষ সংবাদ
+            {t.news}
             <ArrowRight />
           </Link>
           <Link href="/join" className="btn btn-yellow">
-            সমর্থক হোন
+            {t.join}
             <ArrowRight />
           </Link>
         </div>
