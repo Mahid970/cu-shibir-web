@@ -53,6 +53,7 @@ src/
     join/ supporter/ feedback/         forms (server actions, encrypted)
     services/ assistance/ status/ campus/
     syllabus/[level]/    কর্মী / সাথী / সদস্য with an on-device reading checklist
+    martyrs/             শহীদ স্মরণ (hidden until entries are published)
     search/ (+ suggest/) site search
     offline/ privacy/ events/ (placeholder, Phase 3)
     blog_details/ responsible/         legacy id → new URL redirects
@@ -60,7 +61,7 @@ src/
   app/(frontend)/(en)/en English overview, root layout lang="en"
   app/(payload)/         Payload admin + REST/GraphQL (generated — don't edit)
   app/sitemap.ts robots.ts manifest.ts
-  collections/           Posts, People, PressCoverage, Videos, Albums, Media, Users
+  collections/           Posts, People, Martyrs, PressCoverage, Videos, Albums, Media, Users
   collections/forms/     Supporters, Feedback, Assistance (encrypted personal data)
   globals/SiteSettings   tagline, hero photo + intro, contact, socials
   access/                roles + access helpers (super-admin, admin, editor, contributor, …)
@@ -74,8 +75,10 @@ src/
   lib/search.ts          posts via a normalised index + small collections in memory
   lib/campus.ts          CU faculties, departments, halls, sessions
   lib/og/                share-card HTML + Chromium renderer
-  components/            home/, content/, forms/, syllabus/, ui/, motion/, art/, layout/ (incl. SearchPalette)
-  content/               copy not in the CMS: home.ts, en.ts, syllabus.json
+  components/            home/, campus/ (3D scene, poster, tiers), about/ (rail timeline, particle emblem),
+                         content/, forms/, syllabus/, ui/, motion/, art/, layout/ (incl. SearchPalette)
+  lib/sky.ts             prayer times and time-of-day sky palettes for the campus scene
+  content/               copy not in the CMS: home.ts, en.ts, history.ts, syllabus.json
 public/sw.js             service worker: offline reading, cached assets and images
 scripts/                 dev DB, seed, legacy import, share-image backfill, search reindex, icons
 docs/                    design system, deploy guide, spikes
@@ -104,14 +107,38 @@ docs/                    design system, deploy guide, spikes
   - Posts carry a normalised `searchText` (NFC, Bangla digits → Latin, no ZWJ).
   - Payload's `like` matches every word.
   - People, albums, videos, press and campus lists are searched in memory.
-- **Weight budget.** On the production build, measured in a mobile viewport:
-  - Homepage is well under 500 KB before the hero photo (old site: 3.7 MB). HTML is 54 KB gzipped.
-  - Measured 2026-09-26: about 460 KB before lazy images. JS 147 KB, CSS 15 KB.
-  - Fonts are 218 KB: Hind Siliguri 400–700 (Bangla) and Montserrat (Latin), self-hosted by `next/font`.
-- **Motion** is CSS plus one observer (`components/motion/RevealObserver`), not an animation library:
+- **Weight budget.** Production build, Pixel-class phone, measured 2026-09-26:
+  - Homepage transfer is about 700 KB including photos (old site: 3.7 MB).
+  - Initial JS is 173 KB gzipped, most of it React and the Next.js router. The site's own home code is about 10 KB.
+  - Fonts are about 170 KB: Hind Siliguri 400/600/700 (Bangla), preloaded, plus Montserrat (Latin), not preloaded.
+  - The 3D campus chunk (three.js, about 138 KB gzipped) and the prayer-time maths load only when their section comes near.
+- **Lighthouse (mobile, simulated 4G, 4× CPU)**, measured 2026-09-26:
+
+  | Page | Performance | Accessibility | Best practices |
+  |---|---|---|---|
+  | Home | 79–86 | 100 | 100 |
+  | Other pages | 86–91 | 96–100 | 100 |
+
+  - CLS is 0 everywhere. Blocking time is 40–200 ms.
+  - The simulated LCP (3.5–4.6 s) is limited by the Bangla fonts and the React runtime sharing bandwidth. A real throttled Chromium paints the LCP at about 1.9 s.
+  - How the numbers were improved:
+    - Above-the-fold text rises in without fading (`load-rise`, `title-now`), so it never waits for a script.
+    - Far home sections use `content-visibility: auto`.
+    - The first news cards skip the reveal.
+- **Motion** is CSS plus one observer (`components/motion/RevealObserver`) for the page chrome:
   - Elements opt in with `data-reveal` and animate **once**.
   - Nothing re-hides or stays blurred.
   - `prefers-reduced-motion` turns it all off.
+- **Phase 2 layer**:
+  - **Living campus** (home, `components/campus`):
+    - A procedural three.js scene, no model files: hills, forest, the shuttle line and train, campus blocks, কাটা পাহাড়.
+    - The sky follows Chattogram time, and the next prayer time is shown (`lib/sky.ts`: Karachi method, Hanafi Asr).
+    - Device tiers: an SVG poster for reduced motion, Save-Data, ≤2 GB or software GPUs; a lighter scene for phones; the full scene elsewhere.
+    - Rendering pauses off-screen. `?campus3d=0|1|2` and `?campusHour=` are QA overrides.
+  - **Particle emblem** (About): a 2D canvas. The logo's pixels gather from scattered stars, then re-form as the slogan, drawn with the page's Bangla font.
+  - **Rail timeline** (About): the history as stations on the shuttle line. It is pinned and scroll-driven on large screens and a vertical list elsewhere.
+  - **View transitions**: news card image → article hero, and leader photo → profile, with React `<ViewTransition>`.
+  - **শহীদ স্মরণ** (`/martyrs`): a calm constellation plus a full list. It stays a 404 until the branch publishes verified entries.
 - **Design rules** (keep them when adding pages):
   - Real photos of students beat illustrations.
   - One yellow button per screen, for the main action.
@@ -134,4 +161,5 @@ Every variable is listed with its purpose in [`.env.example`](.env.example). Pro
 - [ ] Get the **vector logo** and full-resolution leader photos from the branch. Several legacy photos are only 180–256 px wide.
   Then re-run `scripts/make-icons.ts`.
 - [ ] English names for the committee (CMS → People → English). Positions already have English fallbacks.
+- [ ] Branch to verify the history stops (`src/content/history.ts`) and send the verified শহীদ list (CMS → শহীদ স্মরণ).
 - [ ] Keep the legacy report builder running at `report.cushibir.org` until it is replaced.

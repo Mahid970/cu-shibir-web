@@ -35,6 +35,7 @@ marquee, count-up, sliding tab pill, stacked ৫ দফা cards, light-sweep he
 | `--ink` | `#0b0f2e` | headings | headings, dark text |
 | `--text` | `#1a1a1a` | card titles | card titles |
 | `--muted` | `#5c5c5c` | body copy | body copy |
+| `--subtle` | Phitron `#888888` | captions, dates | darkened to `#6b6b6b` for 5.3:1 contrast (WCAG AA) |
 | `--primary` | `#0052d8` | links, buttons | links, active states |
 | `--blue` | `#3564ff` | mono tagline, tab pill, highlights | same |
 | `--gradient` | radial `#0060fa → #002b70` | primary button, highlighted words | same |
@@ -55,7 +56,7 @@ Grid texture: 1px lines `rgba(53,100,255,.07)` every 72px, with a few `#c3d3ff` 
 
 ## Type
 
-- **Hind Siliguri** 400/500/600/700: all Bangla. Section titles are 700 at 56 / 40 / 32 px.
+- **Hind Siliguri** 400/600/700: all Bangla (500 was dropped for weight). Section titles are 700 at 56 / 40 / 32 px.
 - **Montserrat**: Latin words and numbers.
 - Phitron's monospace taglines are not used; every label is in Bangla.
 - Body text is 16–18px at a 1.5–1.7 line height.
@@ -88,6 +89,11 @@ Grid texture: 1px lines `rgba(53,100,255,.07)` every 72px, with a few `#c3d3ff` 
 | Nudge arrows | chevrons `x 0→4→0`, 1.6s | tabs, steps |
 | Tab pill | active background slides with a spring | news tabs |
 | Scramble label | random glyphs settle left-to-right (45ms tick) | not used: Bangla labels wipe in instead |
+| Page titles (h1) | — | words rise into place from the first paint (`title-now`), no fade, so they never wait for a script |
+| Shared elements | — | news image → article hero, leader photo → profile (React `<ViewTransition>`) |
+| Rail timeline | — | history stations on the shuttle line; pinned and scroll-driven on large screens (About) |
+| Particle emblem | — | the logo gathers from scattered points, then re-forms as the slogan (About) |
+| Living campus | — | 3D hills and the shuttle train in Chattogram's current light; poster on weak devices (home) |
 | Light sweep | a lime band wipes across the heading and reveals the highlight, 1.2s | dark-section titles |
 | Folder stack | full-width coloured "folder" cards pin and stack while scrolling | ৫ দফা |
 | Toast | slides up after load, can be minimised to a round button | not used: replaced by the news ticker |
