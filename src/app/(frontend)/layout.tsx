@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import type { ReactNode } from 'react'
 
 import { SiteFooter } from '@/components/layout/SiteFooter'
+import { ServiceWorker } from '@/components/layout/ServiceWorker'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 import { RevealObserver } from '@/components/motion/RevealObserver'
 import { SvgDefs } from '@/components/ui/SectionTitle'
@@ -26,7 +27,11 @@ export const metadata: Metadata = {
     url: '/',
   },
   twitter: { card: 'summary_large_image', site: '@CUshibir77' },
-  icons: { icon: '/brand/logo-legacy.png', apple: '/brand/logo-legacy.png' },
+  icons: {
+    icon: [{ url: '/icons/favicon-48.png', sizes: '48x48', type: 'image/png' }, { url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' }],
+    apple: '/icons/apple-touch-icon.png',
+  },
+  appleWebApp: { capable: true, title: 'চবি ছাত্রশিবির', statusBarStyle: 'default' },
 }
 
 export const viewport: Viewport = {
@@ -73,6 +78,7 @@ export default async function FrontendLayout({ children }: { children: ReactNode
         </main>
         <SiteFooter settings={settings} />
         <RevealObserver />
+        <ServiceWorker />
       </body>
     </html>
   )
