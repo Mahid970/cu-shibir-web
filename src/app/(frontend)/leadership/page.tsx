@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { LeaderCard } from '@/components/home/LeadersSection'
 import { CheckCircle, Mail, SOCIAL_ICONS } from '@/components/ui/Icons'
@@ -39,7 +40,11 @@ function LeadCard({ person, index }: { person: Person; index: number }) {
       </div>
       <div className="px-1 pb-2 sm:pb-0">
         <p className="w-fit rounded-lg bg-tag px-3 py-1 text-[0.85rem] font-bold text-ink">{person.position}</p>
-        <h2 className="mt-3 text-[1.6rem] font-bold leading-snug text-white md:text-[2rem]">{person.name}</h2>
+        <h2 className="mt-3 text-[1.6rem] font-bold leading-snug text-white md:text-[2rem]">
+          <Link href={`/leadership/${person.slug}`} className="hover:underline">
+            {person.name}
+          </Link>
+        </h2>
         {details.length > 0 && (
           <ul className="mt-3 space-y-1.5 text-[0.95rem] text-white/75">
             {details.map((d) => (

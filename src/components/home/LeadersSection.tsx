@@ -28,7 +28,7 @@ export function LeaderCard({
       data-reveal="fade"
       data-amount="0.1"
       style={vars({ '--d': `${(index % 4) * 100}ms` })}
-      className="flex h-full flex-col gap-3 rounded-[20px] border border-white/[0.08] bg-night-card p-3 text-white"
+      className="group relative flex h-full flex-col gap-3 rounded-[20px] border border-white/[0.08] bg-night-card p-3 text-white transition-colors hover:border-white/25"
     >
       <div className="relative aspect-[4/3.6] overflow-hidden rounded-2xl bg-[radial-gradient(80%_75%_at_50%_100%,#1d4ed8,#0b1428_75%)]">
         {img && (
@@ -42,7 +42,9 @@ export function LeaderCard({
         )}
       </div>
       <h3 className="px-1 text-center text-[1.1rem] font-bold leading-snug text-white md:text-[1.2rem]">
-        {person.name}
+        <Link href={`/leadership/${person.slug}`} className="after:absolute after:inset-0 group-hover:underline">
+          {person.name}
+        </Link>
       </h3>
       <p
         className={`mx-auto rounded-lg px-3 py-1 text-center text-[0.8rem] font-semibold leading-snug ${
