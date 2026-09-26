@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+
 import { FivePoints } from '@/components/home/FivePoints'
 import { Gallery } from '@/components/home/Gallery'
 import { Hero } from '@/components/home/Hero'
@@ -15,6 +17,10 @@ import { DEFAULT_STATS } from '@/content/home'
 import type { Media } from '@/payload-types'
 
 export const revalidate = 3600
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/', languages: { 'bn-BD': '/', en: '/en', 'x-default': '/' } },
+}
 
 export default async function HomePage() {
   const [settings, posts, leaders, press, albums, videos] = await Promise.all([

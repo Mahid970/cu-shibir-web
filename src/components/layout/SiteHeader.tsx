@@ -43,6 +43,9 @@ export function SiteHeader() {
         <div className="flex items-center gap-3">
           <NavLinks />
           <SearchPalette />
+          <Link href="/en" hrefLang="en" lang="en" className="hidden h-9 items-center rounded-lg px-2.5 font-[family-name:var(--font-en)] text-[0.85rem] font-bold text-ink hover:bg-pale-2 md:inline-flex" aria-label="English">
+            EN
+          </Link>
           <a href={`mailto:${SITE.email}`} className="btn btn-outline btn-sm hidden xl:inline-flex">
             যোগাযোগ
           </a>

@@ -68,6 +68,9 @@ export function MobileMenu() {
               )
             })}
           </ul>
+          <Link href="/en" hrefLang="en" lang="en" className="block border-b border-border py-3.5 font-[family-name:var(--font-en)] text-[1rem] font-semibold text-ink">
+            English
+          </Link>
           <div className="mt-5 grid grid-cols-2 gap-3">
             <a href={`mailto:${SITE.email}`} className="btn btn-outline">
               যোগাযোগ
