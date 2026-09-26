@@ -5,6 +5,7 @@ import { SITE } from '@/lib/site'
 
 import { MobileMenu } from './MobileMenu'
 import { NavLinks } from './NavLinks'
+import { SearchPalette } from './SearchPalette'
 import { JOIN_HREF } from './nav'
 
 export function Logo({ tone = 'dark' }: { tone?: 'dark' | 'light' }) {
@@ -38,6 +39,7 @@ export function SiteHeader() {
         <Logo />
         <div className="flex items-center gap-3">
           <NavLinks />
+          <SearchPalette />
           <a href={`mailto:${SITE.email}`} className="btn btn-outline btn-sm hidden xl:inline-flex">
             যোগাযোগ
           </a>
