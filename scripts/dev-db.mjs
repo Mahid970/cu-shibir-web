@@ -19,6 +19,8 @@ const pg = new EmbeddedPostgres({
   password: 'postgres',
   port: PORT,
   persistent: true,
+  // UTF-8 like production (initdb would otherwise pick SQL_ASCII from the C locale).
+  initdbFlags: ['--encoding=UTF8', '--locale=C'],
   onLog: () => {},
 })
 
