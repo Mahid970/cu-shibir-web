@@ -1,71 +1,59 @@
-# To use this Dockerfile, you have to set `output: 'standalone'` in your next.config.mjs file.
-# From https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
+# syntax=docker/dockerfile:1
+# Production image: Next.js standalone server + Payload CMS, with Chromium for Bangla share cards.
+#
+# The build pre-renders pages from the database, so it needs DATABASE_URL at build time
+# (docker-compose.yml builds on the host network for this). Migrations run on first start.
 
-FROM node:22.17.0-alpine AS base
+FROM node:22-bookworm-slim AS base
+ENV NEXT_TELEMETRY_DISABLED=1
 
-# Install dependencies only when needed
+# ---- dependencies -------------------------------------------------------------
 FROM base AS deps
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --no-audit --no-fund
 
-# Install dependencies based on the preferred package manager
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN \
-  if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then npm ci; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
-
-
-# Rebuild the source code only when needed
+# ---- build --------------------------------------------------------------------
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+ARG DATABASE_URL
+ARG PAYLOAD_SECRET
+ARG NEXT_PUBLIC_SITE_URL
+ARG NEXT_PUBLIC_TURNSTILE_SITE_KEY
+ENV DATABASE_URL=$DATABASE_URL \
+    PAYLOAD_SECRET=$PAYLOAD_SECRET \
+    NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL \
+    NEXT_PUBLIC_TURNSTILE_SITE_KEY=$NEXT_PUBLIC_TURNSTILE_SITE_KEY \
+    PAYLOAD_DISABLE_JOBS=true
+RUN npm run build
 
-# Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
-# Uncomment the following line in case you want to disable telemetry during the build.
-# ENV NEXT_TELEMETRY_DISABLED 1
-
-RUN \
-  if [ -f yarn.lock ]; then yarn run build; \
-  elif [ -f package-lock.json ]; then npm run build; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
-
-# Production image, copy all the files and run next
+# ---- runtime ------------------------------------------------------------------
 FROM base AS runner
 WORKDIR /app
+ENV NODE_ENV=production \
+    PORT=3000 \
+    HOSTNAME=0.0.0.0 \
+    CHROMIUM_PATH=/usr/bin/chromium
 
-ENV NODE_ENV production
-# Uncomment the following line in case you want to disable telemetry during runtime.
-# ENV NEXT_TELEMETRY_DISABLED 1
+# Chromium renders the share cards (fonts are embedded in the card, so no font packages needed).
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends chromium ca-certificates curl \
+ && rm -rf /var/lib/apt/lists/* \
+ && groupadd --system --gid 1001 nodejs \
+ && useradd --system --uid 1001 --gid nodejs nextjs
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-# Remove this line if you do not have this folder
 COPY --from=builder /app/public ./public
-
-# Set the correct permission for prerender cache
-RUN mkdir .next
-RUN chown nextjs:nodejs .next
-
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+# Read at runtime by the share-card renderer.
+COPY --from=builder /app/src/assets ./src/assets
+
+RUN mkdir -p media && chown nextjs:nodejs media
+VOLUME ["/app/media"]
 
 USER nextjs
-
 EXPOSE 3000
-
-ENV PORT 3000
-
-# server.js is created by next build from the standalone output
-# https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD HOSTNAME="0.0.0.0" node server.js
+HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 CMD curl -fsS http://127.0.0.1:3000/next/health || exit 1
+CMD ["node", "server.js"]

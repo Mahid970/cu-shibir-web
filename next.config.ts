@@ -7,6 +7,9 @@ const __filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(__filename)
 
 const nextConfig: NextConfig = {
+  // Self-contained server for the Docker image (see Dockerfile).
+  output: 'standalone',
+  poweredByHeader: false,
   images: {
     localPatterns: [{ pathname: '/api/media/file/**' }, { pathname: '/brand/**' }],
     // YouTube thumbnails for the branch's own videos

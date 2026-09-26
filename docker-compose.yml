@@ -1,0 +1,72 @@
+# One-VPS production stack: Postgres + the site + nightly database backups.
+#
+#   cp .env.example .env.production   # fill in every value
+#   docker compose --env-file .env.production up -d --build
+#
+# The site listens on 127.0.0.1:3000; put Caddy/Traefik (Coolify does this) and Cloudflare in front.
+# See docs/deploy.md for the full checklist.
+
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-cushibir}
+      POSTGRES_USER: ${POSTGRES_USER:-cushibir}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+      POSTGRES_INITDB_ARGS: --encoding=UTF8 --locale=C.UTF-8
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    # Published on localhost only, so the image build (host network) can pre-render pages.
+    ports:
+      - '127.0.0.1:5432:5432'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U $${POSTGRES_USER:-cushibir} -d $${POSTGRES_DB:-cushibir}']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  web:
+    build:
+      context: .
+      network: host
+      args:
+        DATABASE_URL: postgres://${POSTGRES_USER:-cushibir}:${POSTGRES_PASSWORD}@127.0.0.1:5432/${POSTGRES_DB:-cushibir}
+        PAYLOAD_SECRET: ${PAYLOAD_SECRET:?set PAYLOAD_SECRET}
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:?set NEXT_PUBLIC_SITE_URL}
+        NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${NEXT_PUBLIC_TURNSTILE_SITE_KEY:-}
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file: .env.production
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-cushibir}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-cushibir}
+    volumes:
+      - media:/app/media
+    ports:
+      - '127.0.0.1:3000:3000'
+    # Chromium (share cards) needs more than the default 64 MB of shared memory.
+    shm_size: 256m
+
+  backup:
+    image: prodrigestivill/postgres-backup-local:17
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_DB: ${POSTGRES_DB:-cushibir}
+      POSTGRES_USER: ${POSTGRES_USER:-cushibir}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      SCHEDULE: '@daily'
+      BACKUP_KEEP_DAYS: 14
+      BACKUP_KEEP_WEEKS: 8
+      BACKUP_KEEP_MONTHS: 6
+    volumes:
+      - ./backups:/backups
+
+volumes:
+  pgdata:
+  media:

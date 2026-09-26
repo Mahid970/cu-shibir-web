@@ -1,0 +1,15 @@
+.git
+.next
+node_modules
+.data
+media
+test-results
+playwright-report
+coverage
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+.claude
+docs/spikes/*.png
+docs/spikes/*.jpg
