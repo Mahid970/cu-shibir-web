@@ -6,17 +6,18 @@ import { Amiri_Quran, Hind_Siliguri, Montserrat } from 'next/font/google'
 /** All Bangla: headlines, UI and body. */
 export const hind = Hind_Siliguri({
   subsets: ['bengali', 'latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '600', '700'],
   variable: '--font-hind',
   display: 'swap',
 })
 
-/** Latin words and numbers. */
+/** Latin words and numbers. Not preloaded: the Bangla faces matter more for the first paint. */
 export const montserrat = Montserrat({
   subsets: ['latin'],
   weight: 'variable',
   variable: '--font-montserrat',
   display: 'swap',
+  preload: false,
 })
 
 /** Quranic ayat inside articles. */

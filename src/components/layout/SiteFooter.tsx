@@ -52,7 +52,7 @@ export function SiteFooter({ settings }: { settings: SiteSetting }) {
           <ul className="mt-4 grid gap-3 text-white/85">
             {ALL_NAV.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="font-medium underline-offset-2 hover:underline">
+                <Link href={item.href} className="font-semibold underline-offset-2 hover:underline">
                   {item.label}
                 </Link>
               </li>

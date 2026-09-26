@@ -25,7 +25,7 @@ function Wrap({ name, label, hint, required, errors, className = '', children }:
       </label>
       {children}
       {error ? (
-        <p id={`e-${name}`} className="mt-1.5 text-[0.92rem] font-medium text-crimson">
+        <p id={`e-${name}`} className="mt-1.5 text-[0.92rem] font-semibold text-crimson">
           {error}
         </p>
       ) : (
@@ -130,7 +130,7 @@ export function Choices({
         {options.map((o) => (
           <label
             key={o.value}
-            className="cursor-pointer rounded-full border border-[#d9dde8] bg-white px-4 py-2 font-medium text-ink transition-colors has-[:checked]:border-blue has-[:checked]:bg-pale-2 has-[:checked]:text-primary has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-blue/20"
+            className="cursor-pointer rounded-full border border-[#d9dde8] bg-white px-4 py-2 font-semibold text-ink transition-colors has-[:checked]:border-blue has-[:checked]:bg-pale-2 has-[:checked]:text-primary has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-blue/20"
           >
             <input
               type={type}
@@ -146,7 +146,7 @@ export function Choices({
         ))}
       </div>
       {error && (
-        <p id={`e-${name}`} className="mt-1.5 text-[0.92rem] font-medium text-crimson">
+        <p id={`e-${name}`} className="mt-1.5 text-[0.92rem] font-semibold text-crimson">
           {error}
         </p>
       )}
@@ -170,7 +170,7 @@ export function Consent({ name = 'consent', errors, children }: { name?: string;
         <span>{children}</span>
       </label>
       {error && (
-        <p id={`e-${name}`} className="mt-1.5 text-[0.92rem] font-medium text-crimson">
+        <p id={`e-${name}`} className="mt-1.5 text-[0.92rem] font-semibold text-crimson">
           {error}
         </p>
       )}

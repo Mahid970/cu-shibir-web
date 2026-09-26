@@ -87,12 +87,12 @@ export function NavLinks() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block rounded-lg px-3 py-2 font-medium text-ink hover:bg-pale hover:text-primary"
+                      className="block rounded-lg px-3 py-2 font-semibold text-ink hover:bg-pale hover:text-primary"
                     >
                       {item.label}
                     </a>
                   ) : (
-                    <Link href={item.href} className="block rounded-lg px-3 py-2 font-medium text-ink hover:bg-pale hover:text-primary">
+                    <Link href={item.href} className="block rounded-lg px-3 py-2 font-semibold text-ink hover:bg-pale hover:text-primary">
                       {item.label}
                     </Link>
                   )}

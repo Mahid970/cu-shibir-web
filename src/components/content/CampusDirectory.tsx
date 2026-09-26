@@ -42,7 +42,7 @@ export function CampusDirectory({ faculties }: { faculties: Faculty[] }) {
             </h3>
             <ul className="mt-4 flex flex-wrap gap-2">
               {f.departments.map((d) => (
-                <li key={d.value} className="rounded-full bg-pale-2 px-3 py-1.5 text-[0.92rem] font-medium text-ink/85">
+                <li key={d.value} className="rounded-full bg-pale-2 px-3 py-1.5 text-[0.92rem] text-ink/85">
                   {d.label}
                 </li>
               ))}

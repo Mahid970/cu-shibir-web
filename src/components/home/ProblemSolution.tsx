@@ -13,7 +13,7 @@ const TONE = {
 /** Campus problems paired with what the branch did about them; each pair fades in as it arrives. */
 export function ProblemSolution() {
   return (
-    <section className="py-16 md:py-24" aria-labelledby="problems">
+    <section className="cv-auto py-16 md:py-24" aria-labelledby="problems">
       <div className="wrap">
         <SectionTitle
           id="problems"
@@ -31,7 +31,7 @@ export function ProblemSolution() {
             >
               <div className={`rounded-[28px] p-6 shadow-[0_20px_40px_rgb(31_59_115/0.06)] md:p-8 ${TONE[p.tone]}`}>
                 <span className="chip bg-white/75 text-[#c2410c]">{p.tag}</span>
-                <p className="mt-4 text-[1.05rem] font-medium leading-relaxed text-ink md:text-[1.1rem]">{p.problem}</p>
+                <p className="mt-4 text-[1.05rem] leading-relaxed text-ink md:text-[1.1rem]">{p.problem}</p>
               </div>
               <span aria-hidden="true" className="mx-auto h-8 w-0 border-l-2 border-dashed border-success md:h-0 md:w-full md:border-l-0 md:border-t-2" />
               <div className="rounded-[28px] bg-[linear-gradient(135deg,#5fcf94,#2e8b57)] p-6 text-white shadow-[0_20px_40px_rgb(46_139_87/0.25)] md:p-8">
