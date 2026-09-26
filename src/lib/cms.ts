@@ -185,3 +185,69 @@ export const getVideos = cached(
   'videos',
   ['videos'],
 )
+
+export const getAlbumBySlug = (slug: string, locale: Locale = 'bn') =>
+  cached(
+    async () => {
+      const payload = await getPayloadClient()
+      const { docs } = await payload.find({
+        collection: 'albums',
+        locale,
+        limit: 1,
+        where: { and: [{ slug: { equals: slug } }, { _status: { equals: 'published' } }] },
+        depth: 1,
+      })
+      return docs[0] ?? null
+    },
+    `album:${slug}:${locale}`,
+    ['albums', `albums:${slug}`],
+  )()
+
+export const getAllAlbumSlugs = cached(
+  async () => {
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'albums',
+      limit: 1000,
+      where: { _status: { equals: 'published' } },
+      depth: 0,
+      select: { slug: true, updatedAt: true },
+    })
+    return docs
+  },
+  'album-slugs',
+  ['albums'],
+)
+
+export const getAllVideos = cached(
+  async (locale: Locale = 'bn') => {
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'videos',
+      locale,
+      limit: 200,
+      sort: '-publishedAt',
+      where: { _status: { equals: 'published' } },
+      depth: 0,
+    })
+    return docs
+  },
+  'all-videos',
+  ['videos'],
+)
+
+export const getAllPress = cached(
+  async () => {
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'press-coverage',
+      limit: 500,
+      sort: '-publishedAt',
+      where: { _status: { equals: 'published' } },
+      depth: 0,
+    })
+    return docs
+  },
+  'all-press',
+  ['press'],
+)
