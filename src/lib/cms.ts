@@ -251,3 +251,36 @@ export const getAllPress = cached(
   'all-press',
   ['press'],
 )
+
+export const getPersonBySlug = (slug: string, locale: Locale = 'bn') =>
+  cached(
+    async () => {
+      const payload = await getPayloadClient()
+      const { docs } = await payload.find({
+        collection: 'people',
+        locale,
+        limit: 1,
+        where: { and: [{ slug: { equals: slug } }, { _status: { equals: 'published' } }] },
+        depth: 1,
+      })
+      return docs[0] ?? null
+    },
+    `person:${slug}:${locale}`,
+    ['people', `people:${slug}`],
+  )()
+
+export const getAllPeopleSlugs = cached(
+  async () => {
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'people',
+      limit: 1000,
+      where: { _status: { equals: 'published' } },
+      depth: 0,
+      select: { slug: true, updatedAt: true, profileCompleteness: true },
+    })
+    return docs
+  },
+  'people-slugs',
+  ['people'],
+)
