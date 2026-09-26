@@ -88,6 +88,13 @@ export function formatDate(
 ): string {
   const date = value instanceof Date ? value : new Date(value)
   if (Number.isNaN(date.getTime())) return ''
+  if (style === 'datetime' && locale === 'bn') {
+    // "২৬ সেপ্টেম্বর ২০২৬, সন্ধ্যা ৭:১৬" — Intl alone gives "… এ ৭:১৬ PM".
+    const day = formatDate(date, { locale, style: 'long' })
+    const parts = new Intl.DateTimeFormat('bn-BD', { hour: 'numeric', minute: '2-digit', dayPeriod: 'short', timeZone: DHAKA_TZ }).formatToParts(date)
+    const get = (t: string) => parts.find((p) => p.type === t)?.value ?? ''
+    return `${day}, ${get('dayPeriod')} ${get('hour')}:${get('minute')}`.replace(/\s+/g, ' ')
+  }
   const options: Intl.DateTimeFormatOptions =
     style === 'short'
       ? { day: 'numeric', month: 'short', year: 'numeric' }
