@@ -1,0 +1,63 @@
+import Image from 'next/image'
+import Link from 'next/link'
+
+import { FloatIcon } from '@/components/art/FloatIcon'
+import { BallotBox, Book, Megaphone3D, Train } from '@/components/art/Icons3D'
+import { ArrowRight } from '@/components/ui/Icons'
+import { Swoosh } from '@/components/ui/SectionTitle'
+
+/** Closing banner: join, or write to us. Gradient border and a cluster of floating icons. */
+export function JoinBanner({ email }: { email: string }) {
+  return (
+    <section className="wrap py-10 md:py-14" aria-labelledby="join-banner">
+      <div
+        data-reveal="up"
+        className="relative overflow-hidden rounded-3xl border-4 border-transparent [background:linear-gradient(115deg,#0b2a5b,#081a3a_55%,#0c2f5c)_padding-box,linear-gradient(120deg,#5eead4,#3564ff_60%,#5eead4)_border-box]"
+      >
+        <div aria-hidden="true" className="dot-grid absolute inset-0 opacity-60" />
+        <div className="relative grid items-center gap-8 p-7 sm:p-10 md:grid-cols-[1.25fr_1fr] md:p-12">
+          <div>
+            <h2 id="join-banner" className="text-[1.9rem] font-bold leading-snug text-white md:text-[2.6rem]">
+              পরিবর্তনের শুরু হোক,
+              <br />
+              <span className="swoosh-host" data-reveal="swoosh">
+                তোমাকে দিয়েই।
+                <Swoosh dark />
+              </span>
+            </h2>
+            <p className="mt-4 max-w-xl text-[1.02rem] leading-relaxed text-white/75 md:text-[1.1rem]">
+              ক্লাসে, হলে, শাটলে — শিক্ষার্থীদের অধিকার আর সুন্দর ক্যাম্পাসের জন্য যারা কাজ করছে, তাদের সাথে যুক্ত হও।
+              কোনো পরামর্শ বা এহতেসাব থাকলে সরাসরি লেখো।
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link href="/join" className="btn btn-yellow">
+                সমর্থক হোন
+                <ArrowRight />
+              </Link>
+              <a href={`mailto:${email}`} className="btn btn-ghost-light">
+                পরামর্শ পাঠাও
+              </a>
+            </div>
+          </div>
+          <div aria-hidden="true" className="relative mx-auto h-56 w-full max-w-sm md:h-64">
+            <div className="absolute left-1/2 top-1/2 grid size-32 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[28px] bg-white shadow-[0_20px_50px_rgb(0_96_250/0.45)] md:size-36">
+              <Image src="/brand/logo-legacy.png" alt="" width={100} height={100} className="size-24 md:size-28" />
+            </div>
+            <FloatIcon className="left-[6%] top-[4%]" rotate={-12} drift={12} duration={5.6}>
+              <Book className="w-14" />
+            </FloatIcon>
+            <FloatIcon className="right-[6%] top-[0%]" rotate={10} drift={14} duration={6.4} delay={0.45}>
+              <Megaphone3D className="w-16" />
+            </FloatIcon>
+            <FloatIcon className="bottom-[2%] left-[10%]" rotate={8} drift={10} duration={6} delay={0.55}>
+              <BallotBox className="w-14" />
+            </FloatIcon>
+            <FloatIcon className="bottom-[6%] right-[10%]" rotate={-8} drift={12} duration={5.2} delay={0.65}>
+              <Train className="w-12" />
+            </FloatIcon>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
