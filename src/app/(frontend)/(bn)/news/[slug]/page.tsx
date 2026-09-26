@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { ViewTransition } from 'react'
 
 import { PostCard, PostMeta } from '@/components/content/PostList'
 import { RichText } from '@/components/content/RichText'
@@ -127,16 +128,18 @@ export default async function PostPage({ params }: Props) {
         {hero && (
           <figure className="load-scale mb-8 flex justify-center" style={vars({ '--d': '300ms' })}>
             {/* Small legacy images are shown at their real size instead of being blown up. */}
-            <Image
-              src={hero.src}
-              alt={hero.alt}
-              width={hero.width}
-              height={hero.height}
-              priority
-              sizes="(min-width: 1024px) 896px, 100vw"
-              className="h-auto w-full rounded-3xl border-[8px] border-primary/10 bg-pale"
-              style={{ maxWidth: Math.max(hero.width + 16, 320) }}
-            />
+            <ViewTransition name={`post-${post.slug}`} share="morph" default="none">
+              <Image
+                src={hero.src}
+                alt={hero.alt}
+                width={hero.width}
+                height={hero.height}
+                priority
+                sizes="(min-width: 1024px) 896px, 100vw"
+                className="h-auto w-full rounded-3xl border-[8px] border-primary/10 bg-pale"
+                style={{ maxWidth: Math.max(hero.width + 16, 320) }}
+              />
+            </ViewTransition>
           </figure>
         )}
         <div className="card p-6 sm:p-10 md:p-14">

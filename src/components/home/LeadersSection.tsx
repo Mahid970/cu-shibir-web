@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { ViewTransition } from 'react'
 
 import { ArrowRight, CheckCircle } from '@/components/ui/Icons'
 import { SectionTitle, vars } from '@/components/ui/SectionTitle'
@@ -32,13 +33,15 @@ export function LeaderCard({
     >
       <div className="relative aspect-[4/3.6] overflow-hidden rounded-2xl bg-[radial-gradient(80%_75%_at_50%_100%,#1d4ed8,#0b1428_75%)]">
         {img && (
-          <Image
-            src={img.src}
-            alt={person.name}
-            fill
-            sizes="(min-width: 1024px) 280px, 45vw"
-            className="object-cover object-top"
-          />
+          <ViewTransition name={`person-${person.slug}`} share="morph" default="none">
+            <Image
+              src={img.src}
+              alt={person.name}
+              fill
+              sizes="(min-width: 1024px) 280px, 45vw"
+              className="object-cover object-top"
+            />
+          </ViewTransition>
         )}
       </div>
       <h3 className="px-1 text-center text-[1.1rem] font-bold leading-snug text-white md:text-[1.2rem]">

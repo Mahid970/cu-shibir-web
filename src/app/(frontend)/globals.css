@@ -878,3 +878,24 @@
 .en-site :lang(bn) {
   font-family: var(--font-sans);
 }
+
+/* ---------- View transitions (news image → article, leader photo → profile) ---------- */
+::view-transition-group(.morph) {
+  animation-duration: 420ms;
+  animation-timing-function: var(--ease-out);
+}
+::view-transition-image-pair(.morph) {
+  animation-name: vt-soften;
+}
+@keyframes vt-soften {
+  35% {
+    filter: blur(3px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

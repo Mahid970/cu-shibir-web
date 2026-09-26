@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { ViewTransition } from 'react'
 
 import { RichText } from '@/components/content/RichText'
 import { ShareBar } from '@/components/content/ShareBar'
@@ -112,7 +113,11 @@ export default async function PersonPage({ params }: Props) {
       <div className="wrap relative -mt-24 max-w-5xl md:-mt-32">
         <div className="card grid gap-8 p-5 sm:p-8 md:grid-cols-[280px_1fr] md:gap-10 md:p-10">
           <div className="load-scale relative mx-auto aspect-[4/4.6] w-full max-w-[280px] overflow-hidden rounded-2xl bg-[radial-gradient(80%_75%_at_50%_100%,#1d4ed8,#0b1428_75%)] shadow-[0_18px_40px_rgb(0_43_112/0.25)]">
-            {img && <Image src={img.src} alt={person.name} fill priority sizes="280px" className="object-cover object-top" />}
+            {img && (
+              <ViewTransition name={`person-${person.slug}`} share="morph" default="none">
+                <Image src={img.src} alt={person.name} fill priority sizes="280px" className="object-cover object-top" />
+              </ViewTransition>
+            )}
           </div>
           <div className="min-w-0">
             <p className="load-up w-fit rounded-lg bg-tag px-3 py-1 text-[0.9rem] font-bold text-ink" style={vars({ '--d': '80ms' })}>

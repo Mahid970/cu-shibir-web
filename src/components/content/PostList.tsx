@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { ViewTransition } from 'react'
 
 import { ArrowRight } from '@/components/ui/Icons'
 import { vars } from '@/components/ui/SectionTitle'
@@ -34,14 +35,16 @@ export function PostCard({ post, index = 0, priority = false }: { post: PostSumm
     >
       <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-pale md:rounded-2xl">
         {img ? (
-          <Image
-            src={img.src}
-            alt={img.alt}
-            fill
-            priority={priority}
-            sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+          <ViewTransition name={`post-${post.slug}`} share="morph" default="none">
+            <Image
+              src={img.src}
+              alt={img.alt}
+              fill
+              priority={priority}
+              sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          </ViewTransition>
         ) : (
           <div className="grid-paper absolute inset-0" />
         )}
