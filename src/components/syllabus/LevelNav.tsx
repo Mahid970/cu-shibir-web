@@ -1,13 +1,15 @@
 import { Link } from '@/i18n/link'
 
-import { SYLLABUS } from '@/content/syllabus'
+import { syllabus } from '@/content/syllabus'
+import { getLang } from '@/i18n/server'
 
 /** The three levels as tabs (plain links: each level is its own page). */
-export function LevelNav({ active }: { active?: string }) {
+export async function LevelNav({ active }: { active?: string }) {
+  const lang = await getLang()
   return (
-    <nav aria-label="সিলেবাসের স্তর" className="mt-8 flex justify-center">
+    <nav aria-label={lang === 'en' ? 'Syllabus levels' : 'সিলেবাসের স্তর'} className="mt-8 flex justify-center">
       <ul className="flex max-w-full gap-1 overflow-x-auto rounded-full bg-white p-1.5 shadow-[0_4px_24px_rgb(11_15_46/0.06)] [scrollbar-width:none]">
-        {SYLLABUS.map((l) => {
+        {syllabus(lang).map((l) => {
           const on = l.key === active
           return (
             <li key={l.key} className="shrink-0">

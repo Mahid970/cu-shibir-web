@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 
-import { SYLLABUS } from '@/content/syllabus'
+import { SYLLABUS_KEYS } from '@/content/syllabus'
 import { localePath } from '@/i18n/config'
 import { getAllAlbumSlugs, getAllPeopleSlugs, getAllPostSlugs, getMartyrs } from '@/lib/cms'
 import { absoluteUrl } from '@/lib/site'
@@ -46,7 +46,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [posts, albums, people, martyrs] = await Promise.all([getAllPostSlugs(), getAllAlbumSlugs(), getAllPeopleSlugs(), getMartyrs('bn')])
   const entries: Entry[] = [
     ...PAGES.map((p) => ({ path: p.path, priority: p.priority, freq: p.freq })),
-    ...SYLLABUS.map((l) => ({ path: `/syllabus/${l.key}`, freq: 'yearly' as const, priority: 0.5 })),
+    ...SYLLABUS_KEYS.map((key) => ({ path: `/syllabus/${key}`, freq: 'yearly' as const, priority: 0.5 })),
     ...(martyrs.length ? [{ path: '/martyrs', freq: 'yearly' as const, priority: 0.6 }] : []),
     ...posts.filter((p) => p.slug).map((p) => ({ path: `/news/${p.slug}`, lastModified: p.updatedAt, freq: 'monthly' as const, priority: 0.7 })),
     ...albums.filter((a) => a.slug).map((a) => ({ path: `/gallery/${a.slug}`, lastModified: a.updatedAt, freq: 'yearly' as const, priority: 0.4 })),
