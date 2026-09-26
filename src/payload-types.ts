@@ -73,6 +73,9 @@ export interface Config {
     videos: Video;
     albums: Album;
     media: Media;
+    supporters: Supporter;
+    feedback: Feedback;
+    assistance: Assistance;
     users: User;
     'payload-kv': PayloadKv;
     'payload-jobs': PayloadJob;
@@ -88,6 +91,9 @@ export interface Config {
     videos: VideosSelect<false> | VideosSelect<true>;
     albums: AlbumsSelect<false> | AlbumsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    supporters: SupportersSelect<false> | SupportersSelect<true>;
+    feedback: FeedbackSelect<false> | FeedbackSelect<true>;
+    assistance: AssistanceSelect<false> | AssistanceSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
@@ -101,9 +107,11 @@ export interface Config {
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('bn' | 'en') | ('bn' | 'en')[];
   globals: {
     'site-settings': SiteSetting;
+    'payload-jobs-stats': PayloadJobsStat;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    'payload-jobs-stats': PayloadJobsStatsSelect<false> | PayloadJobsStatsSelect<true>;
   };
   locale: 'bn' | 'en';
   widgets: {
@@ -113,6 +121,7 @@ export interface Config {
   jobs: {
     tasks: {
       generateShareImage: TaskGenerateShareImage;
+      purgeSubmissions: TaskPurgeSubmissions;
       schedulePublish: TaskSchedulePublish;
       inline: {
         input: unknown;
@@ -383,6 +392,283 @@ export interface Album {
   _status?: ('draft' | 'published') | null;
 }
 /**
+ * ওয়েবসাইটের সমর্থক ফরম থেকে আসা তথ্য। নাম ও যোগাযোগের তথ্য এনক্রিপ্ট করা থাকে।
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "supporters".
+ */
+export interface Supporter {
+  id: number;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  name: string;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  mobile: string;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  email?: string | null;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  facebook?: string | null;
+  department:
+    | 'bangla'
+    | 'english'
+    | 'history'
+    | 'philosophy'
+    | 'islamic_history_culture'
+    | 'arabic'
+    | 'islamic_studies'
+    | 'dramatics'
+    | 'persian_language_literature'
+    | 'pali'
+    | 'sanskrit'
+    | 'music'
+    | 'bangladesh_studies'
+    | 'modern_languages'
+    | 'fine_arts'
+    | 'physics'
+    | 'chemistry'
+    | 'mathematics'
+    | 'statistics'
+    | 'applied_chemistry_chemical_engineering'
+    | 'forestry_environmental_sciences'
+    | 'jnicar'
+    | 'accounting'
+    | 'management'
+    | 'finance'
+    | 'marketing'
+    | 'human_resource_management'
+    | 'banking_insurance'
+    | 'cucba'
+    | 'economics'
+    | 'political_science'
+    | 'sociology'
+    | 'public_administration'
+    | 'anthropology'
+    | 'international_relations'
+    | 'communication_journalism'
+    | 'criminology_police_science'
+    | 'development_studies'
+    | 'law'
+    | 'zoology'
+    | 'botany'
+    | 'geography_environmental_studies'
+    | 'biochemistry_molecular_biology'
+    | 'microbiology'
+    | 'soil_science'
+    | 'genetic_engineering_biotechnology'
+    | 'psychology'
+    | 'pharmacy'
+    | 'computer_science_engineering'
+    | 'electrical_electronic_engineering'
+    | 'physical_education_sports_science'
+    | 'education_research'
+    | 'marine_sciences'
+    | 'oceanography'
+    | 'fisheries'
+    | 'paediatrics'
+    | 'community_ophthalmology';
+  session: string;
+  hall?:
+    | (
+        | 'alaol'
+        | 'af_rahman'
+        | 'shahjalal'
+        | 'suhrawardy'
+        | 'shah_amanat'
+        | 'shamsun_nahar'
+        | 'shaheed_abdur_rab'
+        | 'pritilata'
+        | 'deshnetri_khaleda_zia'
+        | 'masterda_surja_sen'
+        | 'shaheed_farhad_hossain'
+        | 'bijoy_24'
+        | 'nawab_faizunnesa'
+        | 'atish_dipangkar'
+        | 'shilpi_rashid_chowdhury_hostel'
+        | 'non_resident'
+      )
+    | null;
+  interests?: ('dawah' | 'study' | 'welfare' | 'writing' | 'media' | 'it' | 'culture' | 'sports')[] | null;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  note?: string | null;
+  status: 'new' | 'contacted' | 'active' | 'closed';
+  staffNote?: string | null;
+  consentAt?: string | null;
+  mobileHash?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * বার্তা ও পরিচয় এনক্রিপ্ট করা থাকে। নাম ছাড়া পাঠানো বার্তায় প্রেরকের কোনো তথ্য সংরক্ষণ করা হয় না।
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "feedback".
+ */
+export interface Feedback {
+  id: number;
+  kind: 'advice' | 'ehtesab' | 'complaint';
+  /**
+   * খালি থাকলে পুরো শাখার উদ্দেশে
+   */
+  about?: (number | null) | Person;
+  subject: string;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  message: string;
+  anonymous?: boolean | null;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  name?: string | null;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  contact?: string | null;
+  status: 'new' | 'in-review' | 'answered' | 'closed';
+  staffNote?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * আবেদনকারী ট্র্যাকিং আইডি ও গোপন কোড দিয়ে অবস্থা দেখতে পারেন। "আবেদনকারীর জন্য বার্তা" তিনি দেখতে পাবেন।
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "assistance".
+ */
+export interface Assistance {
+  id: number;
+  trackingId: string;
+  type: 'scholarship' | 'medical' | 'other';
+  subject?: string | null;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  name: string;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  mobile: string;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  registration?: string | null;
+  department:
+    | 'bangla'
+    | 'english'
+    | 'history'
+    | 'philosophy'
+    | 'islamic_history_culture'
+    | 'arabic'
+    | 'islamic_studies'
+    | 'dramatics'
+    | 'persian_language_literature'
+    | 'pali'
+    | 'sanskrit'
+    | 'music'
+    | 'bangladesh_studies'
+    | 'modern_languages'
+    | 'fine_arts'
+    | 'physics'
+    | 'chemistry'
+    | 'mathematics'
+    | 'statistics'
+    | 'applied_chemistry_chemical_engineering'
+    | 'forestry_environmental_sciences'
+    | 'jnicar'
+    | 'accounting'
+    | 'management'
+    | 'finance'
+    | 'marketing'
+    | 'human_resource_management'
+    | 'banking_insurance'
+    | 'cucba'
+    | 'economics'
+    | 'political_science'
+    | 'sociology'
+    | 'public_administration'
+    | 'anthropology'
+    | 'international_relations'
+    | 'communication_journalism'
+    | 'criminology_police_science'
+    | 'development_studies'
+    | 'law'
+    | 'zoology'
+    | 'botany'
+    | 'geography_environmental_studies'
+    | 'biochemistry_molecular_biology'
+    | 'microbiology'
+    | 'soil_science'
+    | 'genetic_engineering_biotechnology'
+    | 'psychology'
+    | 'pharmacy'
+    | 'computer_science_engineering'
+    | 'electrical_electronic_engineering'
+    | 'physical_education_sports_science'
+    | 'education_research'
+    | 'marine_sciences'
+    | 'oceanography'
+    | 'fisheries'
+    | 'paediatrics'
+    | 'community_ophthalmology';
+  session: string;
+  hall?:
+    | (
+        | 'alaol'
+        | 'af_rahman'
+        | 'shahjalal'
+        | 'suhrawardy'
+        | 'shah_amanat'
+        | 'shamsun_nahar'
+        | 'shaheed_abdur_rab'
+        | 'pritilata'
+        | 'deshnetri_khaleda_zia'
+        | 'masterda_surja_sen'
+        | 'shaheed_farhad_hossain'
+        | 'bijoy_24'
+        | 'nawab_faizunnesa'
+        | 'atish_dipangkar'
+        | 'shilpi_rashid_chowdhury_hostel'
+        | 'non_resident'
+      )
+    | null;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  details: string;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  references?: string | null;
+  status: 'submitted' | 'review' | 'interview' | 'approved' | 'declined';
+  /**
+   * ট্র্যাকিং পাতায় আবেদনকারী এটি দেখবেন, যেমন সাক্ষাৎকারের সময় ও স্থান।
+   */
+  publicNote?: string | null;
+  staffNote?: string | null;
+  statusHistory?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  secretHash?: string | null;
+  mobileHash?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -489,7 +775,7 @@ export interface PayloadJob {
     | {
         executedAt: string;
         completedAt: string;
-        taskSlug: 'inline' | 'generateShareImage' | 'schedulePublish';
+        taskSlug: 'inline' | 'generateShareImage' | 'purgeSubmissions' | 'schedulePublish';
         taskID: string;
         input?:
           | {
@@ -522,10 +808,19 @@ export interface PayloadJob {
         id?: string | null;
       }[]
     | null;
-  taskSlug?: ('inline' | 'generateShareImage' | 'schedulePublish') | null;
+  taskSlug?: ('inline' | 'generateShareImage' | 'purgeSubmissions' | 'schedulePublish') | null;
   queue?: string | null;
   waitUntil?: string | null;
   processing?: boolean | null;
+  meta?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -559,6 +854,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'supporters';
+        value: number | Supporter;
+      } | null)
+    | ({
+        relationTo: 'feedback';
+        value: number | Feedback;
+      } | null)
+    | ({
+        relationTo: 'assistance';
+        value: number | Assistance;
       } | null)
     | ({
         relationTo: 'users';
@@ -784,6 +1091,69 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "supporters_select".
+ */
+export interface SupportersSelect<T extends boolean = true> {
+  name?: T;
+  mobile?: T;
+  email?: T;
+  facebook?: T;
+  department?: T;
+  session?: T;
+  hall?: T;
+  interests?: T;
+  note?: T;
+  status?: T;
+  staffNote?: T;
+  consentAt?: T;
+  mobileHash?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "feedback_select".
+ */
+export interface FeedbackSelect<T extends boolean = true> {
+  kind?: T;
+  about?: T;
+  subject?: T;
+  message?: T;
+  anonymous?: T;
+  name?: T;
+  contact?: T;
+  status?: T;
+  staffNote?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "assistance_select".
+ */
+export interface AssistanceSelect<T extends boolean = true> {
+  trackingId?: T;
+  type?: T;
+  subject?: T;
+  name?: T;
+  mobile?: T;
+  registration?: T;
+  department?: T;
+  session?: T;
+  hall?: T;
+  details?: T;
+  references?: T;
+  status?: T;
+  publicNote?: T;
+  staffNote?: T;
+  statusHistory?: T;
+  secretHash?: T;
+  mobileHash?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
@@ -843,6 +1213,7 @@ export interface PayloadJobsSelect<T extends boolean = true> {
   queue?: T;
   waitUntil?: T;
   processing?: T;
+  meta?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -924,6 +1295,24 @@ export interface SiteSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-jobs-stats".
+ */
+export interface PayloadJobsStat {
+  id: number;
+  stats?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
@@ -960,6 +1349,16 @@ export interface SiteSettingsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-jobs-stats_select".
+ */
+export interface PayloadJobsStatsSelect<T extends boolean = true> {
+  stats?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "collections_widget".
  */
 export interface CollectionsWidget {
@@ -979,6 +1378,14 @@ export interface TaskGenerateShareImage {
   output: {
     mediaId?: number | null;
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TaskPurgeSubmissions".
+ */
+export interface TaskPurgeSubmissions {
+  input?: unknown;
+  output?: unknown;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
