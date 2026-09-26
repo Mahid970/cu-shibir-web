@@ -2,6 +2,14 @@
 
 import { useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 
+import { copy } from '@/i18n/config'
+import { useLang } from '@/i18n/LangProvider'
+
+const T = copy(
+  { filter: 'ধরন অনুযায়ী দেখুন', empty: 'এই ধরনে এখনো কিছু প্রকাশিত হয়নি।' },
+  { filter: 'Show by type', empty: 'Nothing of this type has been published yet.' },
+)
+
 export type NewsTab = { key: string; label: string; categories?: string[] }
 
 const MAX = 6
@@ -11,6 +19,7 @@ const MAX = 6
  * the server; switching tabs only shows/hides them and replays their entrance.
  */
 export function NewsTabs({ tabs, children }: { tabs: NewsTab[]; children: ReactNode }) {
+  const t = T[useLang()]
   const [active, setActive] = useState(tabs[0].key)
   const [pill, setPill] = useState<{ x: number; w: number } | null>(null)
   const listRef = useRef<HTMLDivElement>(null)
@@ -54,7 +63,7 @@ export function NewsTabs({ tabs, children }: { tabs: NewsTab[]; children: ReactN
         <div
           ref={listRef}
           role="group"
-          aria-label="ধরন অনুযায়ী দেখুন"
+          aria-label={t.filter}
           className="relative flex max-w-full gap-1 overflow-x-auto rounded-full bg-white p-1.5 shadow-[0_4px_24px_rgb(11_15_46/0.06)] [scrollbar-width:none]"
         >
           {pill && (
@@ -85,7 +94,7 @@ export function NewsTabs({ tabs, children }: { tabs: NewsTab[]; children: ReactN
       </div>
       <div ref={gridRef} className="group/grid mt-10">
         {children}
-        <p className="hidden py-10 text-center text-muted group-data-[empty=true]/grid:block">এই ধরনে এখনো কিছু প্রকাশিত হয়নি।</p>
+        <p className="hidden py-10 text-center text-muted group-data-[empty=true]/grid:block">{t.empty}</p>
       </div>
     </>
   )

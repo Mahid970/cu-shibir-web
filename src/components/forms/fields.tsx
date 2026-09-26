@@ -1,7 +1,8 @@
 import type { InputHTMLAttributes, ReactNode, SelectHTMLAttributes, TextareaHTMLAttributes } from 'react'
 
-import type { Option } from '@/lib/campus'
 import type { FieldErrors } from '@/lib/forms/validate'
+
+type Option = { value: string; label: string }
 
 const control =
   'w-full rounded-xl border border-[#d9dde8] bg-white px-4 text-[1rem] text-ink shadow-[0_1px_2px_rgb(11_15_46/0.04)] transition-[border-color,box-shadow] placeholder:text-subtle/80 focus:border-blue focus:outline-none focus:ring-4 focus:ring-blue/15 aria-[invalid=true]:border-crimson aria-[invalid=true]:ring-crimson/10'

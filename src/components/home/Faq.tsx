@@ -1,15 +1,17 @@
 import { ChevronDown } from '@/components/ui/Icons'
 import { SectionTitle } from '@/components/ui/SectionTitle'
 import { FAQS } from '@/content/home'
+import { getLang } from '@/i18n/server'
 
 /** Accordion on native <details>; the open question turns into gradient text. */
-export function Faq() {
+export async function Faq() {
+  const lang = await getLang()
   return (
     <section className="py-16 md:py-22" aria-labelledby="faq">
       <div className="wrap max-w-4xl">
-        <SectionTitle id="faq" parts={['তোমার প্রশ্ন,', { hl: 'আমাদের উত্তর' }]} />
+        <SectionTitle id="faq" parts={lang === 'en' ? ['Your questions,', { hl: 'our answers' }] : ['তোমার প্রশ্ন,', { hl: 'আমাদের উত্তর' }]} />
         <div className="mt-10 space-y-4">
-          {FAQS.map((f) => (
+          {FAQS[lang].map((f) => (
             <details
               key={f.q}
               data-reveal="fade"

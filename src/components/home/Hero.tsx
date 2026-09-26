@@ -7,11 +7,32 @@ import { BallotBox } from '@/components/art/Icons3D'
 import { CountUp } from '@/components/motion/CountUp'
 import { ArrowRight, Users } from '@/components/ui/Icons'
 import { Swoosh, vars } from '@/components/ui/SectionTitle'
-import { toBnDigits } from '@/lib/bn'
+import { copy } from '@/i18n/config'
+import { num } from '@/i18n/format'
+import { getLang } from '@/i18n/server'
 import type { ImageInfo } from '@/lib/media'
 
 type Stat = { value: number; suffix?: string | null; label: string }
 type Photo = ImageInfo & { caption: string }
+
+const T = copy(
+  {
+    pill: 'বাংলাদেশ ইসলামী ছাত্রশিবির · চবি শাখা',
+    join: 'সমর্থক হোন',
+    about: 'আমাদের কথা',
+    leaders: (n: string) => `${n} জন দায়িত্বশীল`,
+    together: 'আর হাজারো শিক্ষার্থী, একসাথে',
+    photos: 'ক্যাম্পাসে আমাদের কার্যক্রমের ছবি',
+  },
+  {
+    pill: 'Bangladesh Islami Chhatrashibir · CU branch',
+    join: 'Become a supporter',
+    about: 'About us',
+    leaders: (n: string) => `${n} leaders`,
+    together: 'and thousands of students, together',
+    photos: 'Photos of our work on campus',
+  },
+)
 
 /** `**words**` in the CMS intro become blue emphasis. */
 function withHighlights(text: string) {
@@ -26,7 +47,7 @@ function withHighlights(text: string) {
   )
 }
 
-/** "আমরা তরুণ, আমরাই পারি" → ["আমরা তরুণ,", "আমরাই পারি"]; the second half is highlighted. */
+/** "আমরা তরুণ, আমরাই পারি" → ["আমরা তরুণ,", "আমরাই পারি"]; the second half is highlighted (same in English). */
 function splitTagline(tagline: string) {
   const i = tagline.indexOf(',')
   return i === -1 ? ['', tagline] : [tagline.slice(0, i + 1), tagline.slice(i + 1).trim()]
@@ -49,7 +70,7 @@ function Polaroid({ photo, sizes }: { photo: Photo; sizes: string }) {
  * Light grid-paper hero: who we are and the slogan on the left; on the right a collage of real
  * campus photos with two floating badges. Copy rises in on load; photos pop in and drift.
  */
-export function Hero({
+export async function Hero({
   tagline,
   intro,
   photo,
@@ -66,6 +87,8 @@ export function Hero({
   faces: ImageInfo[]
   leaderCount: number
 }) {
+  const lang = await getLang()
+  const t = T[lang]
   const [lead, highlight] = splitTagline(tagline)
   const [first, second] = stats
   return (
@@ -81,7 +104,7 @@ export function Hero({
         <div className="text-center lg:text-left">
           <p className="load-rise inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-1.5 pr-4 text-[0.9rem] font-semibold text-ink shadow-[0_4px_24px_rgb(11_15_46/0.08)] sm:text-[0.95rem]">
             <Image src="/brand/logo-legacy.png" alt="" width={28} height={28} className="size-7" />
-            বাংলাদেশ ইসলামী ছাত্রশিবির · চবি শাখা
+            {t.pill}
           </p>
           <h1
             id="hero-title"
@@ -110,11 +133,11 @@ export function Hero({
           </p>
           <div className="load-up mt-8 flex flex-wrap justify-center gap-3 lg:justify-start" style={vars({ '--d': '360ms' })}>
             <Link href="/join" className="btn btn-yellow">
-              সমর্থক হোন
+              {t.join}
               <ArrowRight />
             </Link>
             <Link href="/about" className="btn btn-outline">
-              আমাদের কথা
+              {t.about}
             </Link>
           </div>
           {faces.length > 0 && (
@@ -128,17 +151,17 @@ export function Hero({
               </span>
               <p className="text-left text-[0.92rem] leading-snug text-muted">
                 <Link href="/leadership" className="font-bold text-ink hover:text-primary">
-                  {toBnDigits(leaderCount)} জন দায়িত্বশীল
+                  {t.leaders(num(lang, leaderCount))}
                 </Link>
                 <br />
-                আর হাজারো শিক্ষার্থী, একসাথে
+                {t.together}
               </p>
             </div>
           )}
         </div>
 
         {photo && (
-          <div className="relative mx-auto aspect-[1/0.9] w-full max-w-[560px] lg:max-w-none" aria-label="ক্যাম্পাসে আমাদের কার্যক্রমের ছবি">
+          <div className="relative mx-auto aspect-[1/0.9] w-full max-w-[560px] lg:max-w-none" aria-label={t.photos}>
             <figure
               className="load-grow absolute right-0 top-[9%] w-[86%] overflow-hidden rounded-[28px] border-[8px] border-white bg-pale-3 shadow-[0_30px_60px_rgb(11_15_46/0.18)]"
               style={vars({ '--d': '200ms' })}

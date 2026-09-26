@@ -2,11 +2,17 @@ import { Link } from '@/i18n/link'
 
 import { ArrowRight } from '@/components/ui/Icons'
 import { vars } from '@/components/ui/SectionTitle'
-import { toBnDigits } from '@/lib/bn'
 import { MILESTONES } from '@/content/home'
+import { copy } from '@/i18n/config'
+import { num } from '@/i18n/format'
+import { getLang } from '@/i18n/server'
+
+const T = copy({ title: ['আমাদের', 'পথচলা'], more: 'বিস্তারিত' }, { title: ['Our', 'journey'], more: 'Read more' })
 
 /** The branch's story in five dates on the navy gradient-bordered card; the line draws itself. */
-export function Milestones({ overlap = true, link = true, id }: { overlap?: boolean; link?: boolean; id?: string }) {
+export async function Milestones({ overlap = true, link = true, id }: { overlap?: boolean; link?: boolean; id?: string }) {
+  const lang = await getLang()
+  const t = T[lang]
   return (
     <section id={id} className={`wrap relative z-10 scroll-mt-24 ${overlap ? '-mt-16 lg:-mt-20' : ''}`} aria-labelledby="milestones">
       <div
@@ -15,11 +21,11 @@ export function Milestones({ overlap = true, link = true, id }: { overlap?: bool
       >
         <div className="flex flex-wrap items-end justify-between gap-3">
           <h2 id="milestones" className="text-[1.5rem] font-bold text-white md:text-[1.8rem]">
-            আমাদের <span className="text-mint">পথচলা</span>
+            {t.title[0]} <span className="text-mint">{t.title[1]}</span>
           </h2>
           {link && (
             <Link href="/about#history" className="inline-flex items-center gap-1.5 font-semibold text-white/80 hover:text-white">
-              বিস্তারিত
+              {t.more}
               <ArrowRight className="size-4" />
             </Link>
           )}
@@ -40,8 +46,8 @@ export function Milestones({ overlap = true, link = true, id }: { overlap?: bool
               className={`relative flex items-center gap-4 sm:block ${m.color}`}
             >
               <span aria-hidden="true" className="relative block size-6 shrink-0 rounded-full border-[5px] border-navy bg-current ring-2 ring-white/25" />
-              <p className="text-[1.7rem] font-bold leading-none sm:mt-4 sm:text-[2.1rem]">{toBnDigits(m.year)}</p>
-              <p className="text-[0.95rem] leading-snug text-white/75 sm:mt-2">{m.label}</p>
+              <p className="text-[1.7rem] font-bold leading-none sm:mt-4 sm:text-[2.1rem]">{num(lang, m.year)}</p>
+              <p className="text-[0.95rem] leading-snug text-white/75 sm:mt-2">{m.label[lang]}</p>
             </li>
           ))}
         </ol>

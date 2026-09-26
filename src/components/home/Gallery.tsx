@@ -3,7 +3,9 @@ import { Link } from '@/i18n/link'
 
 import { ArrowRight, YouTube } from '@/components/ui/Icons'
 import { SectionTitle, vars } from '@/components/ui/SectionTitle'
-import { formatDate } from '@/lib/bn'
+import { copy, langAttr } from '@/i18n/config'
+import { date } from '@/i18n/format'
+import { getLang } from '@/i18n/server'
 import { pickImage } from '@/lib/media'
 import type { Album, Video } from '@/payload-types'
 
@@ -11,8 +13,25 @@ import { VideoCard } from './VideoCard'
 
 const LAYOUT = ['col-span-2 md:row-span-2', '', '', '', '']
 
+const T = copy(
+  {
+    title: ['ক্যাম্পাসে', 'আমাদের দিনগুলো'],
+    lede: 'নবীনবরণ থেকে বৃক্ষরোপণ — ছবি আর ভিডিওতে আমাদের কার্যক্রম।',
+    albums: 'সব অ্যালবাম',
+    videos: 'ভিডিও',
+    channel: 'ইউটিউব চ্যানেল',
+  },
+  {
+    title: ['Our days', 'on campus'],
+    lede: 'From the freshers’ reception to tree planting: our work in photos and videos.',
+    albums: 'All albums',
+    videos: 'Videos',
+    channel: 'YouTube channel',
+  },
+)
+
 /** Photo wall of recent albums, then the latest videos. */
-export function Gallery({
+export async function Gallery({
   albums,
   videos,
   youtube,
@@ -29,11 +48,13 @@ export function Gallery({
     .filter((x) => x.img)
     .slice(0, 5)
   if (items.length === 0 && videos.length === 0) return null
+  const lang = await getLang()
+  const t = T[lang]
   return (
     <section className="cv-auto py-16 md:py-22" aria-labelledby="gallery">
       <div className="wrap">
-        <SectionTitle id="gallery" parts={['ক্যাম্পাসে', { hl: 'আমাদের দিনগুলো' }]} />
-        <p className="lede">নবীনবরণ থেকে বৃক্ষরোপণ — ছবি আর ভিডিওতে আমাদের কার্যক্রম।</p>
+        <SectionTitle id="gallery" parts={[t.title[0], { hl: t.title[1] }]} />
+        <p className="lede">{t.lede}</p>
         {items.length > 0 && (
           <ul className="mx-auto mt-12 grid max-w-[1100px] auto-rows-[170px] grid-cols-2 gap-3 sm:auto-rows-[210px] md:grid-cols-4 md:gap-4">
             {items.map(({ album, img }, i) => (
@@ -58,9 +79,10 @@ export function Gallery({
                 />
                 <div className="absolute inset-x-3 bottom-3 text-white md:inset-x-4 md:bottom-4">
                   <p className="text-[0.8rem] text-white/75">
-                    {formatDate(album.date, { style: 'short' })}
+                    {date(lang, album.date, 'short')}
                   </p>
                   <p
+                    lang={langAttr(lang, album.title)}
                     className={`mt-0.5 line-clamp-2 font-semibold leading-snug ${i === 0 ? 'text-[1.1rem] md:text-[1.35rem]' : 'text-[0.9rem]'}`}
                   >
                     <Link href={`/gallery/${album.slug}`} className="after:absolute after:inset-0">
@@ -75,7 +97,7 @@ export function Gallery({
         {items.length > 0 && (
           <div className="mt-8 flex justify-center">
             <Link href="/gallery" className="btn btn-outline-blue btn-sm">
-              সব অ্যালবাম
+              {t.albums}
               <ArrowRight />
             </Link>
           </div>
@@ -85,7 +107,7 @@ export function Gallery({
             <div className="flex flex-wrap items-center justify-between gap-3">
               <h3 className="text-[1.4rem] font-bold text-ink md:text-[1.7rem]">
                 <Link href="/videos" className="hover:text-primary">
-                  ভিডিও
+                  {t.videos}
                 </Link>
               </h3>
               {youtube && (
@@ -96,7 +118,7 @@ export function Gallery({
                   className="inline-flex items-center gap-2 font-semibold text-[#c4100b] hover:underline"
                 >
                   <YouTube className="size-5" />
-                  ইউটিউব চ্যানেল
+                  {t.channel}
                 </a>
               )}
             </div>
@@ -106,7 +128,7 @@ export function Gallery({
                   <VideoCard
                     youtubeId={v.youtubeId}
                     title={v.title}
-                    date={formatDate(v.publishedAt)}
+                    date={date(lang, v.publishedAt)}
                   />
                 </li>
               ))}

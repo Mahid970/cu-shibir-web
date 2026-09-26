@@ -5,9 +5,27 @@ import { FloatIcon } from '@/components/art/FloatIcon'
 import { BallotBox, Book, Megaphone3D, Train } from '@/components/art/Icons3D'
 import { ArrowRight } from '@/components/ui/Icons'
 import { Swoosh } from '@/components/ui/SectionTitle'
+import { copy } from '@/i18n/config'
+import { getLang } from '@/i18n/server'
+
+const T = copy(
+  {
+    title: ['পরিবর্তনের শুরু হোক,', 'তোমাকে দিয়েই।'],
+    text: 'ক্লাসে, হলে, শাটলে — শিক্ষার্থীদের অধিকার আর সুন্দর ক্যাম্পাসের জন্য যারা কাজ করছে, তাদের সাথে যুক্ত হও। কোনো পরামর্শ বা এহতেসাব থাকলে সরাসরি লেখো।',
+    join: 'সমর্থক হোন',
+    write: 'পরামর্শ পাঠাও',
+  },
+  {
+    title: ['Let the change begin', 'with you.'],
+    text: 'In class, in the halls, on the shuttle: join the students working for their rights and a better campus. If you have advice or ehtesab for us, write to us directly.',
+    join: 'Become a supporter',
+    write: 'Send us advice',
+  },
+)
 
 /** Closing banner: join, or write to us. Gradient border and a cluster of floating icons. */
-export function JoinBanner({ email }: { email: string }) {
+export async function JoinBanner({ email }: { email: string }) {
+  const t = T[await getLang()]
   return (
     <section className="cv-auto wrap py-10 md:py-14" aria-labelledby="join-banner">
       <div
@@ -18,24 +36,23 @@ export function JoinBanner({ email }: { email: string }) {
         <div className="relative grid items-center gap-8 p-7 sm:p-10 md:grid-cols-[1.25fr_1fr] md:p-12">
           <div>
             <h2 id="join-banner" className="text-[1.9rem] font-bold leading-snug text-white md:text-[2.6rem]">
-              পরিবর্তনের শুরু হোক,
+              {t.title[0]}
               <br />
               <span className="swoosh-host" data-reveal="swoosh">
-                তোমাকে দিয়েই।
+                {t.title[1]}
                 <Swoosh dark />
               </span>
             </h2>
             <p className="mt-4 max-w-xl text-[1.02rem] leading-relaxed text-white/75 md:text-[1.1rem]">
-              ক্লাসে, হলে, শাটলে — শিক্ষার্থীদের অধিকার আর সুন্দর ক্যাম্পাসের জন্য যারা কাজ করছে, তাদের সাথে যুক্ত হও।
-              কোনো পরামর্শ বা এহতেসাব থাকলে সরাসরি লেখো।
+              {t.text}
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="/join" className="btn btn-yellow">
-                সমর্থক হোন
+                {t.join}
                 <ArrowRight />
               </Link>
               <a href={`mailto:${email}`} className="btn btn-ghost-light">
-                পরামর্শ পাঠাও
+                {t.write}
               </a>
             </div>
           </div>

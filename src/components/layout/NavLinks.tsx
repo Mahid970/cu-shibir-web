@@ -45,7 +45,7 @@ export function NavLinks() {
           <Link
             href={FEATURED_NAV.href}
             aria-current={active(FEATURED_NAV.href) ? 'page' : undefined}
-            className={`inline-flex h-9 items-center rounded-full border border-primary px-4 text-[0.95rem] font-semibold transition-colors ${
+            className={`inline-flex h-9 items-center whitespace-nowrap rounded-full border border-primary px-4 text-[0.95rem] font-semibold transition-colors ${
               active(FEATURED_NAV.href) ? 'bg-primary text-white' : 'text-primary hover:bg-pale'
             }`}
           >
@@ -57,7 +57,7 @@ export function NavLinks() {
             <Link
               href={item.href}
               aria-current={active(item.href) ? 'page' : undefined}
-              className={`rounded-lg px-3 py-2 text-[0.98rem] font-semibold transition-colors ${
+              className={`whitespace-nowrap rounded-lg px-3 py-2 text-[0.98rem] font-semibold transition-colors ${
                 active(item.href) ? 'text-primary' : 'text-ink hover:text-primary'
               }`}
             >
@@ -72,7 +72,7 @@ export function NavLinks() {
               aria-expanded={open}
               aria-haspopup="true"
               onClick={() => setOpen((o) => !o)}
-              className="flex items-center gap-1 rounded-lg px-3 py-2 text-[0.98rem] font-semibold text-ink hover:text-primary"
+              className="flex items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-[0.98rem] font-semibold text-ink hover:text-primary"
             >
               {t.more}
               <ChevronDown className={`size-4 transition-transform ${open ? 'rotate-180' : ''}`} />

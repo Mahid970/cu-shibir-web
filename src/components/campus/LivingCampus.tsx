@@ -5,7 +5,10 @@ import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 
 import { ArrowRight, Clock } from '@/components/ui/Icons'
 import { SectionTitle } from '@/components/ui/SectionTitle'
-import { formatTime } from '@/lib/bn'
+import { copy } from '@/i18n/config'
+import { time } from '@/i18n/format'
+import { useLang } from '@/i18n/LangProvider'
+import type { PrayerKey } from '@/lib/sky'
 import { PALETTES } from '@/lib/skyPalettes'
 
 import { CampusPoster } from './CampusPoster'
@@ -30,12 +33,30 @@ const serverClock = () => null
 
 type SkyLib = typeof import('@/lib/sky')
 
-const LABELS: { id: LabelId; text: string }[] = [
-  { id: 'train', text: 'শাটল ট্রেন' },
-  { id: 'station', text: 'বিশ্ববিদ্যালয় স্টেশন' },
-  { id: 'halls', text: 'ক্যাম্পাস' },
-  { id: 'cut', text: 'কাটা পাহাড়' },
-]
+const T = copy(
+  {
+    labels: { train: 'শাটল ট্রেন', station: 'বিশ্ববিদ্যালয় স্টেশন', halls: 'ক্যাম্পাস', cut: 'কাটা পাহাড়' } as Record<LabelId, string>,
+    title: ['আমাদের', 'ক্যাম্পাস'],
+    lede: 'পাহাড়ঘেরা ২,৩১২ একর, শহর থেকে শাটল ট্রেনে যাতায়াত। এখানে আকাশের রং মিলে যায় চট্টগ্রামের এই মুহূর্তের সময়ের সাথে।',
+    now: (t: string) => `চট্টগ্রামে এখন ${t}`,
+    next: (name: string, t: string) => `পরবর্তী নামাজ ${name}, ${t}`,
+    prayers: { fajr: 'ফজর', dhuhr: 'যোহর', asr: 'আসর', maghrib: 'মাগরিব', isha: 'এশা' } as Record<PrayerKey, string>,
+    caption: 'প্রতীকী দৃশ্য, মানচিত্র নয়',
+    guide: 'ক্যাম্পাস গাইড দেখুন',
+  },
+  {
+    labels: { train: 'Shuttle train', station: 'University station', halls: 'Campus', cut: 'Kata Pahar (the cut hill)' },
+    title: ['Our', 'campus'],
+    lede: '2,312 acres of hills, reached from the city by shuttle train. The colour of the sky here follows the time in Chattogram right now.',
+    now: (t: string) => `In Chattogram it is ${t}`,
+    next: (name: string, t: string) => `Next prayer: ${name}, ${t}`,
+    prayers: { fajr: 'Fajr', dhuhr: 'Dhuhr', asr: 'Asr', maghrib: 'Maghrib', isha: 'Isha' },
+    caption: 'An illustration, not a map',
+    guide: 'Open the campus guide',
+  },
+)
+
+const LABEL_IDS: LabelId[] = ['train', 'station', 'halls', 'cut']
 
 /**
  * "আমাদের ক্যাম্পাস": the campus in its current light. The sky follows Chattogram time; the next
@@ -43,6 +64,8 @@ const LABELS: { id: LabelId; text: string }[] = [
  * comes near); everyone else sees the same scene as an illustration.
  */
 export function LivingCampus() {
+  const lang = useLang()
+  const t = T[lang]
   const tick = useSyncExternalStore(subscribeClock, clockSnapshot, serverClock)
   // Prayer-time maths (adhan) loads with the section, not with the page.
   const [skyLib, setSkyLib] = useState<SkyLib | null>(null)
@@ -134,8 +157,8 @@ export function LivingCampus() {
   return (
     <section className="cv-auto py-16 md:py-22" aria-labelledby="campus-title">
       <div className="wrap">
-        <SectionTitle id="campus-title" parts={['আমাদের', { hl: 'ক্যাম্পাস' }]} />
-        <p className="lede">পাহাড়ঘেরা ২,৩১২ একর, শহর থেকে শাটল ট্রেনে যাতায়াত। এখানে আকাশের রং মিলে যায় চট্টগ্রামের এই মুহূর্তের সময়ের সাথে।</p>
+        <SectionTitle id="campus-title" parts={[t.title[0], { hl: t.title[1] }]} />
+        <p className="lede">{t.lede}</p>
 
         <div
           ref={stage}
@@ -148,11 +171,11 @@ export function LivingCampus() {
             aria-hidden="true"
             className={`absolute inset-0 size-full transition-opacity duration-1000 ${live ? 'opacity-100' : 'opacity-0'}`}
           />
-          {LABELS.map((l) => (
+          {LABEL_IDS.map((id) => (
             <span
-              key={l.id}
+              key={id}
               ref={(node) => {
-                if (node) labelRefs.current[l.id] = node
+                if (node) labelRefs.current[id] = node
               }}
               aria-hidden="true"
               className={`pointer-events-none absolute left-0 top-0 whitespace-nowrap rounded-full px-3 py-1 text-[0.8rem] font-semibold shadow-lg transition-opacity duration-500 ${
@@ -160,7 +183,7 @@ export function LivingCampus() {
               } ${live ? '' : 'hidden'}`}
               style={{ opacity: 0 }}
             >
-              {l.text}
+              {t.labels[id]}
             </span>
           ))}
 
@@ -168,20 +191,20 @@ export function LivingCampus() {
             <div className="absolute left-3 top-3 flex flex-wrap gap-2 sm:left-5 sm:top-5">
               <p className={`inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[0.9rem] font-semibold backdrop-blur ${dark ? 'bg-night/70 text-white' : 'bg-white/85 text-ink'}`}>
                 <span aria-hidden="true" className="size-2 rounded-full bg-mint shadow-[0_0_10px_#00fb97]" />
-                চট্টগ্রামে এখন {formatTime(now!)}
+                {t.now(time(lang, now!))}
               </p>
               <p className={`inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[0.9rem] font-semibold backdrop-blur ${dark ? 'bg-night/70 text-white' : 'bg-white/85 text-ink'}`}>
                 <Clock className="size-4" />
-                পরবর্তী নামাজ {prayer.name}, {formatTime(prayer.at)}
+                {t.next(t.prayers[prayer.key], time(lang, prayer.at))}
               </p>
             </div>
           )}
-          <p className={`absolute bottom-3 right-4 text-[0.75rem] ${dark ? 'text-white/60' : 'text-ink/60'}`}>প্রতীকী দৃশ্য, মানচিত্র নয়</p>
+          <p className={`absolute bottom-3 right-4 text-[0.75rem] ${dark ? 'text-white/60' : 'text-ink/60'}`}>{t.caption}</p>
         </div>
 
         <div className="mt-8 flex justify-center">
           <Link href="/services/campus" className="btn btn-outline-blue">
-            ক্যাম্পাস গাইড দেখুন
+            {t.guide}
             <ArrowRight />
           </Link>
         </div>

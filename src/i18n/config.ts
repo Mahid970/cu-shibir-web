@@ -56,3 +56,12 @@ export const hasBangla = (text: string | null | undefined) => Boolean(text && BA
  * (so screen readers switch voice and the Bangla font is used).
  */
 export const langAttr = (page: Locale, text: string | null | undefined) => (page === 'en' && hasBangla(text) ? 'bn' : undefined)
+
+/**
+ * Text from the CMS in the page's language. Payload fills an empty English field with the
+ * Bangla one, so an English page uses `fallback.en` until someone writes the English version.
+ */
+export function cmsText(lang: Locale, value: string | null | undefined, fallback: Record<Locale, string>) {
+  if (lang === 'en' && (!value || hasBangla(value))) return fallback.en
+  return value || fallback.bn
+}

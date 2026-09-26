@@ -6,8 +6,51 @@ import { CountUp } from '@/components/motion/CountUp'
 import { Marquee } from '@/components/motion/Marquee'
 import { ArrowRight } from '@/components/ui/Icons'
 import { SectionTitle } from '@/components/ui/SectionTitle'
-import { formatDate } from '@/lib/bn'
+import { copy, langAttr, type Locale } from '@/i18n/config'
+import { date, num } from '@/i18n/format'
+import { getLang } from '@/i18n/server'
 import type { PressCoverage } from '@/payload-types'
+
+const T = copy(
+  {
+    title: ['শিক্ষার্থীদের', 'আস্থার প্রতিদান'],
+    lede: 'চাকসু নির্বাচন ২০২৫-এ শিক্ষার্থীরা যে আস্থা রেখেছেন, তার মর্যাদা রাখাই আমাদের প্রতিদিনের কাজ।',
+    tag: 'চাকসু নির্বাচন ২০২৫',
+    won: 'পদে জয়',
+    panel: 'সম্প্রীতির শিক্ষার্থী জোট · ভিপি ইব্রাহীম হোসেন রনি, জিএস সাঈদ বিন হাবিব',
+    election: 'নির্বাচনের চিত্র',
+    voters: 'মোট ভোটার',
+    turnout: 'ভোট পড়েছে',
+    posts: 'মোট পদ',
+    history: 'চাকসুর ইতিহাসে',
+    fullPanel: 'পূর্ণ প্যানেলে জয়',
+    years: ' বছর',
+    wait: 'দীর্ঘ অপেক্ষা',
+    again: 'আবার আস্থা',
+    press: ['সংবাদমাধ্যমে', 'আমাদের কথা'],
+    pressLabel: 'সংবাদমাধ্যমে প্রকাশিত খবর',
+    allPress: 'সব প্রতিবেদন দেখুন',
+  },
+  {
+    title: ['Repaying', 'students’ trust'],
+    lede: 'Students placed their trust in us in the 2025 CUCSU election. Living up to it is our everyday work.',
+    tag: 'CUCSU election 2025',
+    won: 'posts won',
+    panel: 'Sompritir Shikkharthi Jot · VP Ibrahim Hossain Rony, GS Saeed Bin Habib',
+    election: 'The election in numbers',
+    voters: 'voters',
+    turnout: 'turnout',
+    posts: 'posts',
+    history: 'In CUCSU history',
+    fullPanel: 'full panel won',
+    years: ' years',
+    wait: 'of waiting',
+    again: 'trusted again',
+    press: ['What the press', 'says about us'],
+    pressLabel: 'Press coverage',
+    allPress: 'See all coverage',
+  },
+)
 
 type Figure = { value?: number; suffix?: string; text?: string; label: string; color: string }
 
@@ -35,7 +78,7 @@ function StatPanel({ title, icon, figures }: { title: string; icon: ReactNode; f
   )
 }
 
-function PressCard({ item }: { item: PressCoverage }) {
+function PressCard({ item, lang }: { item: PressCoverage; lang: Locale }) {
   return (
     <a
       href={item.url}
@@ -45,15 +88,19 @@ function PressCard({ item }: { item: PressCoverage }) {
     >
       <span className="flex flex-wrap gap-2">
         <span className="rounded bg-[image:var(--gradient)] px-2 py-1 text-[0.85rem] font-semibold leading-tight">{item.outlet}</span>
-        <span className="rounded bg-success px-2 py-1 text-[0.85rem] font-semibold leading-tight">{formatDate(item.publishedAt, { style: 'short' })}</span>
+        <span className="rounded bg-success px-2 py-1 text-[0.85rem] font-semibold leading-tight">{date(lang, item.publishedAt, 'short')}</span>
       </span>
-      <span className="line-clamp-2 text-[1.1rem] font-semibold leading-snug">{item.headline}</span>
+      <span lang={langAttr(lang, item.headline)} className="line-clamp-2 text-[1.1rem] font-semibold leading-snug">
+        {item.headline}
+      </span>
     </a>
   )
 }
 
 /** Night section: the CUCSU 2025 result, then press coverage drifting past in a marquee. */
-export function TrustSection({ press }: { press: PressCoverage[] }) {
+export async function TrustSection({ press }: { press: PressCoverage[] }) {
+  const lang = await getLang()
+  const t = T[lang]
   return (
     <section className="cv-auto relative isolate overflow-hidden bg-night pb-16 pt-14 md:pb-20 md:pt-20" aria-labelledby="trust">
       <div
@@ -61,40 +108,40 @@ export function TrustSection({ press }: { press: PressCoverage[] }) {
         className="absolute inset-0 -z-10 bg-[radial-gradient(45%_35%_at_85%_8%,rgb(53_100_255/0.35),transparent_70%),radial-gradient(40%_30%_at_5%_85%,rgb(0_251_151/0.12),transparent_70%)]"
       />
       <div className="wrap">
-        <SectionTitle id="trust" dark parts={['শিক্ষার্থীদের', { hl: 'আস্থার প্রতিদান' }]} />
-        <p className="lede text-white/70!">চাকসু নির্বাচন ২০২৫-এ শিক্ষার্থীরা যে আস্থা রেখেছেন, তার মর্যাদা রাখাই আমাদের প্রতিদিনের কাজ।</p>
+        <SectionTitle id="trust" dark parts={[t.title[0], { hl: t.title[1] }]} />
+        <p className="lede text-white/70!">{t.lede}</p>
 
         <div className="mx-auto mt-14 max-w-[1000px]" data-reveal="fade">
           <div className="relative">
             <span className="absolute left-1/2 top-0 z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-md bg-tag px-4 py-1.5 text-[0.95rem] font-bold text-ink shadow-[0_10px_20px_rgb(245_201_69/0.35)]">
-              চাকসু নির্বাচন ২০২৫
+              {t.tag}
             </span>
             <div className="flex flex-col items-center gap-3 rounded-3xl bg-[linear-gradient(90deg,#2140d0,#3564ff_55%,#2a49dc)] px-6 pb-8 pt-10 text-center shadow-[0_0_70px_rgb(53_100_255/0.45)] sm:flex-row sm:justify-center sm:gap-6 sm:text-left">
               <Trophy3D className="art-shadow w-16 sm:w-20" />
-              <CountUp value={24} suffix="/২৬" className="text-[3.2rem] font-bold leading-none text-yellow sm:text-[4rem]" />
+              <CountUp value={24} suffix={`/${num(lang, 26)}`} className="text-[3.2rem] font-bold leading-none text-yellow sm:text-[4rem]" />
               <div>
-                <p className="text-[1.6rem] font-bold text-white sm:text-[2rem]">পদে জয়</p>
-                <p className="text-[0.9rem] text-white/75">সম্প্রীতির শিক্ষার্থী জোট · ভিপি ইব্রাহীম হোসেন রনি, জিএস সাঈদ বিন হাবিব</p>
+                <p className="text-[1.6rem] font-bold text-white sm:text-[2rem]">{t.won}</p>
+                <p className="text-[0.9rem] text-white/75">{t.panel}</p>
               </div>
             </div>
           </div>
           <div className="mt-5 grid gap-5 md:grid-cols-2">
             <StatPanel
-              title="নির্বাচনের চিত্র"
+              title={t.election}
               icon={<BallotBox />}
               figures={[
-                { value: 27516, label: 'মোট ভোটার', color: 'text-mint' },
-                { value: 65, suffix: '%', label: 'ভোট পড়েছে', color: 'text-aqua' },
-                { value: 26, label: 'মোট পদ', color: 'text-[#6ea0ff]' },
+                { value: 27516, label: t.voters, color: 'text-mint' },
+                { value: 65, suffix: '%', label: t.turnout, color: 'text-aqua' },
+                { value: 26, label: t.posts, color: 'text-[#6ea0ff]' },
               ]}
             />
             <StatPanel
-              title="চাকসুর ইতিহাসে"
+              title={t.history}
               icon={<Medal />}
               figures={[
-                { text: '১৯৮১', label: 'পূর্ণ প্যানেলে জয়', color: 'text-mint' },
-                { value: 44, suffix: ' বছর', label: 'দীর্ঘ অপেক্ষা', color: 'text-aqua' },
-                { text: '২০২৫', label: 'আবার আস্থা', color: 'text-[#6ea0ff]' },
+                { text: num(lang, 1981), label: t.fullPanel, color: 'text-mint' },
+                { value: 44, suffix: t.years, label: t.wait, color: 'text-aqua' },
+                { text: num(lang, 2025), label: t.again, color: 'text-[#6ea0ff]' },
               ]}
             />
           </div>
@@ -104,18 +151,18 @@ export function TrustSection({ press }: { press: PressCoverage[] }) {
       {press.length > 0 && (
         <div className="mt-20">
           <h3 className="px-4 text-center text-[1.9rem] font-bold text-white md:text-[2.5rem]">
-            <span className="text-mint">সংবাদমাধ্যমে</span> আমাদের কথা
+            <span className="text-mint">{t.press[0]}</span> {t.press[1]}
           </h3>
           <div className="mt-8">
-            <Marquee label="সংবাদমাধ্যমে প্রকাশিত খবর" duration={80}>
+            <Marquee label={t.pressLabel} duration={80}>
               {press.map((item) => (
-                <PressCard key={item.id} item={item} />
+                <PressCard key={item.id} item={item} lang={lang} />
               ))}
             </Marquee>
           </div>
           <div className="mt-8 flex justify-center px-4">
             <Link href="/press" className="btn btn-ghost-light">
-              সব প্রতিবেদন দেখুন
+              {t.allPress}
               <ArrowRight />
             </Link>
           </div>
