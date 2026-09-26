@@ -9,8 +9,8 @@ import { SvgDefs } from '@/components/ui/SectionTitle'
 import { getSiteSettings } from '@/lib/cms'
 import { SITE } from '@/lib/site'
 
-import { fontVariables } from './fonts'
-import './globals.css'
+import { fontVariables } from '../fonts'
+import '../globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
