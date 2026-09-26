@@ -20,6 +20,7 @@ import { Videos } from './collections/Videos'
 import { SiteSettings } from './globals/SiteSettings'
 import { generateShareImageTask } from './jobs/generateShareImage'
 import { purgeSubmissionsTask } from './jobs/purgeSubmissions'
+import { migrations } from './migrations'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -52,8 +53,12 @@ export default buildConfig({
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: { outputFile: path.resolve(dirname, 'payload-types.ts') },
+  // Development pushes the schema directly; production applies the committed migrations on start
+  // (set PAYLOAD_MIGRATE_ON_START=false for a local production build against the dev database).
   db: postgresAdapter({
     pool: { connectionString: process.env.DATABASE_URL || '' },
+    migrationDir: path.resolve(dirname, 'migrations'),
+    prodMigrations: process.env.PAYLOAD_MIGRATE_ON_START === 'false' ? undefined : migrations,
   }),
   // Runs share-image, scheduled-publish and retention jobs on the long-running VPS server.
   jobs: {
