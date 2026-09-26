@@ -90,10 +90,7 @@ export function formatDate(
   if (Number.isNaN(date.getTime())) return ''
   if (style === 'datetime' && locale === 'bn') {
     // "২৬ সেপ্টেম্বর ২০২৬, সন্ধ্যা ৭:১৬" — Intl alone gives "… এ ৭:১৬ PM".
-    const day = formatDate(date, { locale, style: 'long' })
-    const parts = new Intl.DateTimeFormat('bn-BD', { hour: 'numeric', minute: '2-digit', dayPeriod: 'short', timeZone: DHAKA_TZ }).formatToParts(date)
-    const get = (t: string) => parts.find((p) => p.type === t)?.value ?? ''
-    return `${day}, ${get('dayPeriod')} ${get('hour')}:${get('minute')}`.replace(/\s+/g, ' ')
+    return `${formatDate(date, { locale, style: 'long' })}, ${formatTime(date)}`
   }
   const options: Intl.DateTimeFormatOptions =
     style === 'short'
@@ -105,6 +102,14 @@ export function formatDate(
     ...options,
     timeZone: DHAKA_TZ,
   }).format(date)
+}
+
+/** Time of day in Dhaka the way people say it: "সন্ধ্যা ৭:১৬", "সকাল ৮:০৫". */
+export function formatTime(value: string | number | Date): string {
+  const date = value instanceof Date ? value : new Date(value)
+  const parts = new Intl.DateTimeFormat('bn-BD', { hour: 'numeric', minute: '2-digit', dayPeriod: 'short', timeZone: DHAKA_TZ }).formatToParts(date)
+  const get = (t: string) => parts.find((p) => p.type === t)?.value ?? ''
+  return `${get('dayPeriod')} ${get('hour')}:${get('minute')}`.trim()
 }
 
 const MONTHS: Record<string, number> = {
