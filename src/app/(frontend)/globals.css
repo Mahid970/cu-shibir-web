@@ -870,3 +870,11 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ---------- English pages (/en) ---------- */
+.en-site {
+  font-family: var(--font-en);
+}
+.en-site :lang(bn) {
+  font-family: var(--font-sans);
+}
