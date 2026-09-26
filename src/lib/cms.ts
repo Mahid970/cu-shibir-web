@@ -303,3 +303,20 @@ export const getLeadersEnglish = cached(
   'leaders-en',
   ['people'],
 )
+
+export const getMartyrs = cached(
+  async (locale: Locale = 'bn') => {
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'martyrs',
+      locale,
+      limit: 500,
+      sort: 'order',
+      where: { _status: { equals: 'published' } },
+      depth: 1,
+    })
+    return docs
+  },
+  'martyrs',
+  ['martyrs'],
+)

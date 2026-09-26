@@ -2,7 +2,7 @@ import { revalidateTag } from 'next/cache'
 import { timingSafeEqual } from 'node:crypto'
 import { NextResponse, type NextRequest } from 'next/server'
 
-const ALLOWED = new Set(['posts', 'people', 'press', 'videos', 'albums', 'site-settings'])
+const ALLOWED = new Set(['posts', 'people', 'martyrs', 'press', 'videos', 'albums', 'site-settings'])
 
 /**
  * Cache purge for trusted scripts that write via the Local API outside Next.js

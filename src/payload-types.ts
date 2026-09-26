@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     posts: Post;
     people: Person;
+    martyrs: Martyr;
     'press-coverage': PressCoverage;
     videos: Video;
     albums: Album;
@@ -87,6 +88,7 @@ export interface Config {
   collectionsSelect: {
     posts: PostsSelect<false> | PostsSelect<true>;
     people: PeopleSelect<false> | PeopleSelect<true>;
+    martyrs: MartyrsSelect<false> | MartyrsSelect<true>;
     'press-coverage': PressCoverageSelect<false> | PressCoverageSelect<true>;
     videos: VideosSelect<false> | VideosSelect<true>;
     albums: AlbumsSelect<false> | AlbumsSelect<true>;
@@ -317,6 +319,49 @@ export interface Person {
    * cushibir.org legacy id
    */
   legacyId?: number | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * প্রকাশের আগে প্রতিটি তথ্য দায়িত্বশীলদের দিয়ে যাচাই করে নিন।
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "martyrs".
+ */
+export interface Martyr {
+  id: number;
+  name: string;
+  date?: string | null;
+  /**
+   * যেমন: "১৯৮৪ সালের মার্চ" — সঠিক দিন জানা না থাকলে
+   */
+  dateText?: string | null;
+  order?: number | null;
+  affiliation?: string | null;
+  place?: string | null;
+  summary?: string | null;
+  bio?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  photo?: (number | null) | Media;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -841,6 +886,10 @@ export interface PayloadLockedDocument {
         value: number | Person;
       } | null)
     | ({
+        relationTo: 'martyrs';
+        value: number | Martyr;
+      } | null)
+    | ({
         relationTo: 'press-coverage';
         value: number | PressCoverage;
       } | null)
@@ -977,6 +1026,26 @@ export interface PeopleSelect<T extends boolean = true> {
   generateSlug?: T;
   slug?: T;
   legacyId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "martyrs_select".
+ */
+export interface MartyrsSelect<T extends boolean = true> {
+  name?: T;
+  date?: T;
+  dateText?: T;
+  order?: T;
+  affiliation?: T;
+  place?: T;
+  summary?: T;
+  bio?: T;
+  photo?: T;
+  generateSlug?: T;
+  slug?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
