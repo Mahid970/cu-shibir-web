@@ -39,7 +39,7 @@ import {
   WebGLRenderer,
 } from 'three'
 
-import type { Palette } from '@/lib/sky'
+import type { Palette } from '@/lib/skyPalettes'
 
 export type Tier = 1 | 2
 export type LabelId = 'train' | 'station' | 'cut' | 'halls'

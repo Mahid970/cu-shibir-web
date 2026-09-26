@@ -6,7 +6,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { ArrowRight, Clock } from '@/components/ui/Icons'
 import { SectionTitle } from '@/components/ui/SectionTitle'
 import { formatTime } from '@/lib/bn'
-import { nextPrayer, PALETTES, skyAt } from '@/lib/sky'
+import { PALETTES } from '@/lib/skyPalettes'
 
 import { CampusPoster } from './CampusPoster'
 import type { LabelId, SceneHandle } from './scene'
@@ -28,6 +28,8 @@ const clockSnapshot = () => {
 }
 const serverClock = () => null
 
+type SkyLib = typeof import('@/lib/sky')
+
 const LABELS: { id: LabelId; text: string }[] = [
   { id: 'train', text: 'শাটল ট্রেন' },
   { id: 'station', text: 'বিশ্ববিদ্যালয় স্টেশন' },
@@ -42,10 +44,12 @@ const LABELS: { id: LabelId; text: string }[] = [
  */
 export function LivingCampus() {
   const tick = useSyncExternalStore(subscribeClock, clockSnapshot, serverClock)
+  // Prayer-time maths (adhan) loads with the section, not with the page.
+  const [skyLib, setSkyLib] = useState<SkyLib | null>(null)
   const now = tick === null ? null : new Date(tick * 60_000)
-  const sky = now ? skyAt(now) : null
+  const sky = now && skyLib ? skyLib.skyAt(now) : null
   const palette = sky?.palette ?? PALETTES.day
-  const prayer = now ? nextPrayer(now) : null
+  const prayer = now && skyLib ? skyLib.nextPrayer(now) : null
 
   const stage = useRef<HTMLDivElement>(null)
   const canvas = useRef<HTMLCanvasElement>(null)
@@ -57,9 +61,23 @@ export function LivingCampus() {
   useEffect(() => {
     const el = stage.current
     if (!el) return
-    const tier = detectTier()
-    if (tier === 0) return
     let disposed = false
+    const soon = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting) return
+        soon.disconnect()
+        import('@/lib/sky').then((lib) => !disposed && setSkyLib(lib))
+      },
+      { rootMargin: '800px 0px' },
+    )
+    soon.observe(el)
+    const tier = detectTier()
+    if (tier === 0) {
+      return () => {
+        disposed = true
+        soon.disconnect()
+      }
+    }
     let visible = false
     const idle = (cb: () => void) => (typeof window.requestIdleCallback === 'function' ? window.requestIdleCallback(cb, { timeout: 2500 }) : setTimeout(cb, 300))
 
@@ -68,7 +86,7 @@ export function LivingCampus() {
         if (!e.isIntersecting) return
         near.disconnect()
         idle(async () => {
-          const { createCampusScene } = await import('./scene')
+          const [{ createCampusScene }, { skyAt }] = await Promise.all([import('./scene'), import('@/lib/sky')])
           if (disposed || !canvas.current) return
           handle.current = createCampusScene(canvas.current, { tier, palette: skyAt(new Date()).palette, labels: labelRefs.current })
           handle.current.setRunning(visible && !document.hidden)
@@ -95,6 +113,7 @@ export function LivingCampus() {
     el.addEventListener('pointermove', onMove)
     return () => {
       disposed = true
+      soon.disconnect()
       near.disconnect()
       onScreen.disconnect()
       document.removeEventListener('visibilitychange', onVisibility)
@@ -113,7 +132,7 @@ export function LivingCampus() {
   const dark = palette.stars > 0.4
 
   return (
-    <section className="py-16 md:py-22" aria-labelledby="campus-title">
+    <section className="cv-auto py-16 md:py-22" aria-labelledby="campus-title">
       <div className="wrap">
         <SectionTitle id="campus-title" parts={['আমাদের', { hl: 'ক্যাম্পাস' }]} />
         <p className="lede">পাহাড়ঘেরা ২,৩১২ একর, শহর থেকে শাটল ট্রেনে যাতায়াত। এখানে আকাশের রং মিলে যায় চট্টগ্রামের এই মুহূর্তের সময়ের সাথে।</p>
