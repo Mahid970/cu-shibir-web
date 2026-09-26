@@ -1,12 +1,13 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 
+import { RailTimeline } from '@/components/about/RailTimeline'
 import { Faq } from '@/components/home/Faq'
 import { FivePoints } from '@/components/home/FivePoints'
 import { Journey } from '@/components/home/Journey'
-import { Milestones } from '@/components/home/Milestones'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { vars } from '@/components/ui/SectionTitle'
+import { HISTORY } from '@/content/history'
 import { getAlbums, getSiteSettings } from '@/lib/cms'
 import { pickImage } from '@/lib/media'
 
@@ -88,7 +89,7 @@ export default async function AboutPage() {
         </ul>
       </section>
 
-      <Milestones id="history" overlap={false} link={false} />
+      <RailTimeline stops={HISTORY} />
       <Journey />
       <FivePoints />
       <Faq />
