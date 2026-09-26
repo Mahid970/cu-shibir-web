@@ -1,27 +1,38 @@
 /** Choice lists shared by the public forms (client), the server actions and the CMS collections. */
 
+import type { Locale } from '@/i18n/config'
+
+/** `label` is Bangla (also shown in the CMS); `en` is what English pages show. */
+type Choice = { readonly value: string; readonly label: string; readonly en: string }
+
 export const SUPPORTER_INTERESTS = [
-  { value: 'dawah', label: 'দাওয়াতি কাজ' },
-  { value: 'study', label: 'পাঠচক্র ও আলোচনা' },
-  { value: 'welfare', label: 'ছাত্রকল্যাণ ও স্বেচ্ছাসেবা' },
-  { value: 'writing', label: 'লেখালেখি ও প্রকাশনা' },
-  { value: 'media', label: 'ছবি, ভিডিও ও ডিজাইন' },
-  { value: 'it', label: 'আইটি ও প্রযুক্তি' },
-  { value: 'culture', label: 'সাহিত্য ও সংস্কৃতি' },
-  { value: 'sports', label: 'খেলাধুলা' },
+  { value: 'dawah', label: 'দাওয়াতি কাজ', en: 'Dawah' },
+  { value: 'study', label: 'পাঠচক্র ও আলোচনা', en: 'Study circles and discussions' },
+  { value: 'welfare', label: 'ছাত্রকল্যাণ ও স্বেচ্ছাসেবা', en: 'Student welfare and volunteering' },
+  { value: 'writing', label: 'লেখালেখি ও প্রকাশনা', en: 'Writing and publications' },
+  { value: 'media', label: 'ছবি, ভিডিও ও ডিজাইন', en: 'Photos, video and design' },
+  { value: 'it', label: 'আইটি ও প্রযুক্তি', en: 'IT and technology' },
+  { value: 'culture', label: 'সাহিত্য ও সংস্কৃতি', en: 'Literature and culture' },
+  { value: 'sports', label: 'খেলাধুলা', en: 'Sports' },
 ] as const
 
 export const FEEDBACK_KINDS = [
-  { value: 'advice', label: 'পরামর্শ' },
-  { value: 'ehtesab', label: 'এহতেসাব' },
-  { value: 'complaint', label: 'অভিযোগ বা সমস্যা' },
+  { value: 'advice', label: 'পরামর্শ', en: 'Advice' },
+  { value: 'ehtesab', label: 'এহতেসাব', en: 'Ehtesab (constructive criticism)' },
+  { value: 'complaint', label: 'অভিযোগ বা সমস্যা', en: 'A complaint or problem' },
 ] as const
 
 export const ASSISTANCE_TYPES = [
-  { value: 'scholarship', label: 'শিক্ষাবৃত্তি' },
-  { value: 'medical', label: 'চিকিৎসা সহায়তা' },
-  { value: 'other', label: 'অন্যান্য সহায়তা' },
+  { value: 'scholarship', label: 'শিক্ষাবৃত্তি', en: 'Scholarship' },
+  { value: 'medical', label: 'চিকিৎসা সহায়তা', en: 'Medical aid' },
+  { value: 'other', label: 'অন্যান্য সহায়তা', en: 'Other support' },
 ] as const
+
+/** Choices for a form in the page's language. */
+export const choices = (list: readonly Choice[], lang: Locale) => list.map((c) => ({ value: c.value, label: lang === 'en' ? c.en : c.label }))
+
+/** For CMS select fields: value and Bangla label only. */
+export const cmsOptions = (list: readonly Choice[]) => list.map(({ value, label }) => ({ value, label }))
 
 /** Pipeline shown to the applicant on the tracking page (plan §6.1). */
 export const ASSISTANCE_STATUSES = [

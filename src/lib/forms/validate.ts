@@ -1,9 +1,35 @@
 /**
- * Small, dependency-free validation for the public forms. Messages are Bangla and say how to fix
- * the problem. Shared by the server actions and the unit tests.
+ * Small, dependency-free validation for the public forms. Messages are in the page's language
+ * and say how to fix the problem. Shared by the server actions and the unit tests.
  */
 
+import { copy, type Locale } from '@/i18n/config'
 import { toBnDigits, toLatinDigits } from '@/lib/bn'
+
+const M = copy(
+  {
+    required: (label: string) => `${label} লিখুন।`,
+    min: (label: string, n: number) => `${label} অন্তত ${toBnDigits(n)} অক্ষরের হতে হবে।`,
+    max: (label: string, n: number) => `${label} ${toBnDigits(n)} অক্ষরের মধ্যে রাখুন।`,
+    phoneRequired: 'মোবাইল নম্বর লিখুন।',
+    phone: 'সঠিক মোবাইল নম্বর লিখুন, যেমন ০১৭১১২২২৩৩৩।',
+    emailRequired: 'ইমেইল ঠিকানা লিখুন।',
+    email: 'সঠিক ইমেইল ঠিকানা লিখুন।',
+    choose: (label: string) => `${label} বেছে নিন।`,
+    fromList: (label: string) => `${label} তালিকা থেকে বেছে নিন।`,
+  },
+  {
+    required: (label: string) => `Please fill in ${label}.`,
+    min: (label: string, n: number) => `Please write at least ${n} characters in ${label}.`,
+    max: (label: string, n: number) => `Please keep ${label} under ${n} characters.`,
+    phoneRequired: 'Please fill in your mobile number.',
+    phone: 'Enter a valid mobile number, for example 01711222333.',
+    emailRequired: 'Please fill in your email address.',
+    email: 'Enter a valid email address.',
+    choose: (label: string) => `Please choose ${label}.`,
+    fromList: (label: string) => `Please choose ${label} from the list.`,
+  },
+)
 
 export type FieldErrors = Record<string, string>
 
@@ -43,48 +69,54 @@ export function isHttpUrl(value: string): boolean {
 /** Collects errors while reading fields, so each form reads top to bottom. */
 export class Checker {
   errors: FieldErrors = {}
-  constructor(private data: FormData) {}
+  private m: (typeof M)[Locale]
+  constructor(
+    private data: FormData,
+    lang: Locale = 'bn',
+  ) {
+    this.m = M[lang]
+  }
 
   text(name: string, { required = false, min = 0, max = 200, label }: { required?: boolean; min?: number; max?: number; label: string }) {
     const value = cleanText(this.data.get(name), max + 1)
     if (!value) {
-      if (required) this.errors[name] = `${label} লিখুন।`
+      if (required) this.errors[name] = this.m.required(label)
       return value
     }
-    if (value.length < min) this.errors[name] = `${label} অন্তত ${toBnDigits(min)} অক্ষরের হতে হবে।`
-    else if (value.length > max) this.errors[name] = `${label} ${toBnDigits(max)} অক্ষরের মধ্যে রাখুন।`
+    if (value.length < min) this.errors[name] = this.m.min(label, min)
+    else if (value.length > max) this.errors[name] = this.m.max(label, max)
     return value.slice(0, max)
   }
 
   phone(name: string, { required = false }: { required?: boolean } = {}) {
     const raw = cleanText(this.data.get(name), 40)
     if (!raw) {
-      if (required) this.errors[name] = 'মোবাইল নম্বর লিখুন।'
+      if (required) this.errors[name] = this.m.phoneRequired
       return ''
     }
     const phone = normalizePhone(raw)
-    if (!phone) this.errors[name] = 'সঠিক মোবাইল নম্বর লিখুন, যেমন ০১৭১১২২২৩৩৩।'
+    if (!phone) this.errors[name] = this.m.phone
     return phone ?? ''
   }
 
   email(name: string, { required = false }: { required?: boolean } = {}) {
     const value = cleanText(this.data.get(name), 200).toLowerCase()
     if (!value) {
-      if (required) this.errors[name] = 'ইমেইল ঠিকানা লিখুন।'
+      if (required) this.errors[name] = this.m.emailRequired
       return ''
     }
-    if (!isEmail(value)) this.errors[name] = 'সঠিক ইমেইল ঠিকানা লিখুন।'
+    if (!isEmail(value)) this.errors[name] = this.m.email
     return value
   }
 
   choice<T extends string>(name: string, allowed: readonly T[], { required = false, label }: { required?: boolean; label: string }) {
     const value = cleanText(this.data.get(name), 100)
     if (!value) {
-      if (required) this.errors[name] = `${label} বেছে নিন।`
+      if (required) this.errors[name] = this.m.choose(label)
       return undefined
     }
     if (!allowed.includes(value as T)) {
-      this.errors[name] = `${label} তালিকা থেকে বেছে নিন।`
+      this.errors[name] = this.m.fromList(label)
       return undefined
     }
     return value as T

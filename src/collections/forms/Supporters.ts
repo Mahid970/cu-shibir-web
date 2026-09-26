@@ -3,7 +3,7 @@ import type { CollectionConfig } from 'payload'
 import { encryptedField } from '@/fields/encrypted'
 import { DEPARTMENTS, HALLS, NON_RESIDENT } from '@/lib/campus'
 
-import { SUPPORTER_INTERESTS } from '@/lib/forms/options'
+import { cmsOptions, SUPPORTER_INTERESTS } from '@/lib/forms/options'
 
 import { FORMS_GROUP, fieldFor, formsAccess, statusField } from './shared'
 
@@ -39,16 +39,16 @@ export const Supporters: CollectionConfig = {
     {
       type: 'row',
       fields: [
-        { name: 'department', type: 'select', required: true, options: DEPARTMENTS, label: { bn: 'বিভাগ', en: 'Department' } },
+        { name: 'department', type: 'select', required: true, options: cmsOptions(DEPARTMENTS), label: { bn: 'বিভাগ', en: 'Department' } },
         { name: 'session', type: 'text', required: true, label: { bn: 'শিক্ষাবর্ষ', en: 'Session' } },
-        { name: 'hall', type: 'select', options: [...HALLS, NON_RESIDENT], label: { bn: 'হল', en: 'Hall' } },
+        { name: 'hall', type: 'select', options: cmsOptions([...HALLS, NON_RESIDENT]), label: { bn: 'হল', en: 'Hall' } },
       ],
     },
     {
       name: 'interests',
       type: 'select',
       hasMany: true,
-      options: [...SUPPORTER_INTERESTS],
+      options: cmsOptions(SUPPORTER_INTERESTS),
       label: { bn: 'যে কাজে আগ্রহী', en: 'Interested in' },
     },
     encryptedField({ name: 'note', label: { bn: 'আবেদনকারীর বার্তা', en: 'Message' }, textarea: true, maxLength: 1000, read }),

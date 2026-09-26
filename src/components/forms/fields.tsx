@@ -1,5 +1,6 @@
 import type { InputHTMLAttributes, ReactNode, SelectHTMLAttributes, TextareaHTMLAttributes } from 'react'
 
+import { useLang } from '@/i18n/LangProvider'
 import type { FieldErrors } from '@/lib/forms/validate'
 
 type Option = { value: string; label: string }
@@ -9,8 +10,11 @@ const control =
 
 type Common = { name: string; label: string; hint?: ReactNode; required?: boolean; errors?: FieldErrors; className?: string }
 
+const optional = { bn: ' (ঐচ্ছিক)', en: ' (optional)' }
+
 function Wrap({ name, label, hint, required, errors, className = '', children }: Common & { children: ReactNode }) {
   const error = errors?.[name]
+  const lang = useLang()
   return (
     <div className={className}>
       <label htmlFor={`f-${name}`} className="mb-1.5 block font-semibold text-ink">
@@ -21,7 +25,7 @@ function Wrap({ name, label, hint, required, errors, className = '', children }:
             *
           </span>
         ) : (
-          <span className="font-normal text-subtle"> (ঐচ্ছিক)</span>
+          <span className="font-normal text-subtle">{optional[lang]}</span>
         )}
       </label>
       {children}
@@ -68,7 +72,8 @@ export function TextArea(props: Common & Omit<TextareaHTMLAttributes<HTMLTextAre
 export function Select(
   props: Common & Omit<SelectHTMLAttributes<HTMLSelectElement>, 'name'> & { options?: Option[]; groups?: { label: string; options: Option[] }[]; placeholder?: string },
 ) {
-  const { name, label, hint, required, errors, className, options, groups, placeholder = 'বেছে নিন', ...rest } = props
+  const lang = useLang()
+  const { name, label, hint, required, errors, className, options, groups, placeholder = lang === 'en' ? 'Choose' : 'বেছে নিন', ...rest } = props
   return (
     <Wrap {...{ name, label, hint, required, errors, className }}>
       <select
@@ -121,11 +126,12 @@ export function Choices({
   onChange?: (value: string) => void
 }) {
   const error = errors?.[name]
+  const lang = useLang()
   return (
     <fieldset aria-describedby={error ? `e-${name}` : undefined}>
       <legend className="mb-2 font-semibold text-ink">
         {label}
-        {required ? <span className="text-crimson"> *</span> : <span className="font-normal text-subtle"> (ঐচ্ছিক)</span>}
+        {required ? <span className="text-crimson"> *</span> : <span className="font-normal text-subtle">{optional[lang]}</span>}
       </legend>
       <div className="flex flex-wrap gap-2">
         {options.map((o) => (

@@ -80,11 +80,24 @@ describe('form validation', () => {
     expect(Object.keys(c.errors).sort()).toEqual(['consent', 'dept', 'mobile', 'name'])
     expect(c.errors.name).toContain('৩')
   })
+
+  it('answers in English on English pages', () => {
+    const data = new FormData()
+    data.set('name', 'A')
+    data.set('mobile', '12345')
+    const c = new Checker(data, 'en')
+    c.text('name', { required: true, min: 3, label: 'your name' })
+    c.phone('mobile', { required: true })
+    c.choice('dept', ['a', 'b'], { required: true, label: 'your department' })
+    expect(c.errors.name).toBe('Please write at least 3 characters in your name.')
+    expect(c.errors.mobile).toMatch(/^Enter a valid mobile number/)
+    expect(c.errors.dept).toBe('Please choose your department.')
+  })
 })
 
 describe('campus data', () => {
   it('lists the newest session first, a year behind the calendar', () => {
-    expect(recentSessions(new Date('2026-09-26'))[0]).toEqual({ value: '2025-26', label: '২০২৫-২৬' })
+    expect(recentSessions(new Date('2026-09-26'))[0]).toEqual({ value: '2025-26', label: '২০২৫-২৬', en: '2025-26' })
     expect(recentSessions(new Date('2027-02-01'))[0].value).toBe('2025-26')
     expect(recentSessions(new Date('2027-07-15'))[0].value).toBe('2026-27')
   })
@@ -93,5 +106,9 @@ describe('campus data', () => {
 describe('Bangla date-time', () => {
   it('names the time of day in Bangla', () => {
     expect(formatDate('2026-09-26T13:16:00Z', { style: 'datetime' })).toBe('২৬ সেপ্টেম্বর, ২০২৬, সন্ধ্যা ৭:১৬')
+  })
+
+  it('reads naturally in English', () => {
+    expect(formatDate('2026-09-26T13:16:00Z', { style: 'datetime', locale: 'en' })).toBe('26 September 2026, 7:16 pm')
   })
 })

@@ -3,9 +3,10 @@ import type { ReactNode } from 'react'
 import { CheckCircle, Lock } from '@/components/ui/Icons'
 import { PageHeader } from '@/components/ui/PageHeader'
 import type { TitlePart } from '@/components/ui/SectionTitle'
+import { getLang } from '@/i18n/server'
 
 /** Form pages: header, the form in a white card, and a side panel explaining how the data is handled. */
-export function FormLayout({
+export async function FormLayout({
   title,
   lede,
   points,
@@ -18,6 +19,7 @@ export function FormLayout({
   children: ReactNode
   aside?: ReactNode
 }) {
+  const lang = await getLang()
   return (
     <>
       <PageHeader title={title} lede={lede} />
@@ -27,7 +29,7 @@ export function FormLayout({
           <div className="rounded-3xl bg-night p-6 text-white md:p-7">
             <p className="flex items-center gap-2 text-[1.1rem] font-bold">
               <Lock className="size-5 text-mint" />
-              আপনার তথ্য নিরাপদ
+              {lang === 'en' ? 'Your information is safe' : 'আপনার তথ্য নিরাপদ'}
             </p>
             <ul className="mt-4 grid gap-3 text-[0.95rem] leading-relaxed text-white/80">
               {points.map((p) => (

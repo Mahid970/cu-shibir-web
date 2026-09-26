@@ -1,33 +1,75 @@
 'use client'
 
-import { Link } from '@/i18n/link'
-
 import { ArrowRight, CheckCircle } from '@/components/ui/Icons'
-import { FACULTIES, HALLS, NON_RESIDENT, type Option } from '@/lib/campus'
+import { copy } from '@/i18n/config'
+import { useLang } from '@/i18n/LangProvider'
+import { Link } from '@/i18n/link'
+import { FACULTIES, HALLS, localizeOptions, NON_RESIDENT, optionLabel } from '@/lib/campus'
 import { submitSupporter } from '@/lib/forms/actions'
-import { SUPPORTER_INTERESTS } from '@/lib/forms/options'
+import { choices, SUPPORTER_INTERESTS } from '@/lib/forms/options'
 
 import { Choices, Consent, Select, TextArea, TextField } from './fields'
 import { FormShell } from './FormShell'
 
-export function SupporterForm({ sessions }: { sessions: Option[] }) {
+const T = copy(
+  {
+    submit: 'ফরম জমা দিন',
+    thanks: 'জাযাকাল্লাহু খাইরান!',
+    done: 'ফরমটি জমা হয়েছে। তোমার বিভাগ বা হলের দায়িত্বশীল শীঘ্রই যোগাযোগ করবেন।',
+    news: 'সর্বশেষ সংবাদ',
+    about: 'আমাদের সম্পর্কে জানো',
+    name: 'পূর্ণ নাম',
+    mobile: 'মোবাইল নম্বর',
+    mobileHint: '০১XXXXXXXXX',
+    email: 'ইমেইল',
+    facebook: 'ফেসবুক প্রোফাইলের লিংক',
+    department: 'বিভাগ',
+    session: 'শিক্ষাবর্ষ',
+    hall: 'হল',
+    interests: 'কোন কাজে যুক্ত হতে চাও?',
+    note: 'আমাদের কিছু বলতে চাও?',
+    consent: 'আমার দেওয়া তথ্য চবি ছাত্রশিবিরের দায়িত্বপ্রাপ্তরা শুধু যোগাযোগের জন্য ব্যবহার করবেন, এতে সম্মতি দিচ্ছি।',
+    privacy: 'গোপনীয়তা নীতি',
+  },
+  {
+    submit: 'Submit the form',
+    thanks: 'JazakAllahu khairan!',
+    done: 'Your form has been submitted. The leader in your department or hall will contact you soon.',
+    news: 'Latest news',
+    about: 'Learn about us',
+    name: 'Full name',
+    mobile: 'Mobile number',
+    mobileHint: '01XXXXXXXXX',
+    email: 'Email',
+    facebook: 'Link to your Facebook profile',
+    department: 'Department',
+    session: 'Session',
+    hall: 'Hall',
+    interests: 'What would you like to help with?',
+    note: 'Anything you would like to tell us?',
+    consent: 'I agree that the people responsible at CU Chhatrashibir will use this information only to contact me.',
+    privacy: 'Privacy policy',
+  },
+)
+
+export function SupporterForm({ sessions }: { sessions: { value: string; label: string }[] }) {
+  const lang = useLang()
+  const t = T[lang]
   return (
     <FormShell
       action={submitSupporter}
-      submitLabel="ফরম জমা দিন"
+      submitLabel={t.submit}
       success={() => (
         <div className="py-6 text-center">
           <CheckCircle className="mx-auto size-16 text-success" />
-          <h2 className="mt-4 text-[1.7rem] font-bold text-ink">জাযাকাল্লাহু খাইরান!</h2>
-          <p className="mx-auto mt-3 max-w-md text-[1.05rem] leading-relaxed text-muted">
-            ফরমটি জমা হয়েছে। তোমার বিভাগ বা হলের দায়িত্বশীল শীঘ্রই যোগাযোগ করবেন।
-          </p>
+          <h2 className="mt-4 text-[1.7rem] font-bold text-ink">{t.thanks}</h2>
+          <p className="mx-auto mt-3 max-w-md text-[1.05rem] leading-relaxed text-muted">{t.done}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link href="/news" className="btn btn-outline-blue btn-sm">
-              সর্বশেষ সংবাদ
+              {t.news}
             </Link>
             <Link href="/about" className="btn btn-gradient btn-sm">
-              আমাদের সম্পর্কে জানো
+              {t.about}
               <ArrowRight />
             </Link>
           </div>
@@ -36,29 +78,29 @@ export function SupporterForm({ sessions }: { sessions: Option[] }) {
     >
       {({ errors }) => (
         <>
-          <TextField name="name" label="পূর্ণ নাম" required autoComplete="name" maxLength={100} errors={errors} />
+          <TextField name="name" label={t.name} required autoComplete="name" maxLength={100} errors={errors} />
           <div className="grid gap-6 sm:grid-cols-2">
-            <TextField name="mobile" label="মোবাইল নম্বর" required type="tel" inputMode="tel" autoComplete="tel" placeholder="০১XXXXXXXXX" errors={errors} />
-            <TextField name="email" label="ইমেইল" type="email" autoComplete="email" errors={errors} />
+            <TextField name="mobile" label={t.mobile} required type="tel" inputMode="tel" autoComplete="tel" placeholder={t.mobileHint} errors={errors} />
+            <TextField name="email" label={t.email} type="email" autoComplete="email" errors={errors} />
           </div>
-          <TextField name="facebook" label="ফেসবুক প্রোফাইলের লিংক" type="url" inputMode="url" placeholder="https://facebook.com/…" errors={errors} />
+          <TextField name="facebook" label={t.facebook} type="url" inputMode="url" placeholder="https://facebook.com/…" errors={errors} />
           <Select
             name="department"
-            label="বিভাগ"
+            label={t.department}
             required
-            groups={FACULTIES.map((f) => ({ label: f.label, options: f.departments }))}
+            groups={FACULTIES.map((f) => ({ label: optionLabel(f, lang), options: localizeOptions(f.departments, lang) }))}
             errors={errors}
           />
           <div className="grid gap-6 sm:grid-cols-2">
-            <Select name="session" label="শিক্ষাবর্ষ" required options={sessions} errors={errors} />
-            <Select name="hall" label="হল" options={[...HALLS, NON_RESIDENT]} errors={errors} />
+            <Select name="session" label={t.session} required options={sessions} errors={errors} />
+            <Select name="hall" label={t.hall} options={localizeOptions([...HALLS, NON_RESIDENT], lang)} errors={errors} />
           </div>
-          <Choices name="interests" type="checkbox" label="কোন কাজে যুক্ত হতে চাও?" options={SUPPORTER_INTERESTS} errors={errors} />
-          <TextArea name="note" label="আমাদের কিছু বলতে চাও?" maxLength={1000} rows={4} errors={errors} />
+          <Choices name="interests" type="checkbox" label={t.interests} options={choices(SUPPORTER_INTERESTS, lang)} errors={errors} />
+          <TextArea name="note" label={t.note} maxLength={1000} rows={4} errors={errors} />
           <Consent errors={errors}>
-            আমার দেওয়া তথ্য চবি ছাত্রশিবিরের দায়িত্বপ্রাপ্তরা শুধু যোগাযোগের জন্য ব্যবহার করবেন, এতে সম্মতি দিচ্ছি।{' '}
+            {t.consent}{' '}
             <Link href="/privacy" className="font-semibold text-primary underline" target="_blank">
-              গোপনীয়তা নীতি
+              {t.privacy}
             </Link>
           </Consent>
         </>

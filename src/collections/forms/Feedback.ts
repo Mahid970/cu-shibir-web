@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 import { encryptedField } from '@/fields/encrypted'
-import { FEEDBACK_KINDS } from '@/lib/forms/options'
+import { cmsOptions, FEEDBACK_KINDS } from '@/lib/forms/options'
 
 import { FORMS_GROUP, fieldFor, formsAccess, statusField } from './shared'
 
@@ -24,7 +24,7 @@ export const Feedback: CollectionConfig = {
     {
       type: 'row',
       fields: [
-        { name: 'kind', type: 'select', required: true, options: [...FEEDBACK_KINDS], label: { bn: 'ধরন', en: 'Kind' } },
+        { name: 'kind', type: 'select', required: true, options: cmsOptions(FEEDBACK_KINDS), label: { bn: 'ধরন', en: 'Kind' } },
         {
           name: 'about',
           type: 'relationship',

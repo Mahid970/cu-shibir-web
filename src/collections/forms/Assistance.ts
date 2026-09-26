@@ -2,7 +2,7 @@ import type { CollectionConfig } from 'payload'
 
 import { encryptedField } from '@/fields/encrypted'
 import { DEPARTMENTS, HALLS, NON_RESIDENT } from '@/lib/campus'
-import { ASSISTANCE_STATUSES, ASSISTANCE_TYPES } from '@/lib/forms/options'
+import { ASSISTANCE_STATUSES, ASSISTANCE_TYPES, cmsOptions } from '@/lib/forms/options'
 
 import { FORMS_GROUP, fieldFor, formsAccess, statusField } from './shared'
 
@@ -29,7 +29,7 @@ export const Assistance: CollectionConfig = {
       type: 'row',
       fields: [
         { name: 'trackingId', type: 'text', required: true, unique: true, index: true, admin: { readOnly: true }, label: { bn: 'ট্র্যাকিং আইডি', en: 'Tracking ID' } },
-        { name: 'type', type: 'select', required: true, options: [...ASSISTANCE_TYPES], label: { bn: 'আবেদনের ধরন', en: 'Type' } },
+        { name: 'type', type: 'select', required: true, options: cmsOptions(ASSISTANCE_TYPES), label: { bn: 'আবেদনের ধরন', en: 'Type' } },
       ],
     },
     { name: 'subject', type: 'text', maxLength: 150, label: { bn: 'বিষয় (অন্যান্য হলে)', en: 'Subject (for other)' } },
@@ -44,9 +44,9 @@ export const Assistance: CollectionConfig = {
     {
       type: 'row',
       fields: [
-        { name: 'department', type: 'select', required: true, options: DEPARTMENTS, label: { bn: 'বিভাগ', en: 'Department' } },
+        { name: 'department', type: 'select', required: true, options: cmsOptions(DEPARTMENTS), label: { bn: 'বিভাগ', en: 'Department' } },
         { name: 'session', type: 'text', required: true, label: { bn: 'শিক্ষাবর্ষ', en: 'Session' } },
-        { name: 'hall', type: 'select', options: [...HALLS, NON_RESIDENT], label: { bn: 'হল', en: 'Hall' } },
+        { name: 'hall', type: 'select', options: cmsOptions([...HALLS, NON_RESIDENT]), label: { bn: 'হল', en: 'Hall' } },
       ],
     },
     encryptedField({ name: 'details', label: { bn: 'প্রয়োজনের বিবরণ', en: 'Details' }, textarea: true, required: true, maxLength: 4000, read }),

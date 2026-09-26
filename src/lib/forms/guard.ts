@@ -2,7 +2,9 @@ import 'server-only'
 
 import { headers } from 'next/headers'
 
-import { HONEYPOT_NAME, STARTED_NAME } from './names'
+import { copy, toLocale } from '@/i18n/config'
+
+import { HONEYPOT_NAME, LANG_NAME, STARTED_NAME } from './names'
 
 /**
  * Anti-abuse checks shared by every public form:
@@ -11,6 +13,19 @@ import { HONEYPOT_NAME, STARTED_NAME } from './names'
  * - a per-IP rate limit (in memory: the site runs as one process on one VPS),
  * - Cloudflare Turnstile, only when TURNSTILE_SECRET_KEY is configured.
  */
+
+const T = copy(
+  {
+    stale: 'ফরমটি অনেকক্ষণ খোলা ছিল। পাতাটি রিলোড করে আবার জমা দিন।',
+    limited: 'অল্প সময়ে অনেকবার জমা পড়েছে। ১৫ মিনিট পর আবার চেষ্টা করুন।',
+    human: 'মানুষ যাচাই সম্পন্ন হয়নি। বক্সে টিক দিয়ে আবার জমা দিন।',
+  },
+  {
+    stale: 'The form was open for a long time. Reload the page and submit it again.',
+    limited: 'There were too many submissions in a short time. Please try again in 15 minutes.',
+    human: 'The human check was not completed. Tick the box and submit again.',
+  },
+)
 
 const MIN_FILL_MS = 3_000
 const MAX_FILL_MS = 6 * 60 * 60 * 1000
@@ -72,22 +87,23 @@ export async function guard(
   { limit = 5, windowMs = 15 * 60 * 1000, minFillMs = MIN_FILL_MS } = {},
 ): Promise<GuardResult> {
   const ip = await clientIp()
+  const t = T[toLocale(data.get(LANG_NAME))]
   const trap = data.get(HONEYPOT_NAME)
   if (typeof trap === 'string' && trap.trim() !== '') return { ok: false, silent: true, message: '' }
 
   const started = Number(data.get(STARTED_NAME))
   const elapsed = Date.now() - started
   if (!started || elapsed < minFillMs || elapsed > MAX_FILL_MS) {
-    return { ok: false, silent: !started || elapsed < minFillMs, message: 'ফরমটি অনেকক্ষণ খোলা ছিল। পাতাটি রিলোড করে আবার জমা দিন।' }
+    return { ok: false, silent: !started || elapsed < minFillMs, message: t.stale }
   }
 
   if (!rateLimit(`${form}:${ip}`, limit, windowMs)) {
-    return { ok: false, silent: false, message: 'অল্প সময়ে অনেকবার জমা পড়েছে। ১৫ মিনিট পর আবার চেষ্টা করুন।' }
+    return { ok: false, silent: false, message: t.limited }
   }
 
   const token = data.get('cf-turnstile-response')
   if (!(await verifyTurnstile(typeof token === 'string' ? token : '', ip))) {
-    return { ok: false, silent: false, message: 'মানুষ যাচাই সম্পন্ন হয়নি। বক্সে টিক দিয়ে আবার জমা দিন।' }
+    return { ok: false, silent: false, message: t.human }
   }
   return { ok: true, ip }
 }
