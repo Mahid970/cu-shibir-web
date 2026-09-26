@@ -284,3 +284,22 @@ export const getAllPeopleSlugs = cached(
   'people-slugs',
   ['people'],
 )
+
+/** English names/positions entered in the CMS (no Bangla fallback), keyed by person id. */
+export const getLeadersEnglish = cached(
+  async () => {
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'people',
+      locale: 'en',
+      fallbackLocale: false,
+      limit: 100,
+      where: { and: [{ _status: { equals: 'published' } }, { group: { equals: 'executive' } }] },
+      depth: 0,
+      select: { name: true, position: true },
+    })
+    return Object.fromEntries(docs.map((d) => [d.id, { name: d.name || null, position: d.position || null }]))
+  },
+  'leaders-en',
+  ['people'],
+)
