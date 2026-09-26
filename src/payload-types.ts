@@ -199,6 +199,7 @@ export interface Post {
     description?: string | null;
     image?: (number | null) | Media;
   };
+  searchText?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -942,6 +943,7 @@ export interface PostsSelect<T extends boolean = true> {
         description?: T;
         image?: T;
       };
+  searchText?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;

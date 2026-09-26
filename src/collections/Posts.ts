@@ -4,6 +4,7 @@ import { canPublish, canWriteContent, hasRole, publishedOrStaff } from '@/access
 import { bnSlugField, legacyIdField, seoFields } from '@/fields/common'
 import { ensureSlug } from '@/hooks/ensureSlug'
 import { revalidateAfterChange, revalidateAfterDelete } from '@/hooks/revalidate'
+import { lexicalToText, normalizeForSearch } from '@/lib/searchText'
 import { POST_CATEGORIES } from '@/lib/taxonomy'
 
 export const Posts: CollectionConfig = {
@@ -32,6 +33,14 @@ export const Posts: CollectionConfig = {
   hooks: {
     beforeValidate: [ensureSlug('title')],
     beforeChange: [
+      // Search index: title + excerpt + body as normalised plain text (per locale).
+      ({ data, originalDoc }) => {
+        const title = data.title ?? originalDoc?.title ?? ''
+        const excerpt = data.excerpt ?? originalDoc?.excerpt ?? ''
+        const body = lexicalToText(data.content ?? originalDoc?.content)
+        data.searchText = normalizeForSearch(`${title} ${excerpt} ${body}`).slice(0, 30000)
+        return data
+      },
       // Contributors write drafts; only editors/admins can publish. (Trusted server-side
       // Local API calls — scripts, jobs — run without a user and are not restricted.)
       ({ data, req }) => {
@@ -135,5 +144,6 @@ export const Posts: CollectionConfig = {
     bnSlugField('title'),
     legacyIdField,
     seoFields,
+    { name: 'searchText', type: 'textarea', localized: true, admin: { hidden: true } },
   ],
 }

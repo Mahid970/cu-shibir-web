@@ -19,7 +19,8 @@
     "seed:admin": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/seed-admin.ts",
     "import:legacy": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/import-legacy.ts",
     "typecheck": "tsc --noEmit",
-    "og:backfill": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/backfill-share-images.ts"
+    "og:backfill": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/backfill-share-images.ts",
+    "search:reindex": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/reindex-search.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "3.90.2",
