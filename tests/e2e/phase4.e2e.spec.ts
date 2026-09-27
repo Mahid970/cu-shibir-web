@@ -263,6 +263,15 @@ test.describe('Freshers’ guide', () => {
     await expect(page.locator('#emergency')).toContainText('৯৯৯')
     await expect(page.locator('#emergency a[href="tel:999"]')).toBeVisible()
     await expect(page.locator('#map')).toContainText('বিশ্ববিদ্যালয় গ্রন্থাগার')
+
+    // The map talks to OpenFreeMap only after the reader asks for it.
+    const tiles: string[] = []
+    page.on('request', (r) => r.url().includes('openfreemap') && tiles.push(r.url()))
+    await page.locator('#map').scrollIntoViewIfNeeded()
+    await page.waitForTimeout(500)
+    expect(tiles).toHaveLength(0)
+    await page.getByRole('button', { name: 'মানচিত্র খুলুন' }).click()
+    await expect(page.locator('.maplibregl-marker')).not.toHaveCount(0)
     await page.goto(`${BASE}/en/services/freshers`)
     await expect(page.locator('#map')).toContainText('University Library')
     await expect(page.locator('#map').getByRole('link', { name: /Directions/ }).first()).toHaveAttribute('href', /google\.com\/maps/)

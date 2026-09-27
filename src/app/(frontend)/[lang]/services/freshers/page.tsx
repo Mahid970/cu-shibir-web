@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 
+import { CampusMap } from '@/components/services/CampusMap'
 import { ArrowRight, CheckCircle, ExternalLink } from '@/components/ui/Icons'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { SectionTitle, vars } from '@/components/ui/SectionTitle'
@@ -136,7 +137,10 @@ export default async function FreshersPage() {
         {places.length > 0 && (
           <section aria-labelledby="map-title" className="mt-20 scroll-mt-24" id="map">
             <SectionTitle id="map-title" parts={[t.map[0], { hl: t.map[1] }]} />
-            <div className="mx-auto mt-10 grid max-w-5xl gap-6 md:grid-cols-2">
+            <div className="mx-auto mt-10 max-w-5xl">
+              <CampusMap places={places} />
+            </div>
+            <div className="mx-auto mt-6 grid max-w-5xl gap-6 md:grid-cols-2">
               {PLACE_CATEGORIES.map((category) => {
                 const here = places.filter((p) => p.category === category.value).sort((a, b) => a.name.localeCompare(b.name, lang))
                 if (!here.length) return null
