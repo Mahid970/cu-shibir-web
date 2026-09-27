@@ -8,6 +8,7 @@ import sharp from 'sharp'
 import { fileURLToPath } from 'url'
 
 import { Albums } from './collections/Albums'
+import { CampusPlaces } from './collections/CampusPlaces'
 import { Assistance } from './collections/forms/Assistance'
 import { BloodDonors, BloodRequests } from './collections/forms/Blood'
 import { Feedback } from './collections/forms/Feedback'
@@ -39,7 +40,7 @@ export default buildConfig({
     importMap: { baseDir: path.resolve(dirname) },
     meta: { titleSuffix: ' · CU Shibir CMS' },
   },
-  collections: [Posts, People, Martyrs, PressCoverage, Videos, Albums, Media, Supporters, Feedback, Assistance, Issues, BloodDonors, BloodRequests, QuestionPapers, Users],
+  collections: [Posts, People, Martyrs, PressCoverage, Videos, Albums, Media, Supporters, Feedback, Assistance, Issues, BloodDonors, BloodRequests, QuestionPapers, CampusPlaces, Users],
   globals: [SiteSettings, Shuttle],
   // Content is Bangla-first; English falls back to Bangla until translated.
   localization: {

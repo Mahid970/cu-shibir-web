@@ -21,7 +21,8 @@
     "typecheck": "tsc --noEmit",
     "og:backfill": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/backfill-share-images.ts",
     "search:reindex": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/reindex-search.ts",
-    "seed:english": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/seed-english.ts"
+    "seed:english": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/seed-english.ts",
+    "seed:places": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/seed-campus-places.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "3.90.2",

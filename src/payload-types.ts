@@ -81,6 +81,7 @@ export interface Config {
     'blood-donors': BloodDonor;
     'blood-requests': BloodRequest;
     'question-papers': QuestionPaper;
+    'campus-places': CampusPlace;
     users: User;
     'payload-kv': PayloadKv;
     'payload-jobs': PayloadJob;
@@ -104,6 +105,7 @@ export interface Config {
     'blood-donors': BloodDonorsSelect<false> | BloodDonorsSelect<true>;
     'blood-requests': BloodRequestsSelect<false> | BloodRequestsSelect<true>;
     'question-papers': QuestionPapersSelect<false> | QuestionPapersSelect<true>;
+    'campus-places': CampusPlacesSelect<false> | CampusPlacesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
@@ -1020,6 +1022,26 @@ export interface QuestionPaper {
   focalY?: number | null;
 }
 /**
+ * নবীন গাইডের ম্যাপে দেখানো জায়গা। অবস্থান পেতে Google Maps বা OpenStreetMap-এ জায়গাটির ওপর চাপ দিয়ে অক্ষাংশ (lat) ও দ্রাঘিমাংশ (lng) কপি করুন।
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "campus-places".
+ */
+export interface CampusPlace {
+  id: number;
+  /**
+   * Seed key (optional)
+   */
+  key?: string | null;
+  name: string;
+  category: 'faculty' | 'hall' | 'study' | 'health' | 'mosque' | 'transport' | 'office' | 'open';
+  lat: number;
+  lng: number;
+  note?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -1238,6 +1260,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'question-papers';
         value: number | QuestionPaper;
+      } | null)
+    | ({
+        relationTo: 'campus-places';
+        value: number | CampusPlace;
       } | null)
     | ({
         relationTo: 'users';
@@ -1630,6 +1656,20 @@ export interface QuestionPapersSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "campus-places_select".
+ */
+export interface CampusPlacesSelect<T extends boolean = true> {
+  key?: T;
+  name?: T;
+  category?: T;
+  lat?: T;
+  lng?: T;
+  note?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
