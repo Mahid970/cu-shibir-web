@@ -136,6 +136,14 @@ test('the shuttle page says the timetable is coming when none is published', asy
   await expect(page.getByRole('heading', { name: 'সময়সূচি শীঘ্রই আসছে' })).toBeVisible()
 })
 
+test('the Bangla header fits a 1024 px screen', async ({ page }) => {
+  await page.setViewportSize({ width: 1024, height: 800 })
+  for (const path of ['/', '/services/campus']) {
+    await page.goto(`${BASE}${path}`)
+    expect(await page.evaluate(() => document.documentElement.scrollWidth), path).toBeLessThanOrEqual(1024)
+  }
+})
+
 test.describe('Blood donor network', () => {
   test('a donor registers, notes a donation and leaves the list', async ({ page }) => {
     await page.goto(`${BASE}/services/blood/donate`)

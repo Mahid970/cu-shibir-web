@@ -42,7 +42,7 @@ export function NavLinks() {
     // English labels are longer: the full menu needs xl, below that the mobile menu is used.
     <nav aria-label={t.mainMenu} className={lang === 'en' ? 'hidden xl:block' : 'hidden lg:block'}>
       <ul className="flex items-center gap-1">
-        <li className="mr-2">
+        <li className="mr-1 xl:mr-2">
           <Link
             href={FEATURED_NAV.href}
             aria-current={active(FEATURED_NAV.href) ? 'page' : undefined}
@@ -58,7 +58,7 @@ export function NavLinks() {
             <Link
               href={item.href}
               aria-current={active(item.href) ? 'page' : undefined}
-              className={`whitespace-nowrap rounded-lg px-3 py-2 text-[0.98rem] font-semibold transition-colors ${
+              className={`whitespace-nowrap rounded-lg px-2 py-2 text-[0.98rem] font-semibold transition-colors xl:px-3 ${
                 active(item.href) ? 'text-primary' : 'text-ink hover:text-primary'
               }`}
             >
@@ -73,7 +73,7 @@ export function NavLinks() {
               aria-expanded={open}
               aria-haspopup="true"
               onClick={() => setOpen((o) => !o)}
-              className="flex items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-[0.98rem] font-semibold text-ink hover:text-primary"
+              className="flex items-center gap-1 whitespace-nowrap rounded-lg px-2 py-2 text-[0.98rem] font-semibold text-ink hover:text-primary xl:px-3"
             >
               {t.more}
               <ChevronDown className={`size-4 transition-transform ${open ? 'rotate-180' : ''}`} />
