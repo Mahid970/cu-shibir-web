@@ -56,6 +56,12 @@ const PAGES: { title: Record<Locale, string>; href: string; words: string }[] = 
     words: 'শিক্ষাবৃত্তি বৃত্তি স্কলারশিপ চিকিৎসা সহায়তা আর্থিক scholarship medical aid financial',
   },
   { title: { bn: 'আবেদনের অবস্থা দেখুন', en: 'Check application status' }, href: '/services/assistance/status', words: 'ট্র্যাকিং আবেদন অবস্থা কোড tracking status code' },
+  {
+    title: { bn: 'ছাত্র সমস্যা ডেস্ক', en: 'Student issues desk' },
+    href: '/services/issues',
+    words: 'ছাত্র সমস্যা ডেস্ক অভিযোগ হল শাটল খাবার নিরাপত্তা হয়রানি সেশনজট student issues desk problem complaint report hall shuttle food safety harassment',
+  },
+  { title: { bn: 'সমস্যার অবস্থা দেখুন', en: 'Check report status' }, href: '/services/issues/status', words: 'সমস্যা ট্র্যাকিং অবস্থা কোড IS issue report tracking status code' },
   { title: { bn: 'ক্যাম্পাস গাইড', en: 'Campus guide' }, href: '/services/campus', words: 'ক্যাম্পাস গাইড নবীন বিভাগ অনুষদ হল হোস্টেল শাটল ট্রেন campus guide freshers department faculty hall shuttle' },
   { title: { bn: 'আমাদের কথা', en: 'About us' }, href: '/about', words: 'পরিচিতি ইতিহাস লক্ষ্য উদ্দেশ্য ৫ দফা কর্মসূচি about history goal programme' },
   { title: { bn: 'দায়িত্বশীলবৃন্দ', en: 'Leadership' }, href: '/leadership', words: 'দায়িত্বশীল সভাপতি সেক্রেটারি কমিটি পরিষদ leadership president secretary committee' },

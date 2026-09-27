@@ -7,7 +7,7 @@ import { pageMeta } from '@/i18n/metadata'
 import { getLang } from '@/i18n/server'
 import { SITE } from '@/lib/site'
 
-const UPDATED = '2026-09-26T06:00:00Z'
+const UPDATED = '2026-09-27T06:00:00Z'
 
 const T = copy(
   {
@@ -25,13 +25,14 @@ const T = copy(
           'শুধু আপনি ফরমে যা লেখেন। সমর্থক ফরমে নাম, মোবাইল, বিভাগ, শিক্ষাবর্ষ ও হল; ইমেইল ও ফেসবুক লিংক ঐচ্ছিক। সহায়তার আবেদনে এর সঙ্গে প্রয়োজনের বিবরণ ও রেফারেন্স।',
           'বাবা-মায়ের নাম, জেলা, থানা বা জাতীয় পরিচয়পত্র নম্বর আমরা চাই না।',
           'এহতেসাব ও পরামর্শ নাম ছাড়াও পাঠানো যায়। তখন প্রেরকের কোনো তথ্য রাখা হয় না।',
+          'ছাত্র সমস্যা ডেস্কে সমস্যার বিষয়, বিবরণ ও জায়গা নেওয়া হয়; নাম ও যোগাযোগ ঐচ্ছিক, আর নাম ছাড়া জানালে সেগুলো রাখা হয় না।',
         ],
       },
       {
         h: 'কীভাবে রাখি',
         p: [
           'নাম, মোবাইল, ইমেইল, ফেসবুক লিংক, রেজিস্ট্রেশন নম্বর ও বার্তা ডেটাবেসে AES-256 এনক্রিপশনে রাখা হয়। ডেটাবেস কারও হাতে গেলেও চাবি ছাড়া এগুলো পড়া যায় না।',
-          'সহায়তার আবেদনের গোপন কোড আমরা নিজেরাও জানি না; শুধু মিলিয়ে দেখা যায় কোডটি সঠিক কি না।',
+          'সহায়তার আবেদন ও সমস্যা ডেস্কের গোপন কোড আমরা নিজেরাও জানি না; শুধু মিলিয়ে দেখা যায় কোডটি সঠিক কি না।',
           'ওয়েবসাইটে বিজ্ঞাপন বা তৃতীয় পক্ষের ট্র্যাকিং নেই। ইউটিউব ভিডিও শুধু প্লে চাপলেই লোড হয়।',
         ],
       },
@@ -39,6 +40,7 @@ const T = copy(
         h: 'কে দেখতে পারেন',
         p: [
           'সমর্থক ফরম ও এহতেসাব শুধু শাখার দায়িত্বপ্রাপ্ত অ্যাডমিন দেখতে পারেন। সহায়তার আবেদন দেখেন অ্যাডমিন ও নির্ধারিত শিক্ষাবৃত্তি পর্যালোচক।',
+          'ছাত্র সমস্যা দেখেন অ্যাডমিন ও ছাত্র সেবা ডেস্ক। হয়রানির অভিযোগ দেখেন শুধু নির্ধারিত হয়রানি ডেস্ক। ডেস্কের প্রকাশ্য হিসাবে শুধু সংখ্যা থাকে, কোনো নাম বা বিবরণ নয়।',
           'আপনার তথ্য কখনো বিক্রি বা অন্য কোনো প্রতিষ্ঠানকে দেওয়া হয় না।',
         ],
       },
@@ -66,13 +68,14 @@ const T = copy(
           'Only what you type into a form. The supporter form asks for your name, mobile number, department, session and hall; an email address and a Facebook link are optional. An aid application also asks you to describe your need and to give references.',
           'We do not ask for your parents’ names, your district or thana, or your national ID number.',
           'Ehtesab and advice can be sent without a name. Then nothing about the sender is kept.',
+          'The student issues desk asks what the problem is about, the details and the place; your name and contact are optional, and nothing about you is kept if you report anonymously.',
         ],
       },
       {
         h: 'How we store it',
         p: [
           'Names, mobile numbers, email addresses, Facebook links, registration numbers and messages are stored in the database with AES-256 encryption. Even if someone got hold of the database, they could not read them without the key.',
-          'We do not know the secret code of an aid application ourselves; we can only check whether a code is correct.',
+          'We do not know the secret code of an aid application or an issue report ourselves; we can only check whether a code is correct.',
           'The website has no advertising and no third-party tracking. YouTube videos load only when you press play.',
         ],
       },
@@ -80,6 +83,7 @@ const T = copy(
         h: 'Who can see it',
         p: [
           'Supporter forms and ehtesab can be seen only by the branch’s designated admins. Aid applications are seen by the admins and the assigned scholarship reviewers.',
+          'Issue reports are seen by the admins and the student service desk. Harassment reports are seen only by the assigned harassment desk. The desk’s public figures contain only numbers, never names or details.',
           'Your information is never sold or given to any other organisation.',
         ],
       },

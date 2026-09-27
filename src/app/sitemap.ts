@@ -16,6 +16,8 @@ const PAGES: { path: string; priority: number; freq: 'daily' | 'weekly' | 'month
   { path: '/services', priority: 0.8, freq: 'weekly' },
   { path: '/services/assistance', priority: 0.7, freq: 'monthly' },
   { path: '/services/campus', priority: 0.7, freq: 'monthly' },
+  { path: '/services/issues', priority: 0.7, freq: 'weekly' },
+  { path: '/services/issues/report', priority: 0.6, freq: 'yearly' },
   { path: '/join', priority: 0.7, freq: 'monthly' },
   { path: '/join/supporter', priority: 0.6, freq: 'yearly' },
   { path: '/join/feedback', priority: 0.5, freq: 'yearly' },

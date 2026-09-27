@@ -219,6 +219,7 @@ export const SERVICES = [
     text: { bn: 'হল, পরিবহন, খাবার বা নিরাপত্তা — সমস্যা জানাও, সমাধান ট্র্যাক করো।', en: 'Halls, transport, food or safety: report a problem and follow the fix.' },
     theme: 'green',
     icon: 'megaphone',
+    href: '/services/issues',
   },
 ] as const
 
