@@ -972,3 +972,41 @@
   content-visibility: auto;
   contain-intrinsic-size: auto 900px;
 }
+
+/* ------------------------------------------------------------------
+   Shuttle route (services/shuttle): the train runs once from the city
+   end to the campus when the route comes into view. Without motion it
+   simply waits at the campus.
+   ------------------------------------------------------------------ */
+.route-train {
+  position: absolute;
+  inset-inline-start: calc(100% - 2.25rem);
+  top: -0.35rem;
+}
+@media (max-width: 767px) {
+  .route-train {
+    inset-inline-start: -0.5rem;
+    top: calc(100% - 2.25rem);
+  }
+}
+.motion [data-reveal='rail']:not([data-state='visible']) .route-train {
+  opacity: 0;
+}
+.motion [data-reveal='rail'][data-state='visible'] .route-train {
+  animation: route-run-x 2.6s var(--ease-out) both;
+}
+@media (max-width: 767px) {
+  .motion [data-reveal='rail'][data-state='visible'] .route-train {
+    animation-name: route-run-y;
+  }
+}
+@keyframes route-run-x {
+  from {
+    inset-inline-start: 0;
+  }
+}
+@keyframes route-run-y {
+  from {
+    top: 0;
+  }
+}

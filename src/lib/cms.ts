@@ -322,3 +322,13 @@ export const getIssueStats = cached(
   'issue-stats',
   ['issues'],
 )
+
+/** শাটল ট্রেনের সময়সূচি (purged on save via the `shuttle` tag). */
+export const getShuttle = cached(
+  async (locale: Locale = 'bn') => {
+    const payload = await getPayloadClient()
+    return payload.findGlobal({ slug: 'shuttle', locale, depth: 0 })
+  },
+  'shuttle',
+  ['shuttle'],
+)

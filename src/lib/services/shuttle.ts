@@ -65,3 +65,21 @@ export function upcomingClosures(timetable: Timetable, now: Date): Closure[] {
 
 /** A 24-hour "HH:MM" as a Date on an arbitrary day, for the shared time formatter. */
 export const clock = (time: string) => new Date(`2026-01-01T${time}:00+06:00`)
+
+/** Bangladesh's week starts on Saturday. */
+const WEEK: Day[] = ['sat', 'sun', 'mon', 'tue', 'wed', 'thu', 'fri']
+export const DAY_NAMES: Record<'bn' | 'en', Record<Day, string>> = {
+  bn: { sat: 'শনি', sun: 'রবি', mon: 'সোম', tue: 'মঙ্গল', wed: 'বুধ', thu: 'বৃহস্পতি', fri: 'শুক্র' },
+  en: { sat: 'Sat', sun: 'Sun', mon: 'Mon', tue: 'Tue', wed: 'Wed', thu: 'Thu', fri: 'Fri' },
+}
+
+/** "শনি–বৃহস্পতি", "Sun, Tue", or "প্রতিদিন" / "Every day". */
+export function dayRange(days: Day[], lang: 'bn' | 'en'): string {
+  const on = WEEK.filter((d) => days.includes(d))
+  if (on.length === 7) return lang === 'bn' ? 'প্রতিদিন' : 'Every day'
+  const names = DAY_NAMES[lang]
+  const first = WEEK.indexOf(on[0])
+  const contiguous = on.every((d, i) => WEEK.indexOf(d) === first + i)
+  if (contiguous && on.length > 2) return `${names[on[0]]}–${names[on.at(-1)!]}`
+  return on.map((d) => names[d]).join(', ')
+}
