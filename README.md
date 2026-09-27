@@ -38,9 +38,10 @@ The first `npx playwright install chromium` is needed for share images and e2e t
 | `npm run og:backfill` | Generates share cards for posts missing one (`-- --all` to regenerate). Fonts: `src/assets/fonts` (Hind Siliguri, OFL) |
 | `npm run search:reindex` | Rebuilds the posts' search index (after an import or a change to the normaliser) |
 | `npm run seed:english` | Writes the English posts, album/video/photo titles, press headlines and committee names from `scripts/data/english-content.json` into the CMS's English locale. Re-run safe; Bangla untouched |
+| `npm run seed:places` | Loads the campus map's places (`scripts/data/campus-places.json`, from OpenStreetMap) in both languages. Matched by key; re-run safe |
 | `npx tsx scripts/make-icons.ts [logo]` | Regenerates the app icons in `public/icons` (run again with the vector logo) |
 | `npm run test:int` | Vitest: Bangla utilities, encryption, form validation, language paths and translation coverage, API smoke test |
-| `npm run test:e2e` | Playwright: home, the language switch and every page's English twin, redirects, SEO shell, search, forms, syllabus, admin |
+| `npm run test:e2e` | Playwright: home, the language switch and every page's English twin, redirects, SEO shell, search, forms, syllabus, admin, the student services (issues, shuttle, blood, question bank, freshers), phone and 1024 px widths |
 | `npm run lint` / `npm run typecheck` | ESLint (next flat config) / `tsc` |
 | `npm run generate:types` | Regenerate `src/payload-types.ts` after changing collections |
 | `npm run payload migrate:create <name>` | New migration after a schema change (production applies them on start) |
@@ -54,7 +55,13 @@ src/
     page.tsx             home: ticker, photo hero, milestones, news, campaigns, CUCSU, ৫ দফা, gallery + videos, leaders
     about/ leadership/[slug] news/[slug] gallery/[slug] videos/ press/
     join/ supporter/ feedback/         forms (server actions, encrypted)
-    services/ assistance/ status/ campus/
+    services/            the student services hub (Phase 4)
+      assistance/ status/          scholarship and medical aid, tracked with CU- codes
+      issues/ report/ status/      ছাত্র সমস্যা ডেস্ক: reports (IS- codes, anonymous allowed) and the public figures
+      shuttle/                     next train each way, route, full timetable (CMS global `shuttle`)
+      blood/ donate/ request/ donor/  donor network: numbers never public, donors manage themselves (BD- codes)
+      questions/ upload/           question bank: moderated uploads, browse by department and course
+      freshers/ campus/            first-week checklist, emergency numbers, campus map; departments and halls
     syllabus/[level]/    কর্মী / সাথী / সদস্য with an on-device reading checklist
     martyrs/             শহীদ স্মরণ (hidden until entries are published)
     search/ (+ suggest/) site search
@@ -66,8 +73,9 @@ src/
   app/(payload)/         Payload admin + REST/GraphQL (generated — don't edit)
   app/sitemap.ts robots.ts manifest.ts
   collections/           Posts, People, Martyrs, PressCoverage, Videos, Albums, Media, Users
-  collections/forms/     Supporters, Feedback, Assistance (encrypted personal data)
-  globals/SiteSettings   tagline, hero photo + intro, contact, socials
+  collections/forms/     Supporters, Feedback, Assistance, Issues, BloodDonors, BloodRequests (encrypted personal data)
+  collections/           …, QuestionPapers (uploads under media/questions), CampusPlaces (map)
+  globals/               SiteSettings (tagline, hero, contact, socials), Shuttle (timetable), Freshers (checked campus numbers)
   access/                roles + access helpers (super-admin, admin, editor, contributor, …)
   fields/encrypted.ts    AES-256-GCM text field, decrypted only for permitted roles
   hooks/                 ensureSlug (Latin slugs), revalidate (cache tags)
@@ -75,7 +83,8 @@ src/
   migrations/            production schema (dev pushes the schema directly)
   lib/bn.ts              Bangla toolkit — grapheme-safe splitting, digits, Dhaka dates, transliteration → slugs
   lib/crypto.ts          field encryption, blind index, tracking codes
-  lib/forms/             validation, anti-abuse guard, server actions
+  lib/forms/             validation, anti-abuse guard, server actions (actions, bloodActions, paperActions), tracking codes
+  lib/services/          issue figures, shuttle departures, blood compatibility, course codes, map place groups
   lib/search.ts          posts via a normalised index + small collections in memory
   lib/campus.ts          CU faculties, departments, halls, sessions (Bangla + official English names)
   lib/people.ts          leaders' names, positions and details in the page's language
@@ -154,6 +163,17 @@ docs/                    design system, deploy guide, spikes
   - **Rail timeline** (About): the history as stations on the shuttle line. It is pinned and scroll-driven on large screens and a vertical list elsewhere.
   - **View transitions**: news card image → article hero, and leader photo → profile, with React `<ViewTransition>`.
   - **শহীদ স্মরণ** (`/martyrs`): a calm constellation plus a full list. It stays a 404 until the branch publishes verified entries.
+- **Student services (Phase 4)**, each in both languages, each with its own CMS roles:
+  - **Issues desk** (`service-desk`; harassment only for `safety-desk`): anonymous reports still get a tracking code, and the
+    public figures leave out spam and confidential reports entirely, so nothing can be worked out by subtraction.
+  - **Shuttle**: the countdown is worked out in the browser (a cached or offline page stays right). The page stays
+    "coming soon" until someone publishes a timetable with its source; we never guess train times.
+  - **Blood network** (`blood-coordinator`): donors' numbers are never shown or passed to the person asking. A request alert tells
+    coordinators how many willing donors match (red-cell compatibility, 120 days since the last donation), without names.
+  - **Question bank** (`admin`, `editor`, `service-desk` moderate): files are checked by their first bytes and by Payload's own check,
+    renamed so no one's name travels with them, and neither the page nor the file URL shows a paper before approval.
+  - **Freshers' guide**: campus phone numbers come from the CMS only once checked (999 is always there). Map places are from
+    OpenStreetMap, only where the name matches the university's current names; the map itself loads only when opened.
 - **Design rules** (keep them when adding pages):
   - Real photos of students beat illustrations.
   - One yellow button per screen, for the main action.
@@ -180,3 +200,10 @@ Every variable is listed with its purpose in [`.env.example`](.env.example). Pro
 - [ ] New posts: write the English version in the CMS's English tab (until then the English site shows the Bangla article with a note).
 - [ ] Branch to verify the history stops (`src/content/history.ts`) and send the verified শহীদ list (CMS → শহীদ স্মরণ).
 - [ ] Keep the legacy report builder running at `report.cushibir.org` until it is replaced.
+- [ ] Student services, from the branch:
+  - the current shuttle timetable and its source (CMS → শাটল ট্রেনের সময়সূচি), then tick "show on the site";
+  - checked campus phone numbers: proctor's office, medical centre, security (CMS → নবীন গাইড);
+  - who holds `service-desk`, `safety-desk` (harassment reports) and `blood-coordinator`; whether harassment reports are handled
+    in-house or referred only (the form currently promises confidentiality and points to the university committee and 999/109);
+  - the halls OpenStreetMap still lists under old names (A. F. Rahman, Alaol, Nawab Faizunnesa, Atish Dipankar, Shaheed Farhad Hossain)
+    and any other places to add to the map (CMS → ক্যাম্পাস ম্যাপ).
