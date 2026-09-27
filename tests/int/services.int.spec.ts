@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { BLOOD_GROUPS, donorsFor, eligible, GROUP_OPTIONS, groupOf, nextEligible } from '@/lib/services/blood'
 import { summarise } from '@/lib/services/issueStats'
+import { courseCode } from '@/lib/services/questions'
 import { closureOn, dhakaNow, nextDepartures, upcomingClosures, type Timetable } from '@/lib/services/shuttle'
 
 describe('issues desk public figures', () => {
@@ -107,5 +108,14 @@ describe('blood donor network', () => {
     expect(GROUP_OPTIONS.map((o) => o.value)).toEqual(['a_pos', 'a_neg', 'b_pos', 'b_neg', 'ab_pos', 'ab_neg', 'o_pos', 'o_neg'])
     expect(groupOf('ab_neg')).toBe('AB-')
     expect(groupOf('x')).toBeUndefined()
+  })
+})
+
+describe('question bank', () => {
+  it('writes course codes one way', () => {
+    expect(courseCode('cse-211')).toBe('CSE 211')
+    expect(courseCode(' CSE211 ')).toBe('CSE 211')
+    expect(courseCode('eng 101a')).toBe('ENG 101A')
+    expect(courseCode('Bangla  Literature')).toBe('BANGLA LITERATURE')
   })
 })

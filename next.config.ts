@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
   // Self-contained server for the Docker image (see Dockerfile).
   output: 'standalone',
   poweredByHeader: false,
+  // Question papers are uploaded through a server action (PDF or photo, up to 10 MB).
+  experimental: { serverActions: { bodySizeLimit: '11mb' } },
   images: {
     localPatterns: [{ pathname: '/api/media/file/**' }, { pathname: '/brand/**' }],
     // YouTube thumbnails for the branch's own videos

@@ -18,6 +18,7 @@ import { Media } from './collections/Media'
 import { People } from './collections/People'
 import { Posts } from './collections/Posts'
 import { PressCoverage } from './collections/PressCoverage'
+import { QuestionPapers } from './collections/QuestionPapers'
 import { Users } from './collections/Users'
 import { Videos } from './collections/Videos'
 import { Shuttle } from './globals/Shuttle'
@@ -38,7 +39,7 @@ export default buildConfig({
     importMap: { baseDir: path.resolve(dirname) },
     meta: { titleSuffix: ' · CU Shibir CMS' },
   },
-  collections: [Posts, People, Martyrs, PressCoverage, Videos, Albums, Media, Supporters, Feedback, Assistance, Issues, BloodDonors, BloodRequests, Users],
+  collections: [Posts, People, Martyrs, PressCoverage, Videos, Albums, Media, Supporters, Feedback, Assistance, Issues, BloodDonors, BloodRequests, QuestionPapers, Users],
   globals: [SiteSettings, Shuttle],
   // Content is Bangla-first; English falls back to Bangla until translated.
   localization: {

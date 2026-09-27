@@ -80,6 +80,7 @@ export interface Config {
     issues: Issue;
     'blood-donors': BloodDonor;
     'blood-requests': BloodRequest;
+    'question-papers': QuestionPaper;
     users: User;
     'payload-kv': PayloadKv;
     'payload-jobs': PayloadJob;
@@ -102,6 +103,7 @@ export interface Config {
     issues: IssuesSelect<false> | IssuesSelect<true>;
     'blood-donors': BloodDonorsSelect<false> | BloodDonorsSelect<true>;
     'blood-requests': BloodRequestsSelect<false> | BloodRequestsSelect<true>;
+    'question-papers': QuestionPapersSelect<false> | QuestionPapersSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
@@ -933,6 +935,91 @@ export interface BloodRequest {
   createdAt: string;
 }
 /**
+ * শিক্ষার্থীদের পাঠানো প্রশ্নপত্র। ফাইল খুলে দেখুন: শুধু আগের পরীক্ষার প্রশ্ন বা নিজের তৈরি নোট অনুমোদন করুন, কোনো বই বা কপিরাইটযুক্ত লেখা নয়। তথ্য ঠিক করে "অনুমোদিত" করলে সাইটে দেখাবে।
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "question-papers".
+ */
+export interface QuestionPaper {
+  id: number;
+  department:
+    | 'bangla'
+    | 'english'
+    | 'history'
+    | 'philosophy'
+    | 'islamic_history_culture'
+    | 'arabic'
+    | 'islamic_studies'
+    | 'dramatics'
+    | 'persian_language_literature'
+    | 'pali'
+    | 'sanskrit'
+    | 'music'
+    | 'bangladesh_studies'
+    | 'modern_languages'
+    | 'fine_arts'
+    | 'physics'
+    | 'chemistry'
+    | 'mathematics'
+    | 'statistics'
+    | 'applied_chemistry_chemical_engineering'
+    | 'forestry_environmental_sciences'
+    | 'jnicar'
+    | 'accounting'
+    | 'management'
+    | 'finance'
+    | 'marketing'
+    | 'human_resource_management'
+    | 'banking_insurance'
+    | 'cucba'
+    | 'economics'
+    | 'political_science'
+    | 'sociology'
+    | 'public_administration'
+    | 'anthropology'
+    | 'international_relations'
+    | 'communication_journalism'
+    | 'criminology_police_science'
+    | 'development_studies'
+    | 'law'
+    | 'zoology'
+    | 'botany'
+    | 'geography_environmental_studies'
+    | 'biochemistry_molecular_biology'
+    | 'microbiology'
+    | 'soil_science'
+    | 'genetic_engineering_biotechnology'
+    | 'psychology'
+    | 'pharmacy'
+    | 'computer_science_engineering'
+    | 'electrical_electronic_engineering'
+    | 'physical_education_sports_science'
+    | 'education_research'
+    | 'marine_sciences'
+    | 'oceanography'
+    | 'fisheries'
+    | 'paediatrics'
+    | 'community_ophthalmology';
+  courseCode: string;
+  courseTitle?: string | null;
+  examYear: number;
+  exam: 'final' | 'midterm' | 'incourse' | 'other';
+  level?: ('y1' | 'y2' | 'y3' | 'y4' | 'ms') | null;
+  status: 'pending' | 'approved' | 'rejected';
+  moderatorNote?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -1147,6 +1234,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'blood-requests';
         value: number | BloodRequest;
+      } | null)
+    | ({
+        relationTo: 'question-papers';
+        value: number | QuestionPaper;
       } | null)
     | ({
         relationTo: 'users';
@@ -1514,6 +1605,31 @@ export interface BloodRequestsSelect<T extends boolean = true> {
   coordinatorNote?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "question-papers_select".
+ */
+export interface QuestionPapersSelect<T extends boolean = true> {
+  department?: T;
+  courseCode?: T;
+  courseTitle?: T;
+  examYear?: T;
+  exam?: T;
+  level?: T;
+  status?: T;
+  moderatorNote?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
