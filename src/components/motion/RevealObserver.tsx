@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 
 /**
  * One observer for the whole site. Elements opt in with
@@ -11,6 +11,16 @@ import { useEffect } from 'react'
  */
 export function RevealObserver() {
   const pathname = usePathname()
+
+  // Switching language rebuilds the root layout, and React resets <html>'s classes when it does.
+  // Put `motion` back before the new page paints (the inline script only runs on a full load).
+  useLayoutEffect(() => {
+    try {
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion')
+    } catch {
+      // matchMedia unavailable: leave everything visible
+    }
+  }, [pathname])
 
   useEffect(() => {
     const all = () => document.querySelectorAll<HTMLElement>('[data-reveal]:not([data-state="visible"])')
