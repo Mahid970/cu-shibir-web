@@ -6,6 +6,7 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 
 import type { Locale } from '@/i18n/config'
+import { summarise } from '@/lib/services/issueStats'
 
 export type { Locale }
 
@@ -302,4 +303,22 @@ export const getMartyrs = cached(
   },
   'martyrs',
   ['martyrs'],
+)
+
+/** Public issues-desk figures, recomputed when an issue changes (tag `issues`) or hourly. */
+export const getIssueStats = cached(
+  async () => {
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'issues',
+      pagination: false,
+      depth: 0,
+      overrideAccess: true,
+      where: { status: { not_equals: 'spam' } },
+      select: { category: true, status: true, createdAt: true, resolvedAt: true },
+    })
+    return summarise(docs)
+  },
+  'issue-stats',
+  ['issues'],
 )
