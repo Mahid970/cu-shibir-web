@@ -373,6 +373,10 @@ export interface Martyr {
 export interface PressCoverage {
   id: number;
   headline: string;
+  /**
+   * Optional. Shown on the English site; the original headline is used if this is empty.
+   */
+  headlineEn?: string | null;
   outlet: string;
   publishedAt: string;
   url: string;
@@ -1056,6 +1060,7 @@ export interface MartyrsSelect<T extends boolean = true> {
  */
 export interface PressCoverageSelect<T extends boolean = true> {
   headline?: T;
+  headlineEn?: T;
   outlet?: T;
   publishedAt?: T;
   url?: T;

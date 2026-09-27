@@ -30,3 +30,7 @@ const OUTLETS_EN: Record<string, string> = {
 const EN = new Map(Object.entries(OUTLETS_EN).map(([bn, en]) => [bn.normalize('NFC'), en]))
 
 export const outletName = (outlet: string, lang: Locale) => (lang === 'en' ? (EN.get(outlet.normalize('NFC')) ?? outlet) : outlet)
+
+/** The headline in the page's language: the English one typed in the CMS, else the original. */
+export const pressHeadline = (item: { headline: string; headlineEn?: string | null }, lang: Locale) =>
+  lang === 'en' && item.headlineEn ? item.headlineEn : item.headline

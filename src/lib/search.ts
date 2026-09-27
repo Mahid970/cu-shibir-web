@@ -8,7 +8,7 @@ import { date } from '@/i18n/format'
 import { FACULTIES, HALLS, optionLabel } from './campus'
 import { getPayloadClient } from './cms'
 import { personName, personPosition } from './people'
-import { outletName } from './press'
+import { outletName, pressHeadline } from './press'
 import { normalizeForSearch, snippet } from './searchText'
 import { categoryLabel } from './taxonomy'
 
@@ -76,7 +76,7 @@ const getStaticIndex = unstable_cache(
       payload.find({ collection: 'people', where: published, limit: 500, depth: 0, locale: lang, select: { name: true, position: true, slug: true, department: true } }),
       payload.find({ collection: 'albums', where: published, limit: 500, depth: 0, locale: lang, select: { title: true, slug: true, date: true } }),
       payload.find({ collection: 'videos', where: published, limit: 500, depth: 0, locale: lang, select: { title: true, youtubeId: true, publishedAt: true } }),
-      payload.find({ collection: 'press-coverage', where: published, limit: 1000, depth: 0, select: { headline: true, outlet: true, url: true, publishedAt: true } }),
+      payload.find({ collection: 'press-coverage', where: published, limit: 1000, depth: 0, select: { headline: true, headlineEn: true, outlet: true, url: true, publishedAt: true } }),
     ])
     const entries: (SearchHit & { text: string })[] = [
       ...PAGES.map((p) => ({ kind: 'page' as const, title: p.title[lang], href: p.href, text: `${p.title.bn} ${p.title.en} ${p.words}` })),
@@ -112,10 +112,10 @@ const getStaticIndex = unstable_cache(
       })),
       ...press.docs.map((p) => ({
         kind: 'press' as const,
-        title: p.headline,
+        title: pressHeadline(p, lang),
         href: p.url,
         meta: `${outletName(p.outlet, lang)}, ${date(lang, p.publishedAt)}`,
-        text: `${p.headline} ${p.outlet} ${outletName(p.outlet, 'en')}`,
+        text: `${p.headline} ${p.headlineEn ?? ''} ${p.outlet} ${outletName(p.outlet, 'en')}`,
         external: true,
       })),
     ]

@@ -26,6 +26,12 @@ export const PressCoverage: CollectionConfig = {
   fields: [
     { name: 'headline', type: 'text', required: true, label: { bn: 'শিরোনাম', en: 'Headline' } },
     {
+      name: 'headlineEn',
+      type: 'text',
+      label: { bn: 'শিরোনাম (ইংরেজি)', en: 'Headline in English' },
+      admin: { description: 'Optional. Shown on the English site; the original headline is used if this is empty.' },
+    },
+    {
       type: 'row',
       fields: [
         { name: 'outlet', type: 'text', required: true, label: { bn: 'সংবাদমাধ্যম', en: 'Outlet' } },

@@ -8,7 +8,7 @@ import { date, num } from '@/i18n/format'
 import { pageMeta } from '@/i18n/metadata'
 import { getLang } from '@/i18n/server'
 import { getAllPress } from '@/lib/cms'
-import { outletName } from '@/lib/press'
+import { outletName, pressHeadline } from '@/lib/press'
 import type { PressCoverage } from '@/payload-types'
 
 export const revalidate = 3600
@@ -74,8 +74,11 @@ export default async function PressPage() {
                           {date(lang, item.publishedAt)}
                         </time>
                       </span>
-                      <span lang={langAttr(lang, item.headline)} className="mt-2 block text-[1.1rem] font-semibold leading-snug text-ink group-hover:text-primary md:text-[1.2rem]">
-                        {item.headline}
+                      <span
+                        lang={langAttr(lang, pressHeadline(item, lang))}
+                        className="mt-2 block text-[1.1rem] font-semibold leading-snug text-ink group-hover:text-primary md:text-[1.2rem]"
+                      >
+                        {pressHeadline(item, lang)}
                       </span>
                     </span>
                     <ExternalLink className="mt-1 size-5 shrink-0 text-subtle group-hover:text-primary" />
