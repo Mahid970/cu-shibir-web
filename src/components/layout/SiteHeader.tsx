@@ -19,8 +19,13 @@ export async function Logo({ tone = 'dark' }: { tone?: 'dark' | 'light' }) {
       <span className="sr-only">{t.home}</span>
       <Image src="/brand/logo-legacy.png" alt="" width={42} height={42} priority className="size-[42px]" />
       <span className="leading-none">
-        <span className={`block font-bold ${en ? 'text-[1.05rem]' : 'text-[1.2rem]'} ${tone === 'light' ? 'text-white' : 'text-ink'}`}>{t.brand}</span>
-        <span className={`mt-1 block text-[0.72rem] ${tone === 'light' ? 'text-white/70' : 'text-subtle'}`}>{t.branch}</span>
+        <span className={`block font-bold ${en ? 'text-[0.98rem] sm:text-[1.05rem]' : 'text-[1.2rem]'} ${tone === 'light' ? 'text-white' : 'text-ink'}`}>
+          {t.brand}
+        </span>
+        {/* The English subtitle is too long for a phone header next to search, language and menu. */}
+        <span className={`mt-1 text-[0.72rem] ${en && tone === 'dark' ? 'hidden sm:block' : 'block'} ${tone === 'light' ? 'text-white/70' : 'text-subtle'}`}>
+          {t.branch}
+        </span>
       </span>
     </Link>
   )

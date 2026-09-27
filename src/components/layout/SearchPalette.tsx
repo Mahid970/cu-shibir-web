@@ -125,7 +125,7 @@ export function SearchPalette() {
       <button
         type="button"
         onClick={open}
-        className="grid size-11 place-items-center rounded-xl text-ink transition-colors hover:bg-pale-2"
+        className="grid size-10 place-items-center rounded-xl text-ink transition-colors hover:bg-pale-2 sm:size-11"
         aria-label={t.open}
         aria-haspopup="dialog"
       >

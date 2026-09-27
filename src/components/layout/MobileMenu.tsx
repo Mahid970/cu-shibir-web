@@ -35,14 +35,14 @@ export function MobileMenu() {
   }, [open])
 
   return (
-    <div className="lg:hidden">
+    <div className={lang === 'en' ? 'xl:hidden' : 'lg:hidden'}>
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-controls="mobile-menu"
         aria-label={open ? t.closeMenu : t.openMenu}
-        className="grid size-11 place-items-center rounded-lg text-primary hover:bg-pale"
+        className="grid size-10 place-items-center rounded-lg text-primary hover:bg-pale sm:size-11"
       >
         {open ? <Close className="size-7" /> : <Menu className="size-7" />}
       </button>
