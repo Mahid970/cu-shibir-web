@@ -82,10 +82,12 @@ test.describe('Bangla / English switch', () => {
     })
   }
 
-  test('the internal /bn address redirects to the short Bangla one', async ({ request }) => {
-    const res = await request.get(`${BASE}/bn/about`, { maxRedirects: 0 })
-    expect(res.status()).toBe(308)
-    expect(res.headers().location).toMatch(/\/about$/)
+  test('Bangla keeps its short URLs; the internal /bn address points to them', async ({ request }) => {
+    const short = await request.get(`${BASE}/about`, { maxRedirects: 0 })
+    expect(short.status()).toBe(200)
+    const internal = await request.get(`${BASE}/bn/about`, { maxRedirects: 0 })
+    expect(internal.status()).toBe(200)
+    expect(await internal.text()).toContain(`<link rel="canonical" href="${BASE}/about"`)
   })
 
   test('English forms answer in English', async ({ page }) => {
