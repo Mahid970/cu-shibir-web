@@ -20,10 +20,12 @@ test.describe('Legacy URLs', () => {
 })
 
 test.describe('SEO and app shell', () => {
-  test('sitemap lists the English page and robots points to it', async ({ request }) => {
+  test('sitemap lists both languages and the manifest stays Bangla', async ({ request }) => {
     const sitemap = await (await request.get(`${BASE}/sitemap.xml`)).text()
     expect(sitemap).toContain('/en</loc>')
     expect(sitemap).toContain('/syllabus/kormi')
+    expect(sitemap).toContain('/en/syllabus/kormi')
+    expect(sitemap).toContain('hreflang="en"')
     const manifest = await (await request.get(`${BASE}/manifest.webmanifest`)).json()
     expect(manifest.lang).toBe('bn')
     expect(manifest.icons.some((i: { purpose?: string }) => i.purpose === 'maskable')).toBe(true)
@@ -38,9 +40,9 @@ test.describe('SEO and app shell', () => {
   test('English home is lang="en" and links back to Bangla', async ({ page }) => {
     await page.goto(`${BASE}/en`)
     await expect(page.locator('html')).toHaveAttribute('lang', 'en')
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Chhatrashibir')
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('We are young')
     await expect(page.locator('link[rel="alternate"][hreflang="bn-BD"]')).toHaveCount(1)
-    await expect(page.getByRole('link', { name: 'বাংলা' })).toHaveAttribute('href', '/')
+    await expect(page.locator('header a[hreflang="bn"]').first()).toHaveAttribute('href', '/')
   })
 })
 
