@@ -6,7 +6,7 @@ import { CheckCircle, Clock, Search } from '@/components/ui/Icons'
 import { copy } from '@/i18n/config'
 import { date } from '@/i18n/format'
 import { useLang } from '@/i18n/LangProvider'
-import { trackAssistance, type TrackResult } from '@/lib/forms/actions'
+import { trackAssistance, trackIssue, type TrackResult } from '@/lib/forms/actions'
 import { HONEYPOT_NAME, LANG_NAME, STARTED_NAME } from '@/lib/forms/names'
 
 import { TextField } from './fields'
@@ -22,7 +22,7 @@ const T = copy(
     check: 'দেখুন',
     submitted: (type: string, when: string) => `${type}, জমা দেওয়া হয়েছে ${when}`,
     now: 'এখন',
-    note: 'পর্যালোচকের বার্তা',
+    note: { assistance: 'পর্যালোচকের বার্তা', issue: 'ডেস্কের বার্তা' },
   },
   {
     trackingId: 'Tracking ID',
@@ -32,15 +32,20 @@ const T = copy(
     check: 'Check',
     submitted: (type: string, when: string) => `${type}, submitted on ${when}`,
     now: 'Now',
-    note: 'Message from the reviewer',
+    note: { assistance: 'Message from the reviewer', issue: 'Message from the desk' },
   },
 )
 
-/** Applicant enters tracking id + secret code and sees where the application stands. */
-export function TrackForm() {
+const KINDS = {
+  assistance: { action: trackAssistance, placeholder: 'CU-XXXXXX' },
+  issue: { action: trackIssue, placeholder: 'IS-XXXXXX' },
+} as const
+
+/** The applicant or reporter enters the tracking id + secret code and sees where it stands. */
+export function TrackForm({ kind = 'assistance' }: { kind?: keyof typeof KINDS }) {
   const lang = useLang()
   const t = T[lang]
-  const [result, action, pending] = useActionState(trackAssistance, idle)
+  const [result, action, pending] = useActionState(KINDS[kind].action, idle)
   const started = useRef<HTMLInputElement>(null)
   const out = useRef<HTMLDivElement>(null)
 
@@ -62,7 +67,7 @@ export function TrackForm() {
         }}
         className="grid gap-6 sm:grid-cols-[1fr_1fr_auto] sm:items-end"
       >
-        <TextField name="trackingId" label={t.trackingId} required placeholder="CU-XXXXXX" autoCapitalize="characters" autoComplete="off" spellCheck={false} />
+        <TextField name="trackingId" label={t.trackingId} required placeholder={KINDS[kind].placeholder} autoCapitalize="characters" autoComplete="off" spellCheck={false} />
         <TextField name="code" label={t.code} required placeholder={t.codeHint} autoCapitalize="characters" autoComplete="off" spellCheck={false} maxLength={6} />
         <input ref={started} type="hidden" name={STARTED_NAME} />
         <input type="hidden" name={LANG_NAME} value={lang} />
@@ -95,7 +100,7 @@ export function TrackForm() {
                     )}
                     <span
                       className={`grid size-8 shrink-0 place-items-center rounded-full ${
-                        s.done ? (s.value === 'declined' ? 'bg-crimson text-white' : 'bg-success text-white') : 'bg-white text-subtle ring-2 ring-pale-4'
+                        s.done ? (s.value === 'declined' ? 'bg-crimson text-white' : s.value === 'closed' ? 'bg-subtle text-white' : 'bg-success text-white') : 'bg-white text-subtle ring-2 ring-pale-4'
                       }`}
                     >
                       {s.done ? <CheckCircle className="size-5" /> : <Clock className="size-4" />}
@@ -113,7 +118,7 @@ export function TrackForm() {
             </ol>
             {result.note && (
               <div className="mt-6 rounded-2xl bg-white p-5">
-                <p className="text-[0.9rem] font-semibold text-primary">{t.note}</p>
+                <p className="text-[0.9rem] font-semibold text-primary">{t.note[kind]}</p>
                 <p className="mt-1 whitespace-pre-line leading-relaxed text-ink">{result.note}</p>
               </div>
             )}

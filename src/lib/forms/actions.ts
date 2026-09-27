@@ -10,7 +10,15 @@ import type { Supporter } from '@/payload-types'
 
 import { guard } from './guard'
 import { LANG_NAME } from './names'
-import { ASSISTANCE_STATUSES, ASSISTANCE_TYPES, FEEDBACK_KINDS, SUPPORTER_INTERESTS } from './options'
+import {
+  ASSISTANCE_STATUSES,
+  ASSISTANCE_TYPES,
+  CONFIDENTIAL_CATEGORY,
+  FEEDBACK_KINDS,
+  ISSUE_CATEGORIES,
+  ISSUE_STATUSES,
+  SUPPORTER_INTERESTS,
+} from './options'
 import type { FormState } from './state'
 import { Checker, cleanText, isHttpUrl } from './validate'
 
@@ -32,6 +40,8 @@ const T = copy(
     trackFormat: 'ট্র্যাকিং আইডি (যেমন CU-7K3P9Q) ও ৬ অক্ষরের গোপন কোড সঠিকভাবে লিখুন।',
     later: 'একটু পরে আবার চেষ্টা করুন।',
     notFound: 'এই আইডি ও কোডে কোনো আবেদন পাওয়া যায়নি। অক্ষরগুলো আবার মিলিয়ে দেখুন।',
+    trackFormatIssue: 'ট্র্যাকিং আইডি (যেমন IS-7K3P9Q) ও ৬ অক্ষরের গোপন কোড সঠিকভাবে লিখুন।',
+    notFoundIssue: 'এই আইডি ও কোডে কোনো সমস্যা পাওয়া যায়নি। অক্ষরগুলো আবার মিলিয়ে দেখুন।',
     label: {
       name: 'নাম',
       facebook: 'ফেসবুক লিংক',
@@ -47,6 +57,10 @@ const T = copy(
       registration: 'রেজিস্ট্রেশন নম্বর',
       details: 'প্রয়োজনের বিবরণ',
       references: 'রেফারেন্স',
+      category: 'সমস্যার বিষয়',
+      problem: 'সংক্ষেপে সমস্যা',
+      problemDetails: 'বিস্তারিত',
+      place: 'কোথায়',
     },
   },
   {
@@ -59,6 +73,8 @@ const T = copy(
     trackFormat: 'Enter the tracking ID (for example CU-7K3P9Q) and the 6-character secret code exactly.',
     later: 'Please try again in a little while.',
     notFound: 'No application matches this ID and code. Check the characters again.',
+    trackFormatIssue: 'Enter the tracking ID (for example IS-7K3P9Q) and the 6-character secret code exactly.',
+    notFoundIssue: 'No report matches this ID and code. Check the characters again.',
     label: {
       name: 'your name',
       facebook: 'the Facebook link',
@@ -74,6 +90,10 @@ const T = copy(
       registration: 'the registration number',
       details: 'the description of your need',
       references: 'the references',
+      category: 'what the problem is about',
+      problem: 'the problem in brief',
+      problemDetails: 'the details',
+      place: 'where it happens',
     },
   },
 )
@@ -88,6 +108,22 @@ function session(c: Checker, t: (typeof T)[Locale]) {
 }
 
 const adminLink = (collection: string, id: number | string) => `${SITE.url}/admin/collections/${collection}/${id}`
+
+/**
+ * Save a submission under a fresh public tracking id (PREFIX-XXXXXX) and a 6-character secret code
+ * that is stored only as a hash. Retries on the (unlikely) id collision.
+ */
+async function withTracking<D extends { id: number | string }>(prefix: string, create: (trackingId: string, secretHash: string) => Promise<D>) {
+  const code = randomCode(6)
+  for (let attempt = 0; ; attempt++) {
+    const trackingId = `${prefix}-${randomCode(6)}`
+    try {
+      return { doc: await create(trackingId, hashSecret(code)), trackingId, code }
+    } catch (err) {
+      if (attempt === 2 || !String(err).includes('unique')) throw err
+    }
+  }
+}
 
 // ---------------------------------------------------------------------------
 // সমর্থক ফরম
@@ -232,43 +268,94 @@ export async function submitAssistance(_prev: FormState, data: FormData): Promis
 
   try {
     const payload = await getPayloadClient()
-    const code = randomCode(6)
-    // Retry on the (unlikely) tracking id collision.
-    for (let attempt = 0; attempt < 3; attempt++) {
-      const trackingId = `CU-${randomCode(6)}`
-      try {
-        const doc = await payload.create({
-          collection: 'assistance',
-          overrideAccess: true,
-          data: {
-            trackingId,
-            type: type!,
-            subject: subject || undefined,
-            name,
-            mobile,
-            registration: registration || undefined,
-            department: department!,
-            session: sess,
-            hall: hall ?? undefined,
-            details,
-            references: references || undefined,
-            status: 'submitted',
-            secretHash: hashSecret(code),
-            mobileHash: blindIndex(mobile),
-          },
-        })
-        await notifyStaff(`নতুন সহায়তার আবেদন: ${trackingId}\n${adminLink('assistance', doc.id)}`)
-        return { status: 'success', tracking: { id: trackingId, code } }
-      } catch (err) {
-        if (attempt === 2 || !String(err).includes('unique')) throw err
-      }
-    }
-    return { status: 'error', message: t.failed }
+    const { doc, trackingId, code } = await withTracking('CU', (trackingId, secretHash) =>
+      payload.create({
+        collection: 'assistance',
+        overrideAccess: true,
+        data: {
+          trackingId,
+          type: type!,
+          subject: subject || undefined,
+          name,
+          mobile,
+          registration: registration || undefined,
+          department: department!,
+          session: sess,
+          hall: hall ?? undefined,
+          details,
+          references: references || undefined,
+          status: 'submitted',
+          secretHash,
+          mobileHash: blindIndex(mobile),
+        },
+      }),
+    )
+    await notifyStaff(`নতুন সহায়তার আবেদন: ${trackingId}\n${adminLink('assistance', doc.id)}`)
+    return { status: 'success', tracking: { id: trackingId, code } }
   } catch (err) {
     console.error('[assistance] save failed', err)
     return { status: 'error', message: t.failed }
   }
 }
+
+// ---------------------------------------------------------------------------
+// ছাত্র সমস্যা ডেস্ক
+// ---------------------------------------------------------------------------
+
+const ISSUE_VALUES = ISSUE_CATEGORIES.map((c) => c.value)
+
+export async function submitIssue(_prev: FormState, data: FormData): Promise<FormState> {
+  const lang = langOf(data)
+  const t = T[lang]
+  const g = await guard('issue', data, { limit: 3 })
+  if (!g.ok) return g.silent ? { status: 'error', message: t.failed } : { status: 'error', message: g.message }
+
+  const c = new Checker(data, lang)
+  const category = c.choice('category', ISSUE_VALUES, { required: true, label: t.label.category })
+  const hall = c.choice('hall', HALL_VALUES, { label: t.label.hall })
+  const subject = c.text('subject', { required: true, min: 6, max: 150, label: t.label.problem })
+  const details = c.text('details', { required: true, min: 30, max: 4000, label: t.label.problemDetails })
+  const place = c.text('place', { max: 150, label: t.label.place })
+  const anonymous = c.checked('anonymous', { message: '' })
+  const name = anonymous ? '' : c.text('name', { max: 100, label: t.label.name })
+  const contact = anonymous ? '' : c.text('contact', { max: 200, label: t.label.contact })
+  c.checked('consent', { required: true, message: t.consent })
+  if (!c.ok) return { status: 'error', message: t.fix, errors: c.errors }
+
+  try {
+    const payload = await getPayloadClient()
+    const { doc, trackingId, code } = await withTracking('IS', (trackingId, secretHash) =>
+      payload.create({
+        collection: 'issues',
+        overrideAccess: true,
+        data: {
+          trackingId,
+          category: category!,
+          hall: hall ?? undefined,
+          subject,
+          details,
+          place: place || undefined,
+          anonymous,
+          name: name || undefined,
+          contact: contact || undefined,
+          status: 'received',
+          secretHash,
+        },
+      }),
+    )
+    // The staff group may include people outside the harassment desk: say only that something came in.
+    const what = category === CONFIDENTIAL_CATEGORY ? 'নতুন গোপনীয় অভিযোগ (হয়রানি ডেস্ক)' : `নতুন ছাত্র সমস্যা: ${trackingId}`
+    await notifyStaff(`${what}\n${adminLink('issues', doc.id)}`)
+    return { status: 'success', tracking: { id: trackingId, code } }
+  } catch (err) {
+    console.error('[issue] save failed', err)
+    return { status: 'error', message: t.failed }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Tracking pages
+// ---------------------------------------------------------------------------
 
 export type TrackResult =
   | { status: 'idle' }
@@ -283,43 +370,100 @@ export type TrackResult =
       submittedAt: string
     }
 
+type Tracked = { trackingId: string; status: string; statusHistory?: unknown; publicNote?: string | null; secretHash?: string | null; createdAt: string }
+
+/** Reads the id and code, checks the guard, and loads the record if the code matches. */
+async function lookup<D extends Tracked>(
+  data: FormData,
+  prefix: 'CU' | 'IS',
+  messages: { format: string; notFound: string; later: string },
+  find: (trackingId: string) => Promise<D | undefined>,
+): Promise<{ doc: D } | { error: string }> {
+  const id = cleanText(data.get('trackingId'), 20).toUpperCase().replace(/\s/g, '')
+  const code = cleanText(data.get('code'), 20).toUpperCase().replace(/\s/g, '')
+  if (!new RegExp(`^${prefix}-[A-Z0-9]{6}$`).test(id) || code.length !== 6) return { error: messages.format }
+  const g = await guard('track', data, { limit: 10, minFillMs: 0 })
+  if (!g.ok) return { error: g.message || messages.later }
+  const doc = await find(id)
+  if (!doc || !verifySecret(code, doc.secretHash)) return { error: messages.notFound }
+  return { doc }
+}
+
+/**
+ * The applicant's timeline: every step up to the current one is done. Only one of the two final
+ * states is shown (approved or declined, resolved or closed).
+ */
+function timeline(
+  doc: Tracked,
+  lang: Locale,
+  statuses: readonly { value: string; label: Record<Locale, string> }[],
+  finals: [ok: string, no: string],
+  current = doc.status,
+) {
+  const history = (Array.isArray(doc.statusHistory) ? doc.statusHistory : []) as { status: string; at: string }[]
+  const at = (s: string) => [...history].reverse().find((h) => h.status === s)?.at
+  const flow = statuses.filter((s) => (current === finals[1] ? s.value !== finals[0] : s.value !== finals[1]))
+  const reached = flow.findIndex((s) => s.value === current)
+  return flow.map((s, i) => ({ value: s.value, label: s.label[lang], at: at(s.value), done: i <= reached }))
+}
+
 export async function trackAssistance(_prev: TrackResult, data: FormData): Promise<TrackResult> {
   const lang = langOf(data)
   const t = T[lang]
-  const id = cleanText(data.get('trackingId'), 20).toUpperCase().replace(/\s/g, '')
-  const code = cleanText(data.get('code'), 20).toUpperCase().replace(/\s/g, '')
-  if (!/^CU-[A-Z0-9]{6}$/.test(id) || code.length !== 6) {
-    return { status: 'error', message: t.trackFormat }
-  }
-  const g = await guard('track', data, { limit: 10, minFillMs: 0 })
-  if (!g.ok) return { status: 'error', message: g.message || t.later }
-
-  const notFound = { status: 'error' as const, message: t.notFound }
-  const payload = await getPayloadClient()
-  const { docs } = await payload.find({
-    collection: 'assistance',
-    where: { trackingId: { equals: id } },
-    limit: 1,
-    depth: 0,
-    overrideAccess: true,
-    showHiddenFields: true,
-    select: { trackingId: true, type: true, status: true, statusHistory: true, publicNote: true, secretHash: true, createdAt: true },
+  const found = await lookup(data, 'CU', { format: t.trackFormat, notFound: t.notFound, later: t.later }, async (trackingId) => {
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'assistance',
+      where: { trackingId: { equals: trackingId } },
+      limit: 1,
+      depth: 0,
+      overrideAccess: true,
+      showHiddenFields: true,
+      select: { trackingId: true, type: true, status: true, statusHistory: true, publicNote: true, secretHash: true, createdAt: true },
+    })
+    return docs[0]
   })
-  const doc = docs[0]
-  if (!doc || !verifySecret(code, doc.secretHash)) return notFound
-
-  const history = (Array.isArray(doc.statusHistory) ? doc.statusHistory : []) as { status: string; at: string }[]
-  const at = (s: string) => [...history].reverse().find((h) => h.status === s)?.at
-  // Only one final state is shown: approved or declined.
-  const flow = ASSISTANCE_STATUSES.filter((s) => (doc.status === 'declined' ? s.value !== 'approved' : s.value !== 'declined'))
-  const reached = flow.findIndex((s) => s.value === doc.status)
+  if ('error' in found) return { status: 'error', message: found.error }
+  const { doc } = found
   const typeOption = ASSISTANCE_TYPES.find((a) => a.value === doc.type)
   return {
     status: 'found',
     trackingId: doc.trackingId,
     type: typeOption ? (lang === 'en' ? typeOption.en : typeOption.label) : doc.type,
     current: doc.status,
-    steps: flow.map((s, i) => ({ value: s.value, label: s.label[lang], at: at(s.value), done: i <= reached })),
+    steps: timeline(doc, lang, ASSISTANCE_STATUSES, ['approved', 'declined']),
+    note: doc.publicNote,
+    submittedAt: doc.createdAt,
+  }
+}
+
+export async function trackIssue(_prev: TrackResult, data: FormData): Promise<TrackResult> {
+  const lang = langOf(data)
+  const t = T[lang]
+  const found = await lookup(data, 'IS', { format: t.trackFormatIssue, notFound: t.notFoundIssue, later: t.later }, async (trackingId) => {
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'issues',
+      where: { trackingId: { equals: trackingId } },
+      limit: 1,
+      depth: 0,
+      overrideAccess: true,
+      showHiddenFields: true,
+      select: { trackingId: true, category: true, status: true, statusHistory: true, publicNote: true, secretHash: true, createdAt: true },
+    })
+    return docs[0]
+  })
+  if ('error' in found) return { status: 'error', message: found.error }
+  const { doc } = found
+  // Spam is only a desk label; the student sees the report as closed.
+  const current = doc.status === 'spam' ? 'closed' : doc.status
+  const category = ISSUE_CATEGORIES.find((c) => c.value === doc.category)
+  return {
+    status: 'found',
+    trackingId: doc.trackingId,
+    type: category ? (lang === 'en' ? category.en : category.label) : doc.category,
+    current,
+    steps: timeline(doc, lang, ISSUE_STATUSES, ['resolved', 'closed'], current),
     note: doc.publicNote,
     submittedAt: doc.createdAt,
   }
