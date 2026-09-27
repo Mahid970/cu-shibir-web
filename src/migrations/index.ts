@@ -6,6 +6,7 @@ import * as migration_20260927_011030_shuttle from './20260927_011030_shuttle';
 import * as migration_20260927_012022_blood_network from './20260927_012022_blood_network';
 import * as migration_20260927_053811_question_bank from './20260927_053811_question_bank';
 import * as migration_20260927_065509_campus_places from './20260927_065509_campus_places';
+import * as migration_20260927_065819_freshers_contacts from './20260927_065819_freshers_contacts';
 
 export const migrations = [
   {
@@ -47,5 +48,10 @@ export const migrations = [
     up: migration_20260927_065509_campus_places.up,
     down: migration_20260927_065509_campus_places.down,
     name: '20260927_065509_campus_places',
+  },
+  {
+    up: migration_20260927_065819_freshers_contacts.up,
+    down: migration_20260927_065819_freshers_contacts.down,
+    name: '20260927_065819_freshers_contacts',
   },
 ];

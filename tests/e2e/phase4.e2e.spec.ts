@@ -256,3 +256,15 @@ test.describe('Question bank', () => {
     }
   })
 })
+
+test.describe('Freshers’ guide', () => {
+  test('lists the first-week steps, 999 and the campus places, in both languages', async ({ page }) => {
+    await page.goto(`${BASE}/services/freshers`)
+    await expect(page.locator('#emergency')).toContainText('৯৯৯')
+    await expect(page.locator('#emergency a[href="tel:999"]')).toBeVisible()
+    await expect(page.locator('#map')).toContainText('বিশ্ববিদ্যালয় গ্রন্থাগার')
+    await page.goto(`${BASE}/en/services/freshers`)
+    await expect(page.locator('#map')).toContainText('University Library')
+    await expect(page.locator('#map').getByRole('link', { name: /Directions/ }).first()).toHaveAttribute('href', /google\.com\/maps/)
+  })
+})

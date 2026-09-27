@@ -385,3 +385,17 @@ export const getPapers = (opts: { department?: string; q?: string }) => {
     ['questions'],
   )()
 }
+
+/** The freshers' page: checked campus phone numbers and the map's places. */
+export const getFreshers = cached(
+  async (locale: Locale = 'bn') => {
+    const payload = await getPayloadClient()
+    const [guide, places] = await Promise.all([
+      payload.findGlobal({ slug: 'freshers', locale, depth: 0 }),
+      payload.find({ collection: 'campus-places', locale, pagination: false, depth: 0, sort: 'category' }),
+    ])
+    return { contacts: guide.contacts ?? [], places: places.docs.map(({ id, name, category, lat, lng, note }) => ({ id, name, category, lat, lng, note })) }
+  },
+  'freshers',
+  ['freshers', 'campus-places'],
+)

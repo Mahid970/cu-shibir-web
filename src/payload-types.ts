@@ -120,11 +120,13 @@ export interface Config {
   globals: {
     'site-settings': SiteSetting;
     shuttle: Shuttle;
+    freshers: Fresher;
     'payload-jobs-stats': PayloadJobsStat;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     shuttle: ShuttleSelect<false> | ShuttleSelect<true>;
+    freshers: FreshersSelect<false> | FreshersSelect<true>;
     'payload-jobs-stats': PayloadJobsStatsSelect<false> | PayloadJobsStatsSelect<true>;
   };
   locale: 'bn' | 'en';
@@ -1861,6 +1863,28 @@ export interface Shuttle {
   createdAt?: string | null;
 }
 /**
+ * শুধু যাচাই করা নম্বর দিন (যেমন প্রক্টর অফিস, চিকিৎসা কেন্দ্র, নিরাপত্তা দপ্তর)। জাতীয় জরুরি সেবা ৯৯৯ পাতায় আগে থেকেই আছে।
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "freshers".
+ */
+export interface Fresher {
+  id: number;
+  contacts?:
+    | {
+        name: string;
+        phone: string;
+        /**
+         * যেমন: "রাত ১০টা পর্যন্ত"
+         */
+        note?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-jobs-stats".
  */
@@ -1947,6 +1971,23 @@ export interface ShuttleSelect<T extends boolean = true> {
         id?: T;
       };
   notice?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "freshers_select".
+ */
+export interface FreshersSelect<T extends boolean = true> {
+  contacts?:
+    | T
+    | {
+        name?: T;
+        phone?: T;
+        note?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
