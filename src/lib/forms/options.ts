@@ -42,3 +42,27 @@ export const ASSISTANCE_STATUSES = [
   { value: 'approved', label: { bn: 'অনুমোদিত', en: 'Approved' } },
   { value: 'declined', label: { bn: 'এবার সম্ভব হয়নি', en: 'Declined' } },
 ] as const
+
+/** ছাত্র সমস্যা ডেস্ক (plan §6.1). Harassment reports are confidential: only the harassment desk sees them. */
+export const ISSUE_CATEGORIES = [
+  { value: 'hall', label: 'হল ও আবাসন', en: 'Halls and housing' },
+  { value: 'transport', label: 'শাটল ও যাতায়াত', en: 'Shuttle and transport' },
+  { value: 'food', label: 'খাবার ও ক্যান্টিন', en: 'Food and canteens' },
+  { value: 'safety', label: 'নিরাপত্তা', en: 'Safety' },
+  { value: 'academic', label: 'পড়াশোনা ও সেশনজট', en: 'Studies and session delays' },
+  { value: 'health', label: 'চিকিৎসা ও মেডিকেল সেন্টার', en: 'Health and the medical centre' },
+  { value: 'campus', label: 'ক্যাম্পাস ও পরিবেশ', en: 'Campus and environment' },
+  { value: 'harassment', label: 'হয়রানি (গোপনীয়)', en: 'Harassment (confidential)' },
+  { value: 'other', label: 'অন্যান্য', en: 'Something else' },
+] as const
+
+export const CONFIDENTIAL_CATEGORY = 'harassment'
+
+/** What the reporter sees on the tracking page. `spam` is shown to them as closed. */
+export const ISSUE_STATUSES = [
+  { value: 'received', label: { bn: 'জমা হয়েছে', en: 'Received' } },
+  { value: 'reviewing', label: { bn: 'যাচাই চলছে', en: 'Being looked into' } },
+  { value: 'forwarded', label: { bn: 'দায়িত্বপ্রাপ্তদের কাছে তোলা হয়েছে', en: 'Raised with those responsible' } },
+  { value: 'resolved', label: { bn: 'সমাধান হয়েছে', en: 'Resolved' } },
+  { value: 'closed', label: { bn: 'বন্ধ করা হয়েছে', en: 'Closed' } },
+] as const

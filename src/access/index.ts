@@ -7,6 +7,7 @@ export const ROLES = [
   { value: 'editor', label: { bn: 'সম্পাদক (তথ্য ও প্রচার)', en: 'Editor (publicity)' } },
   { value: 'contributor', label: { bn: 'লেখক (খসড়া)', en: 'Contributor (drafts only)' } },
   { value: 'service-desk', label: { bn: 'ছাত্র সেবা ডেস্ক', en: 'Student service desk' } },
+  { value: 'safety-desk', label: { bn: 'হয়রানি ডেস্ক (গোপনীয়)', en: 'Harassment desk (confidential)' } },
   { value: 'scholarship-reviewer', label: { bn: 'শিক্ষাবৃত্তি পর্যালোচক', en: 'Scholarship reviewer' } },
   { value: 'blood-coordinator', label: { bn: 'রক্তদান সমন্বয়ক', en: 'Blood coordinator' } },
   { value: 'event-manager', label: { bn: 'ইভেন্ট ব্যবস্থাপক', en: 'Event manager' } },

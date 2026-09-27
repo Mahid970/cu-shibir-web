@@ -77,6 +77,7 @@ export interface Config {
     supporters: Supporter;
     feedback: Feedback;
     assistance: Assistance;
+    issues: Issue;
     users: User;
     'payload-kv': PayloadKv;
     'payload-jobs': PayloadJob;
@@ -96,6 +97,7 @@ export interface Config {
     supporters: SupportersSelect<false> | SupportersSelect<true>;
     feedback: FeedbackSelect<false> | FeedbackSelect<true>;
     assistance: AssistanceSelect<false> | AssistanceSelect<true>;
+    issues: IssuesSelect<false> | IssuesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
@@ -719,6 +721,77 @@ export interface Assistance {
   createdAt: string;
 }
 /**
+ * শিক্ষার্থী ট্র্যাকিং আইডি ও গোপন কোড দিয়ে অবস্থা দেখতে পারেন, "শিক্ষার্থীর জন্য বার্তা"সহ। হয়রানির অভিযোগ শুধু হয়রানি ডেস্ক দেখতে পারে। পরিসংখ্যান (বিষয়ভিত্তিক সংখ্যা, সমাধানের হার) সবার জন্য প্রকাশিত হয়, কোনো ব্যক্তিগত তথ্য ছাড়া।
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "issues".
+ */
+export interface Issue {
+  id: number;
+  trackingId: string;
+  category: 'hall' | 'transport' | 'food' | 'safety' | 'academic' | 'health' | 'campus' | 'harassment' | 'other';
+  hall?:
+    | (
+        | 'alaol'
+        | 'af_rahman'
+        | 'shahjalal'
+        | 'suhrawardy'
+        | 'shah_amanat'
+        | 'shamsun_nahar'
+        | 'shaheed_abdur_rab'
+        | 'pritilata'
+        | 'deshnetri_khaleda_zia'
+        | 'masterda_surja_sen'
+        | 'shaheed_farhad_hossain'
+        | 'bijoy_24'
+        | 'nawab_faizunnesa'
+        | 'atish_dipangkar'
+        | 'shilpi_rashid_chowdhury_hostel'
+        | 'non_resident'
+      )
+    | null;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  subject: string;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  details: string;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  place?: string | null;
+  anonymous?: boolean | null;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  name?: string | null;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  contact?: string | null;
+  status: 'received' | 'reviewing' | 'forwarded' | 'resolved' | 'closed' | 'spam';
+  /**
+   * ট্র্যাকিং পাতায় শিক্ষার্থী এটি দেখবেন, যেমন কী পদক্ষেপ নেওয়া হয়েছে।
+   */
+  publicNote?: string | null;
+  staffNote?: string | null;
+  resolvedAt?: string | null;
+  statusHistory?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  secretHash?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -731,6 +804,7 @@ export interface User {
     | 'editor'
     | 'contributor'
     | 'service-desk'
+    | 'safety-desk'
     | 'scholarship-reviewer'
     | 'blood-coordinator'
     | 'event-manager'
@@ -920,6 +994,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'assistance';
         value: number | Assistance;
+      } | null)
+    | ({
+        relationTo: 'issues';
+        value: number | Issue;
       } | null)
     | ({
         relationTo: 'users';
@@ -1225,6 +1303,29 @@ export interface AssistanceSelect<T extends boolean = true> {
   statusHistory?: T;
   secretHash?: T;
   mobileHash?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "issues_select".
+ */
+export interface IssuesSelect<T extends boolean = true> {
+  trackingId?: T;
+  category?: T;
+  hall?: T;
+  subject?: T;
+  details?: T;
+  place?: T;
+  anonymous?: T;
+  name?: T;
+  contact?: T;
+  status?: T;
+  publicNote?: T;
+  staffNote?: T;
+  resolvedAt?: T;
+  statusHistory?: T;
+  secretHash?: T;
   updatedAt?: T;
   createdAt?: T;
 }
