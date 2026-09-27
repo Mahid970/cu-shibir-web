@@ -7,7 +7,7 @@ import { copy } from '@/i18n/config'
 import { num } from '@/i18n/format'
 import { getLang } from '@/i18n/server'
 
-const T = copy({ title: ['আমাদের', 'পথচলা'], more: 'বিস্তারিত' }, { title: ['Our', 'journey'], more: 'Read more' })
+const T = copy({ title: ['আমাদের', 'পথচলা'], more: 'বিস্তারিত' }, { title: ['Our', 'journey'], more: 'Our full history' })
 
 /** The branch's story in five dates on the navy gradient-bordered card; the line draws itself. */
 export async function Milestones({ overlap = true, link = true, id }: { overlap?: boolean; link?: boolean; id?: string }) {
