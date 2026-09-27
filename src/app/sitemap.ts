@@ -17,6 +17,7 @@ const PAGES: { path: string; priority: number; freq: 'daily' | 'weekly' | 'month
   { path: '/services/assistance', priority: 0.7, freq: 'monthly' },
   { path: '/services/campus', priority: 0.7, freq: 'monthly' },
   { path: '/services/shuttle', priority: 0.8, freq: 'weekly' },
+  { path: '/services/freshers', priority: 0.8, freq: 'monthly' },
   { path: '/services/issues', priority: 0.7, freq: 'weekly' },
   { path: '/services/blood', priority: 0.7, freq: 'weekly' },
   { path: '/services/questions', priority: 0.7, freq: 'weekly' },

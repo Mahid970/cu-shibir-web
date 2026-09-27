@@ -17,6 +17,7 @@ const PAGES = [
   '/services/campus',
   '/services/assistance',
   '/services/shuttle',
+  '/services/freshers',
   '/services/issues',
   '/services/blood',
   '/services/questions',

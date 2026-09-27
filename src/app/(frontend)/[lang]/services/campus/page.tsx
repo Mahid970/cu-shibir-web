@@ -29,6 +29,7 @@ const T = copy(
     deptDir: 'বিভাগ ডিরেক্টরি',
     hallDir: 'হল ডিরেক্টরি',
     ask: 'প্রশ্ন আছে? আমাদের জিজ্ঞেস করো',
+    freshers: 'নবীন গাইড ও ম্যাপ',
   },
   {
     meta: {
@@ -48,6 +49,7 @@ const T = copy(
     deptDir: 'Department directory',
     hallDir: 'Hall directory',
     ask: 'Questions? Ask us',
+    freshers: 'Freshers’ guide',
   },
 )
 
@@ -118,8 +120,12 @@ export default async function CampusPage() {
           </div>
         </aside>
 
-        <div className="mt-12 flex justify-center">
-          <Link href="/join/feedback" className="btn btn-outline-blue">
+        <div className="mt-12 flex flex-wrap justify-center gap-3">
+          <Link href="/services/freshers" className="btn btn-outline-blue">
+            {t.freshers}
+            <ArrowRight />
+          </Link>
+          <Link href="/join/feedback" className="btn btn-outline">
             {t.ask}
             <ArrowRight />
           </Link>

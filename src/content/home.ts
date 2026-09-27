@@ -194,7 +194,7 @@ export const SERVICES = [
     text: { bn: 'হল, অনুষদ, মেডিকেল সেন্টার, মসজিদ — সব কোথায়।', en: 'Halls, faculties, the medical centre, mosques: where everything is.' },
     theme: 'teal',
     icon: 'cap',
-    href: '/services/campus',
+    href: '/services/freshers',
   },
   {
     title: { bn: 'প্রশ্ন ব্যাংক', en: 'Question bank' },

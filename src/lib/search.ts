@@ -57,6 +57,11 @@ const PAGES: { title: Record<Locale, string>; href: string; words: string }[] = 
   },
   { title: { bn: 'আবেদনের অবস্থা দেখুন', en: 'Check application status' }, href: '/services/assistance/status', words: 'ট্র্যাকিং আবেদন অবস্থা কোড tracking status code' },
   {
+    title: { bn: 'নবীন গাইড ও ক্যাম্পাস ম্যাপ', en: 'Freshers’ guide and campus map' },
+    href: '/services/freshers',
+    words: 'নবীন গাইড ম্যাপ মানচিত্র জরুরি নম্বর লাইব্রেরি চিকিৎসা কেন্দ্র মসজিদ কোথায় freshers guide map emergency number library medical centre mosque where',
+  },
+  {
     title: { bn: 'শাটল ট্রেনের সময়সূচি', en: 'Shuttle train timetable' },
     href: '/services/shuttle',
     words: 'শাটল ট্রেন সময়সূচি সময় বটতলী ষোলশহর স্টেশন পরের ট্রেন shuttle train timetable schedule time station next train',

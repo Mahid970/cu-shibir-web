@@ -34,7 +34,7 @@ const T = copy(
         p: [
           'নাম, মোবাইল, ইমেইল, ফেসবুক লিংক, রেজিস্ট্রেশন নম্বর ও বার্তা ডেটাবেসে AES-256 এনক্রিপশনে রাখা হয়। ডেটাবেস কারও হাতে গেলেও চাবি ছাড়া এগুলো পড়া যায় না।',
           'সহায়তার আবেদন ও সমস্যা ডেস্কের গোপন কোড আমরা নিজেরাও জানি না; শুধু মিলিয়ে দেখা যায় কোডটি সঠিক কি না।',
-          'ওয়েবসাইটে বিজ্ঞাপন বা তৃতীয় পক্ষের ট্র্যাকিং নেই। ইউটিউব ভিডিও শুধু প্লে চাপলেই লোড হয়।',
+          'ওয়েবসাইটে বিজ্ঞাপন বা তৃতীয় পক্ষের ট্র্যাকিং নেই। ইউটিউব ভিডিও শুধু প্লে চাপলেই লোড হয়, আর ক্যাম্পাস ম্যাপ (OpenFreeMap) শুধু খুললেই।',
         ],
       },
       {
@@ -79,7 +79,7 @@ const T = copy(
         p: [
           'Names, mobile numbers, email addresses, Facebook links, registration numbers and messages are stored in the database with AES-256 encryption. Even if someone got hold of the database, they could not read them without the key.',
           'We do not know the secret code of an aid application or an issue report ourselves; we can only check whether a code is correct.',
-          'The website has no advertising and no third-party tracking. YouTube videos load only when you press play.',
+          'The website has no advertising and no third-party tracking. YouTube videos load only when you press play, and the campus map (OpenFreeMap) only when you open it.',
         ],
       },
       {
