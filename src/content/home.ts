@@ -187,6 +187,7 @@ export const SERVICES = [
     text: { bn: 'পরের ট্রেন কখন, কোন স্টেশন থেকে — এক নজরে।', en: 'When the next train leaves, and from which station, at a glance.' },
     theme: 'blue',
     icon: 'train',
+    href: '/services/shuttle',
   },
   {
     title: { bn: 'নবীন গাইড ও ক্যাম্পাস ম্যাপ', en: 'Freshers’ guide and campus map' },

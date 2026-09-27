@@ -12,7 +12,7 @@ const T = copy(
   {
     meta: {
       title: 'শিক্ষার্থী সেবা',
-      description: 'চবি শিক্ষার্থীদের জন্য শিক্ষাবৃত্তি ও চিকিৎসা সহায়তা, ছাত্র সমস্যা ডেস্ক, ক্যাম্পাস গাইড এবং আসন্ন সেবাসমূহ।',
+      description: 'চবি শিক্ষার্থীদের জন্য শাটল ট্রেনের সময়সূচি, শিক্ষাবৃত্তি ও চিকিৎসা সহায়তা, ছাত্র সমস্যা ডেস্ক, ক্যাম্পাস গাইড এবং আসন্ন সেবাসমূহ।',
     },
     title: ['শিক্ষার্থী', 'সেবা'],
     lede: 'চবি শিক্ষার্থীদের প্রতিদিনের কাজে লাগে এমন সেবা, এক জায়গায়। যেগুলো চালু আছে সেগুলো এখনই ব্যবহার করা যাবে।',
@@ -23,7 +23,7 @@ const T = copy(
   {
     meta: {
       title: 'Student services',
-      description: 'Scholarship and medical aid, the student issues desk, a campus guide and more services for students of the University of Chittagong.',
+      description: 'The shuttle train timetable, scholarship and medical aid, the student issues desk, a campus guide and more services for students of the University of Chittagong.',
     },
     title: ['Student', 'services'],
     lede: 'Services for the everyday needs of CU students, in one place. The ones marked available can be used right now.',

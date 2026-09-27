@@ -16,6 +16,7 @@ const PAGES = [
   '/services',
   '/services/campus',
   '/services/assistance',
+  '/services/shuttle',
   '/services/issues',
   '/services/issues/report',
   '/join',

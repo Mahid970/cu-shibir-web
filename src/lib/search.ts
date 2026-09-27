@@ -57,6 +57,11 @@ const PAGES: { title: Record<Locale, string>; href: string; words: string }[] = 
   },
   { title: { bn: 'আবেদনের অবস্থা দেখুন', en: 'Check application status' }, href: '/services/assistance/status', words: 'ট্র্যাকিং আবেদন অবস্থা কোড tracking status code' },
   {
+    title: { bn: 'শাটল ট্রেনের সময়সূচি', en: 'Shuttle train timetable' },
+    href: '/services/shuttle',
+    words: 'শাটল ট্রেন সময়সূচি সময় বটতলী ষোলশহর স্টেশন পরের ট্রেন shuttle train timetable schedule time station next train',
+  },
+  {
     title: { bn: 'ছাত্র সমস্যা ডেস্ক', en: 'Student issues desk' },
     href: '/services/issues',
     words: 'ছাত্র সমস্যা ডেস্ক অভিযোগ হল শাটল খাবার নিরাপত্তা হয়রানি সেশনজট student issues desk problem complaint report hall shuttle food safety harassment',

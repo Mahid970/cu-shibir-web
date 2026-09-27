@@ -21,7 +21,7 @@ const T = copy(
     facts: [
       { k: 'অবস্থান', v: 'ফতেহপুর, হাটহাজারী; চট্টগ্রাম শহর থেকে প্রায় ২২ কিলোমিটার উত্তরে' },
       { k: 'আয়তন', v: 'প্রায় ২,৩১২ একর পাহাড়ি ক্যাম্পাস' },
-      { k: 'শাটল ট্রেন', v: 'বটতলী (চট্টগ্রাম স্টেশন) থেকে ক্যাম্পাস পর্যন্ত শিক্ষার্থীদের প্রধান যাতায়াত' },
+      { k: 'শাটল ট্রেন', v: 'বটতলী (চট্টগ্রাম স্টেশন) থেকে ক্যাম্পাস পর্যন্ত শিক্ষার্থীদের প্রধান যাতায়াত', link: 'সময়সূচি দেখুন' },
     ],
     departments: ['অনুষদ ও', 'বিভাগ'],
     halls: ['হল ও', 'হোস্টেল'],
@@ -40,7 +40,7 @@ const T = copy(
     facts: [
       { k: 'Location', v: 'Fatehpur, Hathazari, about 22 km north of Chattogram city' },
       { k: 'Area', v: 'A hill campus of about 2,312 acres' },
-      { k: 'Shuttle train', v: 'The main way in for students, from Bottoli (Chattogram station) to the campus' },
+      { k: 'Shuttle train', v: 'The main way in for students, from Bottoli (Chattogram station) to the campus', link: 'See the timetable' },
     ],
     departments: ['Faculties and', 'departments'],
     halls: ['Halls and', 'hostels'],
@@ -69,6 +69,14 @@ export default async function CampusPage() {
             <div key={f.k} data-reveal="fade" style={vars({ '--d': `${i * 100}ms` })} className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_15_46/0.06)]">
               <dt className="text-[0.9rem] font-semibold text-primary">{f.k}</dt>
               <dd className="mt-1 text-[1.02rem] leading-relaxed text-ink">{f.v}</dd>
+              {'link' in f && (
+                <dd className="mt-3">
+                  <Link href="/services/shuttle" className="inline-flex items-center gap-1.5 font-semibold text-primary">
+                    {f.link}
+                    <ArrowRight className="size-4" />
+                  </Link>
+                </dd>
+              )}
             </div>
           ))}
         </dl>
