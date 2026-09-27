@@ -44,8 +44,9 @@ const T = copy(
     posts: 'posts',
     history: 'In CUCSU history',
     fullPanel: 'full panel won',
-    years: ' years',
-    wait: 'of waiting',
+    // A suffix word would wrap in the narrow column; English puts "years" in the label.
+    years: '',
+    wait: 'years of waiting',
     again: 'trusted again',
     press: ['What the press', 'says about us'],
     pressLabel: 'Press coverage',
