@@ -18,6 +18,7 @@ export const purgeSubmissionsTask: TaskConfig<{ input: Record<string, never>; ou
       { collection: 'feedback', statuses: ['answered', 'closed'] },
       { collection: 'assistance', statuses: ['approved', 'declined'] },
       { collection: 'issues', statuses: ['resolved', 'closed', 'spam'] },
+      { collection: 'blood-requests', statuses: ['fulfilled', 'closed'] },
     ] as const
     let deleted = 0
     for (const { collection, statuses } of targets) {

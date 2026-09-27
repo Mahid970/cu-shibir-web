@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
+import { BLOOD_GROUPS, donorsFor, eligible, GROUP_OPTIONS, groupOf, nextEligible } from '@/lib/services/blood'
 import { summarise } from '@/lib/services/issueStats'
 import { closureOn, dhakaNow, nextDepartures, upcomingClosures, type Timetable } from '@/lib/services/shuttle'
 
@@ -82,5 +83,29 @@ describe('shuttle departures', () => {
   it('a train leaving this minute still counts', () => {
     const [first] = nextDepartures(tt, 'to-city', new Date('2026-09-27T10:30:00Z'), 1)
     expect(first).toMatchObject({ time: '16:30', dayOffset: 0, minutesUntil: 0 })
+  })
+})
+
+describe('blood donor network', () => {
+  it('matches donors by red-cell compatibility', () => {
+    expect(donorsFor('O-')).toEqual(['O-'])
+    expect(donorsFor('AB+')).toHaveLength(8)
+    expect(donorsFor('A+').sort()).toEqual(['A+', 'A-', 'O+', 'O-'])
+    // O- can give to everyone.
+    expect(BLOOD_GROUPS.every((g) => donorsFor(g).includes('O-'))).toBe(true)
+  })
+
+  it('keeps 120 days between donations', () => {
+    const now = new Date('2026-09-27T00:00:00Z')
+    expect(eligible(null, now)).toBe(true)
+    expect(eligible('2026-06-01T00:00:00Z', now)).toBe(false)
+    expect(eligible('2026-05-30T00:00:00Z', now)).toBe(true)
+    expect(nextEligible('2026-06-01T00:00:00Z').toISOString().slice(0, 10)).toBe('2026-09-29')
+  })
+
+  it('stores groups as enum-safe values and reads them back', () => {
+    expect(GROUP_OPTIONS.map((o) => o.value)).toEqual(['a_pos', 'a_neg', 'b_pos', 'b_neg', 'ab_pos', 'ab_neg', 'o_pos', 'o_neg'])
+    expect(groupOf('ab_neg')).toBe('AB-')
+    expect(groupOf('x')).toBeUndefined()
   })
 })

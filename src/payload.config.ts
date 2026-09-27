@@ -9,6 +9,7 @@ import { fileURLToPath } from 'url'
 
 import { Albums } from './collections/Albums'
 import { Assistance } from './collections/forms/Assistance'
+import { BloodDonors, BloodRequests } from './collections/forms/Blood'
 import { Feedback } from './collections/forms/Feedback'
 import { Issues } from './collections/forms/Issues'
 import { Supporters } from './collections/forms/Supporters'
@@ -37,7 +38,7 @@ export default buildConfig({
     importMap: { baseDir: path.resolve(dirname) },
     meta: { titleSuffix: ' · CU Shibir CMS' },
   },
-  collections: [Posts, People, Martyrs, PressCoverage, Videos, Albums, Media, Supporters, Feedback, Assistance, Issues, Users],
+  collections: [Posts, People, Martyrs, PressCoverage, Videos, Albums, Media, Supporters, Feedback, Assistance, Issues, BloodDonors, BloodRequests, Users],
   globals: [SiteSettings, Shuttle],
   // Content is Bangla-first; English falls back to Bangla until translated.
   localization: {

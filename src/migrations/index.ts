@@ -3,6 +3,7 @@ import * as migration_20260926_170041_martyrs from './20260926_170041_martyrs';
 import * as migration_20260926_235919_press_headline_en from './20260926_235919_press_headline_en';
 import * as migration_20260927_005958_issues_desk from './20260927_005958_issues_desk';
 import * as migration_20260927_011030_shuttle from './20260927_011030_shuttle';
+import * as migration_20260927_012022_blood_network from './20260927_012022_blood_network';
 
 export const migrations = [
   {
@@ -29,5 +30,10 @@ export const migrations = [
     up: migration_20260927_011030_shuttle.up,
     down: migration_20260927_011030_shuttle.down,
     name: '20260927_011030_shuttle',
+  },
+  {
+    up: migration_20260927_012022_blood_network.up,
+    down: migration_20260927_012022_blood_network.down,
+    name: '20260927_012022_blood_network',
   },
 ];

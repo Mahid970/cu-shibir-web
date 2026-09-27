@@ -78,6 +78,8 @@ export interface Config {
     feedback: Feedback;
     assistance: Assistance;
     issues: Issue;
+    'blood-donors': BloodDonor;
+    'blood-requests': BloodRequest;
     users: User;
     'payload-kv': PayloadKv;
     'payload-jobs': PayloadJob;
@@ -98,6 +100,8 @@ export interface Config {
     feedback: FeedbackSelect<false> | FeedbackSelect<true>;
     assistance: AssistanceSelect<false> | AssistanceSelect<true>;
     issues: IssuesSelect<false> | IssuesSelect<true>;
+    'blood-donors': BloodDonorsSelect<false> | BloodDonorsSelect<true>;
+    'blood-requests': BloodRequestsSelect<false> | BloodRequestsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
@@ -794,6 +798,141 @@ export interface Issue {
   createdAt: string;
 }
 /**
+ * অনুরোধ এলে রক্তের গ্রুপ দিয়ে ফিল্টার করুন, "এখন দিতে পারেন" টিক দেওয়া এবং শেষ রক্তদান ১২০ দিনের বেশি আগে এমন দাতাদের ফোন করুন। দাতার নম্বর কখনো অনুরোধকারীকে দেবেন না; দাতা রাজি হলে দাতাকেই অনুরোধকারীর নম্বর দিন।
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blood-donors".
+ */
+export interface BloodDonor {
+  id: number;
+  donorId: string;
+  bloodGroup: 'a_pos' | 'a_neg' | 'b_pos' | 'b_neg' | 'ab_pos' | 'ab_neg' | 'o_pos' | 'o_neg';
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  name: string;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  mobile: string;
+  department?:
+    | (
+        | 'bangla'
+        | 'english'
+        | 'history'
+        | 'philosophy'
+        | 'islamic_history_culture'
+        | 'arabic'
+        | 'islamic_studies'
+        | 'dramatics'
+        | 'persian_language_literature'
+        | 'pali'
+        | 'sanskrit'
+        | 'music'
+        | 'bangladesh_studies'
+        | 'modern_languages'
+        | 'fine_arts'
+        | 'physics'
+        | 'chemistry'
+        | 'mathematics'
+        | 'statistics'
+        | 'applied_chemistry_chemical_engineering'
+        | 'forestry_environmental_sciences'
+        | 'jnicar'
+        | 'accounting'
+        | 'management'
+        | 'finance'
+        | 'marketing'
+        | 'human_resource_management'
+        | 'banking_insurance'
+        | 'cucba'
+        | 'economics'
+        | 'political_science'
+        | 'sociology'
+        | 'public_administration'
+        | 'anthropology'
+        | 'international_relations'
+        | 'communication_journalism'
+        | 'criminology_police_science'
+        | 'development_studies'
+        | 'law'
+        | 'zoology'
+        | 'botany'
+        | 'geography_environmental_studies'
+        | 'biochemistry_molecular_biology'
+        | 'microbiology'
+        | 'soil_science'
+        | 'genetic_engineering_biotechnology'
+        | 'psychology'
+        | 'pharmacy'
+        | 'computer_science_engineering'
+        | 'electrical_electronic_engineering'
+        | 'physical_education_sports_science'
+        | 'education_research'
+        | 'marine_sciences'
+        | 'oceanography'
+        | 'fisheries'
+        | 'paediatrics'
+        | 'community_ophthalmology'
+      )
+    | null;
+  hall?:
+    | (
+        | 'alaol'
+        | 'af_rahman'
+        | 'shahjalal'
+        | 'suhrawardy'
+        | 'shah_amanat'
+        | 'shamsun_nahar'
+        | 'shaheed_abdur_rab'
+        | 'pritilata'
+        | 'deshnetri_khaleda_zia'
+        | 'masterda_surja_sen'
+        | 'shaheed_farhad_hossain'
+        | 'bijoy_24'
+        | 'nawab_faizunnesa'
+        | 'atish_dipangkar'
+        | 'shilpi_rashid_chowdhury_hostel'
+        | 'non_resident'
+      )
+    | null;
+  lastDonation?: string | null;
+  available?: boolean | null;
+  coordinatorNote?: string | null;
+  consentAt?: string | null;
+  secretHash?: string | null;
+  mobileHash?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blood-requests".
+ */
+export interface BloodRequest {
+  id: number;
+  bloodGroup: 'a_pos' | 'a_neg' | 'b_pos' | 'b_neg' | 'ab_pos' | 'ab_neg' | 'o_pos' | 'o_neg';
+  units: number;
+  hospital: string;
+  neededBy: string;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  patientNote?: string | null;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  name: string;
+  /**
+   * 🔒 এনক্রিপ্ট করে সংরক্ষিত
+   */
+  mobile: string;
+  status: 'new' | 'contacting' | 'fulfilled' | 'closed';
+  coordinatorNote?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -1000,6 +1139,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'issues';
         value: number | Issue;
+      } | null)
+    | ({
+        relationTo: 'blood-donors';
+        value: number | BloodDonor;
+      } | null)
+    | ({
+        relationTo: 'blood-requests';
+        value: number | BloodRequest;
       } | null)
     | ({
         relationTo: 'users';
@@ -1328,6 +1475,43 @@ export interface IssuesSelect<T extends boolean = true> {
   resolvedAt?: T;
   statusHistory?: T;
   secretHash?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blood-donors_select".
+ */
+export interface BloodDonorsSelect<T extends boolean = true> {
+  donorId?: T;
+  bloodGroup?: T;
+  name?: T;
+  mobile?: T;
+  department?: T;
+  hall?: T;
+  lastDonation?: T;
+  available?: T;
+  coordinatorNote?: T;
+  consentAt?: T;
+  secretHash?: T;
+  mobileHash?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blood-requests_select".
+ */
+export interface BloodRequestsSelect<T extends boolean = true> {
+  bloodGroup?: T;
+  units?: T;
+  hospital?: T;
+  neededBy?: T;
+  patientNote?: T;
+  name?: T;
+  mobile?: T;
+  status?: T;
+  coordinatorNote?: T;
   updatedAt?: T;
   createdAt?: T;
 }
