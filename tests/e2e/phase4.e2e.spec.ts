@@ -135,3 +135,53 @@ test('the shuttle page says the timetable is coming when none is published', asy
   await page.goto(`${BASE}/services/shuttle`)
   await expect(page.getByRole('heading', { name: 'সময়সূচি শীঘ্রই আসছে' })).toBeVisible()
 })
+
+test.describe('Blood donor network', () => {
+  test('a donor registers, notes a donation and leaves the list', async ({ page }) => {
+    await page.goto(`${BASE}/services/blood/donate`)
+    await page.waitForTimeout(3200)
+    await page.getByText('O-', { exact: true }).click()
+    await page.getByLabel('পূর্ণ নাম').fill('পরীক্ষা দাতা')
+    await page.getByLabel('মোবাইল নম্বর').fill('01700000000')
+    await page.locator('input[name="consent"]').check()
+    await page.getByRole('button', { name: 'দাতা হিসেবে নিবন্ধন করুন' }).click()
+    await expect(page.getByRole('heading', { name: 'আপনি এখন রক্তদাতা তালিকায়' })).toBeVisible()
+    const id = (await page.locator('dd').first().textContent())!.trim()
+    const code = (await page.locator('dd').nth(1).textContent())!.trim()
+    expect(id).toMatch(/^BD-[A-Z0-9]{6}$/)
+
+    await page.goto(`${BASE}/services/blood`)
+    await expect(page.locator('#donors')).toContainText('O-')
+
+    for (const [action, expected] of [
+      ['আজ রক্ত দিয়েছি', 'আবার দিতে পারবেন'],
+      ['তালিকা থেকে নাম সরান', 'মুছে ফেলা হয়েছে'],
+    ]) {
+      await page.goto(`${BASE}/services/blood/donor`)
+      await page.getByLabel('দাতা আইডি').fill(id)
+      await page.getByLabel('গোপন কোড').fill(code)
+      await page.getByText(action, { exact: true }).click()
+      await page.getByRole('button', { name: 'জমা দিন' }).click()
+      await expect(page.getByRole('status')).toContainText(expected)
+    }
+
+    // Gone: the same id and code no longer work.
+    await page.goto(`${BASE}/services/blood/donor`)
+    await page.getByLabel('দাতা আইডি').fill(id)
+    await page.getByLabel('গোপন কোড').fill(code)
+    await page.getByText('কিছুদিন বিরতি', { exact: true }).click()
+    await page.getByRole('button', { name: 'জমা দিন' }).click()
+    await expect(page.locator('main').getByRole('alert')).toContainText('পাওয়া যায়নি')
+  })
+
+  test('a blood request is checked, in English', async ({ page }) => {
+    await page.goto(`${BASE}/en/services/blood/request`)
+    await page.waitForTimeout(3200)
+    await page.getByText('AB+', { exact: true }).click()
+    await page.getByLabel('Hospital').fill('CMC Hospital, ward 12')
+    await page.getByRole('button', { name: 'Send the request' }).click()
+    await expect(page.locator('main').getByRole('alert')).toContainText('Some details need fixing')
+    await expect(page.locator('#e-neededBy')).toContainText('date and time')
+    await expect(page.locator('#e-name')).toBeVisible()
+  })
+})

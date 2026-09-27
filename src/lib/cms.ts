@@ -6,6 +6,7 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 
 import type { Locale } from '@/i18n/config'
+import { BLOOD_GROUPS, eligible, GROUP_VALUES } from '@/lib/services/blood'
 import { summarise } from '@/lib/services/issueStats'
 
 export type { Locale }
@@ -331,4 +332,29 @@ export const getShuttle = cached(
   },
   'shuttle',
   ['shuttle'],
+)
+
+/** Donors on the list per blood group, and how many could give today. Counts only. */
+export const getBloodStats = cached(
+  async () => {
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'blood-donors',
+      pagination: false,
+      depth: 0,
+      overrideAccess: true,
+      where: { available: { equals: true } },
+      select: { bloodGroup: true, lastDonation: true },
+    })
+    const now = new Date()
+    return {
+      total: docs.length,
+      groups: BLOOD_GROUPS.map((group) => {
+        const mine = docs.filter((d) => d.bloodGroup === GROUP_VALUES[group])
+        return { group, donors: mine.length, ready: mine.filter((d) => eligible(d.lastDonation, now)).length }
+      }),
+    }
+  },
+  'blood-stats',
+  ['blood'],
 )

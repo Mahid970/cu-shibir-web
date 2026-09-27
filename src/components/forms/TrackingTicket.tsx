@@ -44,7 +44,20 @@ function CopyButton({ text, labels }: { text: string; labels: { copy: string; co
 }
 
 /** Shown once after a tracked submission: the public id and the secret code, to note down. */
-export function TrackingTicket({ ticket, title, statusHref }: { ticket: { id: string; code: string }; title: string; statusHref: string }) {
+export function TrackingTicket({
+  ticket,
+  title,
+  statusHref,
+  text,
+  linkLabel,
+}: {
+  ticket: { id: string; code: string }
+  title: string
+  statusHref: string
+  /** Replaces the default "use the ID and code to check where it stands". */
+  text?: string
+  linkLabel?: string
+}) {
   const t = T[useLang()]
   const both = `${t.trackingId}: ${ticket.id}\n${t.code}: ${ticket.code}`
   return (
@@ -52,7 +65,7 @@ export function TrackingTicket({ ticket, title, statusHref }: { ticket: { id: st
       <div className="text-center">
         <CheckCircle className="mx-auto size-16 text-success" />
         <h2 className="mt-4 text-[1.7rem] font-bold text-ink">{title}</h2>
-        <p className="mx-auto mt-3 max-w-lg text-[1.05rem] leading-relaxed text-muted">{t.keep}</p>
+        <p className="mx-auto mt-3 max-w-lg text-[1.05rem] leading-relaxed text-muted">{text ?? t.keep}</p>
       </div>
       <dl className="mx-auto mt-8 grid max-w-md gap-3 rounded-2xl border-2 border-dashed border-blue/40 bg-pale p-6 text-center">
         <div>
@@ -67,7 +80,7 @@ export function TrackingTicket({ ticket, title, statusHref }: { ticket: { id: st
       <div className="mt-6 flex flex-wrap justify-center gap-3">
         <CopyButton text={both} labels={t} />
         <Link href={statusHref} className="btn btn-gradient btn-sm">
-          {t.status}
+          {linkLabel ?? t.status}
           <ArrowRight />
         </Link>
       </div>

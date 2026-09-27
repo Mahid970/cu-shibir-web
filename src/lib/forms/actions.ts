@@ -3,12 +3,13 @@
 import { copy, toLocale, type Locale } from '@/i18n/config'
 import { DEPARTMENTS, HALLS, NON_RESIDENT } from '@/lib/campus'
 import { getPayloadClient } from '@/lib/cms'
-import { blindIndex, hashSecret, randomCode, verifySecret } from '@/lib/crypto'
+import { blindIndex, verifySecret } from '@/lib/crypto'
 import { notifyStaff } from '@/lib/notify/telegram'
 import { SITE } from '@/lib/site'
 import type { Supporter } from '@/payload-types'
 
 import { guard } from './guard'
+import { adminLink, withTracking } from './tracking'
 import { LANG_NAME } from './names'
 import {
   ASSISTANCE_STATUSES,
@@ -105,24 +106,6 @@ function session(c: Checker, t: (typeof T)[Locale]) {
   if (!value) c.errors.session = t.sessionChoose
   else if (!SESSION_RE.test(value)) c.errors.session = t.sessionList
   return value
-}
-
-const adminLink = (collection: string, id: number | string) => `${SITE.url}/admin/collections/${collection}/${id}`
-
-/**
- * Save a submission under a fresh public tracking id (PREFIX-XXXXXX) and a 6-character secret code
- * that is stored only as a hash. Retries on the (unlikely) id collision.
- */
-async function withTracking<D extends { id: number | string }>(prefix: string, create: (trackingId: string, secretHash: string) => Promise<D>) {
-  const code = randomCode(6)
-  for (let attempt = 0; ; attempt++) {
-    const trackingId = `${prefix}-${randomCode(6)}`
-    try {
-      return { doc: await create(trackingId, hashSecret(code)), trackingId, code }
-    } catch (err) {
-      if (attempt === 2 || !String(err).includes('unique')) throw err
-    }
-  }
 }
 
 // ---------------------------------------------------------------------------
