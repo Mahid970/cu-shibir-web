@@ -19,6 +19,7 @@ import { Posts } from './collections/Posts'
 import { PressCoverage } from './collections/PressCoverage'
 import { Users } from './collections/Users'
 import { Videos } from './collections/Videos'
+import { Shuttle } from './globals/Shuttle'
 import { SiteSettings } from './globals/SiteSettings'
 import { generateShareImageTask } from './jobs/generateShareImage'
 import { purgeSubmissionsTask } from './jobs/purgeSubmissions'
@@ -37,7 +38,7 @@ export default buildConfig({
     meta: { titleSuffix: ' · CU Shibir CMS' },
   },
   collections: [Posts, People, Martyrs, PressCoverage, Videos, Albums, Media, Supporters, Feedback, Assistance, Issues, Users],
-  globals: [SiteSettings],
+  globals: [SiteSettings, Shuttle],
   // Content is Bangla-first; English falls back to Bangla until translated.
   localization: {
     locales: [

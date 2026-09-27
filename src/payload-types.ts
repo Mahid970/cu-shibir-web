@@ -111,10 +111,12 @@ export interface Config {
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('bn' | 'en') | ('bn' | 'en')[];
   globals: {
     'site-settings': SiteSetting;
+    shuttle: Shuttle;
     'payload-jobs-stats': PayloadJobsStat;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    shuttle: ShuttleSelect<false> | ShuttleSelect<true>;
     'payload-jobs-stats': PayloadJobsStatsSelect<false> | PayloadJobsStatsSelect<true>;
   };
   locale: 'bn' | 'en';
@@ -1471,6 +1473,54 @@ export interface SiteSetting {
   createdAt?: string | null;
 }
 /**
+ * বিশ্ববিদ্যালয়ের পরিবহন দপ্তরের সর্বশেষ নোটিশ থেকে সময় লিখুন। ছুটি বা শাটল বন্ধের দিনগুলো "বন্ধের দিন"-এ যোগ করুন। সাইট নিজেই পরের ট্রেন আর কত মিনিট বাকি তা দেখায়।
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "shuttle".
+ */
+export interface Shuttle {
+  id: number;
+  published?: boolean | null;
+  effectiveFrom?: string | null;
+  /**
+   * যেমন: "পরিবহন দপ্তরের নোটিশ, ১২ সেপ্টেম্বর ২০২৬"। পাতায় দেখানো হয়।
+   */
+  source?: string | null;
+  stations?:
+    | {
+        name: string;
+        minutes?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  trips?:
+    | {
+        direction: 'to-campus' | 'to-city';
+        time: string;
+        days: ('sat' | 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri')[];
+        /**
+         * যেমন: "শুধু ছাত্রীদের বগি আছে"
+         */
+        note?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  closures?:
+    | {
+        from: string;
+        to: string;
+        reason?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * পাতার উপরে দেখানো হয়, যেমন সময়সূচি বদলের খবর।
+   */
+  notice?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-jobs-stats".
  */
@@ -1520,6 +1570,43 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         youtube?: T;
         telegram?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "shuttle_select".
+ */
+export interface ShuttleSelect<T extends boolean = true> {
+  published?: T;
+  effectiveFrom?: T;
+  source?: T;
+  stations?:
+    | T
+    | {
+        name?: T;
+        minutes?: T;
+        id?: T;
+      };
+  trips?:
+    | T
+    | {
+        direction?: T;
+        time?: T;
+        days?: T;
+        note?: T;
+        id?: T;
+      };
+  closures?:
+    | T
+    | {
+        from?: T;
+        to?: T;
+        reason?: T;
+        id?: T;
+      };
+  notice?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
