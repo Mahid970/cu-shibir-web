@@ -7,7 +7,7 @@ The new website of **Bangladesh Islami Chhatrashibir, University of Chittagong b
 - **Design:** the visual language of phitron.io (light grid-paper pages, blue gradient highlights, yellow call to action,
   deep night sections, lively motion), adapted for a student organisation: real campus photos, news and statements first,
   people and history over sales-style stats. Details in `docs/design/phitron-system.md`.
-- **Content:** Bangla first, English second.
+- **Content:** Bangla first, with every page also in English (switch in the header; English lives under `/en`).
 - **Plan:** research, targets and roadmap are in the approved plan (§ numbers in code comments refer to it).
 
 ## Quick start (local development)
@@ -21,6 +21,7 @@ cp .env.example .env          # then fill PAYLOAD_SECRET, SEED_ADMIN_PASSWORD, R
 npm run db                    # terminal 1 — starts Postgres on :54329 (keep running)
 npm run seed:admin            # creates the local super-admin from .env
 npm run import:legacy         # imports public content from the old cushibir.org API
+npm run seed:english          # English versions of the imported content (CMS English locale)
 npm run og:backfill           # renders Bangla share cards for imported posts
 npm run dev                   # terminal 2 — http://localhost:3000 (CMS at /admin)
 ```
@@ -36,9 +37,10 @@ The first `npx playwright install chromium` is needed for share images and e2e t
 | `npm run import:legacy` | Idempotent import of posts, leaders, press links, videos and gallery from the legacy API. Re-run safe. `-- --dry-run` to preview |
 | `npm run og:backfill` | Generates share cards for posts missing one (`-- --all` to regenerate). Fonts: `src/assets/fonts` (Hind Siliguri, OFL) |
 | `npm run search:reindex` | Rebuilds the posts' search index (after an import or a change to the normaliser) |
+| `npm run seed:english` | Writes the English posts, album/video/photo titles, press headlines and committee names from `scripts/data/english-content.json` into the CMS's English locale. Re-run safe; Bangla untouched |
 | `npx tsx scripts/make-icons.ts [logo]` | Regenerates the app icons in `public/icons` (run again with the vector logo) |
-| `npm run test:int` | Vitest: Bangla utilities, encryption, form validation, API smoke test |
-| `npm run test:e2e` | Playwright: home, English page, redirects, SEO shell, search, forms, syllabus, admin |
+| `npm run test:int` | Vitest: Bangla utilities, encryption, form validation, language paths and translation coverage, API smoke test |
+| `npm run test:e2e` | Playwright: home, the language switch and every page's English twin, redirects, SEO shell, search, forms, syllabus, admin |
 | `npm run lint` / `npm run typecheck` | ESLint (next flat config) / `tsc` |
 | `npm run generate:types` | Regenerate `src/payload-types.ts` after changing collections |
 | `npm run payload migrate:create <name>` | New migration after a schema change (production applies them on start) |
@@ -47,7 +49,8 @@ The first `npx playwright install chromium` is needed for share images and e2e t
 
 ```
 src/
-  app/(frontend)/(bn)/   Bangla site, root layout lang="bn" (RSC, ISR 1h + on-demand purge)
+  proxy.ts               /… → /bn/… rewrite, so Bangla keeps short URLs; /en/… served as is
+  app/(frontend)/[lang]/ every page, once, for both languages; root layout sets <html lang> (RSC, ISR 1h + on-demand purge)
     page.tsx             home: ticker, photo hero, milestones, news, campaigns, CUCSU, ৫ দফা, gallery + videos, leaders
     about/ leadership/[slug] news/[slug] gallery/[slug] videos/ press/
     join/ supporter/ feedback/         forms (server actions, encrypted)
@@ -57,8 +60,9 @@ src/
     search/ (+ suggest/) site search
     offline/ privacy/ events/ (placeholder, Phase 3)
     blog_details/ responsible/         legacy id → new URL redirects
-    next/revalidate/ next/health/      cache purge for scripts, health check
-  app/(frontend)/(en)/en English overview, root layout lang="en"
+    not-found.tsx [...missing]/        the site's own 404, in the page's language
+  app/(frontend)/next/   revalidate (cache purge for scripts), health check
+  i18n/                  config (paths, hreflang, copy()), server getLang(), LangProvider/useLang, language-aware Link
   app/(payload)/         Payload admin + REST/GraphQL (generated — don't edit)
   app/sitemap.ts robots.ts manifest.ts
   collections/           Posts, People, Martyrs, PressCoverage, Videos, Albums, Media, Users
@@ -73,14 +77,16 @@ src/
   lib/crypto.ts          field encryption, blind index, tracking codes
   lib/forms/             validation, anti-abuse guard, server actions
   lib/search.ts          posts via a normalised index + small collections in memory
-  lib/campus.ts          CU faculties, departments, halls, sessions
+  lib/campus.ts          CU faculties, departments, halls, sessions (Bangla + official English names)
+  lib/people.ts          leaders' names, positions and details in the page's language
   lib/og/                share-card HTML + Chromium renderer
   components/            home/, campus/ (3D scene, poster, tiers), about/ (rail timeline, particle emblem),
                          content/, forms/, syllabus/, ui/, motion/, art/, layout/ (incl. SearchPalette)
   lib/sky.ts             prayer times and time-of-day sky palettes for the campus scene
-  content/               copy not in the CMS: home.ts, en.ts, history.ts, syllabus.json
+  content/               copy not in the CMS, both languages: home.ts, history.ts, people-en.ts,
+                         syllabus.json + syllabus.en.json (keyed by the Bangla text)
 public/sw.js             service worker: offline reading, cached assets and images
-scripts/                 dev DB, seed, legacy import, share-image backfill, search reindex, icons
+scripts/                 dev DB, seed, legacy import, English content (data/english-content.json), share images, search, icons
 docs/                    design system, deploy guide, spikes
 ```
 
@@ -100,7 +106,15 @@ docs/                    design system, deploy guide, spikes
   - The public cannot create submissions through the REST API; only the site's server actions can.
   - Finished submissions are deleted after a year (`jobs/purgeSubmissions`), as `/privacy` promises.
   - The legacy form's parents' names, district and thana are no longer collected.
-- **Two root layouts.** `(bn)` and `(en)` each render their own `<html lang>`. Switching language reloads the page, which is fine for two languages.
+- **One set of pages, two languages.**
+  - Pages live under `app/(frontend)/[lang]`; `src/proxy.ts` rewrites `/news` to `/bn/news`, so Bangla keeps its short URLs and English is `/en/news`.
+    `/bn/…` is served too (Next re-runs the proxy on the rewritten address in production, so it must not redirect) and canonicalises to the short URL.
+  - The header's বাং | EN switch opens the same page in the other language, keeps the query and #section, and puts the section the reader was on back at the same height.
+  - Server components read the language with `getLang()` (`next/root-params`), client components with `useLang()`. `Link` from `@/i18n/link` keeps links in the current language.
+  - UI text sits next to its component as `copy(bn, en)`; TypeScript makes the English match the Bangla's shape. Digits, dates and prayer times follow the page (`i18n/format.ts`).
+  - CMS content uses Payload's `bn`/`en` locales. An English page shows the English version when there is one; otherwise the Bangla text, marked `lang="bn"`, with a note on articles. Site-settings text without English falls back to our English defaults (`cmsText`).
+  - Forms send the page's language, so validation errors and the tracking result come back in it. Search matches Bangla and English names on either site.
+  - When adding text: write both languages, and run `npm run test:int` — it fails if the syllabus, home copy or campus names miss an English entry.
 - **Payload's client-hint headers stay on `/admin`.** Payload adds `Critical-CH` to every path by default. On public pages that
   doubles first navigations in Chrome, splits the CDN cache and breaks service-worker registration (see `next.config.ts`).
 - **Search needs no extra service.**
@@ -119,6 +133,7 @@ docs/                    design system, deploy guide, spikes
   | Home | 79–86 | 100 | 100 |
   | Other pages | 86–91 | 96–100 | 100 |
 
+  - English home (measured 2026-09-27): performance 87–89, accessibility 100.
   - CLS is 0 everywhere. Blocking time is 40–200 ms.
   - The simulated LCP (3.5–4.6 s) is limited by the Bangla fonts and the React runtime sharing bandwidth. A real throttled Chromium paints the LCP at about 1.9 s.
   - How the numbers were improved:
@@ -143,7 +158,8 @@ docs/                    design system, deploy guide, spikes
   - Real photos of students beat illustrations.
   - One yellow button per screen, for the main action.
   - Red only for statements.
-  - Labels and eyebrows in Bangla.
+  - Labels and eyebrows in the page's language (Bangla first).
+  - English labels are longer: the full desktop menu appears from 1280 px in English (1024 px in Bangla).
 
 ## Environment
 
@@ -160,6 +176,7 @@ Every variable is listed with its purpose in [`.env.example`](.env.example). Pro
 - [ ] Generate `FIELD_ENCRYPTION_KEY` for production and store a copy offline.
 - [ ] Get the **vector logo** and full-resolution leader photos from the branch. Several legacy photos are only 180–256 px wide.
   Then re-run `scripts/make-icons.ts`.
-- [ ] English names for the committee (CMS → People → English). Positions already have English fallbacks.
+- [ ] Branch to check the English names of the committee (CMS → People → English tab; seeded from `src/content/people-en.ts`) and the English translations of the imported posts (`scripts/data/english-content.json`).
+- [ ] New posts: write the English version in the CMS's English tab (until then the English site shows the Bangla article with a note).
 - [ ] Branch to verify the history stops (`src/content/history.ts`) and send the verified শহীদ list (CMS → শহীদ স্মরণ).
 - [ ] Keep the legacy report builder running at `report.cushibir.org` until it is replaced.
