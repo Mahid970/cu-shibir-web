@@ -193,3 +193,66 @@ test.describe('Blood donor network', () => {
     await expect(page.locator('#e-name')).toBeVisible()
   })
 })
+
+test.describe('Question bank', () => {
+  /** A real one-page PDF (Payload checks the structure, not just the first bytes). */
+  function tinyPdf() {
+    const objs = ['<< /Type /Catalog /Pages 2 0 R >>', '<< /Type /Pages /Kids [3 0 R] /Count 1 >>', '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 200 200] >>']
+    let body = '%PDF-1.4\n'
+    const offsets: number[] = []
+    objs.forEach((o, i) => {
+      offsets.push(body.length)
+      body += `${i + 1} 0 obj\n${o}\nendobj\n`
+    })
+    const xref = body.length
+    body += `xref\n0 ${objs.length + 1}\n0000000000 65535 f \n${offsets.map((o) => `${String(o).padStart(10, '0')} 00000 n \n`).join('')}`
+    body += `trailer\n<< /Size ${objs.length + 1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF\n`
+    return Buffer.from(body)
+  }
+  const pdf = tinyPdf()
+
+  test('an uploaded paper stays hidden until approved, then opens', async ({ page, request }) => {
+    const code = `TST ${Math.floor(100 + Math.random() * 800)}`
+    await page.goto(`${BASE}/services/questions/upload`)
+    await page.waitForTimeout(3200)
+    await page.getByLabel('বিভাগ').selectOption('computer_science_engineering')
+    await page.getByLabel('কোর্স কোড').fill(code.toLowerCase().replace(' ', '-'))
+    await page.getByLabel('পরীক্ষার সাল').fill('2024')
+    await page.locator('input[name="file"]').setInputFiles({ name: 'my-name-roll-42.pdf', mimeType: 'application/pdf', buffer: pdf })
+    await page.locator('input[name="own"]').check()
+    await page.getByRole('button', { name: 'প্রশ্নপত্র পাঠান' }).click()
+    await expect(page.getByRole('heading', { name: /প্রশ্নপত্রটি পৌঁছেছে/ })).toBeVisible()
+
+    const payload = await getPayload({ config })
+    const { docs } = await payload.find({ collection: 'question-papers', where: { courseCode: { equals: code } }, overrideAccess: true })
+    expect(docs).toHaveLength(1)
+    const paper = docs[0]
+    expect(paper.filename).not.toContain('my-name')
+    expect((await request.get(new URL(paper.url!, BASE).toString())).status()).not.toBe(200)
+    await page.goto(`${BASE}/services/questions?q=${encodeURIComponent(code)}`)
+    await expect(page.locator('main')).not.toContainText(code)
+
+    await payload.update({ collection: 'question-papers', id: paper.id, data: { status: 'approved' }, context: { disableRevalidate: true } })
+    await purge(['questions'])
+    await page.goto(`${BASE}/services/questions?q=${encodeURIComponent(code)}`)
+    await expect(page.locator('main')).toContainText(code)
+    expect((await request.get(new URL(paper.url!, BASE).toString())).status()).toBe(200)
+
+    await payload.delete({ collection: 'question-papers', id: paper.id, context: { disableRevalidate: true } })
+    await purge(['questions'])
+  })
+
+  test('a file that is not really a PDF or photo, or a broken PDF, is refused, in English', async ({ page }) => {
+    for (const buffer of [Buffer.from('<script>alert(1)</script>'), Buffer.from('%PDF-1.4 not really a pdf')]) {
+      await page.goto(`${BASE}/en/services/questions/upload`)
+      await page.waitForTimeout(3200)
+      await page.getByLabel('Department').selectOption('physics')
+      await page.getByLabel('Course code').fill('PHY 101')
+      await page.getByLabel('Exam year').fill('2023')
+      await page.locator('input[name="file"]').setInputFiles({ name: 'paper.pdf', mimeType: 'application/pdf', buffer })
+      await page.locator('input[name="own"]').check()
+      await page.getByRole('button', { name: 'Send the paper' }).click()
+      await expect(page.locator('#e-file')).toContainText('PDF or a photo')
+    }
+  })
+})

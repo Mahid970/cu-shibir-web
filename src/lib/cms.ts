@@ -358,3 +358,30 @@ export const getBloodStats = cached(
   'blood-stats',
   ['blood'],
 )
+
+/** Approved question papers, newest exams first, filtered by department and course code/title. */
+export const getPapers = (opts: { department?: string; q?: string }) => {
+  const { department, q } = opts
+  return cached(
+    async () => {
+      const payload = await getPayloadClient()
+      const { docs, totalDocs } = await payload.find({
+        collection: 'question-papers',
+        limit: 200,
+        depth: 0,
+        sort: ['courseCode', '-examYear'],
+        where: {
+          and: [
+            { status: { equals: 'approved' } },
+            ...(department ? [{ department: { equals: department } }] : []),
+            ...(q ? [{ or: [{ courseCode: { like: q } }, { courseTitle: { like: q } }] }] : []),
+          ],
+        },
+        select: { department: true, courseCode: true, courseTitle: true, examYear: true, exam: true, level: true, url: true, mimeType: true, filesize: true },
+      })
+      return { docs, totalDocs }
+    },
+    `papers:${department ?? ''}:${q ?? ''}`,
+    ['questions'],
+  )()
+}
