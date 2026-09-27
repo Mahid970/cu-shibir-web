@@ -62,6 +62,13 @@ const PAGES: { title: Record<Locale, string>; href: string; words: string }[] = 
     words: 'শাটল ট্রেন সময়সূচি সময় বটতলী ষোলশহর স্টেশন পরের ট্রেন shuttle train timetable schedule time station next train',
   },
   {
+    title: { bn: 'রক্তদাতা নেটওয়ার্ক', en: 'Blood donor network' },
+    href: '/services/blood',
+    words: 'রক্ত রক্তদান রক্তদাতা ডোনার ব্লাড গ্রুপ পজিটিভ নেগেটিভ blood donor donation donate group positive negative',
+  },
+  { title: { bn: 'রক্ত দরকার', en: 'Request blood' }, href: '/services/blood/request', words: 'রক্ত দরকার জরুরি অনুরোধ হাসপাতাল need blood urgent request hospital' },
+  { title: { bn: 'রক্তদাতা হোন', en: 'Become a blood donor' }, href: '/services/blood/donate', words: 'রক্তদাতা হোন নিবন্ধন ডোনার become donor register' },
+  {
     title: { bn: 'ছাত্র সমস্যা ডেস্ক', en: 'Student issues desk' },
     href: '/services/issues',
     words: 'ছাত্র সমস্যা ডেস্ক অভিযোগ হল শাটল খাবার নিরাপত্তা হয়রানি সেশনজট student issues desk problem complaint report hall shuttle food safety harassment',

@@ -207,6 +207,7 @@ export const SERVICES = [
     text: { bn: 'জরুরি প্রয়োজনে রক্তদাতা খোঁজা, নম্বর প্রকাশ না করেই।', en: 'Find a blood donor in an emergency without publishing anyone’s number.' },
     theme: 'pink',
     icon: 'drop',
+    href: '/services/blood',
   },
   {
     title: { bn: 'শিক্ষাবৃত্তি ও চিকিৎসা সহায়তা', en: 'Scholarships and medical aid' },
