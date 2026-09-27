@@ -120,7 +120,7 @@ test.describe('Shuttle timetable', () => {
 
   test('the service pages fit a 375 px phone in both languages', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 800 })
-    for (const path of ['/services/shuttle', '/services/issues', '/services/issues/report', '/services/issues/status', '/services/blood', '/services/blood/donate', '/services/blood/request', '/services/blood/donor']) {
+    for (const path of ['/services/shuttle', '/services/issues', '/services/issues/report', '/services/issues/status', '/services/blood', '/services/blood/donate', '/services/blood/request', '/services/blood/donor', '/services/questions', '/services/questions/upload']) {
       for (const prefix of ['', '/en']) {
         await page.goto(`${BASE}${prefix}${path}`)
         const width = await page.evaluate(() => document.documentElement.scrollWidth)

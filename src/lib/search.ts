@@ -62,6 +62,12 @@ const PAGES: { title: Record<Locale, string>; href: string; words: string }[] = 
     words: 'শাটল ট্রেন সময়সূচি সময় বটতলী ষোলশহর স্টেশন পরের ট্রেন shuttle train timetable schedule time station next train',
   },
   {
+    title: { bn: 'প্রশ্ন ব্যাংক', en: 'Question bank' },
+    href: '/services/questions',
+    words: 'প্রশ্ন ব্যাংক প্রশ্নপত্র আগের বছরের প্রশ্ন পরীক্ষা কোর্স question bank past papers exam questions course',
+  },
+  { title: { bn: 'প্রশ্নপত্র পাঠান', en: 'Send a question paper' }, href: '/services/questions/upload', words: 'প্রশ্নপত্র পাঠান আপলোড upload send question paper' },
+  {
     title: { bn: 'রক্তদাতা নেটওয়ার্ক', en: 'Blood donor network' },
     href: '/services/blood',
     words: 'রক্ত রক্তদান রক্তদাতা ডোনার ব্লাড গ্রুপ পজিটিভ নেগেটিভ blood donor donation donate group positive negative',

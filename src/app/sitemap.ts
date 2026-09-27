@@ -19,6 +19,8 @@ const PAGES: { path: string; priority: number; freq: 'daily' | 'weekly' | 'month
   { path: '/services/shuttle', priority: 0.8, freq: 'weekly' },
   { path: '/services/issues', priority: 0.7, freq: 'weekly' },
   { path: '/services/blood', priority: 0.7, freq: 'weekly' },
+  { path: '/services/questions', priority: 0.7, freq: 'weekly' },
+  { path: '/services/questions/upload', priority: 0.5, freq: 'yearly' },
   { path: '/services/blood/donate', priority: 0.6, freq: 'yearly' },
   { path: '/services/blood/request', priority: 0.6, freq: 'yearly' },
   { path: '/services/issues/report', priority: 0.6, freq: 'yearly' },

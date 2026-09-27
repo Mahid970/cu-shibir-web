@@ -201,6 +201,7 @@ export const SERVICES = [
     text: { bn: 'বিভাগ ও কোর্স অনুযায়ী আগের বছরের প্রশ্ন।', en: 'Past exam questions by department and course.' },
     theme: 'purple',
     icon: 'book',
+    href: '/services/questions',
   },
   {
     title: { bn: 'রক্তদাতা নেটওয়ার্ক', en: 'Blood donor network' },

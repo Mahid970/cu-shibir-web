@@ -19,6 +19,8 @@ const PAGES = [
   '/services/shuttle',
   '/services/issues',
   '/services/blood',
+  '/services/questions',
+  '/services/questions/upload',
   '/services/blood/donate',
   '/services/blood/request',
   '/services/issues/report',

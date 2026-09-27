@@ -22,7 +22,7 @@ const T = copy(
       {
         h: 'কোন তথ্য নিই',
         p: [
-          'শুধু আপনি ফরমে যা লেখেন। সমর্থক ফরমে নাম, মোবাইল, বিভাগ, শিক্ষাবর্ষ ও হল; ইমেইল ও ফেসবুক লিংক ঐচ্ছিক। সহায়তার আবেদনে এর সঙ্গে প্রয়োজনের বিবরণ ও রেফারেন্স।',
+          'শুধু আপনি ফরমে যা লেখেন। প্রশ্ন ব্যাংকে প্রশ্নপত্র পাঠাতে কোনো ব্যক্তিগত তথ্য লাগে না। সমর্থক ফরমে নাম, মোবাইল, বিভাগ, শিক্ষাবর্ষ ও হল; ইমেইল ও ফেসবুক লিংক ঐচ্ছিক। সহায়তার আবেদনে এর সঙ্গে প্রয়োজনের বিবরণ ও রেফারেন্স।',
           'বাবা-মায়ের নাম, জেলা, থানা বা জাতীয় পরিচয়পত্র নম্বর আমরা চাই না।',
           'এহতেসাব ও পরামর্শ নাম ছাড়াও পাঠানো যায়। তখন প্রেরকের কোনো তথ্য রাখা হয় না।',
           'ছাত্র সমস্যা ডেস্কে সমস্যার বিষয়, বিবরণ ও জায়গা নেওয়া হয়; নাম ও যোগাযোগ ঐচ্ছিক, আর নাম ছাড়া জানালে সেগুলো রাখা হয় না।',
@@ -67,7 +67,7 @@ const T = copy(
       {
         h: 'What we collect',
         p: [
-          'Only what you type into a form. The supporter form asks for your name, mobile number, department, session and hall; an email address and a Facebook link are optional. An aid application also asks you to describe your need and to give references.',
+          'Only what you type into a form. Sending a paper to the question bank needs no personal details at all. The supporter form asks for your name, mobile number, department, session and hall; an email address and a Facebook link are optional. An aid application also asks you to describe your need and to give references.',
           'We do not ask for your parents’ names, your district or thana, or your national ID number.',
           'Ehtesab and advice can be sent without a name. Then nothing about the sender is kept.',
           'The student issues desk asks what the problem is about, the details and the place; your name and contact are optional, and nothing about you is kept if you report anonymously.',
