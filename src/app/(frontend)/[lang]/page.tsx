@@ -4,6 +4,7 @@ import { FivePoints } from '@/components/home/FivePoints'
 import { Gallery } from '@/components/home/Gallery'
 import { Hero } from '@/components/home/Hero'
 import { JoinBanner } from '@/components/home/JoinBanner'
+import { JourneySection } from '@/components/martyrs/JourneySection'
 import { LeadersSection } from '@/components/home/LeadersSection'
 import { Milestones } from '@/components/home/Milestones'
 import { NewsSection } from '@/components/home/NewsSection'
@@ -80,6 +81,7 @@ export default async function HomePage({ params }: Props) {
       <ProblemSolution />
       <TrustSection press={press} />
       <FivePoints />
+      <JourneySection />
       <Gallery albums={albums} videos={videos} youtube={settings.socials?.youtube} />
       <LeadersSection leaders={leaders} />
       <JoinBanner email={settings.contact?.email || SITE.email} />

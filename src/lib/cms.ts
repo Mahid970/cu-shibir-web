@@ -306,6 +306,24 @@ export const getMartyrs = cached(
   ['martyrs'],
 )
 
+/** One martyr with photos (gallery depth 1), for /martyrs/[slug]. */
+export const getMartyrBySlug = (slug: string, locale: Locale = 'bn') =>
+  cached(
+    async () => {
+      const payload = await getPayloadClient()
+      const { docs } = await payload.find({
+        collection: 'martyrs',
+        locale,
+        limit: 1,
+        where: { and: [{ slug: { equals: slug } }, { _status: { equals: 'published' } }] },
+        depth: 2,
+      })
+      return docs[0] ?? null
+    },
+    `martyr:${slug}:${locale}`,
+    ['martyrs'],
+  )()
+
 /** Public issues-desk figures, recomputed when an issue changes (tag `issues`) or hourly. */
 export const getIssueStats = cached(
   async () => {

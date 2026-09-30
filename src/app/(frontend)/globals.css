@@ -660,6 +660,193 @@
 }
 
 /* ------------------------------------------------------------------
+   শহীদি কাফেলা: the martyrs' journey (components/martyrs/ShaheedJourney).
+   The pinned road shows only on large screens with motion on; otherwise
+   the vertical road does, fully lit.
+   ------------------------------------------------------------------ */
+.journey-h {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .motion .journey-h {
+    display: block;
+  }
+  .motion .journey-v {
+    display: none;
+  }
+}
+.journey-sky {
+  background:
+    radial-gradient(80% 60% at 70% 0%, rgb(28 155 214 / 0.18), transparent 60%),
+    linear-gradient(180deg, #021620 0%, #04202e 55%, #072c3d 100%);
+}
+/* Dawn rises as the journey goes on (--p is 0 → 1) */
+.journey-dawn {
+  opacity: calc(var(--p, 0) * 0.95);
+  background:
+    radial-gradient(70% 55% at 80% 105%, rgb(255 178 100 / 0.55), transparent 70%),
+    linear-gradient(180deg, transparent 35%, rgb(17 80 106 / 0.8) 100%);
+}
+.journey-stars {
+  opacity: calc(1 - var(--p, 0) * 0.7);
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 18%, #fff, transparent),
+    radial-gradient(1px 1px at 27% 42%, rgb(255 255 255 / 0.8), transparent),
+    radial-gradient(1.5px 1.5px at 44% 12%, rgb(255 255 255 / 0.9), transparent),
+    radial-gradient(1px 1px at 61% 33%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 78% 22%, rgb(255 255 255 / 0.85), transparent),
+    radial-gradient(1px 1px at 90% 48%, rgb(255 255 255 / 0.7), transparent),
+    radial-gradient(1px 1px at 8% 55%, rgb(255 255 255 / 0.6), transparent),
+    radial-gradient(1px 1px at 52% 58%, rgb(255 255 255 / 0.5), transparent);
+  background-size: 640px 420px;
+}
+.journey-hills {
+  transform: translateX(calc(var(--p, 0) * -8%));
+}
+.journey-arch {
+  border-radius: 999px 999px 1rem 1rem;
+}
+.journey-card {
+  background: rgb(255 255 255 / 0.05);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1);
+  transition:
+    transform 0.6s var(--ease-out),
+    box-shadow 0.6s var(--ease-out),
+    background-color 0.6s var(--ease-out),
+    opacity 0.6s var(--ease-out),
+    filter 0.6s var(--ease-out);
+}
+.journey-card:hover,
+.journey-card:focus-visible {
+  background: rgb(255 255 255 / 0.09);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 197 97 / 0.6),
+    0 20px 50px rgb(255 170 80 / 0.2);
+}
+.journey-card:focus-visible {
+  outline: 3px solid var(--glow);
+  outline-offset: 3px;
+}
+.journey-arch img {
+  transition: filter 1s var(--ease-out);
+}
+.journey-read svg {
+  transition: transform 0.3s var(--ease);
+}
+.journey-card:hover .journey-read svg {
+  transform: translateX(4px);
+}
+.journey-node {
+  background: var(--glow);
+  color: var(--ink);
+  box-shadow: 0 0 0 6px rgb(255 197 97 / 0.15), 0 0 24px rgb(255 197 97 / 0.6);
+  transition: all 0.6s var(--ease-out);
+}
+.journey-post {
+  background: var(--glow);
+  transition: background-color 0.6s var(--ease-out);
+}
+.journey-milestone {
+  color: var(--glow);
+  transition: color 0.6s var(--ease-out);
+}
+/* Before the lamp reaches a station its lantern is dark and its portrait grey */
+.motion .journey-station:not([data-lit]) .journey-card,
+.motion .journey-vstation:not([data-lit]) .journey-card {
+  opacity: 0.5;
+}
+.motion .journey-station:not([data-lit]) .journey-arch img,
+.motion .journey-vstation:not([data-lit]) .journey-arch img {
+  filter: grayscale(1) brightness(0.8);
+}
+.motion .journey-station:not([data-lit]) .journey-node,
+.motion .journey-vstation:not([data-lit]) .journey-node {
+  background: rgb(255 255 255 / 0.1);
+  color: rgb(255 255 255 / 0.5);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.25);
+}
+.motion .journey-station:not([data-lit]) .journey-post {
+  background: rgb(255 255 255 / 0.2);
+}
+.motion .journey-station:not([data-lit]) .journey-milestone {
+  color: rgb(255 255 255 / 0.4);
+}
+.journey-station[data-current] .journey-card {
+  transform: translateY(-8px) scale(1.04);
+  background: rgb(255 255 255 / 0.08);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 197 97 / 0.55),
+    0 24px 60px rgb(255 170 80 / 0.22);
+}
+.journey-station[data-current] .journey-node {
+  animation: node-pulse 1.8s ease-out infinite;
+}
+@keyframes node-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(255 197 97 / 0.55), 0 0 24px rgb(255 197 97 / 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 16px rgb(255 197 97 / 0), 0 0 24px rgb(255 197 97 / 0.6);
+  }
+}
+.journey-lamp {
+  width: 28px;
+  height: 28px;
+  margin-left: 0;
+  border-radius: 999px;
+  background: radial-gradient(circle, #fff6df 0%, #ffd27f 35%, #ff9f5e 60%, transparent 72%);
+  box-shadow: 0 0 40px 14px rgb(255 190 100 / 0.45);
+  animation: lamp-flicker 2.6s ease-in-out infinite;
+}
+@keyframes lamp-flicker {
+  0%,
+  100% {
+    box-shadow: 0 0 40px 14px rgb(255 190 100 / 0.45);
+  }
+  50% {
+    box-shadow: 0 0 52px 20px rgb(255 190 100 / 0.6);
+  }
+}
+.journey-trail {
+  filter: drop-shadow(0 0 6px rgb(255 197 97 / 0.8));
+}
+.journey-year {
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 90;
+  animation: year-roll 0.55s var(--ease-out) both;
+}
+@keyframes year-roll {
+  from {
+    opacity: 0;
+    transform: translateY(35%);
+    filter: blur(4px);
+  }
+}
+/* Vertical road: a faint rail with a lit part that follows the reader */
+.journey-rail::before,
+.journey-rail::after {
+  content: '';
+  position: absolute;
+  left: 17px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  border-radius: 2px;
+}
+.journey-rail::before {
+  background: rgb(255 255 255 / 0.12);
+}
+.journey-rail::after {
+  background: linear-gradient(180deg, #ffd27f, #ff9f5e);
+  box-shadow: 0 0 10px rgb(255 197 97 / 0.7);
+  transform-origin: top;
+  transform: scaleY(1);
+}
+.motion .journey-rail::after {
+  transform: scaleY(var(--rail, 0));
+}
+
+/* ------------------------------------------------------------------
    Scroll reveals. `html.motion` is set before first paint only when
    the visitor has not asked for reduced motion; without it everything
    is simply visible. components/motion/RevealObserver flips data-state.
