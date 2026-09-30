@@ -1,0 +1,1612 @@
+{
+  "note": "The CU branch's martyrs, loaded by `npm run seed:shaheeds`. Images live next to this file in shaheeds/<slug>/. Facts follow the organisation's own records (the central martyr list and the Shuhada Foundation); where those differ, the version the press also reports is used.",
+  "shaheeds": [
+    {
+      "slug": "ainul-haque",
+      "order": 1,
+      "number": 20,
+      "rank": "sathi",
+      "date": "1988-01-15",
+      "name": {
+        "bn": "শহীদ আইনুল হক",
+        "en": "Shaheed Ainul Haque"
+      },
+      "affiliation": {
+        "bn": "ভূগোল, এমএসসি শেষ পর্ব, জগন্নাথ কলেজ",
+        "en": "Geography, final-year MSc, Jagannath College"
+      },
+      "role": {
+        "bn": "সাথী, ঢাকা মহানগরী পশ্চিম",
+        "en": "Associate, Dhaka Metropolitan West"
+      },
+      "hall": {
+        "bn": "",
+        "en": ""
+      },
+      "home": {
+        "bn": "মহারাজপুর, মুকসুদপুর, গোপালগঞ্জ",
+        "en": "Maharajpur, Muksudpur, Gopalganj"
+      },
+      "born": {
+        "bn": "",
+        "en": ""
+      },
+      "family": {
+        "bn": "পিতা মো. হারেস শেখ; তিন ভাই ও এক বোনের মধ্যে সবার বড়",
+        "en": "Son of Md. Hares Sheikh; the eldest of three brothers and a sister"
+      },
+      "place": {
+        "bn": "আলাওল হল, চট্টগ্রাম বিশ্ববিদ্যালয়",
+        "en": "Alaol Hall, University of Chittagong"
+      },
+      "attackers": {
+        "bn": "এরশাদ আমলের জাতীয় ছাত্রসমাজের সশস্ত্র বাহিনী",
+        "en": "The armed wing of Jatiya Chhatra Samaj, in the Ershad years"
+      },
+      "wounds": {
+        "bn": "রাইফেলের বাঁট, রড ও লাঠির আঘাত; লাশ গুম",
+        "en": "Beaten with rifle butts, rods and sticks; his body was never returned"
+      },
+      "summary": {
+        "bn": "বন্ধুর সাথে দেখা করতে প্রথমবার চট্টগ্রাম বিশ্ববিদ্যালয়ে এসেছিলেন। দখলদার সন্ত্রাসীরা তাঁকে আলাওল হলে নিয়ে পিটিয়ে গুম করে। আজও তাঁর লাশ ফেরত পায়নি পরিবার।",
+        "en": "He came to the University of Chittagong for the first time, to see a friend. The armed men who held the campus took him into Alaol Hall, beat him and made him disappear. His family never got his body back."
+      },
+      "quote": {
+        "bn": "",
+        "en": ""
+      },
+      "quoteBy": {
+        "bn": "",
+        "en": ""
+      },
+      "story": {
+        "bn": [
+          {
+            "heading": "পরিচয়",
+            "text": "শহীদি কাফেলার ২০তম শহীদ মো. আইনুল হক। গোপালগঞ্জের মুকসুদপুরের মহারাজপুর গ্রামের মো. হারেস শেখের বড় ছেলে। জগন্নাথ কলেজে ভূগোলে এমএসসি শেষ পর্বে পড়তেন; ঢাকা মহানগরী পশ্চিমের সাথী ছিলেন। দক্ষ, সাহসী আর মেধাবী তরুণ হিসেবে চিনতেন সবাই।"
+          },
+          {
+            "heading": "দখল হয়ে যাওয়া ক্যাম্পাস",
+            "text": "স্বৈরাচারবিরোধী আন্দোলনের সময় ষাট দিন বন্ধ থাকার পর ১৯৮৮ সালের জানুয়ারিতে চট্টগ্রাম বিশ্ববিদ্যালয় খোলার কথা ছিল। কিন্তু ৬ জানুয়ারি মাগরিবের সময় জাতীয় ছাত্রসমাজের সশস্ত্র বাহিনী বাস, মাইক্রোবাস আর জিপে করে গুলি ছুড়তে ছুড়তে ক্যাম্পাসে ঢুকে দখল নেয়। সাধারণ শিক্ষার্থীরা ঢুকতে পারছিলেন না, অথচ বাইরে প্রচার চলছিল যে পরিস্থিতি স্বাভাবিক।"
+          },
+          {
+            "heading": "১৫ জানুয়ারি ১৯৮৮",
+            "text": "আইনুল হক ও তাঁর বন্ধু হাবিবুর রহমান ঢাকা থেকে চট্টগ্রাম বেড়াতে এসেছিলেন। সোহরাওয়ার্দী হলে থাকা এক বন্ধুর সাথে দেখা করতে সেদিন সকালে প্রথমবার ক্যাম্পাসে যান তাঁরা।\n\nরিকশা থামিয়ে টহলরত সন্ত্রাসীরা তাঁদের টাকাপয়সা কেড়ে নেয়, তারপর দুজনকেই আলাওল হলে নিয়ে যায়। ছয়-সাতজন মিলে রাইফেলের বাঁট আর রড দিয়ে আইনুল হককে পেটাতে থাকে। রক্তাক্ত আইনুল জ্ঞান হারিয়ে মেঝেতে পড়ে গেলে তাঁকে তুলে নিয়ে যায় অজানা কোথাও। সেই শেষ।\n\nবন্ধু হাবিবকে হাতে-পায়ে লোহার বেড়ি পরিয়ে তেত্রিশ দিন আটকে রাখা হয়, আগে আলাওল হলের একটি কক্ষে, পরে পটিয়ায়। চোখ বাঁধা অবস্থায় শহরে ছেড়ে দেওয়া হয় তাঁকে। ফিরে এসে তিনি ম্যাজিস্ট্রেটের কাছে জবানবন্দি দেন।"
+          },
+          {
+            "heading": "যে অপেক্ষা শেষ হয়নি",
+            "text": "আইনুল হক আর ফেরেননি; তাঁর লাশও কেউ পায়নি। ছেলের শোকে মা মারা যান। বাবা হারেস শেখ বছরের পর বছর চট্টগ্রাম বিশ্ববিদ্যালয়ের পাহাড়ে পাহাড়ে ছেলেকে খুঁজে বেড়িয়েছেন। হত্যাকারীদের কারও বিচার হয়নি।"
+          }
+        ],
+        "en": [
+          {
+            "heading": "Who he was",
+            "text": "Md. Ainul Haque is the twentieth martyr of the caravan. The eldest son of Md. Hares Sheikh of Maharajpur, Muksudpur, Gopalganj, he was in the final year of an MSc in Geography at Jagannath College and an associate of the Dhaka Metropolitan West branch. People knew him as capable, brave and bright."
+          },
+          {
+            "heading": "A campus under occupation",
+            "text": "After sixty days' closure during the movement against military rule, the University of Chittagong was due to reopen in January 1988. On 6 January, at Maghrib, the armed wing of Jatiya Chhatra Samaj drove onto the campus in buses, a microbus and a jeep, firing as they came, and took it over. Ordinary students could not get in, while statements outside insisted all was normal."
+          },
+          {
+            "heading": "15 January 1988",
+            "text": "Ainul Haque and his friend Habibur Rahman had come from Dhaka to see Chattogram. That morning they went to the campus for the first time, to meet a friend living in Suhrawardy Hall.\n\nArmed men on patrol stopped their rickshaw, took their money and belongings, and marched them into Alaol Hall. Six or seven of them beat Ainul Haque with rifle butts and iron rods until he fell unconscious and bleeding to the floor. Then they carried him away. He was never seen again.\n\nHabib was held for thirty-three days with irons on his hands and feet, first in a room in Alaol Hall, then in Patiya, and finally released blindfolded in the city. He gave a statement to a magistrate."
+          },
+          {
+            "heading": "A wait that never ended",
+            "text": "Ainul Haque never came home, and his body was never found. His mother died of grief. For years his father searched the hills of the campus for his son. No one has been brought to justice."
+          }
+        ]
+      },
+      "photo": {
+        "file": "portrait.jpg",
+        "alt": {
+          "bn": "শহীদ আইনুল হক",
+          "en": "Shaheed Ainul Haque"
+        },
+        "credit": "বাংলাদেশ ইসলামী ছাত্রশিবির"
+      },
+      "gallery": [
+        {
+          "file": "alaol-hall.jpg",
+          "kind": "place",
+          "caption": {
+            "bn": "আলাওল হল, যেখানে তাঁকে আটকে পেটানো হয় (বর্তমান ছবি)",
+            "en": "Alaol Hall, where he was held and beaten (a recent photo)"
+          },
+          "credit": "Mondall Mohammad Arif, CC0, Wikimedia Commons"
+        }
+      ],
+      "sources": [
+        {
+          "label": "বাংলাদেশ ইসলামী ছাত্রশিবির: শহীদ তালিকা",
+          "url": "https://shibir.org.bd/shaheeds/76b44b80-cba2-4046-9987-ecc08dd03527"
+        },
+        {
+          "label": "প্রথম আলো, ২০১৪: ২৫ বছরে ১৭ হত্যা, রায় মাত্র একটির",
+          "url": "https://www.prothomalo.com/lifestyle/%E0%A7%A8%E0%A7%AB-%E0%A6%AC%E0%A6%9B%E0%A6%B0%E0%A7%87-%E0%A7%A7%E0%A7%AD-%E0%A6%B9%E0%A6%A4%E0%A7%8D%E0%A6%AF%E0%A6%BE-%E0%A6%B0%E0%A6%BE%E0%A7%9F-%E0%A6%AE%E0%A6%BE%E0%A6%A4%E0%A7%8D%E0%A6%B0-%E0%A6%8F%E0%A6%95%E0%A6%9F%E0%A6%BF%E0%A6%B0"
+        }
+      ]
+    },
+    {
+      "slug": "aminul-islam",
+      "order": 2,
+      "number": 22,
+      "rank": "kormi",
+      "date": "1988-04-28",
+      "name": {
+        "bn": "শহীদ আমিনুল ইসলাম",
+        "en": "Shaheed Aminul Islam"
+      },
+      "affiliation": {
+        "bn": "পরিসংখ্যান, দ্বিতীয় বর্ষ",
+        "en": "Statistics, second year"
+      },
+      "role": {
+        "bn": "কর্মী, শাহ আমানত হল শাখা",
+        "en": "Worker, Shah Amanat Hall branch"
+      },
+      "hall": {
+        "bn": "শাহ আমানত হল",
+        "en": "Shah Amanat Hall"
+      },
+      "home": {
+        "bn": "কমলপুর, সদর দক্ষিণ, কুমিল্লা",
+        "en": "Kamalpur, Sadar Dakshin, Cumilla"
+      },
+      "born": {
+        "bn": "",
+        "en": ""
+      },
+      "family": {
+        "bn": "পিতা মোহাম্মদ আবদুল হামিদ; তিন ভাই, তিন বোনের মধ্যে দ্বিতীয়, বড় ছেলে",
+        "en": "Son of Mohammad Abdul Hamid; the second of six children and the eldest son"
+      },
+      "place": {
+        "bn": "শাটল ট্রেন ও চট্টগ্রাম রেলস্টেশন",
+        "en": "The shuttle train and Chattogram railway station"
+      },
+      "attackers": {
+        "bn": "ছাত্রলীগ ও ছাত্র ইউনিয়নের সন্ত্রাসীরা",
+        "en": "Armed men of Chhatra League and Chhatra Union"
+      },
+      "wounds": {
+        "bn": "ধারালো অস্ত্রের আঘাত",
+        "en": "Stabbed with blades"
+      },
+      "summary": {
+        "bn": "পরিসংখ্যান বিভাগের মেধাবী ছাত্র; তাঁর শাহাদাতের পর ফল বেরোলে দেখা যায় বিভাগে প্রথম হয়েছেন। বাড়ি ফেরার শাটল ট্রেনে তাঁকে কুপিয়ে ক্ষতবিক্ষত করা হয়।",
+        "en": "A gifted Statistics student whose results, published after his death, put him first in his department. He was hacked on the shuttle train taking him home."
+      },
+      "quote": {
+        "bn": "যে পথে আমার ছেলে শহীদ হয়েছে, সে পথে যেন সবাই এগিয়ে আসে।",
+        "en": "May everyone come forward on the path on which my son was martyred."
+      },
+      "quoteBy": {
+        "bn": "শহীদের পিতা মোহাম্মদ আবদুল হামিদ",
+        "en": "His father, Mohammad Abdul Hamid"
+      },
+      "story": {
+        "bn": [
+          {
+            "heading": "পরিচয়",
+            "text": "কুমিল্লার কমলপুরের মোহাম্মদ আবদুল হামিদের বড় ছেলে আমিনুল ইসলাম এলাকায় আদর্শ ছাত্র হিসেবে পরিচিত ছিলেন। প্রথম থেকে দশম শ্রেণি পর্যন্ত প্রথম হয়েছেন; বিজ্ঞান থেকে তিন বিষয়ে লেটারসহ এসএসসি, ভিক্টোরিয়া কলেজ থেকে প্রথম বিভাগে এইচএসসি। বাবা বলতেন, ‘সে অন্য সবার চেয়ে একটু আলাদা ছিল, বেশি বেশি প্রশ্ন করত।’ স্বপ্ন ছিল বিশ্ববিদ্যালয়ের শিক্ষক হওয়ার।"
+          },
+          {
+            "heading": "সেদিন সকালে",
+            "text": "২৮ এপ্রিল ১৯৮৮। শিক্ষার্থীদের ১৩ দফা দাবিতে সকালে ছাত্রশিবিরের মিছিল কলাভবন পার হওয়ার সময় ছাত্রলীগ ও ছাত্র ইউনিয়নের নেতৃত্বে ‘ছাত্রঐক্য’ নামধারী বহিরাগত সশস্ত্র সন্ত্রাসীরা হামলা চালায়। পরে তারা মদনহাট ও চৌধুরীহাটে জড়ো হয়ে শহরগামী বাস-ট্রেনে তল্লাশি চালিয়ে শিবিরকর্মীদের খুঁজতে থাকে।"
+          },
+          {
+            "heading": "শাটল ট্রেনে",
+            "text": "বিকেল ৫টা ২০ মিনিটের শাটলে দুই সহপাঠীকে নিয়ে বাড়ির পথে রওনা দেন আমিনুল। চৌধুরীহাট স্টেশনে দশ-বারোজন সশস্ত্র লোক টুপি-দাড়িওয়ালা যাত্রীদের ওপর চড়াও হয়। ট্রেন পলিটেকনিক এলাকা পেরোতেই তারা আমিনুলকে খুঁজে পায়, ধারালো অস্ত্রে কুপিয়ে অজ্ঞান করে ফেলে।\n\nচট্টগ্রাম স্টেশনে পৌঁছে তাঁকে টেনে-হিঁচড়ে প্রথম শ্রেণির বিশ্রামাগারে নেওয়া হয় এবং ছোরা দিয়ে সারা শরীর ক্ষতবিক্ষত করা হয়। সঙ্গী দুজনকে মাইক্রোবাসে তুলে নিয়ে রাত একটা পর্যন্ত আটকে রেখে মুখ বন্ধ রাখার হুমকি দিয়ে ছাড়ে তারা। রেলওয়ে পুলিশ আমিনুলকে চট্টগ্রাম মেডিকেল কলেজ হাসপাতালে নিয়ে গেলে চিকিৎসক জানান, তিনি আর নেই।"
+          },
+          {
+            "heading": "যা রয়ে গেল",
+            "text": "কয়েক দিন পর প্রথম বর্ষের ফল প্রকাশিত হয়: বিভাগে প্রথম আমিনুল ইসলাম। প্রতিবেশীরা বলেন, কুমিল্লায় তাঁর মতো ছেলে তাঁরা আর দেখেননি। হত্যাকারীদের বিচার এই দুনিয়ায় হয়নি; বাবা সে বিচার আল্লাহর কাছে সোপর্দ করেছেন।"
+          }
+        ],
+        "en": [
+          {
+            "heading": "Who he was",
+            "text": "Aminul Islam, the eldest son of Mohammad Abdul Hamid of Kamalpur, Cumilla, was known at home as a model student. He came first in every class from one to ten, passed his SSC in science with three distinctions and his HSC from Victoria College in the first division. His father said he was different from the others: he always asked more questions. He wanted to become a university teacher."
+          },
+          {
+            "heading": "That morning",
+            "text": "On 28 April 1988 a Chhatrashibir procession for the students' thirteen demands was attacked as it passed the Arts Building, by armed outsiders calling themselves a students' alliance, led by Chhatra League and Chhatra Union. They then gathered at Madanhat and Chowdhury Hat and searched city-bound buses and trains for Shibir workers."
+          },
+          {
+            "heading": "On the shuttle",
+            "text": "Aminul took the 5:20 pm shuttle home with two classmates. At Chowdhury Hat station ten or twelve armed men fell on the passengers who wore caps and beards. After the train passed the Polytechnic, they found Aminul and hacked him until he lost consciousness.\n\nAt Chattogram station they dragged him into the first-class waiting room and stabbed him all over his body. His two companions were driven away in a microbus, held until one in the morning and threatened into silence. Railway police took Aminul to Chittagong Medical College Hospital, where the doctor said he was gone."
+          },
+          {
+            "heading": "What remained",
+            "text": "A few days later the first-year results came out: Aminul Islam was first in his department. Neighbours say they never knew another boy like him in Cumilla. His killers were never tried in this world; his father left their judgement to Allah."
+          }
+        ]
+      },
+      "photo": {
+        "file": "portrait.jpg",
+        "alt": {
+          "bn": "শহীদ আমিনুল ইসলাম",
+          "en": "Shaheed Aminul Islam"
+        },
+        "credit": "বাংলাদেশ ইসলামী ছাত্রশিবির"
+      },
+      "gallery": [
+        {
+          "file": "shuttle-train.jpg",
+          "kind": "place",
+          "caption": {
+            "bn": "চবির শাটল ট্রেন; এই পথেই বাড়ি ফিরছিলেন (বর্তমান ছবি)",
+            "en": "The CU shuttle, the train he took home (a recent photo)"
+          },
+          "credit": "Moheen Reeyad, CC BY-SA 4.0, Wikimedia Commons"
+        },
+        {
+          "file": "shuttle-carriage.jpg",
+          "kind": "place",
+          "caption": {
+            "bn": "শাটল ট্রেনের বগি (বর্তমান ছবি)",
+            "en": "A shuttle carriage (a recent photo)"
+          },
+          "credit": "Moheen Reeyad, CC BY-SA 4.0, Wikimedia Commons"
+        },
+        {
+          "file": "cu-station.jpg",
+          "kind": "place",
+          "caption": {
+            "bn": "চট্টগ্রাম বিশ্ববিদ্যালয় রেলস্টেশন (বর্তমান ছবি)",
+            "en": "University of Chittagong railway station (a recent photo)"
+          },
+          "credit": "Moheen Reeyad, CC BY-SA 4.0, Wikimedia Commons"
+        }
+      ],
+      "sources": [
+        {
+          "label": "বাংলাদেশ ইসলামী ছাত্রশিবির: শহীদ তালিকা",
+          "url": "https://shibir.org.bd/shaheeds/219b0609-2703-4423-8a4e-ef1779362659"
+        }
+      ]
+    },
+    {
+      "slug": "jobayer-hossain",
+      "order": 3,
+      "number": 100,
+      "rank": "sodossho",
+      "date": "1999-05-15",
+      "name": {
+        "bn": "শহীদ জোবায়ের হোসাইন",
+        "en": "Shaheed Jobayer Hossain"
+      },
+      "affiliation": {
+        "bn": "অর্থনীতি, এমএসএস শেষ বর্ষ",
+        "en": "Economics, final-year MSS"
+      },
+      "role": {
+        "bn": "অফিস সম্পাদক, চবি শাখা",
+        "en": "Office secretary, CU branch"
+      },
+      "hall": {
+        "bn": "",
+        "en": ""
+      },
+      "home": {
+        "bn": "চৌবাড়িয়া, টাঙ্গাইল সদর, টাঙ্গাইল",
+        "en": "Choubaria, Tangail Sadar, Tangail"
+      },
+      "born": {
+        "bn": "",
+        "en": ""
+      },
+      "family": {
+        "bn": "পিতা মাস্টার রহমতুল্লাহ (প্রাথমিক বিদ্যালয়ের শিক্ষক), মাতা জরিনা খাতুন; সাত ভাইবোনের মধ্যে সবার ছোট",
+        "en": "Son of Master Rahmatullah, a primary-school teacher, and Jorina Khatun; the youngest of seven"
+      },
+      "place": {
+        "bn": "বনবিদ্যা ইনস্টিটিউটের পেছনে, চট্টগ্রাম বিশ্ববিদ্যালয়",
+        "en": "Behind the Forestry institute, University of Chittagong"
+      },
+      "attackers": {
+        "bn": "ছাত্রলীগের সন্ত্রাসীরা",
+        "en": "Armed Chhatra League men"
+      },
+      "wounds": {
+        "bn": "অপহরণের পর গুলি",
+        "en": "Abducted, then shot"
+      },
+      "summary": {
+        "bn": "ভর্তি পরীক্ষায় প্রথম হয়ে অর্থনীতিতে পড়তে এসেছিলেন। ক্লাস থেকে ফেরার পথে তুলে নিয়ে মাগরিবের সময় তাঁকে গুলি করে হত্যা করা হয়। তিনি শহীদি কাফেলার শততম শহীদ।",
+        "en": "He came first in the admission test and chose Economics. Abducted on his way back from class, he was shot at Maghrib. He is the caravan's hundredth martyr."
+      },
+      "quote": {
+        "bn": "৯৯ জন শহীদ হয়েছেন। আল্লাহ দয়া করে কবুল করলে আমাকে দিয়ে যেন ১০০ হয়।",
+        "en": "Ninety-nine have been martyred. If Allah in His mercy accepts, may I be the hundredth."
+      },
+      "quoteBy": {
+        "bn": "শাহাদাতের কিছুদিন আগে, বাবাকে",
+        "en": "To his father, not long before"
+      },
+      "story": {
+        "bn": [
+          {
+            "heading": "পরিচয়",
+            "text": "টাঙ্গাইলের চৌবাড়িয়ার মাস্টার রহমতুল্লাহর সাত সন্তানের সবচেয়ে ছোট জোবায়ের হোসাইন। মা প্রতিটি বই পড়ার জন্য দশ টাকা দিতেন, যাতে ছেলেরা বেশি বেশি পড়ে। প্রাথমিক ও অষ্টম শ্রেণিতে বৃত্তি, চরিত্র আর সততার জন্য স্কুলের রৌপ্যপদক, এসএসসি ও এইচএসসিতে লেটারসহ প্রথম বিভাগ; চট্টগ্রাম বিশ্ববিদ্যালয়ের ভর্তি পরীক্ষায় প্রথম হয়ে অর্থনীতিতে ভর্তি হন। শাহাদাতের সময় ছিলেন এমএসএস শেষ বর্ষে, আর চবি শাখার অফিস সম্পাদক।"
+          },
+          {
+            "heading": "যে ছেলে বাবার ডান পাশে দাঁড়াত",
+            "text": "ছোটবেলায় বাবাকে নামাজে দাঁড়াতে দেখলেই ডান পাশে দাঁড়িয়ে যেতেন। চার বছর বয়সে রোজা রাখার জেদ ধরেছিলেন; ছয়বার গোসল করিয়েও মা তাঁকে খাওয়াতে পারেননি। একদিন ফজরের নামাজে ইমামতি করে মোনাজাতে বলেছিলেন, ‘হে আল্লাহ, আমাকে শাহাদাতের মৃত্যু দিও।’ পেছন থেকে বাবা বলেছিলেন, আমিন। চল্লিশ দিন পর সেই বাবা ছেলের কফিন পেলেন।"
+          },
+          {
+            "heading": "১৫ মে ১৯৯৯",
+            "text": "বিশ্ববিদ্যালয়ের পাশে ছোট একটি ঘটনাকে কেন্দ্র করে দুপুরে ছাত্রলীগের সন্ত্রাসীরা হলে বিশ্রামরত শিবিরকর্মীদের ওপর হামলা চালায়, তারপর নেতাদের খুঁজতে থাকে। ক্লাস শেষে একা হলে ফিরছিলেন জোবায়ের। ক্যাম্পাসের ব্যাংকের কাছ থেকে তাঁকে তুলে নেওয়া হয়।\n\nউপাচার্য ও প্রক্টরকে জানানো হলেও তাঁরা কিছুই করেননি। সাথীরা সারা ক্যাম্পাস খুঁজে বেড়ান। মাগরিবের আজানের পর বনবিদ্যা বিভাগের পেছন থেকে একটি গুলির শব্দ আসে। কিছুক্ষণ পর খবর এল: শহীদের তালিকায় শততম নামটি লেখা হয়েছে।"
+          },
+          {
+            "heading": "বাবার শেষ কথা",
+            "text": "ছেলের লাশ পেয়ে বাবা বলেছিলেন, ‘আমি আর কোনো ছেলের জন্য আমিন বলবো না।’ চৌবাড়িয়ার কবরস্থানে তিনি শুয়ে আছেন। হত্যাকারীদের বিচার হয়নি।"
+          }
+        ],
+        "en": [
+          {
+            "heading": "Who he was",
+            "text": "Jobayer Hossain was the youngest of Master Rahmatullah's seven children in Choubaria, Tangail. His mother paid ten taka for every book her sons read. He won scholarships in primary school and in class eight, a school silver medal for character and honesty, first divisions with distinctions in his SSC and HSC, and came first in the University of Chittagong's admission test before choosing Economics. When he was killed he was in the final year of his MSS and the CU branch's office secretary."
+          },
+          {
+            "heading": "The boy who stood at his father's right",
+            "text": "As a child, whenever his father stood to pray, Jobayer stood at his right. At four he insisted on fasting, and his mother could not make him eat even after bathing him six times. One dawn, leading his father in the Fajr prayer, he asked in his supplication: 'O Allah, grant me the death of a martyr.' Behind him his father said Amin. Forty days later that father received his son's coffin."
+          },
+          {
+            "heading": "15 May 1999",
+            "text": "At midday, over a small incident beside the university, armed Chhatra League men attacked Shibir workers resting in the halls and went looking for their leaders. Jobayer was walking back alone from class. They took him from near the campus bank.\n\nThe vice-chancellor and the proctor were told, and did nothing. His friends searched the whole campus. After the Maghrib call to prayer, a single shot rang out behind the Forestry department. Soon the news came: the hundredth name had been written in the list of martyrs."
+          },
+          {
+            "heading": "His father's last word",
+            "text": "When his son's body came home, his father said: 'I will never again say Amin for any son.' Jobayer lies in the graveyard at Choubaria. His killers have not been tried."
+          }
+        ]
+      },
+      "photo": {
+        "file": "portrait.jpg",
+        "alt": {
+          "bn": "শহীদ জোবায়ের হোসাইন",
+          "en": "Shaheed Jobayer Hossain"
+        },
+        "credit": "বাংলাদেশ ইসলামী ছাত্রশিবির"
+      },
+      "gallery": [
+        {
+          "file": "forestry-institute.jpg",
+          "kind": "place",
+          "caption": {
+            "bn": "বনবিদ্যা ও পরিবেশবিজ্ঞান ইনস্টিটিউট; এর পেছনেই তাঁকে গুলি করা হয় (বর্তমান ছবি)",
+            "en": "The Institute of Forestry and Environmental Sciences; he was shot behind it (a recent photo)"
+          },
+          "credit": "Moheen Reeyad, CC BY-SA 4.0, Wikimedia Commons"
+        },
+        {
+          "file": "forestry-road.jpg",
+          "kind": "place",
+          "caption": {
+            "bn": "বনবিদ্যা ইনস্টিটিউটের পাশের পথ (বর্তমান ছবি)",
+            "en": "The road beside the Forestry institute (a recent photo)"
+          },
+          "credit": "Moheen Reeyad, CC BY-SA 4.0, Wikimedia Commons"
+        }
+      ],
+      "sources": [
+        {
+          "label": "বাংলাদেশ ইসলামী ছাত্রশিবির: শহীদ তালিকা",
+          "url": "https://shibir.org.bd/shaheeds/73a967fe-8dca-46e5-8104-cd046fa0e624"
+        },
+        {
+          "label": "প্রথম আলো, ২০১৪: ২৫ বছরে ১৭ হত্যা, রায় মাত্র একটির",
+          "url": "https://www.prothomalo.com/lifestyle/%E0%A7%A8%E0%A7%AB-%E0%A6%AC%E0%A6%9B%E0%A6%B0%E0%A7%87-%E0%A7%A7%E0%A7%AD-%E0%A6%B9%E0%A6%A4%E0%A7%8D%E0%A6%AF%E0%A6%BE-%E0%A6%B0%E0%A6%BE%E0%A7%9F-%E0%A6%AE%E0%A6%BE%E0%A6%A4%E0%A7%8D%E0%A6%B0-%E0%A6%8F%E0%A6%95%E0%A6%9F%E0%A6%BF%E0%A6%B0"
+        }
+      ]
+    },
+    {
+      "slug": "rahim-uddin",
+      "order": 4,
+      "number": 106,
+      "rank": "sodossho",
+      "date": "1999-12-19",
+      "name": {
+        "bn": "শহীদ রহিম উদ্দীন",
+        "en": "Shaheed Rahim Uddin"
+      },
+      "affiliation": {
+        "bn": "বাংলা, প্রথম বর্ষ (সম্মান)",
+        "en": "Bangla, first year (honours)"
+      },
+      "role": {
+        "bn": "সেক্রেটারি, ফতেপুর শাখা",
+        "en": "Secretary, Fatehpur branch"
+      },
+      "hall": {
+        "bn": "",
+        "en": ""
+      },
+      "home": {
+        "bn": "দক্ষিণ বরতী, সাতকানিয়া, চট্টগ্রাম",
+        "en": "South Borti, Satkania, Chattogram"
+      },
+      "born": {
+        "bn": "১৯৭৫",
+        "en": "1975"
+      },
+      "family": {
+        "bn": "পিতা মরহুম মুহাম্মদ হোসাইন, মাতা খুরশিদা বেগম; সাত ভাইবোনের মধ্যে সবার ছোট",
+        "en": "Son of the late Muhammad Hossain and Khurshida Begum; the youngest of seven"
+      },
+      "place": {
+        "bn": "কেন্দ্রীয় মসজিদের সামনে, চট্টগ্রাম বিশ্ববিদ্যালয়",
+        "en": "In front of the central mosque, University of Chittagong"
+      },
+      "attackers": {
+        "bn": "ছাত্রলীগের সশস্ত্র সন্ত্রাসীরা",
+        "en": "Armed Chhatra League men"
+      },
+      "wounds": {
+        "bn": "ব্রাশফায়ারে গুলিবিদ্ধ",
+        "en": "Shot in automatic fire"
+      },
+      "summary": {
+        "bn": "রমজানের এক দুপুরে সোহরাওয়ার্দী হল দখলে আসা অস্ত্রধারীদের রুখতে এগিয়ে গিয়েছিলেন। কেন্দ্রীয় মসজিদের সামনে ব্রাশফায়ারে ঘটনাস্থলেই শহীদ হন।",
+        "en": "On a Ramadan afternoon he went out to stop the gunmen who had come to take Suhrawardy Hall. He was killed on the spot by automatic fire in front of the central mosque."
+      },
+      "quote": {
+        "bn": "",
+        "en": ""
+      },
+      "quoteBy": {
+        "bn": "",
+        "en": ""
+      },
+      "story": {
+        "bn": [
+          {
+            "heading": "পরিচয়",
+            "text": "সাতকানিয়ার দক্ষিণ বরতীর মরহুম মুহাম্মদ হোসাইন ও খুরশিদা বেগমের সবচেয়ে ছোট সন্তান রহিম উদ্দীন। বাংলা বিভাগের মেধাবী ছাত্র, ইসলামী ছাত্রশিবিরের সদস্য ও ফতেপুর শাখার সেক্রেটারি। মিষ্টভাষী, সদা হাস্যোজ্জ্বল, শান্ত স্বভাবের এক তরুণ, আবার ইসলামী আন্দোলনের অকুতোভয় সৈনিক।"
+          },
+          {
+            "heading": "১৯ ডিসেম্বর ১৯৯৯",
+            "text": "পবিত্র রমজান। শিক্ষার্থীরা যে যার হলে পড়াশোনা আর ইবাদতে ব্যস্ত। ঠিক তখন ছাত্রলীগের সশস্ত্র সন্ত্রাসীরা একে-৪৭, এসএমজি আর কাটা রাইফেল নিয়ে শহীদ সোহরাওয়ার্দী হল দখল করতে আসে; শত শত পুলিশের সামনে ব্রাশফায়ার করতে করতে হলে ঢোকার চেষ্টা করে।\n\nখবর পেয়ে আলাওল ও এ এফ রহমান হল থেকে শিবিরের নেতাকর্মীরা ‘নারায়ে তাকবীর’ স্লোগান দিয়ে প্রতিরোধে এগিয়ে আসেন। সন্ত্রাসীরা মিছিল লক্ষ্য করে বৃষ্টির মতো গুলি ছোড়ে। কেন্দ্রীয় মসজিদের সামনে লুটিয়ে পড়েন দুজন: রহিম উদ্দীন আর মাহমুদুল হাসান। রহিম ঘটনাস্থলেই শহীদ হন।"
+          },
+          {
+            "heading": "জানাজাও পড়তে দেওয়া হয়নি",
+            "text": "প্রশাসন কোনো ব্যবস্থা নেয়নি; ক্যাম্পাসে দুই শহীদের জানাজা পর্যন্ত পড়তে দেওয়া হয়নি। বিশ্ববিদ্যালয়ের ডিগ্রি নিয়ে মায়ের কাছে ফিরে দেশের সেবা করার স্বপ্ন ছিল তাঁর। নিজের এলাকার গোরস্থানে তাঁকে দাফন করা হয়। হত্যাকারীদের বিচার হয়নি।"
+          }
+        ],
+        "en": [
+          {
+            "heading": "Who he was",
+            "text": "Rahim Uddin was the youngest child of the late Muhammad Hossain and Khurshida Begum of South Borti, Satkania. A gifted student of Bangla, he was a member of Chhatrashibir and secretary of its Fatehpur branch: soft-spoken, always smiling, calm, and fearless in the movement."
+          },
+          {
+            "heading": "19 December 1999",
+            "text": "It was Ramadan. Students were in their halls, studying and at worship. Armed Chhatra League men came to seize Shaheed Suhrawardy Hall with AK-47s, submachine guns and sawn-off rifles, firing bursts as they tried to force their way in, in front of hundreds of police.\n\nShibir workers from Alaol and A. F. Rahman halls came out to stop them, calling the takbir. The gunmen fired on them like rain. Two fell in front of the central mosque: Rahim Uddin and Mahmudul Hasan. Rahim died where he fell."
+          },
+          {
+            "heading": "Not even a funeral prayer",
+            "text": "The administration took no action and did not even allow the two martyrs' funeral prayer on campus. He had dreamed of taking his degree home to his mother and serving his country. He was buried in his village graveyard. His killers have not been tried."
+          }
+        ]
+      },
+      "photo": {
+        "file": "portrait.jpg",
+        "alt": {
+          "bn": "শহীদ রহিম উদ্দীন",
+          "en": "Shaheed Rahim Uddin"
+        },
+        "credit": "বাংলাদেশ ইসলামী ছাত্রশিবির"
+      },
+      "gallery": [
+        {
+          "file": "suhrawardy-hall.jpg",
+          "kind": "place",
+          "caption": {
+            "bn": "শহীদ সোহরাওয়ার্দী হল, যা দখলে সেদিন হামলা হয় (বর্তমান ছবি)",
+            "en": "Shaheed Suhrawardy Hall, which the gunmen came to seize (a recent photo)"
+          },
+          "credit": "Moheen Reeyad, CC BY-SA 4.0, Wikimedia Commons"
+        }
+      ],
+      "sources": [
+        {
+          "label": "বাংলাদেশ ইসলামী ছাত্রশিবির: শহীদ তালিকা",
+          "url": "https://shibir.org.bd/shaheeds/7f4e731e-6c60-4eda-a308-a9392b71cc9b"
+        },
+        {
+          "label": "প্রথম আলো, ২০১৪: ২৫ বছরে ১৭ হত্যা, রায় মাত্র একটির",
+          "url": "https://www.prothomalo.com/lifestyle/%E0%A7%A8%E0%A7%AB-%E0%A6%AC%E0%A6%9B%E0%A6%B0%E0%A7%87-%E0%A7%A7%E0%A7%AD-%E0%A6%B9%E0%A6%A4%E0%A7%8D%E0%A6%AF%E0%A6%BE-%E0%A6%B0%E0%A6%BE%E0%A7%9F-%E0%A6%AE%E0%A6%BE%E0%A6%A4%E0%A7%8D%E0%A6%B0-%E0%A6%8F%E0%A6%95%E0%A6%9F%E0%A6%BF%E0%A6%B0"
+        }
+      ]
+    },
+    {
+      "slug": "mahmudul-hasan",
+      "order": 5,
+      "number": 107,
+      "rank": "sathi",
+      "date": "1999-12-19",
+      "name": {
+        "bn": "শহীদ মু. মাহমুদুল হাসান",
+        "en": "Shaheed Md. Mahmudul Hasan"
+      },
+      "affiliation": {
+        "bn": "ফিন্যান্স, চতুর্থ বর্ষ (সম্মান)",
+        "en": "Finance, fourth year (honours)"
+      },
+      "role": {
+        "bn": "সাথী",
+        "en": "Associate"
+      },
+      "hall": {
+        "bn": "",
+        "en": ""
+      },
+      "home": {
+        "bn": "চর মনসা, ভবানীগঞ্জ, লক্ষ্মীপুর সদর",
+        "en": "Char Mansa, Bhabaniganj, Lakshmipur Sadar"
+      },
+      "born": {
+        "bn": "",
+        "en": ""
+      },
+      "family": {
+        "bn": "পিতা মু. আবদুজ জাহের; তিন ভাই, তিন বোনের মধ্যে ভাইদের দ্বিতীয়",
+        "en": "Son of Md. Abduz Zaher; the second of three brothers, with three sisters"
+      },
+      "place": {
+        "bn": "কেন্দ্রীয় মসজিদের সামনে; হাসপাতালে নেওয়ার পথে শহীদ",
+        "en": "In front of the central mosque; he died on the way to hospital"
+      },
+      "attackers": {
+        "bn": "ছাত্রলীগের সশস্ত্র সন্ত্রাসীরা",
+        "en": "Armed Chhatra League men"
+      },
+      "wounds": {
+        "bn": "মাথায় গুলি",
+        "en": "Shot in the head"
+      },
+      "summary": {
+        "bn": "মাকে বলেছিলেন, রমজানের দশ তারিখে বাড়ি আসবেন। সেদিনই এলেন, তবে শহীদ হয়ে। সোহরাওয়ার্দী হলে হামলার দিন মাথায় গুলিবিদ্ধ হয়ে হাসপাতালের পথে চলে যান।",
+        "en": "He told his mother he would be home on the tenth of Ramadan. He came home that day, as a martyr: shot in the head during the attack on Suhrawardy Hall, he died on the way to hospital."
+      },
+      "quote": {
+        "bn": "মা, শহীদের মৃত্যু সবচেয়ে মর্যাদার মৃত্যু। তুমি দোয়া করো, যেন আল্লাহর পথে বীরের বেশে শহীদ হতে পারি।",
+        "en": "Mother, a martyr's death is the most honoured death. Pray that I may be martyred like a brave man in the path of Allah."
+      },
+      "quoteBy": {
+        "bn": "শাহাদাতের কিছুদিন আগে, মাকে",
+        "en": "To his mother, not long before"
+      },
+      "story": {
+        "bn": [
+          {
+            "heading": "পরিচয়",
+            "text": "লক্ষ্মীপুরের চর মনসার মু. আবদুজ জাহেরের ছেলে মাহমুদুল হাসান ফিন্যান্স বিভাগের চতুর্থ বর্ষে পড়তেন; ছিলেন ছাত্রশিবিরের সাথী। ছোটবেলা থেকেই চটপটে; বাড়ি এলে পাড়ার সবার সাথে দেখা করতেন। বিভাগের যেকোনো অনুষ্ঠানের দায়িত্ব নিজেই নিতেন, তাই শিক্ষক-সহপাঠী সবার প্রিয় ছিলেন।"
+          },
+          {
+            "heading": "মায়ের কাছে কথা দেওয়া",
+            "text": "কিছুদিন আগেই ছাত্রলীগের হামলায় রডের আঘাতে তাঁর পিঠ রক্তাক্ত হয়েছিল। মা তখন বাড়ি চলে আসতে বলেছিলেন। মাহমুদ বললেন, রমজানের দশ তারিখে আসবেন, আর বললেন, ‘মা, শহীদের মৃত্যু সবচেয়ে মর্যাদার মৃত্যু; দোয়া করো যেন বীরের বেশে শহীদ হতে পারি।’"
+          },
+          {
+            "heading": "১৯ ডিসেম্বর ১৯৯৯",
+            "text": "রমজানের সেই দুপুরে ছাত্রলীগের সশস্ত্র সন্ত্রাসীরা শহীদ সোহরাওয়ার্দী হল দখল করতে ব্রাশফায়ার করতে করতে এগিয়ে আসে। প্রতিরোধে এগিয়ে যাওয়া শিবিরের মিছিলে গুলি চলে। কেন্দ্রীয় মসজিদের সামনে মাথায় গুলিবিদ্ধ হয়ে লুটিয়ে পড়েন মাহমুদ; চট্টগ্রাম মেডিকেল কলেজ হাসপাতালে নেওয়ার পথে শাহাদাত বরণ করেন।\n\nরমজানের দশ তারিখে তিনি বাড়ি এলেন, কফিনে।"
+          },
+          {
+            "heading": "যা বলে গেলেন তাঁরা",
+            "text": "ছেলের শাহাদাতের পর বাবার কণ্ঠ বন্ধ হয়ে যায়; ছয় মাস পর তিনিও মারা যান। মা বলেন, ‘আমি শহীদের একজন গর্বিত মা।’ ফিন্যান্স বিভাগের চেয়ারম্যান বলেছিলেন, যে ক্যাম্পাসে চার বছর ছেলেটি হেসে-খেলে সবার মন জয় করেছে, সেখানে তার জানাজা পর্যন্ত পড়তে দেওয়া হয়নি, এই কষ্ট তিনি ভুলতে পারেননি। হত্যাকারীদের বিচার হয়নি।"
+          }
+        ],
+        "en": [
+          {
+            "heading": "Who he was",
+            "text": "Mahmudul Hasan, son of Md. Abduz Zaher of Char Mansa, Lakshmipur, was a fourth-year Finance student and an associate of Chhatrashibir. Lively since childhood, he visited every neighbour when he came home, and took charge of every event in his department, which made him a favourite of teachers and classmates alike."
+          },
+          {
+            "heading": "A promise to his mother",
+            "text": "Not long before, Chhatra League men had beaten him with rods until his back bled. His mother begged him to come home for a while. He promised to come on the tenth of Ramadan, and told her: 'Mother, a martyr's death is the most honoured death; pray that I may be martyred like a brave man.'"
+          },
+          {
+            "heading": "19 December 1999",
+            "text": "That Ramadan afternoon armed Chhatra League men advanced on Shaheed Suhrawardy Hall, firing bursts. They fired on the Shibir procession that came out to stop them. In front of the central mosque Mahmud fell, shot in the head, and was martyred on the way to Chittagong Medical College Hospital.\n\nOn the tenth of Ramadan he came home, in a coffin."
+          },
+          {
+            "heading": "What they said",
+            "text": "After his death his father lost his voice, and died six months later. His mother says: 'I am the proud mother of a martyr.' The chairman of the Finance department said he could never forget that the campus where the boy had won every heart for four years was not allowed even to pray over him. His killers have not been tried."
+          }
+        ]
+      },
+      "photo": {
+        "file": "portrait.jpg",
+        "alt": {
+          "bn": "শহীদ মু. মাহমুদুল হাসান",
+          "en": "Shaheed Md. Mahmudul Hasan"
+        },
+        "credit": "বাংলাদেশ ইসলামী ছাত্রশিবির"
+      },
+      "gallery": [
+        {
+          "file": "suhrawardy-hall.jpg",
+          "kind": "place",
+          "caption": {
+            "bn": "শহীদ সোহরাওয়ার্দী হল (বর্তমান ছবি)",
+            "en": "Shaheed Suhrawardy Hall (a recent photo)"
+          },
+          "credit": "Moheen Reeyad, CC BY-SA 4.0, Wikimedia Commons"
+        },
+        {
+          "file": "medical-college.jpg",
+          "kind": "place",
+          "caption": {
+            "bn": "চট্টগ্রাম মেডিকেল কলেজ; এখানে নেওয়ার পথেই তিনি শহীদ হন (বর্তমান ছবি)",
+            "en": "Chittagong Medical College; he died on the way here (a recent photo)"
+          },
+          "credit": "OB, CC BY-SA 4.0, Wikimedia Commons"
+        }
+      ],
+      "sources": [
+        {
+          "label": "বাংলাদেশ ইসলামী ছাত্রশিবির: শহীদ তালিকা",
+          "url": "https://shibir.org.bd/shaheeds/e6a92031-978c-4f3d-b6de-259e93f714b8"
+        },
+        {
+          "label": "প্রথম আলো, ২০১৪: ২৫ বছরে ১৭ হত্যা, রায় মাত্র একটির",
+          "url": "https://www.prothomalo.com/lifestyle/%E0%A7%A8%E0%A7%AB-%E0%A6%AC%E0%A6%9B%E0%A6%B0%E0%A7%87-%E0%A7%A7%E0%A7%AD-%E0%A6%B9%E0%A6%A4%E0%A7%8D%E0%A6%AF%E0%A6%BE-%E0%A6%B0%E0%A6%BE%E0%A7%9F-%E0%A6%AE%E0%A6%BE%E0%A6%A4%E0%A7%8D%E0%A6%B0-%E0%A6%8F%E0%A6%95%E0%A6%9F%E0%A6%BF%E0%A6%B0"
+        }
+      ]
+    },
+    {
+      "slug": "mohiuddin-masum",
+      "order": 6,
+      "number": 135,
+      "rank": "kormi",
+      "date": "2010-02-11",
+      "name": {
+        "bn": "শহীদ মহিউদ্দীন মাসুম",
+        "en": "Shaheed Mohiuddin Masum"
+      },
+      "affiliation": {
+        "bn": "রাজনীতি বিজ্ঞান, এমএসএস শেষ বর্ষ",
+        "en": "Political Science, final-year MSS"
+      },
+      "role": {
+        "bn": "পাঠাগার সম্পাদক, আলাওল হল উপশাখা",
+        "en": "Library secretary, Alaol Hall sub-branch"
+      },
+      "hall": {
+        "bn": "",
+        "en": ""
+      },
+      "home": {
+        "bn": "রাজার বিল, চকরিয়া, কক্সবাজার",
+        "en": "Rajar Bil, Chakaria, Cox's Bazar"
+      },
+      "born": {
+        "bn": "",
+        "en": ""
+      },
+      "family": {
+        "bn": "পিতা ফজলুল কাদের; তিন ভাই, এক বোনের মধ্যে সবার বড়",
+        "en": "Son of Fazlul Kader; the eldest of three brothers and a sister"
+      },
+      "place": {
+        "bn": "ষোলশহর রেলস্টেশন মসজিদের সামনে, চট্টগ্রাম",
+        "en": "Outside the mosque at Sholoshahar railway station, Chattogram"
+      },
+      "attackers": {
+        "bn": "ছাত্রলীগের সন্ত্রাসীরা",
+        "en": "Chhatra League men"
+      },
+      "wounds": {
+        "bn": "দা-কিরিচ দিয়ে কুপিয়ে",
+        "en": "Hacked with machetes"
+      },
+      "summary": {
+        "bn": "টিউশনি শেষে ক্যাম্পাসে ফিরবেন বলে ষোলশহর স্টেশনে শাটলের অপেক্ষায় ছিলেন। স্টেশন মসজিদে এশার নামাজ শেষে বের হতেই ওত পেতে থাকা সন্ত্রাসীরা তাঁকে কুপিয়ে ফেলে যায়।",
+        "en": "After his evening tuition he waited at Sholoshahar station for the shuttle back to campus. As he stepped out of the station mosque after the Isha prayer, men lying in wait hacked him down."
+      },
+      "quote": {
+        "bn": "আল্লাহর সম্পদ আল্লাহ নিয়ে গেছেন, এ জন্য আমার কোনো দুঃখ নেই।",
+        "en": "Allah has taken back what was His; I have no complaint."
+      },
+      "quoteBy": {
+        "bn": "শহীদের পিতা ফজলুল কাদের",
+        "en": "His father, Fazlul Kader"
+      },
+      "story": {
+        "bn": [
+          {
+            "heading": "পরিচয়",
+            "text": "কক্সবাজারের চকরিয়ার রাজার বিল গ্রামের ফজলুল কাদেরের বড় ছেলে মহিউদ্দীন মাসুম রাজনীতি বিজ্ঞানে এমএসএস শেষ বর্ষে পড়তেন; ছিলেন আলাওল হল উপশাখার পাঠাগার সম্পাদক। নীরব, ধর্মপ্রাণ, দায়িত্বশীল। মা বলেন, বাড়ি এলে হাদিসের বই নিয়ে আসতেন, পড়ে শোনাতেন, আর যাওয়ার সময় বলে যেতেন, ‘মা, প্রতিদিন এই বই পড়বে আর আমার জন্য দোয়া করবে।’"
+          },
+          {
+            "heading": "১১ ফেব্রুয়ারি ২০১০",
+            "text": "শহরে টিউশনি শেষে রাত আটটার দিকে ক্যাম্পাসে ফেরার শাটল ধরতে ষোলশহর স্টেশনে আসেন মাসুম। ট্রেন আসতে তখনো আধঘণ্টা বাকি, তাই চলে যান স্টেশনের মসজিদে, এশার নামাজ পড়তে। সেটিই ছিল তাঁর শেষ সিজদা।\n\nনামাজ শেষে বের হতেই ওত পেতে থাকা ছাত্রলীগের সন্ত্রাসীরা দা-কিরিচ নিয়ে ঝাঁপিয়ে পড়ে, এলোপাতাড়ি কুপিয়ে রক্তাক্ত অবস্থায় ফেলে যায়। মসজিদের আঙিনা লাল হয়ে যায়। পুলিশ চট্টগ্রাম মেডিকেল কলেজ হাসপাতালে নিয়ে গেলে চিকিৎসকেরা তাঁকে মৃত ঘোষণা করেন।"
+          },
+          {
+            "heading": "জানাজা ও তার পর",
+            "text": "পরদিন সকালে মেডিকেল কলেজের কাছে প্রবর্তক মোড়ে কয়েক হাজার মানুষ তাঁর জানাজা পড়েন। জানাজার পর শান্তিপূর্ণ প্রতিবাদ মিছিলে পুলিশ টিয়ারশেল, রাবার বুলেট আর গুলি নিয়ে হামলা চালায়; আহত হন অনেকে, গ্রেপ্তার হন অনেকে, এমনকি মাসুমের বিভাগের এক শিক্ষককেও মামলার আসামি করা হয়। পুলিশ পাহারায় তাঁর লাশ চকরিয়ায় নেওয়া হয়। হত্যাকারীদের বিচার হয়নি।"
+          }
+        ],
+        "en": [
+          {
+            "heading": "Who he was",
+            "text": "Mohiuddin Masum, the eldest son of Fazlul Kader of Rajar Bil, Chakaria, was in the final year of an MSS in Political Science and library secretary of the Alaol Hall sub-branch: quiet, devout and dependable. His mother says he would bring a book of hadith when he came home, read it to her, and say as he left: 'Mother, read this every day and pray for me.'"
+          },
+          {
+            "heading": "11 February 2010",
+            "text": "At about eight in the evening, after his tuition in the city, Masum came to Sholoshahar station for the shuttle back to campus. With half an hour before the train, he went into the station mosque for the Isha prayer. It was his last prostration.\n\nAs he stepped out, Chhatra League men lying in wait fell on him with machetes, hacked him again and again and left him bleeding; the mosque yard turned red. Police took him to Chittagong Medical College Hospital, where he was declared dead."
+          },
+          {
+            "heading": "The funeral and after",
+            "text": "The next morning several thousand people prayed over him at Probartak junction beside the medical college. The peaceful protest march that followed was attacked by police with tear gas, rubber bullets and live rounds; many were hurt, many arrested, and even a teacher from his department was named in a case. His body was taken to Chakaria under police guard. His killers have not been tried."
+          }
+        ]
+      },
+      "photo": {
+        "file": "portrait.jpg",
+        "alt": {
+          "bn": "শহীদ মহিউদ্দীন মাসুম",
+          "en": "Shaheed Mohiuddin Masum"
+        },
+        "credit": "শুহাদা ফাউন্ডেশন"
+      },
+      "gallery": [
+        {
+          "file": "father-with-leaders.jpg",
+          "kind": "after",
+          "caption": {
+            "bn": "শহীদের পিতার সাথে সংগঠনের নেতৃবৃন্দ",
+            "en": "Leaders of the organisation with his father"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "grave-visit.jpg",
+          "kind": "after",
+          "caption": {
+            "bn": "শহীদের কবর জিয়ারত করছেন শহীদি কাফেলার নেতৃবৃন্দ",
+            "en": "Leaders pray at his grave"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "father-memento.jpg",
+          "kind": "after",
+          "caption": {
+            "bn": "শহীদের পিতার হাতে স্মারক তুলে দিচ্ছেন চট্টগ্রামের দায়িত্বশীলরা",
+            "en": "Chattogram leaders hand his father a memento"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "sholoshahar-1.jpg",
+          "kind": "place",
+          "caption": {
+            "bn": "ষোলশহর জংশন রেলস্টেশন, যেখানে তাঁকে কোপানো হয় (বর্তমান ছবি)",
+            "en": "Sholoshahar junction station, where he was attacked (a recent photo)"
+          },
+          "credit": "Mahidul Islam Nakib, CC BY-SA 4.0, Wikimedia Commons"
+        },
+        {
+          "file": "sholoshahar-2.jpg",
+          "kind": "place",
+          "caption": {
+            "bn": "ষোলশহর স্টেশন (বর্তমান ছবি)",
+            "en": "Sholoshahar station (a recent photo)"
+          },
+          "credit": "Mahidul Islam Nakib, CC BY-SA 4.0, Wikimedia Commons"
+        },
+        {
+          "file": "sholoshahar-3.jpg",
+          "kind": "place",
+          "caption": {
+            "bn": "ষোলশহর স্টেশন (বর্তমান ছবি)",
+            "en": "Sholoshahar station (a recent photo)"
+          },
+          "credit": "Mahidul Islam Nakib, CC BY-SA 4.0, Wikimedia Commons"
+        },
+        {
+          "file": "shuttle-train.jpg",
+          "kind": "place",
+          "caption": {
+            "bn": "যে শাটলে ক্যাম্পাসে ফেরার কথা ছিল (বর্তমান ছবি)",
+            "en": "The shuttle he was waiting for (a recent photo)"
+          },
+          "credit": "Moheen Reeyad, CC BY-SA 4.0, Wikimedia Commons"
+        }
+      ],
+      "sources": [
+        {
+          "label": "বাংলাদেশ ইসলামী ছাত্রশিবির: শহীদ তালিকা",
+          "url": "https://shibir.org.bd/shaheeds/cb400e7a-9070-4c58-8ddc-7fb98318d8f2"
+        },
+        {
+          "label": "শুহাদা ফাউন্ডেশন: শহীদ মহিউদ্দীন মাসুম",
+          "url": "https://julyshohid.com/shuhada_details.php?id=81"
+        },
+        {
+          "label": "The Daily Star, 2010",
+          "url": "https://www.thedailystar.net/news-detail-126069"
+        }
+      ]
+    },
+    {
+      "slug": "harun-or-rashid-kaiser",
+      "order": 7,
+      "number": 136,
+      "rank": "kormi",
+      "date": "2010-03-28",
+      "name": {
+        "bn": "শহীদ হারুন-অর-রশিদ কায়সার",
+        "en": "Shaheed Harun-or-Rashid Kaiser"
+      },
+      "affiliation": {
+        "bn": "মার্কেটিং, তৃতীয় বর্ষ (সম্মান)",
+        "en": "Marketing, third year (honours)"
+      },
+      "role": {
+        "bn": "প্রকাশনা সম্পাদক, ব্যবসায় প্রশাসন অনুষদ উপশাখা",
+        "en": "Publications secretary, Business Administration sub-branch"
+      },
+      "hall": {
+        "bn": "শাহজালাল হল",
+        "en": "Shahjalal Hall"
+      },
+      "home": {
+        "bn": "রাঘবপুর, মীরসরাই, চট্টগ্রাম",
+        "en": "Raghabpur, Mirsharai, Chattogram"
+      },
+      "born": {
+        "bn": "",
+        "en": ""
+      },
+      "family": {
+        "bn": "পিতা দিদারুল হক (শিক্ষক), মাতা কামরুন নাহার; দুই ভাই, এক বোনের মধ্যে সবার বড়",
+        "en": "Son of Didarul Haque, a teacher, and Kamrun Nahar; the eldest of two brothers and a sister"
+      },
+      "place": {
+        "bn": "শাটল ট্রেন; লাশ মেলে চৌধুরীহাটে রেললাইনের পাশে",
+        "en": "The shuttle train; his body was found by the line at Chowdhury Hat"
+      },
+      "attackers": {
+        "bn": "ছাত্রলীগের সন্ত্রাসীরা",
+        "en": "Chhatra League men"
+      },
+      "wounds": {
+        "bn": "চলন্ত ট্রেনে প্রহার ও জবাই",
+        "en": "Beaten and his throat cut on the moving train"
+      },
+      "summary": {
+        "bn": "প্রথম থেকে দশম শ্রেণি পর্যন্ত প্রথম, বিশ্ববিদ্যালয়ে বিভাগে দ্বিতীয়। রাতের শাটলে ক্যাম্পাসে ফেরার পথে বগিতে পিটিয়ে জবাই করে তাঁকে চলন্ত ট্রেন থেকে ফেলে দেওয়া হয়।",
+        "en": "First in every class from one to ten, second in his department at university. Returning to campus on the night shuttle, he was beaten in the carriage, his throat was cut and he was thrown from the moving train."
+      },
+      "quote": {
+        "bn": "জানি না শত্রুদের বিচার এই জমিনে হবে কি না। এখন একমাত্র আল্লাহর কাছেই বিচার চাই।",
+        "en": "I do not know whether his killers will be judged on this earth. Now I ask for justice from Allah alone."
+      },
+      "quoteBy": {
+        "bn": "শহীদের পিতা দিদারুল হক",
+        "en": "His father, Didarul Haque"
+      },
+      "story": {
+        "bn": [
+          {
+            "heading": "পরিচয়",
+            "text": "মীরসরাইয়ের রাঘবপুরের শিক্ষক দিদারুল হকের বড় ছেলে হারুন-অর-রশিদ কায়সার। নিজের বাড়ির পাশের সরকারি প্রাথমিক বিদ্যালয়ে পড়াশোনা শুরু; প্রথম থেকে দশম শ্রেণি পর্যন্ত প্রতিবার প্রথম। প্রতিদিনের কাজ ডায়েরিতে লিখে রাখতেন। মার্কেটিং বিভাগে দ্বিতীয় হয়েছিলেন, আর ছিলেন ব্যবসায় প্রশাসন অনুষদ উপশাখার প্রকাশনা সম্পাদক। স্বপ্ন ছিল বিশ্ববিদ্যালয়ের শিক্ষক হওয়ার।\n\nবাবা বলেন, সে এমন আলতো পায়ে মাটির দিকে চেয়ে হাঁটত, যেন মাটি ব্যথা পাবে। শিক্ষকেরা বলেন, ফল বেরোলে সবাই যখন আনন্দে মাতত, কায়সারকে দেখা যেত মসজিদের পথে।"
+          },
+          {
+            "heading": "২৮ মার্চ ২০১০",
+            "text": "সেদিন বিশ্ববিদ্যালয়ের এক নম্বর গেটে ছাত্রলীগের দুই গ্রুপের তুমুল সংঘর্ষ হয়। নিজেদের দ্বন্দ্ব ঢাকতে তারা নতুন অস্থিরতা তৈরির পথ নেয়। রাতের শাটলে ক্যাম্পাসে ফিরছিলেন কায়সার। ট্রেনের বগিতেই তাঁকে নির্মমভাবে পেটানো হয়; তারপর জবাই করে চলন্ত ট্রেন থেকে ফেলে দেওয়া হয়। বগির যাত্রীদের মুখ বন্ধ রাখতে হত্যার হুমকি দেওয়া হয়।\n\nপরদিন সকালে চৌধুরীহাটে রেললাইনের পাশে তাঁর লাশ পাওয়া যায়।"
+          },
+          {
+            "heading": "রাঘবপুরের সবচেয়ে বড় জানাজা",
+            "text": "খবরটি প্রথমে কেউ বিশ্বাসই করতে পারেনি। লাশ বাড়ি পৌঁছালে শত শত মানুষের ঢল নামে; বাবা বলেন, এত বড় জানাজা তাঁদের এলাকায় আগে কারও হয়নি। শৈশবের শিক্ষক জানাজা পড়ান; দাদা-দাদির পাশে পারিবারিক কবরস্থানে তাঁকে দাফন করা হয়। মা বারবার ভেঙে পড়েন, ‘ফুলের মতো ছেলেটাকে কেন মারল, সে তো কাউকে কোনোদিন কষ্ট দেয়নি।’ হত্যাকারীদের বিচার হয়নি।"
+          }
+        ],
+        "en": [
+          {
+            "heading": "Who he was",
+            "text": "Harun-or-Rashid Kaiser was the eldest son of Didarul Haque, a teacher in Raghabpur, Mirsharai. He began school at the government primary school beside his home and came first in every class from one to ten. He wrote down each day's work in a diary. At university he stood second in Marketing and was publications secretary of the Business Administration sub-branch. He wanted to be a university teacher.\n\nHis father says he walked so softly, eyes on the ground, as if afraid of hurting the earth. His teachers remember that when results came out and everyone celebrated, Kaiser could be seen heading for the mosque."
+          },
+          {
+            "heading": "28 March 2010",
+            "text": "That day two Chhatra League groups fought a pitched battle at the university's first gate. To cover their own feud they set out to stir new trouble. Kaiser was returning to campus on the night shuttle. In the carriage he was savagely beaten; then his throat was cut and he was thrown from the moving train. Everyone in the carriage was threatened with death if they spoke.\n\nThe next morning his body was found beside the line at Chowdhury Hat."
+          },
+          {
+            "heading": "The largest funeral Raghabpur had seen",
+            "text": "At first no one could believe the news. When his body reached home, hundreds came; his father says there had never been such a funeral in their area. His childhood teacher led the prayer, and he was buried beside his grandparents in the family graveyard. His mother broke down again and again: 'Why did they kill my son, gentle as a flower? He never hurt anyone.' His killers have not been tried."
+          }
+        ]
+      },
+      "photo": {
+        "file": "portrait.jpg",
+        "alt": {
+          "bn": "শহীদ হারুন-অর-রশিদ কায়সার",
+          "en": "Shaheed Harun-or-Rashid Kaiser"
+        },
+        "credit": "বাংলাদেশ ইসলামী ছাত্রশিবির"
+      },
+      "gallery": [
+        {
+          "file": "photo.jpg",
+          "kind": "life",
+          "caption": {
+            "bn": "শহীদ হারুন-অর-রশিদ কায়সার",
+            "en": "Shaheed Harun-or-Rashid Kaiser"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "family-home.jpg",
+          "kind": "life",
+          "caption": {
+            "bn": "শহীদের বসতবাড়ি, রাঘবপুর",
+            "en": "His family home in Raghabpur"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "body-found.jpg",
+          "kind": "day",
+          "graphic": true,
+          "caption": {
+            "bn": "এভাবেই পড়ে ছিল শহীদের লাশ",
+            "en": "His body as it was found"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "press-conference.jpg",
+          "kind": "after",
+          "caption": {
+            "bn": "হত্যার বিচারের দাবিতে চবি শাখার সংবাদ সম্মেলন, ৩০ মার্চ ২০১০",
+            "en": "The CU branch's press conference demanding justice, 30 March 2010"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "grave.jpg",
+          "kind": "after",
+          "caption": {
+            "bn": "শহীদের কবর",
+            "en": "His grave"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "villagers-at-grave.jpg",
+          "kind": "after",
+          "caption": {
+            "bn": "কবর জিয়ারত করছেন এলাকাবাসী",
+            "en": "Villagers pray at his grave"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "shuttle-train.jpg",
+          "kind": "place",
+          "caption": {
+            "bn": "চবির শাটল ট্রেন (বর্তমান ছবি)",
+            "en": "The CU shuttle train (a recent photo)"
+          },
+          "credit": "Moheen Reeyad, CC BY-SA 4.0, Wikimedia Commons"
+        },
+        {
+          "file": "shuttle-carriage.jpg",
+          "kind": "place",
+          "caption": {
+            "bn": "শাটলের বগি (বর্তমান ছবি)",
+            "en": "A shuttle carriage (a recent photo)"
+          },
+          "credit": "Moheen Reeyad, CC BY-SA 4.0, Wikimedia Commons"
+        },
+        {
+          "file": "cu-station.jpg",
+          "kind": "place",
+          "caption": {
+            "bn": "চট্টগ্রাম বিশ্ববিদ্যালয় রেলস্টেশন (বর্তমান ছবি)",
+            "en": "University of Chittagong railway station (a recent photo)"
+          },
+          "credit": "Moheen Reeyad, CC BY-SA 4.0, Wikimedia Commons"
+        }
+      ],
+      "sources": [
+        {
+          "label": "বাংলাদেশ ইসলামী ছাত্রশিবির: শহীদ তালিকা",
+          "url": "https://shibir.org.bd/shaheeds/2025897e-236c-4d0c-9afe-7e0fb98d9e8b"
+        },
+        {
+          "label": "শুহাদা ফাউন্ডেশন: শহীদ হারুন-অর-রশীদ কায়সার",
+          "url": "https://julyshohid.com/shuhada_details.php?id=78"
+        },
+        {
+          "label": "প্রথম আলো, ২০১৯: বিশ্ববিদ্যালয়ে খুন হয়, বিচার হয় না",
+          "url": "https://www.prothomalo.com/bangladesh/%E0%A6%AC%E0%A6%BF%E0%A6%B6%E0%A7%8D%E0%A6%AC%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%B2%E0%A7%9F%E0%A7%87-%E0%A6%96%E0%A7%81%E0%A6%A8-%E0%A6%B9%E0%A7%9F-%E0%A6%AC%E0%A6%BF%E0%A6%9A%E0%A6%BE%E0%A6%B0-%E0%A6%B9%E0%A7%9F-%E0%A6%A8%E0%A6%BE"
+        }
+      ]
+    },
+    {
+      "slug": "masud-bin-habib",
+      "order": 8,
+      "number": 137,
+      "rank": "sodossho",
+      "date": "2012-02-08",
+      "name": {
+        "bn": "শহীদ মাসউদ বিন হাবীব",
+        "en": "Shaheed Masud Bin Habib"
+      },
+      "affiliation": {
+        "bn": "ইংরেজি, চতুর্থ বর্ষ (সম্মান)",
+        "en": "English, fourth year (honours)"
+      },
+      "role": {
+        "bn": "সেক্রেটারি, শহীদ সোহরাওয়ার্দী হল শাখা",
+        "en": "Secretary, Shaheed Suhrawardy Hall branch"
+      },
+      "hall": {
+        "bn": "শহীদ সোহরাওয়ার্দী হল, কক্ষ ১২১",
+        "en": "Shaheed Suhrawardy Hall, room 121"
+      },
+      "home": {
+        "bn": "আজমিরীগঞ্জ, হবিগঞ্জ",
+        "en": "Ajmiriganj, Habiganj"
+      },
+      "born": {
+        "bn": "২৬ জুলাই ১৯৮৮",
+        "en": "26 July 1988"
+      },
+      "family": {
+        "bn": "পিতা হাবিবুর রহমান হাবীব, মাতা হনুফা বেগম; আট ভাইবোনের মধ্যে ষষ্ঠ",
+        "en": "Son of Habibur Rahman Habib and Hanufa Begum; the sixth of eight children"
+      },
+      "place": {
+        "bn": "জিরো পয়েন্টের ঢালে, চট্টগ্রাম বিশ্ববিদ্যালয়",
+        "en": "On the slope by Zero Point, University of Chittagong"
+      },
+      "attackers": {
+        "bn": "ছাত্রলীগের সশস্ত্র সন্ত্রাসীরা",
+        "en": "Armed Chhatra League men"
+      },
+      "wounds": {
+        "bn": "রামদার কোপ ও গুলি",
+        "en": "Machete wounds and gunfire"
+      },
+      "summary": {
+        "bn": "লেখক, চিত্রশিল্পী, অভিনেতা; সোহরাওয়ার্দী হলের সেক্রেটারি। ডায়েরিতে লিখেছিলেন, হঠাৎ মৃত্যু নয়, শহীদি মৃত্যু চান। জিরো পয়েন্টের ঢালে রামদার কোপে সেই চাওয়া পূর্ণ হয়।",
+        "en": "Writer, painter, actor, and secretary of Suhrawardy Hall. He wrote in his diary that he wanted not a sudden death but a martyr's death. On the slope by Zero Point, under machete blows, that wish was granted."
+      },
+      "quote": {
+        "bn": "আল্লাহ! এভাবে হঠাৎ মৃত্যু চাই না, শহিদী মৃত্যু চাই।",
+        "en": "O Allah, I do not want a sudden death like this. I want a martyr's death."
+      },
+      "quoteBy": {
+        "bn": "তাঁর ডায়েরি থেকে, ঢাকায় ছিনতাইকারীর ছুরিতে আহত হওয়ার পর",
+        "en": "From his diary, after muggers stabbed him in Dhaka"
+      },
+      "story": {
+        "bn": [
+          {
+            "heading": "পরিচয়",
+            "text": "হবিগঞ্জের আজমিরীগঞ্জে ১৯৮৮ সালের ২৬ জুলাই জন্ম। বাবা হাবিবুর রহমান হাবীব, মা হনুফা বেগম; আট ভাইবোনের মধ্যে ষষ্ঠ। নরসিংদীর জামেয়া কাসেমিয়া থেকে দাখিল ও আলিমে জিপিএ-৫। সাংবাদিকতায় পড়ার ইচ্ছা থাকলেও বাবার ইচ্ছায় ইংরেজিতে ভর্তি হন।\n\nরং-তুলিতে ছবি আঁকতেন, অভিনয়ে সবাইকে মুগ্ধ করতেন, ‘ঐ দেখা যায় তাল গাছ’ নানা কণ্ঠে আবৃত্তি করে হাততালি পেতেন। দুটি উপন্যাস লিখেছিলেন: ‘অদৃশ্য শত্রুর মুখোশ উন্মোচন’ আর ‘মিনি সাইক্লোন’। গভীর রাতে তাঁকে প্রায়ই নামাজে দাঁড়ানো দেখা যেত; ক্যাম্পাসে ইতেকাফও করেছেন।"
+          },
+          {
+            "heading": "শাহাদাতের তামান্না",
+            "text": "ঢাকায় একবার ছিনতাইকারীর ছুরিতে মারাত্মক আহত হওয়ার পর ডায়েরিতে লিখেছিলেন, ‘আল্লাহ! এভাবে হঠাৎ মৃত্যু চাই না, শহিদী মৃত্যু চাই।’ ফেসবুকে এমন একটি স্ট্যাটাস দিলে বাবা তার নিচে লিখেছিলেন, ‘আমিন।’"
+          },
+          {
+            "heading": "৮ ফেব্রুয়ারি ২০১২",
+            "text": "ইসলামের ইতিহাস বিভাগে নবীনবরণের দাওয়াতপত্র বিলি নিয়ে কথাকাটাকাটি থেকে শুরু; ছাত্রলীগ সশস্ত্র হয়ে শিবিরের ওপর হামলা চালায়, সংঘর্ষ ছড়িয়ে পড়ে পুরো ক্যাম্পাসে। আহত ভাইদের জন্য স্যাভলন আর ব্যান্ডেজ আনতে হলে যেতে চেয়েছিলেন মাসউদ; দায়িত্বশীল নিষেধ করলে অন্য কাউকে পাঠিয়ে নিজের জায়গায় ফিরে দাঁড়ান।\n\nবিকেল তিনটার দিকে পেছন থেকে পুলিশ লাঠিপেটা শুরু করলে শিবিরকর্মীরা পাহাড়ের দিকে ছড়িয়ে পড়েন। ছাত্রলীগ গুলি ছুড়তে ছুড়তে পাহাড়ে উঠে তাঁদের ধাওয়া করে। জিরো পয়েন্টের ঢালে মাসউদ, মুজাহিদ আর আশিকুরকে হাতের কাছে পেয়ে রামদা দিয়ে এলোপাতাড়ি কোপাতে থাকে।\n\nসাথীরা তাঁকে ভ্যানে করে চট্টগ্রাম মেডিকেলে নেন; সেখান থেকে ফিরিয়ে দেওয়া হয়, হাটহাজারীর হাসপাতালও চিকিৎসা দিতে রাজি হয়নি। আবার চট্টগ্রাম মেডিকেলে ফিরলে চিকিৎসক তাঁকে মৃত ঘোষণা করেন।"
+          },
+          {
+            "heading": "শূন্য ১২১ নম্বর কক্ষ",
+            "text": "একদিনে দুই ভাইকে হারিয়ে নিস্তব্ধ হয়ে যায় পুরো ক্যাম্পাস। বিশ্ববিদ্যালয় বন্ধ ঘোষণা করা হয়, হল ছাড়ার নির্দেশ আসে। সাথীরা লিখেছেন, সোহরাওয়ার্দী হল আজও তাঁর শূন্যতা পূরণ করতে পারেনি; ১২১ নম্বর কক্ষ আজও তাঁর স্পর্শ খোঁজে। হত্যাকারীদের বিচার হয়নি।"
+          }
+        ],
+        "en": [
+          {
+            "heading": "Who he was",
+            "text": "Masud Bin Habib was born on 26 July 1988 in Ajmiriganj, Habiganj, the sixth of eight children of Habibur Rahman Habib and Hanufa Begum. He earned GPA 5 in both his Dakhil and Alim at Jamea Kasemia, Narsingdi. He hoped to study journalism, but at his father's wish took English.\n\nHe painted, acted so well that audiences were spellbound, and won applause reciting a children's rhyme in a dozen voices. He wrote two novels: 'Unmasking the Invisible Enemy' and 'Mini Cyclone'. Late at night he was often seen standing in prayer, and he spent the last ten nights of a Ramadan in retreat on campus."
+          },
+          {
+            "heading": "A wish",
+            "text": "Once, badly stabbed by muggers in Dhaka, he wrote in his diary: 'O Allah, I do not want a sudden death like this. I want a martyr's death.' When he posted a similar wish on Facebook, his father wrote beneath it: 'Amin.'"
+          },
+          {
+            "heading": "8 February 2012",
+            "text": "It began with an argument over invitations to a freshers' reception in the Islamic History department. Chhatra League men armed themselves and attacked Shibir, and the clashes spread across the campus. Masud wanted to run to the hall for antiseptic and bandages for the wounded; when his senior told him not to go, he sent someone else and went back to his post.\n\nAt about three, police began beating Shibir workers from behind and they scattered towards the hills. Chhatra League men chased them up the hillside, firing. On the slope by Zero Point they caught Masud, Mujahid and Ashikur and hacked at them with machetes.\n\nFriends took him by van to Chittagong Medical College, which sent him away; the hospital at Hathazari would not treat him either. When they brought him back to the medical college, the doctor declared him dead."
+          },
+          {
+            "heading": "Room 121, empty",
+            "text": "Two brothers lost in one day left the campus silent. The university was closed and students were told to leave the halls. His friends write that Suhrawardy Hall has never filled the space he left, and that room 121 still misses his touch. His killers have not been tried."
+          }
+        ]
+      },
+      "photo": {
+        "file": "portrait.jpg",
+        "alt": {
+          "bn": "শহীদ মাসউদ বিন হাবীব",
+          "en": "Shaheed Masud Bin Habib"
+        },
+        "credit": "বাংলাদেশ ইসলামী ছাত্রশিবির"
+      },
+      "gallery": [
+        {
+          "file": "bloodstained-shirt.jpg",
+          "kind": "day",
+          "caption": {
+            "bn": "শহীদের রক্তমাখা জামা",
+            "en": "His bloodstained shirt"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "comrades-carry-body.jpg",
+          "kind": "day",
+          "caption": {
+            "bn": "শহীদের লাশ নিয়ে যাচ্ছেন সাথীরা",
+            "en": "His friends carry him"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "clash-1.jpg",
+          "kind": "day",
+          "caption": {
+            "bn": "সেদিন ক্যাম্পাসে পুলিশের হামলা",
+            "en": "Police on the campus that day"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "clash-2.jpg",
+          "kind": "day",
+          "caption": {
+            "bn": "সেদিন ক্যাম্পাসে সংঘর্ষ",
+            "en": "The clashes on campus that day"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "body.jpg",
+          "kind": "day",
+          "graphic": true,
+          "caption": {
+            "bn": "শাহাদাতের পর শহীদ মাসউদ বিন হাবীব",
+            "en": "Masud Bin Habib after his martyrdom"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "head-wound.jpg",
+          "kind": "day",
+          "graphic": true,
+          "caption": {
+            "bn": "মাথায় রামদার কোপ",
+            "en": "The machete wound to his head"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "grave.jpg",
+          "kind": "after",
+          "caption": {
+            "bn": "শহীদের কবর",
+            "en": "His grave"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "press-conference.jpg",
+          "kind": "after",
+          "caption": {
+            "bn": "চবি শাখার সংবাদ সম্মেলন",
+            "en": "The CU branch's press conference"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "anniversary.jpg",
+          "kind": "after",
+          "caption": {
+            "bn": "শহীদ মাসউদ বিন হাবীবের শাহাদাতবার্ষিকী",
+            "en": "A gathering on the anniversary of his martyrdom"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        }
+      ],
+      "sources": [
+        {
+          "label": "শুহাদা ফাউন্ডেশন: শহীদ মাসউদ বিন হাবীব",
+          "url": "https://julyshohid.com/shuhada_details.php?id=80"
+        },
+        {
+          "label": "নয়া দিগন্ত: চবির সবুজ ক্যাম্পাসে কুপিয়ে খুন করা হয় শিবির নেতা মুজাহিদ ও মাসুদকে",
+          "url": "https://dailynayadiganta.com/printed-edition/fnLY1vZGJNsh"
+        },
+        {
+          "label": "বাংলাদেশ ইসলামী ছাত্রশিবির: শহীদ তালিকা",
+          "url": "https://shibir.org.bd/shaheeds/cfe9f290-67ac-4b0b-a5bc-35e16e51757b"
+        }
+      ]
+    },
+    {
+      "slug": "mujahidul-islam",
+      "order": 9,
+      "number": 138,
+      "rank": "sathi",
+      "date": "2012-02-08",
+      "name": {
+        "bn": "শহীদ মুজাহিদুল ইসলাম",
+        "en": "Shaheed Mujahidul Islam"
+      },
+      "affiliation": {
+        "bn": "প্রাণিবিদ্যা, দ্বিতীয় বর্ষ (সম্মান)",
+        "en": "Zoology, second year (honours)"
+      },
+      "role": {
+        "bn": "সাথী",
+        "en": "Associate"
+      },
+      "hall": {
+        "bn": "",
+        "en": ""
+      },
+      "home": {
+        "bn": "পূর্ব কিসমত জাফরাবাদ, মীরসরাই, চট্টগ্রাম",
+        "en": "East Kismat Jafarabad, Mirsharai, Chattogram"
+      },
+      "born": {
+        "bn": "১ জানুয়ারি ১৯৯৩",
+        "en": "1 January 1993"
+      },
+      "family": {
+        "bn": "পিতা হুমায়ুন কবির, মাতা ছকিনা বেগম; পাঁচ ভাইবোনের মধ্যে দ্বিতীয়",
+        "en": "Son of Humayun Kabir and Sakina Begum; the second of five"
+      },
+      "place": {
+        "bn": "ক্যাম্পাসের পাহাড়ে; হাসপাতালে নেওয়ার পথে শহীদ",
+        "en": "In the campus hills; he died on the way to hospital"
+      },
+      "attackers": {
+        "bn": "ছাত্রলীগের সশস্ত্র সন্ত্রাসীরা",
+        "en": "Armed Chhatra League men"
+      },
+      "wounds": {
+        "bn": "মাথায় গুলি, তারপর উপর্যুপরি ছুরিকাঘাত",
+        "en": "Shot in the head, then stabbed again and again"
+      },
+      "summary": {
+        "bn": "উনিশ বছরের প্রাণিবিদ্যার ছাত্র; বাবার কাছে সেন্টমার্টিনে ফিল্ড ট্রিপের টাকা চেয়েছিলেন। টাকা পৌঁছানোর আগেই পাহাড়ে মাথায় গুলি আর ছুরির আঘাতে তিনি চলে যান।",
+        "en": "A nineteen-year-old Zoology student who had asked his father for money for a field trip to Saint Martin's. Before the money arrived, he was shot in the head and stabbed in the campus hills."
+      },
+      "quote": {
+        "bn": "যারা আমার বুকের ধনকে অন্যায়ভাবে খুন করেছে, আমি আল্লাহর কাছে তাদের বিচার চাই। আল্লাহই তাদের বিচার করবেন।",
+        "en": "I ask Allah to judge those who wrongly killed the treasure of my heart. Allah will judge them."
+      },
+      "quoteBy": {
+        "bn": "শহীদের পিতা হুমায়ুন কবির",
+        "en": "His father, Humayun Kabir"
+      },
+      "story": {
+        "bn": [
+          {
+            "heading": "পরিচয়",
+            "text": "মীরসরাইয়ের পূর্ব কিসমত জাফরাবাদ গ্রামের এক আলেম পরিবারে ১৯৯৩ সালের ১ জানুয়ারি জন্ম; বাবা হুমায়ুন কবির, মা ছকিনা বেগম। ইসলামের পথে অগ্রণী হবে, এই স্বপ্নে বাবা-মা নাম রেখেছিলেন ‘মুজাহিদ’; ঘরে ডাকতেন জাহেদ।\n\nসুফিয়া নুরিয়া ফাজিল মাদ্রাসা থেকে ২০০৭ সালে বিজ্ঞানে গোল্ডেন এ প্লাস নিয়ে দাখিল, চট্টগ্রাম কলেজ থেকে এইচএসসি, তারপর ২০১০ সালে চট্টগ্রাম বিশ্ববিদ্যালয়ের প্রাণিবিদ্যা বিভাগে। শান্ত স্বভাবের, পরহেজগার, ছাত্রশিবিরের নিবেদিত সাথী।"
+          },
+          {
+            "heading": "শেষ ফোনালাপ",
+            "text": "পনেরো দিন আগে বাড়ি থেকে ক্যাম্পাসে ফিরেছিলেন। মঙ্গলবার রাতে বাবাকে ফোন করে বলেন, ব্যবহারিক পরীক্ষার জন্য সেন্টমার্টিন যেতে হবে, ১৭ তারিখের মধ্যে কিছু টাকা লাগবে। বাবা ডাকঘরে টাকা পাঠিয়েছিলেন। সেই টাকা মুজাহিদ আর পাননি।"
+          },
+          {
+            "heading": "৮ ফেব্রুয়ারি ২০১২",
+            "text": "সকালে ইসলামের ইতিহাস বিভাগে নবীনবরণের দাওয়াত বিলি নিয়ে এক শিবিরকর্মীকে কুপিয়ে আহত করে ছাত্রলীগ; প্রতিবাদ করতেই তারা সশস্ত্র হামলা চালায় হল আর ক্যাম্পাসজুড়ে। পুলিশ পেছন থেকে শিবিরকর্মীদের ওপর চড়াও হলে তাঁরা পাহাড়ের দিকে ছড়িয়ে পড়েন; ছাত্রলীগ গুলি ছুড়তে ছুড়তে পিছু নেয়।\n\nপাহাড়ে মাথায় গুলিবিদ্ধ হয়ে লুটিয়ে পড়েন মুজাহিদ। ছটফট করতে থাকা অবস্থাতেই তাঁকে একের পর এক ছুরিকাঘাত করা হয়; মরে গেছেন ভেবে ফেলে রেখে যায় তারা। চট্টগ্রাম মেডিকেল কলেজে নেওয়ার পথে তিনি শাহাদাত বরণ করেন। একই দিনে একই পাহাড়ে শহীদ হন মাসউদ বিন হাবীব।"
+          },
+          {
+            "heading": "পুলিশ পাহারায় বিদায়",
+            "text": "পরদিন সকালে পুলিশ পাহারায় তাঁকে মীরসরাইয়ে নেওয়া হয়; ঘোষিত সময়ের আগেই জানাজা পড়িয়ে পারিবারিক কবরস্থানে দাফন করা হয়। প্রাণিবিদ্যা বিভাগের শিক্ষার্থীরা হত্যার বিচারের দাবিতে মানববন্ধন করেন। হত্যাকারীদের বিচার হয়নি।"
+          }
+        ],
+        "en": [
+          {
+            "heading": "Who he was",
+            "text": "Mujahidul Islam was born on 1 January 1993 into a family of scholars in East Kismat Jafarabad, Mirsharai; his parents are Humayun Kabir and Sakina Begum. They named him Mujahid, dreaming he would be a vanguard of Islam; at home he was Zahed.\n\nHe took his Dakhil in science at Sufia Nuria Fazil Madrasa in 2007 with a golden A+, his HSC at Chittagong College, and entered the University of Chittagong's Zoology department in 2010. Calm, devout, and a devoted associate of Chhatrashibir."
+          },
+          {
+            "heading": "The last call",
+            "text": "He had gone back to campus fifteen days earlier. On Tuesday night he called his father: for a practical exam he had to go to Saint Martin's Island and would need some money by the seventeenth. His father sent it by post. Mujahid never received it."
+          },
+          {
+            "heading": "8 February 2012",
+            "text": "That morning Chhatra League men hacked a Shibir worker over invitations to a freshers' reception in the Islamic History department; when Shibir protested, they launched an armed attack across the halls and the campus. When police charged the Shibir workers from behind, they scattered towards the hills, and Chhatra League followed, firing.\n\nIn the hills Mujahid fell, shot in the head. As he writhed on the ground he was stabbed again and again, and left for dead. He was martyred on the way to Chittagong Medical College. On the same day, on the same hillside, Masud Bin Habib was also martyred."
+          },
+          {
+            "heading": "Farewell under police guard",
+            "text": "The next morning he was taken to Mirsharai under police guard; the funeral prayer was held before the announced time and he was buried in the family graveyard. Students of the Zoology department formed a human chain demanding justice. His killers have not been tried."
+          }
+        ]
+      },
+      "photo": {
+        "file": "portrait.jpg",
+        "alt": {
+          "bn": "শহীদ মুজাহিদুল ইসলাম, ক্যাম্পাসে",
+          "en": "Shaheed Mujahidul Islam on campus"
+        },
+        "credit": "শুহাদা ফাউন্ডেশন"
+      },
+      "gallery": [
+        {
+          "file": "attack.jpg",
+          "kind": "day",
+          "caption": {
+            "bn": "পেছন থেকে পুলিশের হামলা, সামনে ছাত্রলীগ; শিবিরকর্মীরা পাহাড়ের দিকে সরে যাচ্ছেন",
+            "en": "Police charge from behind, Chhatra League in front; Shibir workers fall back towards the hills"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "brought-down.jpg",
+          "kind": "day",
+          "graphic": true,
+          "caption": {
+            "bn": "পাহাড়ের ভেতর থেকে শহীদের লাশ নামিয়ে আনা হচ্ছে",
+            "en": "His body is carried down from the hills"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "body.jpg",
+          "kind": "day",
+          "graphic": true,
+          "caption": {
+            "bn": "শাহাদাতের পর শহীদ মুজাহিদুল ইসলাম",
+            "en": "Mujahidul Islam after his martyrdom"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "head-wound.jpg",
+          "kind": "day",
+          "graphic": true,
+          "caption": {
+            "bn": "মাথায় গুলির ক্ষত",
+            "en": "The gunshot wound to his head"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "shroud.jpg",
+          "kind": "after",
+          "graphic": true,
+          "caption": {
+            "bn": "কাফনে শহীদ মুজাহিদ",
+            "en": "Mujahid in his shroud"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "human-chain.jpg",
+          "kind": "after",
+          "caption": {
+            "bn": "হত্যার বিচারের দাবিতে প্রাণিবিদ্যা বিভাগের শিক্ষার্থীদের মানববন্ধন",
+            "en": "Zoology students' human chain demanding justice"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        }
+      ],
+      "sources": [
+        {
+          "label": "শুহাদা ফাউন্ডেশন: শহীদ মুজাহিদুল ইসলাম",
+          "url": "https://julyshohid.com/shuhada_details.php?id=58"
+        },
+        {
+          "label": "নয়া দিগন্ত: চবির সবুজ ক্যাম্পাসে কুপিয়ে খুন করা হয় শিবির নেতা মুজাহিদ ও মাসুদকে",
+          "url": "https://dailynayadiganta.com/printed-edition/fnLY1vZGJNsh"
+        },
+        {
+          "label": "বাংলাদেশ ইসলামী ছাত্রশিবির: শহীদ তালিকা",
+          "url": "https://shibir.org.bd/shaheeds/cec0f38c-c8f2-4b03-9549-0e6e23466bab"
+        }
+      ]
+    },
+    {
+      "slug": "mamun-hossain",
+      "order": 10,
+      "number": 204,
+      "rank": "sodossho",
+      "date": "2014-01-12",
+      "name": {
+        "bn": "শহীদ মো. মামুন হোসাইন",
+        "en": "Shaheed Md. Mamun Hossain"
+      },
+      "affiliation": {
+        "bn": "মৃত্তিকা বিজ্ঞান, চতুর্থ বর্ষ (সম্মান)",
+        "en": "Soil Science, fourth year (honours)"
+      },
+      "role": {
+        "bn": "সেক্রেটারি, শাহ আমানত হল শাখা",
+        "en": "Secretary, Shah Amanat Hall branch"
+      },
+      "hall": {
+        "bn": "শাহ আমানত হল",
+        "en": "Shah Amanat Hall"
+      },
+      "home": {
+        "bn": "রামপুর, কোম্পানীগঞ্জ, নোয়াখালী",
+        "en": "Rampur, Companiganj, Noakhali"
+      },
+      "born": {
+        "bn": "",
+        "en": ""
+      },
+      "family": {
+        "bn": "পিতা মাওলানা মোহাম্মদ রফি উদ্দীন, মাতা মাকসুদা বেগম; পাঁচ ভাইবোনের মধ্যে তৃতীয়",
+        "en": "Son of Maulana Mohammad Rafi Uddin and Maksuda Begum; the third of five"
+      },
+      "place": {
+        "bn": "শাহ আমানত হলের সিঁড়ি, চট্টগ্রাম বিশ্ববিদ্যালয়",
+        "en": "The stairs of Shah Amanat Hall, University of Chittagong"
+      },
+      "attackers": {
+        "bn": "ছাত্রলীগের সশস্ত্র সন্ত্রাসীরা",
+        "en": "Armed Chhatra League men"
+      },
+      "wounds": {
+        "bn": "চাপাতি ও রামদার কোপ, তারপর জবাই",
+        "en": "Hacked with machetes, then his throat was cut"
+      },
+      "summary": {
+        "bn": "যেদিন সদস্য হলেন, বলেছিলেন দুটি শপথ নিয়েছেন: একটি সদস্যের, একটি শহীদ হওয়ার। শাহ আমানত হলে ভাইদের রক্ষা করতে গিয়ে সিঁড়িতে আটকা পড়েন; সেখানেই তাঁকে জবাই করা হয়।",
+        "en": "On the day he became a member he said he had taken two oaths: a member's, and a martyr's. Trapped on the stairs of Shah Amanat Hall while shielding his brothers, he was killed there, his throat cut."
+      },
+      "quote": {
+        "bn": "আজ আমি দুটো শপথ করলাম, একটি সদস্য হিসেবে, অন্যটি শহীদ হওয়ার।",
+        "en": "Today I took two oaths: one as a member, the other to be a martyr."
+      },
+      "quoteBy": {
+        "bn": "সদস্য শপথের দিন, দুলাভাইকে ফোনে",
+        "en": "On the phone to his brother-in-law, the day he took the member's oath"
+      },
+      "story": {
+        "bn": [
+          {
+            "heading": "পরিচয়",
+            "text": "নোয়াখালীর কোম্পানীগঞ্জের রামপুর গ্রামের মাওলানা মোহাম্মদ রফি উদ্দীন ও মাকসুদা বেগমের তৃতীয় সন্তান মামুন হোসাইন; পরিবারের একমাত্র বিশ্ববিদ্যালয়পড়ুয়া ছেলে। মৃত্তিকা বিজ্ঞানের চতুর্থ বর্ষের ছাত্র, ছোটবেলা থেকে বৃত্তিপ্রাপ্ত; স্বপ্ন ছিল বিশ্ববিদ্যালয়ের শিক্ষক হওয়ার। ছাত্রশিবিরের সদস্য ও শাহ আমানত হল শাখার সেক্রেটারি।\n\nরাত জেগে তাহাজ্জুদ পড়তেন; রুমমেট নিজের তেলাওয়াত থামিয়ে তাঁর তেলাওয়াত শুনতেন। রমজানে একসাথে ইফতারের হিসাব মিলিয়ে সাত টাকা পঞ্চাশ পয়সা ফেরত দিয়েছিলেন। ভর্তি পরীক্ষার শীতের রাতে পরীক্ষার্থীদের জন্য রুমে রুমে ঘুরে কাঁথা-বালিশ জোগাড় করেছিলেন।"
+          },
+          {
+            "heading": "১২ জানুয়ারি ২০১৪",
+            "text": "দুপুরে ছাত্রলীগের সশস্ত্র মিছিল সোহরাওয়ার্দী হল লক্ষ্য করে গুলি ছোড়ে, তারপর ঢুকে পড়ে শাহ আমানত হলের ফটকে। ‘নারায়ে তাকবীর’ ধ্বনিতে পিছু হটে তারা ফটকের সামনেই অবস্থান নেয়। হলের শিক্ষার্থীদের নিরাপত্তা না দিয়ে প্রশাসন উল্টো হল তল্লাশির সিদ্ধান্ত নেয়; সাংবাদিকদেরও ঢুকতে দেওয়া হয়নি। পুলিশ হলের একুশজন শিবিরকর্মীকে গ্রেপ্তার করে, বাকিদের ছত্রভঙ্গ করে দেয়।\n\nসেই সুযোগে পিস্তল, রিভলবার আর ধারালো অস্ত্র নিয়ে ছাত্রলীগ ঢুকে পড়ে নিরস্ত্র, বিচ্ছিন্ন শিবিরকর্মীদের ওপর। ভাইদের রক্ষা করতে গিয়ে সিঁড়িতে আটকা পড়েন মামুন ও সাইদুল ইসলাম রকি। চাপাতি আর রামদায় দুজনকেই কোপানো হয়। রকিকে মৃত ভেবে ফেলে যায় তারা; মামুন তখনো শ্বাস নেওয়ার চেষ্টা করছিলেন। তারা তাঁর গলায় ছুরি চালিয়ে মৃত্যু নিশ্চিত করে।\n\nসাথীরা দেয়াল টপকে হলে ঢুকে তাঁকে চট্টগ্রাম মেডিকেল কলেজ হাসপাতালে নিয়ে যান; সেখানে তাঁকে মৃত ঘোষণা করা হয়।"
+          },
+          {
+            "heading": "বিচারের অপেক্ষা",
+            "text": "মামুনের প্রাণহীন দেহ যখন হল থেকে বের করা হয়, করিডোর আর সিঁড়ি রক্তে ভেজা। ২০২৪ সালের আগস্টের পর তাঁর বাবা হত্যা মামলাটি আবার সচল করেন; আসামিদের মধ্যে আছেন সেসময়ের ছাত্রলীগের নেতারা। এখনো কারও সাজা হয়নি।"
+          }
+        ],
+        "en": [
+          {
+            "heading": "Who he was",
+            "text": "Mamun Hossain was the third child of Maulana Mohammad Rafi Uddin and Maksuda Begum of Rampur, Companiganj, Noakhali, and the only one of them at university. A fourth-year Soil Science student who had won scholarships since childhood, he wanted to become a university teacher. He was a member of Chhatrashibir and secretary of its Shah Amanat Hall branch.\n\nHe rose at night for the tahajjud prayer; his roommate would stop his own recitation to listen to Mamun's. After a month of shared iftars in Ramadan he worked out the accounts and handed back seven taka fifty. On cold nights during the admission tests he went from room to room collecting quilts and pillows for the candidates."
+          },
+          {
+            "heading": "12 January 2014",
+            "text": "At midday an armed Chhatra League procession fired at Suhrawardy Hall and then burst through the gate of Shah Amanat Hall. Driven back by the takbir, they took position in front of the gate. Instead of protecting the hall's residents, the administration decided to raid the hall, and kept journalists out. Police arrested twenty-one Shibir workers living in the hall and scattered the rest.\n\nThen, with pistols, revolvers and blades, Chhatra League fell on the unarmed and scattered Shibir workers. Shielding his brothers, Mamun was trapped on the stairs with Saidul Islam Rocky. Both were hacked with machetes. Rocky was left for dead; Mamun was still trying to breathe. They cut his throat to make sure.\n\nFriends climbed the walls to get in and carried him to Chittagong Medical College Hospital, where he was declared dead."
+          },
+          {
+            "heading": "Still waiting for justice",
+            "text": "When his body was brought out, the corridor and the stairs were soaked in blood. After August 2024 his father revived the murder case; the accused include Chhatra League leaders of the time. No one has yet been convicted."
+          }
+        ]
+      },
+      "photo": {
+        "file": "portrait.jpg",
+        "alt": {
+          "bn": "শহীদ মো. মামুন হোসাইন",
+          "en": "Shaheed Md. Mamun Hossain"
+        },
+        "credit": "বাংলাদেশ ইসলামী ছাত্রশিবির"
+      },
+      "gallery": [
+        {
+          "file": "photo.jpg",
+          "kind": "life",
+          "caption": {
+            "bn": "শহীদ মামুন হোসাইন",
+            "en": "Shaheed Mamun Hossain"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "corridor.jpg",
+          "kind": "day",
+          "caption": {
+            "bn": "শাহ আমানত হলের সেই রক্তাক্ত করিডোর",
+            "en": "The corridor of Shah Amanat Hall"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "corridor-blood.jpg",
+          "kind": "day",
+          "graphic": true,
+          "caption": {
+            "bn": "শহীদের রক্তে ভেজা হলের করিডোর",
+            "en": "The hall corridor, wet with his blood"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "stairs-blood.jpg",
+          "kind": "day",
+          "graphic": true,
+          "caption": {
+            "bn": "হামলায় রক্তে ভেজা হলের সিঁড়ি",
+            "en": "The stairs, wet with blood after the attack"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "wounds.jpg",
+          "kind": "day",
+          "graphic": true,
+          "caption": {
+            "bn": "রামদার আঘাতে ক্ষতবিক্ষত শহীদ মামুন হোসাইন",
+            "en": "Mamun Hossain, cut by machete blows"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "carried.jpg",
+          "kind": "day",
+          "graphic": true,
+          "caption": {
+            "bn": "শহীদকে নিয়ে যাচ্ছেন সাথীরা",
+            "en": "His friends carry him out"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "coffin.jpg",
+          "kind": "after",
+          "graphic": true,
+          "caption": {
+            "bn": "শহীদের কফিন",
+            "en": "His coffin"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "funeral.jpg",
+          "kind": "after",
+          "caption": {
+            "bn": "জানাজার আগের সমাবেশ",
+            "en": "The gathering before his funeral prayer"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        },
+        {
+          "file": "grave.jpg",
+          "kind": "after",
+          "caption": {
+            "bn": "শহীদ মামুন হোসাইনের কবর",
+            "en": "His grave"
+          },
+          "credit": "শুহাদা ফাউন্ডেশন"
+        }
+      ],
+      "sources": [
+        {
+          "label": "শুহাদা ফাউন্ডেশন: শহীদ মামুন হোসাইন",
+          "url": "https://julyshohid.com/shuhada_details.php?id=79"
+        },
+        {
+          "label": "বাংলাদেশ ইসলামী ছাত্রশিবির: শহীদ তালিকা",
+          "url": "https://shibir.org.bd/shaheeds/5d1f1581-470d-4c96-b063-cdce324f8a74"
+        },
+        {
+          "label": "দৈনিক জনকণ্ঠ, ২০২৫",
+          "url": "https://www.dailyjanakantha.com/bangladesh/news/878708"
+        }
+      ]
+    }
+  ]
+}

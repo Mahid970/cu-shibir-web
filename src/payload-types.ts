@@ -354,7 +354,31 @@ export interface Martyr {
   order?: number | null;
   affiliation?: string | null;
   place?: string | null;
+  /**
+   * কেন্দ্রীয় শহীদ তালিকার ক্রম
+   */
+  number?: number | null;
+  rank?: ('kormi' | 'sathi' | 'sodossho') | null;
+  role?: string | null;
+  hall?: string | null;
+  home?: string | null;
+  born?: string | null;
+  family?: string | null;
+  attackers?: string | null;
+  wounds?: string | null;
   summary?: string | null;
+  quote?: string | null;
+  quoteBy?: string | null;
+  /**
+   * প্রতিটি অংশের একটি শিরোনাম ও লেখা; ফাঁকা লাইন দিয়ে অনুচ্ছেদ আলাদা করুন।
+   */
+  story?:
+    | {
+        heading: string;
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
   bio?: {
     root: {
       type: string;
@@ -371,6 +395,24 @@ export interface Martyr {
     [k: string]: unknown;
   } | null;
   photo?: (number | null) | Media;
+  /**
+   * ক্যাপশন ও কৃতজ্ঞতা মিডিয়াতেই লিখুন। কষ্টদায়ক ছবি চিহ্নিত করলে পাতায় ঝাপসা থাকে, ক্লিক করলে দেখা যায়।
+   */
+  gallery?:
+    | {
+        photo: number | Media;
+        kind?: ('life' | 'day' | 'after' | 'place') | null;
+        graphic?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  sources?:
+    | {
+        label: string;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   /**
    * When enabled, the slug will auto-generate from the title field on save and autosave.
    */
@@ -1391,9 +1433,42 @@ export interface MartyrsSelect<T extends boolean = true> {
   order?: T;
   affiliation?: T;
   place?: T;
+  number?: T;
+  rank?: T;
+  role?: T;
+  hall?: T;
+  home?: T;
+  born?: T;
+  family?: T;
+  attackers?: T;
+  wounds?: T;
   summary?: T;
+  quote?: T;
+  quoteBy?: T;
+  story?:
+    | T
+    | {
+        heading?: T;
+        text?: T;
+        id?: T;
+      };
   bio?: T;
   photo?: T;
+  gallery?:
+    | T
+    | {
+        photo?: T;
+        kind?: T;
+        graphic?: T;
+        id?: T;
+      };
+  sources?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        id?: T;
+      };
   generateSlug?: T;
   slug?: T;
   updatedAt?: T;
