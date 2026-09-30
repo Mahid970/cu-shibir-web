@@ -30,7 +30,6 @@
     "@payloadcms/richtext-lexical": "3.90.2",
     "@payloadcms/translations": "^3.90.2",
     "@payloadcms/ui": "3.90.2",
-    "adhan": "^4.4.6",
     "cross-env": "^7.0.3",
     "dotenv": "16.4.7",
     "graphql": "^16.8.1",
@@ -41,8 +40,7 @@
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "server-only": "^0.0.1",
-    "sharp": "0.35.4",
-    "three": "^0.186.1"
+    "sharp": "0.35.4"
   },
   "devDependencies": {
     "@playwright/test": "1.58.2",
@@ -52,7 +50,6 @@
     "@types/node": "22.19.9",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "@types/three": "^0.186.0",
     "@vitejs/plugin-react": "4.5.2",
     "embedded-postgres": "^18.4.0-beta.17",
     "eslint": "^9.16.0",

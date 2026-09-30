@@ -89,9 +89,8 @@ src/
   lib/campus.ts          CU faculties, departments, halls, sessions (Bangla + official English names)
   lib/people.ts          leaders' names, positions and details in the page's language
   lib/og/                share-card HTML + Chromium renderer
-  components/            home/, campus/ (3D scene, poster, tiers), about/ (rail timeline, particle emblem),
+  components/            home/, about/ (rail timeline, particle emblem),
                          content/, forms/, syllabus/, ui/, motion/, art/, layout/ (incl. SearchPalette)
-  lib/sky.ts             prayer times and time-of-day sky palettes for the campus scene
   content/               copy not in the CMS, both languages: home.ts, history.ts, people-en.ts,
                          syllabus.json + syllabus.en.json (keyed by the Bangla text)
 public/sw.js             service worker: offline reading, cached assets and images
@@ -134,7 +133,6 @@ docs/                    design system, deploy guide, spikes
   - Homepage transfer is about 700 KB including photos (old site: 3.7 MB).
   - Initial JS is 173 KB gzipped, most of it React and the Next.js router. The site's own home code is about 10 KB.
   - Fonts are about 170 KB: Hind Siliguri 400/600/700 (Bangla), preloaded, plus Montserrat (Latin), not preloaded.
-  - The 3D campus chunk (three.js, about 138 KB gzipped) and the prayer-time maths load only when their section comes near.
 - **Lighthouse (mobile, simulated 4G, 4× CPU)**, measured 2026-09-26:
 
   | Page | Performance | Accessibility | Best practices |
@@ -154,11 +152,6 @@ docs/                    design system, deploy guide, spikes
   - Nothing re-hides or stays blurred.
   - `prefers-reduced-motion` turns it all off.
 - **Phase 2 layer**:
-  - **Living campus** (home, `components/campus`):
-    - A procedural three.js scene, no model files: hills, forest, the shuttle line and train, campus blocks, কাটা পাহাড়.
-    - The sky follows Chattogram time, and the next prayer time is shown (`lib/sky.ts`: Karachi method, Hanafi Asr).
-    - Device tiers: an SVG poster for reduced motion, Save-Data, ≤2 GB or software GPUs; a lighter scene for phones; the full scene elsewhere.
-    - Rendering pauses off-screen. `?campus3d=0|1|2` and `?campusHour=` are QA overrides.
   - **Particle emblem** (About): a 2D canvas. The logo's pixels gather from scattered stars, then re-form as the slogan, drawn with the page's Bangla font.
   - **Rail timeline** (About): the history as stations on the shuttle line. It is pinned and scroll-driven on large screens and a vertical list elsewhere.
   - **View transitions**: news card image → article hero, and leader photo → profile, with React `<ViewTransition>`.

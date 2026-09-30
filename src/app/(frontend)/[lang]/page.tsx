@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 
-import { LivingCampus } from '@/components/campus/LivingCampus'
 import { FivePoints } from '@/components/home/FivePoints'
 import { Gallery } from '@/components/home/Gallery'
 import { Hero } from '@/components/home/Hero'
@@ -82,7 +81,6 @@ export default async function HomePage({ params }: Props) {
       <TrustSection press={press} />
       <FivePoints />
       <Gallery albums={albums} videos={videos} youtube={settings.socials?.youtube} />
-      <LivingCampus />
       <LeadersSection leaders={leaders} />
       <JoinBanner email={settings.contact?.email || SITE.email} />
     </>
