@@ -60,7 +60,7 @@ export default async function JoinPage() {
                 </Link>
               </h2>
               <p className="text-[0.98rem] leading-relaxed text-muted">{a.text}</p>
-              <span className={`btn btn-sm mt-3 ${a.primary ? 'btn-yellow' : 'btn-outline-blue'}`}>
+              <span className={`btn btn-sm mt-3 ${a.primary ? 'btn-cta' : 'btn-outline-blue'}`}>
                 {a.cta}
                 <ArrowRight />
               </span>

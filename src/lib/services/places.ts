@@ -12,7 +12,7 @@ export const PLACE_CATEGORIES = [
 
 /** One colour per group of places, the same as the legend under the map. */
 export const CATEGORY_COLORS: Record<string, string> = {
-  faculty: '#3564ff',
+  faculty: '#1c9bd6',
   hall: '#8b5cf6',
   study: '#0ea5e9',
   health: '#e11d48',

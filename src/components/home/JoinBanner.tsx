@@ -30,9 +30,9 @@ export async function JoinBanner({ email }: { email: string }) {
     <section className="cv-auto wrap py-10 md:py-14" aria-labelledby="join-banner">
       <div
         data-reveal="up"
-        className="relative overflow-hidden rounded-3xl border-4 border-transparent [background:linear-gradient(115deg,#0b2a5b,#081a3a_55%,#0c2f5c)_padding-box,linear-gradient(120deg,#5eead4,#3564ff_60%,#5eead4)_border-box]"
+        className="relative overflow-hidden rounded-3xl border-4 border-transparent [background:linear-gradient(115deg,#07334d,#04202e_55%,#083a55)_padding-box,linear-gradient(120deg,#5eead4,#1c9bd6_60%,#5eead4)_border-box]"
       >
-        <div aria-hidden="true" className="dot-grid absolute inset-0 opacity-60" />
+        <div aria-hidden="true" className="lattice-night absolute inset-0 opacity-60" />
         <div className="relative grid items-center gap-8 p-7 sm:p-10 md:grid-cols-[1.25fr_1fr] md:p-12">
           <div>
             <h2 id="join-banner" className="text-[1.9rem] font-bold leading-snug text-white md:text-[2.6rem]">
@@ -47,7 +47,7 @@ export async function JoinBanner({ email }: { email: string }) {
               {t.text}
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/join" className="btn btn-yellow">
+              <Link href="/join" className="btn btn-cta">
                 {t.join}
                 <ArrowRight />
               </Link>

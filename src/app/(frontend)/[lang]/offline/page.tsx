@@ -28,7 +28,7 @@ export default async function OfflinePage() {
   const t = T[await getLang()]
   return (
     <div className="hero-wash relative isolate overflow-hidden">
-      <div aria-hidden="true" className="grid-paper absolute inset-0 -z-10" />
+      <div aria-hidden="true" className="lattice absolute inset-0 -z-10" />
       <div className="wrap flex min-h-[60vh] max-w-xl flex-col items-center justify-center py-20 text-center">
         <svg viewBox="0 0 64 64" className="size-20 text-primary" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" aria-hidden="true">
           <path d="M8 24a36 36 0 0 1 48 0M16 32a24 24 0 0 1 32 0M24 40a12 12 0 0 1 16 0" />

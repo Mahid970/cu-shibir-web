@@ -34,13 +34,13 @@ export async function FivePoints() {
   return (
     <section className="relative isolate bg-deep pb-20 text-white md:pb-28" aria-labelledby="five-points">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="dot-grid absolute inset-0 [mask-image:radial-gradient(60%_50%_at_50%_20%,#000,transparent)]" />
+        <div className="lattice-night absolute inset-0 [mask-image:radial-gradient(60%_50%_at_50%_20%,#000,transparent)]" />
         <div className="absolute left-1/2 top-40 h-[480px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(0_96_250/0.35),transparent)] blur-2xl" />
       </div>
       <EyebrowTab text={t.eyebrow} />
       <div className="wrap mt-8 text-center md:mt-10">
         <SweepTitle id="five-points" className="mx-auto max-w-3xl text-[2rem] font-bold leading-snug text-white sm:text-[2.75rem]">
-          {t.title[0]} <span className="lime">{t.title[1]}</span> {t.title[2]}
+          {t.title[0]} <span className="glow">{t.title[1]}</span> {t.title[2]}
         </SweepTitle>
         <p className="mx-auto mt-4 max-w-2xl text-[1rem] leading-relaxed text-slate-400 sm:text-[1.1rem]">{t.lede}</p>
       </div>

@@ -120,7 +120,7 @@ export default async function FreshersPage() {
                 <p lang={langAttr(lang, c.name)} className="font-semibold text-white/80">
                   {c.name}
                 </p>
-                <a href={`tel:${c.phone.replace(/[^+0-9]/g, '')}`} aria-label={t.call(c.phone)} className="mt-2 block text-[2rem] font-bold leading-none text-yellow">
+                <a href={`tel:${c.phone.replace(/[^+0-9]/g, '')}`} aria-label={t.call(c.phone)} className="mt-2 block text-[2rem] font-bold leading-none text-glow">
                   {num(lang, c.phone)}
                 </a>
                 {c.note && (

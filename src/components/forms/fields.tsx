@@ -172,7 +172,7 @@ export function Consent({ name = 'consent', errors, children }: { name?: string;
           required
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? `e-${name}` : undefined}
-          className="mt-1 size-5 shrink-0 accent-[#0052d8]"
+          className="mt-1 size-5 shrink-0 accent-[#0b6fa4]"
         />
         <span>{children}</span>
       </label>

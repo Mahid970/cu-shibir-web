@@ -1,52 +1,56 @@
 @import 'tailwindcss';
 
 /* ------------------------------------------------------------------
-   Design system modelled on phitron.io — see docs/design/phitron-system.md
-   Light, airy blue pages with a grid texture; deep night sections;
-   yellow calls to action; lively, replaying motion.
+   Design system: "sea, hills and dawn" — docs/design/system.md
+   Sea-blue from the Shibir emblem, green of the CU hills for actions,
+   a dawn amber on deep sea-navy night sections, an eight-point star
+   lattice for texture, and lively motion that answers the reader.
    ------------------------------------------------------------------ */
 
 :root {
-  --bg: #f6f6f6;
+  --bg: #f2f6f6;
   --white: #ffffff;
-  --ink: #0b0f2e;
-  --text: #1a1a1a;
-  --muted: #5c5c5c;
-  --subtle: #6b6b6b; /* 5.3:1 on white (WCAG AA) */
-  --border: #e7e7e7;
+  --ink: #0a2233;
+  --text: #1a2a33;
+  --muted: #56646c;
+  --subtle: #62707a; /* 5.1:1 on white (WCAG AA) */
+  --border: #e1e8ea;
 
-  --primary: #0052d8;
-  --blue: #3564ff;
-  --blue-soft: #4c8df5;
-  --blue-deep: #002b70;
-  --pale: #eff3ff;
-  --pale-2: #ebf0ff;
-  --pale-3: #dbe4ff;
-  --pale-4: #c3d3ff;
+  --primary: #0b6fa4; /* sea blue, 5.4:1 on white */
+  --blue: #1c9bd6;
+  --blue-soft: #5cc0ea;
+  --blue-deep: #06456a;
+  --pale: #e8f4f8;
+  --pale-2: #e0f0f6;
+  --pale-3: #c9e6f1;
+  --pale-4: #afdaeb;
 
-  --yellow: #fbc900;
-  --yellow-hover: #ffd52e;
-  --tag: #f5c945;
+  --cta: #19c37d; /* hill green, ink text 7:1 */
+  --cta-hover: #2fd690;
+  --tag: #ffd27f;
+  --amber: #ffc561;
 
-  --night: #000e1d;
-  --night-card: #070d18;
-  --navy: #002545;
-  --deep: #061327;
-  --lime: #e1fd14;
-  --lime-band: #dcff3d;
-  --mint: #00fb97;
-  --aqua: #00fbee;
-  --success: #35b252;
-  --danger: #f9271a;
-  --crimson: #c82028;
+  --night: #04202e;
+  --night-card: #062a3b;
+  --navy: #07334d;
+  --deep: #052636;
+  --glow: #ffc561; /* dawn amber on night sections */
+  --glow-band: #ffd27f;
+  --mint: #3ee0a4;
+  --aqua: #5fd4ff;
+  --success: #1fae5d;
+  --danger: #e5402f;
+  --crimson: #c0262d;
 
-  --gradient: radial-gradient(65.14% 924.42% at 50% 50%, #0060fa 0%, #002b70 100%);
-  --gradient-text: radial-gradient(65.14% 924.42% at 50% 50%, #4c8df5 0%, #002b70 100%);
-  --gradient-green: linear-gradient(180deg, #7ef7a8, #2fce55);
-  --gradient-lime: linear-gradient(90deg, #e1fd14 0%, #4ade80 100%);
+  --gradient: linear-gradient(120deg, #1596d1 0%, #0b6fa4 45%, #06456a 100%);
+  --gradient-text: linear-gradient(100deg, #1ea5dd 0%, #0b6fa4 45%, #0a2f4a 100%);
+  --gradient-green: linear-gradient(100deg, #8af5c7, #19c37d);
+  --gradient-glow: linear-gradient(90deg, #ffd27f 0%, #ff9f5e 100%);
   --gradient-teal: linear-gradient(90deg, #5fe08a 0%, #3fb6a8 100%);
+  --mark: rgb(25 195 125 / 0.34);
+  --mark-dark: rgb(255 197 97 / 0.32);
 
-  --shadow-card: 0 4px 24px rgb(11 15 46 / 0.06);
+  --shadow-card: 0 1px 0 rgb(10 34 51 / 0.04), 0 10px 30px rgb(10 34 51 / 0.07);
   --shadow-soft: 12px 12px 24px rgb(0 0 0 / 0.05);
   --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -70,13 +74,14 @@
   --color-pale-2: var(--pale-2);
   --color-pale-3: var(--pale-3);
   --color-pale-4: var(--pale-4);
-  --color-yellow: var(--yellow);
+  --color-cta: var(--cta);
+  --color-amber: var(--amber);
   --color-tag: var(--tag);
   --color-night: var(--night);
   --color-night-card: var(--night-card);
   --color-navy: var(--navy);
   --color-deep: var(--deep);
-  --color-lime: var(--lime);
+  --color-glow: var(--glow);
   --color-mint: var(--mint);
   --color-aqua: var(--aqua);
   --color-success: var(--success);
@@ -84,7 +89,9 @@
   --color-crimson: var(--crimson);
 
   --font-sans: var(--font-hind), 'Hind Siliguri', 'Noto Sans Bengali', system-ui, sans-serif;
-  --font-en: var(--font-montserrat), var(--font-hind), system-ui, sans-serif;
+  --font-en: var(--font-hind-latin), var(--font-hind), system-ui, sans-serif;
+  --font-display: var(--font-anek), var(--font-hind), 'Noto Sans Bengali', system-ui, sans-serif;
+  --font-display-en: var(--font-anek-latin), var(--font-anek), system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
   --font-quran: var(--font-amiri-quran), 'Amiri Quran', serif;
 }
@@ -106,6 +113,8 @@
   h2,
   h3 {
     color: var(--ink);
+    font-family: var(--font-display);
+    font-variation-settings: 'wdth' 96;
     text-wrap: balance;
   }
   p {
@@ -138,20 +147,17 @@
     }
   }
 
-  /* Blue grid paper behind light heroes */
-  .grid-paper {
-    background-image:
-      linear-gradient(to right, rgb(53 100 255 / 0.07) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(53 100 255 / 0.07) 1px, transparent 1px);
-    background-size: 72px 72px;
+  /* Eight-point star lattice (khatam) behind light heroes and on night sections */
+  .lattice {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%230b6fa4' stroke-opacity='.085' stroke-width='1'%3E%3Cpath d='M44 20 68 44 44 68 20 44Z'/%3E%3Cpath d='M27 27h34v34H27z'/%3E%3Cpath d='M27 27 0 0M61 27 88 0M61 61l27 27M27 61 0 88M44 20V0M68 44h20M44 68v20M20 44H0'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 88px 88px;
   }
   .hero-wash {
-    background: linear-gradient(194deg, rgb(255 255 255 / 0) 8%, rgb(238 242 255 / 0.8) 39%, rgb(216 225 255 / 0.6) 61%);
+    background: linear-gradient(192deg, rgb(255 255 255 / 0) 6%, rgb(224 242 248 / 0.85) 40%, rgb(214 244 230 / 0.7) 78%);
   }
-  /* Dot texture for night sections */
-  .dot-grid {
-    background-image: radial-gradient(rgb(255 255 255 / 0.09) 1px, transparent 1px);
-    background-size: 18px 18px;
+  .lattice-night {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.07' stroke-width='1'%3E%3Cpath d='M44 20 68 44 44 68 20 44Z'/%3E%3Cpath d='M27 27h34v34H27z'/%3E%3Cpath d='M27 27 0 0M61 27 88 0M61 61l27 27M27 61 0 88M44 20V0M68 44h20M44 68v20M20 44H0'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 88px 88px;
   }
 
   /* ---------- Section titles ---------- */
@@ -160,6 +166,8 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 0 0.3em;
+    font-family: var(--font-display);
+    font-variation-settings: 'wdth' 94;
     font-weight: 700;
     font-size: 2rem;
     line-height: 1.35;
@@ -184,36 +192,44 @@
     color: var(--white);
   }
 
-  /* Highlighted words: gradient text that shines, with a swoosh under it */
+  /* Highlighted words: sea-gradient text with a hill-green highlighter stroke across their lower half */
   .hl {
     position: relative;
+    isolation: isolate;
     display: inline-block;
-    padding-bottom: 0.12em;
+    padding-bottom: 0.08em;
     background-image: var(--gradient-text);
     background-size: 200% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    animation: shine 4s linear infinite;
+    animation: shine 5s linear infinite;
   }
   .hl-green {
-    background-image: var(--gradient-green);
+    background-image: var(--gradient-glow);
   }
   .swoosh-host {
     position: relative;
+    isolation: isolate;
     display: inline-block;
-    padding-bottom: 0.12em;
+    padding-bottom: 0.08em;
   }
-  /* The swoosh never affects layout: it hangs under the words. */
+  /* The stroke never affects layout; it multiplies over the letters like a real highlighter. */
   .hl svg,
   .swoosh-host svg {
     position: absolute;
-    left: 0;
-    bottom: -0.08em;
-    width: 100%;
-    height: 0.2em;
+    left: -0.1em;
+    bottom: -0.04em;
+    width: calc(100% + 0.2em);
+    height: 0.34em;
     overflow: visible;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+  .title-dark .hl svg,
+  .hl-green svg {
+    mix-blend-mode: screen;
   }
 
   .lede {
@@ -240,8 +256,8 @@
     justify-content: center;
     gap: 0.75rem;
     height: 3.5rem;
-    padding: 0 1.5rem;
-    border-radius: 0.5rem;
+    padding: 0 1.6rem;
+    border-radius: 999px;
     font-size: 1.0625rem;
     font-weight: 700;
     white-space: nowrap;
@@ -265,27 +281,27 @@
     font-size: 0.95rem;
     font-weight: 600;
   }
-  .btn-yellow {
-    background: var(--yellow);
+  .btn-cta {
+    background: var(--cta);
     color: var(--ink);
-    box-shadow: 0 10px 30px rgb(251 201 0 / 0.45);
+    box-shadow: 0 10px 28px rgb(25 195 125 / 0.38);
   }
-  .btn-yellow:hover {
-    background: var(--yellow-hover);
+  .btn-cta:hover {
+    background: var(--cta-hover);
     transform: translateY(-2px);
-    box-shadow: 0 14px 34px rgb(251 201 0 / 0.55);
+    box-shadow: 0 14px 32px rgb(25 195 125 / 0.48);
   }
-  .btn-yellow::before,
-  .btn-yellow::after {
+  .btn-cta::before,
+  .btn-cta::after {
     content: '';
     position: absolute;
     inset: 0;
     z-index: -1;
     border-radius: inherit;
-    animation: pulse-ring 2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    animation: pulse-ring 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
   }
-  .btn-yellow::after {
-    animation-delay: 1s;
+  .btn-cta::after {
+    animation-delay: 1.2s;
   }
   .btn-gradient {
     background: var(--gradient);
@@ -318,27 +334,21 @@
   .btn-ghost-light:hover {
     background: rgb(255 255 255 / 0.1);
   }
-  .btn-blue-glow {
-    border: 3px solid #022451;
-    border-radius: 0.75rem;
-    background: radial-gradient(1356% 1106% at 463% 55%, #0060fa 0%, #002b70 100%);
-    color: var(--white);
-    box-shadow: 0 12px 20px rgb(0 96 250 / 0.3);
+  .btn-glow {
+    background: var(--glow);
+    color: var(--ink);
   }
-  .btn-lime {
-    border-radius: 0.75rem;
-    background: var(--lime);
-    color: #000;
-  }
-  .btn-lime:hover {
+  .btn-glow:hover {
     opacity: 0.9;
   }
 
   /* ---------- Cards, chips ---------- */
   .card {
-    border-radius: 1.5rem;
+    border-radius: 1.25rem;
     background: var(--white);
-    box-shadow: var(--shadow-card);
+    box-shadow:
+      inset 0 0 0 1px rgb(10 34 51 / 0.05),
+      var(--shadow-card);
   }
   .chip {
     display: inline-flex;
@@ -356,7 +366,7 @@
     background: rgb(200 32 40 / 0.1);
     color: var(--crimson);
   }
-  .chip-yellow {
+  .chip-amber {
     background: var(--tag);
     color: var(--ink);
   }
@@ -372,42 +382,38 @@
     font-family: var(--font-mono);
   }
 
-  /* Scramble label hanging from the top of a night section */
+  /* Label that opens a night section: a star glyph and amber text in a thin pill */
   .eyebrow-tab {
-    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
     margin-inline: auto;
     width: fit-content;
-    padding: 0.55rem 2rem 1rem;
+    border-radius: 999px;
+    padding: 0.4rem 1.1rem 0.4rem 0.8rem;
+    box-shadow: inset 0 0 0 1px rgb(255 197 97 / 0.35);
+    background: rgb(255 197 97 / 0.07);
   }
   .eyebrow-tab svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    width: 1rem;
+    height: 1rem;
+    color: var(--glow);
+    animation: star-turn 12s linear infinite;
   }
   .eyebrow-tab > span {
-    position: relative;
     display: block;
     font-size: 0.95rem;
     font-weight: 700;
-    color: var(--lime);
+    color: var(--glow);
     white-space: nowrap;
   }
-  @media (min-width: 640px) {
-    .eyebrow-tab {
-      padding: 0.8rem 3rem 1.5rem;
-    }
-    .eyebrow-tab > span {
-      font-size: 1.05rem;
-    }
-  }
 
-  /* Light-sweep heading (AI/ML page): white text, a lime band wipes across */
+  /* Light-sweep heading on night sections: white text, an amber band wipes across */
   .sweep {
     position: relative;
   }
-  .sweep .lime {
-    color: var(--lime-band);
+  .sweep .glow {
+    color: var(--glow-band);
   }
   .sweep__layer {
     display: none;
@@ -420,12 +426,12 @@
     display: block;
   }
   .sweep__cover,
-  .sweep__cover .lime {
+  .sweep__cover .glow {
     color: var(--white);
   }
   .sweep__band,
-  .sweep__band .lime {
-    color: var(--lime-band);
+  .sweep__band .glow {
+    color: var(--glow-band);
   }
   .sweep__cover {
     clip-path: inset(0 0 0 0);
@@ -595,7 +601,18 @@
   opacity: 0;
   transform: scale(0.92);
 }
-/* Clip wipe from left to right (eyebrow labels) */
+/* Section label: the pill rises in, then its text wipes in from the star */
+.motion [data-reveal='label']:not([data-state='visible']) {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.motion [data-reveal='label'] > span {
+  transition: clip-path 0.9s var(--ease-out) 0.2s;
+}
+.motion [data-reveal='label']:not([data-state='visible']) > span {
+  clip-path: inset(0 100% 0 0);
+}
+/* Clip wipe from left to right */
 .motion [data-reveal='wipe']:not([data-state='visible']) {
   clip-path: inset(0 100% 0 0);
 }
@@ -801,11 +818,11 @@
 }
 @keyframes pulse-ring {
   0% {
-    box-shadow: 0 0 0 0 rgb(251 201 0 / 0.55);
+    box-shadow: 0 0 0 0 rgb(25 195 125 / 0.5);
   }
   70%,
   100% {
-    box-shadow: 0 0 6px 14px rgb(251 201 0 / 0);
+    box-shadow: 0 0 6px 14px rgb(25 195 125 / 0);
   }
 }
 @keyframes play-pulse {
@@ -824,6 +841,26 @@
   }
   50% {
     transform: translateX(4px);
+  }
+}
+/* Decorative stars in page headers: pop in, then turn and drift slowly */
+.page-star {
+  animation:
+    pop 0.6s var(--ease-back) 0.3s both,
+    star-drift var(--dur, 22s) ease-in-out infinite;
+}
+@keyframes star-drift {
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  50% {
+    transform: rotate(180deg) translateY(-10px);
+  }
+}
+@keyframes star-turn {
+  to {
+    transform: rotate(360deg);
   }
 }
 @keyframes marquee {
@@ -922,6 +959,12 @@
 /* ---------- English pages (/en) ---------- */
 .en-site {
   font-family: var(--font-en);
+}
+.en-site h1,
+.en-site h2,
+.en-site h3,
+.en-site .title {
+  font-family: var(--font-display-en);
 }
 .en-site :lang(bn) {
   font-family: var(--font-sans);

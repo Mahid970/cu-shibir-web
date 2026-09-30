@@ -105,7 +105,7 @@ export default async function ShuttlePage() {
       {header}
       <div className="wrap max-w-5xl py-12 md:py-16">
         {shuttle.notice && (
-          <p role="note" className="mb-6 rounded-2xl border border-yellow/60 bg-[#fffbea] p-4 leading-relaxed text-ink">
+          <p role="note" className="mb-6 rounded-2xl border border-glow/60 bg-[#fffbea] p-4 leading-relaxed text-ink">
             <span className="font-bold">{t.notice}: </span>
             <span lang={langAttr(lang, shuttle.notice)}>{shuttle.notice}</span>
           </p>

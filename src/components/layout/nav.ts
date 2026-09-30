@@ -10,7 +10,7 @@ export const MAIN_NAV: NavItem[] = [
   { href: '/events', label: { bn: 'ইভেন্ট', en: 'Events' } },
 ]
 
-/** Highlighted as an outline pill in the header (Phitron's "AI ML" slot). */
+/** Highlighted as a pill in the header. */
 export const FEATURED_NAV: NavItem = { href: '/services', label: { bn: 'শিক্ষার্থী সেবা', en: 'Student services' } }
 
 export const MORE_NAV: NavItem[] = [

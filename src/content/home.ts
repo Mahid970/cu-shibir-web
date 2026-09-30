@@ -8,11 +8,11 @@ type L<T = string> = Record<Locale, T>
 
 /** The branch's story in five dates (verified in the plan's research, §1). */
 export const MILESTONES: { year: number; label: L; color: string }[] = [
-  { year: 1977, label: { bn: 'ঢাকায় ছাত্রশিবিরের প্রতিষ্ঠা', en: 'Chhatrashibir founded in Dhaka' }, color: 'text-[#6ea0ff]' },
+  { year: 1977, label: { bn: 'ঢাকায় ছাত্রশিবিরের প্রতিষ্ঠা', en: 'Chhatrashibir founded in Dhaka' }, color: 'text-[#6cc6ee]' },
   { year: 1981, label: { bn: 'চাকসুর পূর্ণ প্যানেলে জয়', en: 'Full panel wins CUCSU' }, color: 'text-aqua' },
   { year: 2024, label: { bn: 'এক যুগ পর আবার প্রকাশ্যে', en: 'Back in the open after a decade' }, color: 'text-mint' },
-  { year: 2025, label: { bn: 'চাকসুতে ২৬ পদের ২৪টিতে জয়', en: '24 of 26 CUCSU posts won' }, color: 'text-yellow' },
-  { year: 2026, label: { bn: 'নতুন কমিটি, নতুন পথচলা', en: 'A new committee, a new start' }, color: 'text-[#f9a8d4]' },
+  { year: 2025, label: { bn: 'চাকসুতে ২৬ পদের ২৪টিতে জয়', en: '24 of 26 CUCSU posts won' }, color: 'text-glow' },
+  { year: 2026, label: { bn: 'নতুন কমিটি, নতুন পথচলা', en: 'A new committee, a new start' }, color: 'text-[#ff9f5e]' },
 ]
 
 /** Fallback for Site settings → stats (shown as floating badges on the hero photos). */
@@ -39,7 +39,7 @@ export const HERO_DEFAULTS: L<{ tagline: string; intro: string }> = {
 /** Member levels, in order. */
 export const JOURNEY = [
   { title: { bn: 'কর্মী', en: 'Worker' }, text: { bn: 'কর্মী সিলেবাস ও নিয়মিত কার্যক্রম', en: 'Worker syllabus and regular activities' }, icon: 'book', bg: '#fdf3e7' },
-  { title: { bn: 'সাথী', en: 'Associate' }, text: { bn: 'সাথী সিলেবাস ও শিক্ষা শিবির', en: 'Associate syllabus and training camps' }, icon: 'tent', bg: '#eef2ff' },
+  { title: { bn: 'সাথী', en: 'Associate' }, text: { bn: 'সাথী সিলেবাস ও শিক্ষা শিবির', en: 'Associate syllabus and training camps' }, icon: 'tent', bg: '#e8f6fa' },
   { title: { bn: 'সদস্য', en: 'Member' }, text: { bn: 'সদস্য সিলেবাস ও সর্বোচ্চ দায়িত্ব', en: 'Member syllabus and the highest responsibility' }, icon: 'medal', bg: '#e9f9ff' },
 ] as const
 
@@ -96,7 +96,7 @@ export const FIVE_POINTS = [
       en: ['Freshers’ reception and career guideline programme', 'Quran Olympiad', 'Discussions and dua mahfils'],
     },
     icon: 'megaphone',
-    color: '#3564ff',
+    color: '#1c9bd6',
     ink: '#ffffff',
   },
   {
@@ -111,7 +111,7 @@ export const FIVE_POINTS = [
     },
     icon: 'ballot',
     color: '#8fd3f7',
-    ink: '#0b0f2e',
+    ink: '#0a2233',
   },
   {
     title: { bn: 'প্রশিক্ষণ', en: 'Training' },
@@ -125,7 +125,7 @@ export const FIVE_POINTS = [
     },
     icon: 'cap',
     color: '#5cc8c0',
-    ink: '#0b0f2e',
+    ink: '#0a2233',
   },
   {
     title: { bn: 'শিক্ষা আন্দোলন ও ছাত্রসমস্যার সমাধান', en: 'Education movement and student welfare' },
@@ -138,7 +138,7 @@ export const FIVE_POINTS = [
       en: ['Press conference demanding housing for every student', 'Call for CUCSU and Senate elections', 'Protest for a safe campus'],
     },
     icon: 'book',
-    color: '#4338ca',
+    color: '#0b6fa4',
     ink: '#ffffff',
   },
   {
@@ -152,8 +152,8 @@ export const FIVE_POINTS = [
       en: ['Shaheed Mir Mugdho water corner', 'Tree-planting drive 2026', 'Discussion on Islamic Education Day'],
     },
     icon: 'seedling',
-    color: '#fbbf24',
-    ink: '#0b0f2e',
+    color: '#ffc561',
+    ink: '#0a2233',
   },
 ] as const
 
@@ -166,7 +166,7 @@ export const JOIN_STEPS = [
   {
     title: { bn: 'সমর্থক হও', en: 'Become a supporter' },
     text: { bn: 'সমর্থক ফরম পূরণ করো — শুধু প্রয়োজনীয় তথ্য, নিরাপদে সংরক্ষিত।', en: 'Fill in the supporter form: only what we need, stored securely.' },
-    color: '#fbc900',
+    color: '#ffc561',
   },
   {
     title: { bn: 'প্রোগ্রামে এসো', en: 'Come to a programme' },

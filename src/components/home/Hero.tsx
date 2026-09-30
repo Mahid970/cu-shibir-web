@@ -67,7 +67,7 @@ function Polaroid({ photo, sizes }: { photo: Photo; sizes: string }) {
 }
 
 /**
- * Light grid-paper hero: who we are and the slogan on the left; on the right a collage of real
+ * Light lattice hero: who we are and the slogan on the left; on the right a collage of real
  * campus photos with two floating badges. Copy rises in on load; photos pop in and drift.
  */
 export async function Hero({
@@ -94,7 +94,7 @@ export async function Hero({
   return (
     <section className="hero-wash relative isolate overflow-hidden" aria-labelledby="hero-title">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="grid-paper absolute inset-0" />
+        <div className="lattice absolute inset-0" />
         {['top-[4%] left-[6%]', 'top-[62%] left-[38%]', 'top-[12%] left-[88%]', 'top-[82%] left-[4%]'].map((p) => (
           <div key={p} className={`absolute size-12 bg-pale-4/45 md:size-16 ${p}`} />
         ))}
@@ -132,7 +132,7 @@ export async function Hero({
             {withHighlights(intro)}
           </p>
           <div className="load-up mt-8 flex flex-wrap justify-center gap-3 lg:justify-start" style={vars({ '--d': '360ms' })}>
-            <Link href="/join" className="btn btn-yellow">
+            <Link href="/join" className="btn btn-cta">
               {t.join}
               <ArrowRight />
             </Link>

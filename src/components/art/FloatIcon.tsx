@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 
 import { vars } from '@/components/ui/SectionTitle'
 
-/** Pops in, then bobs and wobbles forever (Phitron's hero tech icons). Decorative. */
+/** Pops in, then bobs and wobbles forever (campus-life icons around a hero). Decorative. */
 export function FloatIcon({
   children,
   className = '',

@@ -94,7 +94,7 @@ export const Play = (p: P) => (
     <path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" fill="currentColor" />
   </svg>
 )
-/** Double chevron used between steps (Phitron's green ⏵⏵). */
+/** Double chevron used between steps. */
 export const Chevrons = (p: P) => (
   <svg viewBox="0 0 24 24" aria-hidden="true" {...p}>
     <path d="M3 5.5v13l8-6.5-8-6.5Z" fill="currentColor" />

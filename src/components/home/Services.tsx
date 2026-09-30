@@ -10,7 +10,7 @@ import { getLang } from '@/i18n/server'
 const T = copy({ live: 'চালু আছে', soon: 'শীঘ্রই', use: 'ব্যবহার করুন' }, { live: 'Available now', soon: 'Coming soon', use: 'Open' })
 
 const THEMES = {
-  blue: { fill: '#f3f6ff', edge: 'linear-gradient(135deg,#3564ff,#a9bcff 55%,#eef2ff)', badge: 'bg-[#e0e8ff] text-[#2446c7]' },
+  blue: { fill: '#f0f8fb', edge: 'linear-gradient(135deg,#1c9bd6,#9fdcf2 55%,#e8f6fa)', badge: 'bg-[#dcf0f7] text-[#0b5f8c]' },
   teal: { fill: '#effbf9', edge: 'linear-gradient(135deg,#14b8a6,#99f6e4 55%,#effbf9)', badge: 'bg-[#ccfbf1] text-[#0f766e]' },
   purple: { fill: '#f6f2ff', edge: 'linear-gradient(135deg,#8b5cf6,#d6c8ff 55%,#f6f2ff)', badge: 'bg-[#ede9fe] text-[#6d28d9]' },
   pink: { fill: '#fff1f5', edge: 'linear-gradient(135deg,#ec4899,#fbcfe8 55%,#fff1f5)', badge: 'bg-[#fce7f3] text-[#be185d]' },
@@ -18,7 +18,7 @@ const THEMES = {
   green: { fill: '#effaf3', edge: 'linear-gradient(135deg,#22c55e,#bbf7d0 55%,#effaf3)', badge: 'bg-[#dcfce7] text-[#15803d]' },
 } as const
 
-/** Gradient-bordered "ecosystem" cards (Phitron): live services link through, the rest say when. */
+/** Gradient-bordered service cards: live services link through, the rest say when. */
 export async function ServiceCards() {
   const lang = await getLang()
   const words = T[lang]

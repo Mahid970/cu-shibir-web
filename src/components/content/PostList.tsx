@@ -26,7 +26,7 @@ export async function PostMeta({ category, publishedAt }: { category: string; pu
   )
 }
 
-/** Phitron course-card style: white, soft shadow, rounded image, lifts on hover. */
+/** News card: white, hairline edge, rounded image, lifts on hover. */
 export async function PostCard({
   post,
   index = 0,
@@ -61,7 +61,7 @@ export async function PostCard({
             />
           </ViewTransition>
         ) : (
-          <div className="grid-paper absolute inset-0" />
+          <div className="lattice absolute inset-0" />
         )}
       </div>
       <PostMeta category={post.category} publishedAt={post.publishedAt} />

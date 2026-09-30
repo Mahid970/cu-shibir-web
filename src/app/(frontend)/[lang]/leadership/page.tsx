@@ -124,14 +124,14 @@ export default async function LeadershipPage() {
     <div className="relative isolate overflow-hidden bg-deep pb-20 text-white md:pb-28">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="dot-grid absolute inset-0 [mask-image:radial-gradient(70%_40%_at_50%_0%,#000,transparent)]" />
+        <div className="lattice-night absolute inset-0 [mask-image:radial-gradient(70%_40%_at_50%_0%,#000,transparent)]" />
         <div className="absolute left-1/2 top-24 h-[420px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(0_96_250/0.4),transparent)] blur-2xl" />
       </div>
 
       <EyebrowTab text={t.eyebrow} />
       <header className="wrap mt-8 text-center md:mt-10">
         <SweepTitle as="h1" className="mx-auto max-w-3xl text-[2.1rem] font-bold leading-snug text-white sm:text-[3rem]">
-          {t.title[0]} <span className="lime">{t.title[1]}</span> {t.title[2]}
+          {t.title[0]} <span className="glow">{t.title[1]}</span> {t.title[2]}
         </SweepTitle>
         <p className="mx-auto mt-4 max-w-2xl text-[1.05rem] leading-relaxed text-slate-400">{t.lede}</p>
       </header>

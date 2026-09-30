@@ -48,7 +48,7 @@ export default async function ServicesPage() {
         <div className="mx-auto mt-14 flex max-w-3xl flex-col items-center gap-4 rounded-3xl bg-white p-8 text-center shadow-[0_4px_24px_rgb(11_15_46/0.06)] md:p-10">
           <h2 className="text-[1.5rem] font-bold text-ink md:text-[1.8rem]">{t.problem}</h2>
           <p className="max-w-xl text-muted">{t.problemText}</p>
-          <Link href="/services/issues/report" className="btn btn-yellow">
+          <Link href="/services/issues/report" className="btn btn-cta">
             {t.report}
             <ArrowRight />
           </Link>

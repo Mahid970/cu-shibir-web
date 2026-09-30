@@ -4,9 +4,9 @@ The new website of **Bangladesh Islami Chhatrashibir, University of Chittagong b
 (বাংলাদেশ ইসলামী ছাত্রশিবির, চট্টগ্রাম বিশ্ববিদ্যালয় শাখা). It is built to replace the current cushibir.org.
 
 - **Stack:** Next.js 16 (App Router) + Payload CMS 3 + PostgreSQL + Tailwind CSS 4.
-- **Design:** the visual language of phitron.io (light grid-paper pages, blue gradient highlights, yellow call to action,
-  deep night sections, lively motion), adapted for a student organisation: real campus photos, news and statements first,
-  people and history over sales-style stats. Details in `docs/design/phitron-system.md`.
+- **Design:** "sea, hills and dawn": sea-blue from the emblem, hill-green actions, dawn amber on deep sea-navy night
+  sections, an eight-point star lattice, Anek headlines, and lively motion that plays once. Real campus photos, news and
+  statements first, people and history over stats. Details in `docs/design/system.md`.
 - **Content:** Bangla first, with every page also in English (switch in the header; English lives under `/en`).
 - **Plan:** research, targets and roadmap are in the approved plan (§ numbers in code comments refer to it).
 
@@ -132,7 +132,7 @@ docs/                    design system, deploy guide, spikes
 - **Weight budget.** Production build, Pixel-class phone, measured 2026-09-26:
   - Homepage transfer is about 700 KB including photos (old site: 3.7 MB).
   - Initial JS is 173 KB gzipped, most of it React and the Next.js router. The site's own home code is about 10 KB.
-  - Fonts are about 170 KB: Hind Siliguri 400/600/700 (Bangla), preloaded, plus Montserrat (Latin), not preloaded.
+  - Fonts: Hind Siliguri 400/600/700 and Anek Bangla (variable) are preloaded; Anek Latin and Hind (English pages) are not.
 - **Lighthouse (mobile, simulated 4G, 4× CPU)**, measured 2026-09-26:
 
   | Page | Performance | Accessibility | Best practices |

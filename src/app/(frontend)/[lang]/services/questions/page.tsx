@@ -86,7 +86,7 @@ export default async function QuestionsPage({ searchParams }: { searchParams: Pr
     <>
       <PageHeader title={[t.title[0], { hl: t.title[1] }]} lede={t.lede}>
         <div className="load-rise mt-8 flex justify-center" style={vars({ '--d': '350ms' })}>
-          <Link href="/services/questions/upload" className="btn btn-yellow">
+          <Link href="/services/questions/upload" className="btn btn-cta">
             {t.upload}
             <ArrowRight />
           </Link>
