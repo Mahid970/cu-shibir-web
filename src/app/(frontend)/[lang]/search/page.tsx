@@ -36,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 type Props = { searchParams: Promise<{ q?: string }> }
 
-const ORDER: SearchKind[] = ['page', 'person', 'post', 'album', 'video', 'press']
+const ORDER: SearchKind[] = ['page', 'person', 'martyr', 'post', 'album', 'video', 'press']
 
 function Hit({ hit, lang }: { hit: SearchHit; lang: Locale }) {
   const inner = (

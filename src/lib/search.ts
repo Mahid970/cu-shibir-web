@@ -12,7 +12,7 @@ import { outletName, pressHeadline } from './press'
 import { normalizeForSearch, snippet } from './searchText'
 import { categoryLabel } from './taxonomy'
 
-export type SearchKind = 'post' | 'person' | 'album' | 'video' | 'press' | 'page'
+export type SearchKind = 'post' | 'person' | 'martyr' | 'album' | 'video' | 'press' | 'page'
 
 /** A result. `href` is the Bangla (root) path; links add /en on English pages. */
 export type SearchHit = {
@@ -28,6 +28,7 @@ export const KIND_LABELS: Record<Locale, Record<SearchKind, string>> = {
   bn: {
     post: 'সংবাদ ও প্রকাশনা',
     person: 'দায়িত্বশীল',
+    martyr: 'শহীদ স্মরণ',
     album: 'গ্যালারি',
     video: 'ভিডিও',
     press: 'মিডিয়ায় আমরা',
@@ -36,6 +37,7 @@ export const KIND_LABELS: Record<Locale, Record<SearchKind, string>> = {
   en: {
     post: 'News and publications',
     person: 'Leaders',
+    martyr: 'Our martyrs',
     album: 'Gallery',
     video: 'Videos',
     press: 'In the media',
@@ -101,8 +103,9 @@ const getStaticIndex = unstable_cache(
   async (lang: Locale) => {
     const payload = await getPayloadClient()
     const published = { _status: { equals: 'published' } } as const
-    const [people, albums, videos, press] = await Promise.all([
+    const [people, martyrs, albums, videos, press] = await Promise.all([
       payload.find({ collection: 'people', where: published, limit: 500, depth: 0, locale: lang, select: { name: true, position: true, slug: true, department: true } }),
+      payload.find({ collection: 'martyrs', where: published, limit: 500, depth: 0, locale: lang, select: { name: true, slug: true, date: true, place: true, affiliation: true } }),
       payload.find({ collection: 'albums', where: published, limit: 500, depth: 0, locale: lang, select: { title: true, slug: true, date: true } }),
       payload.find({ collection: 'videos', where: published, limit: 500, depth: 0, locale: lang, select: { title: true, youtubeId: true, publishedAt: true } }),
       payload.find({ collection: 'press-coverage', where: published, limit: 1000, depth: 0, select: { headline: true, headlineEn: true, outlet: true, url: true, publishedAt: true } }),
@@ -130,6 +133,15 @@ const getStaticIndex = unstable_cache(
           text: `${p.name} ${name} ${p.position} ${position} ${p.department ?? ''}`,
         }
       }),
+      ...martyrs.docs
+        .filter((m) => m.slug)
+        .map((m) => ({
+          kind: 'martyr' as const,
+          title: m.name,
+          href: `/martyrs/${m.slug}`,
+          meta: m.date ? date(lang, m.date) : undefined,
+          text: `${m.name} ${m.place ?? ''} ${m.affiliation ?? ''}`,
+        })),
       ...albums.docs.map((a) => ({ kind: 'album' as const, title: a.title, href: `/gallery/${a.slug}`, meta: date(lang, a.date), text: a.title })),
       ...videos.docs.map((v) => ({
         kind: 'video' as const,
@@ -151,7 +163,7 @@ const getStaticIndex = unstable_cache(
     return entries.map((e) => ({ ...e, text: normalizeForSearch(e.text) }))
   },
   ['search-static-index'],
-  { tags: ['people', 'albums', 'videos', 'press'], revalidate: 3600 },
+  { tags: ['people', 'martyrs', 'albums', 'videos', 'press'], revalidate: 3600 },
 )
 
 const matchesAll = (text: string, words: string[]) => words.every((w) => text.includes(w))
@@ -215,7 +227,8 @@ export async function search(query: string, { limit = 30, lang = 'bn' }: { limit
     .sort((a, b) => Number(matchesAll(normalizeForSearch(b.title), words)) - Number(matchesAll(normalizeForSearch(a.title), words)))
     .map(({ text: _text, ...hit }) => hit)
 
-  const pages = others.filter((h) => h.kind === 'page' || h.kind === 'person')
-  const rest = others.filter((h) => h.kind !== 'page' && h.kind !== 'person')
+  const first = (h: SearchHit) => h.kind === 'page' || h.kind === 'person' || h.kind === 'martyr'
+  const pages = others.filter(first)
+  const rest = others.filter((h) => !first(h))
   return [...pages.slice(0, 8), ...postHits, ...rest].slice(0, limit)
 }

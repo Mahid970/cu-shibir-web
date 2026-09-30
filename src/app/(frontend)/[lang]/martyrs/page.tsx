@@ -2,37 +2,33 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 
-import { RichText } from '@/components/content/RichText'
+import { JourneySection } from '@/components/martyrs/JourneySection'
+import { ArrowRight } from '@/components/ui/Icons'
 import { copy, langAttr } from '@/i18n/config'
-import { date } from '@/i18n/format'
+import { Link } from '@/i18n/link'
 import { pageMeta } from '@/i18n/metadata'
 import { getLang } from '@/i18n/server'
 import { getMartyrs } from '@/lib/cms'
-import { pickImage } from '@/lib/media'
-import type { Martyr } from '@/payload-types'
+import { toStations } from '@/lib/martyrs'
 
 export const revalidate = 3600
 
 const T = copy(
   {
-    meta: { title: 'শহীদ স্মরণ', description: 'চট্টগ্রাম বিশ্ববিদ্যালয় শাখার শহীদদের স্মরণে।' },
+    meta: { title: 'শহীদ স্মরণ', description: 'চট্টগ্রাম বিশ্ববিদ্যালয় শাখার শহীদদের স্মরণে: তাঁদের জীবন, শাহাদাতের ঘটনা আর ছবি।' },
     title: 'শহীদ স্মরণ',
     ayah: 'আর যারা আল্লাহর পথে নিহত হয়, তাদের মৃত বলো না; বরং তারা জীবিত, কিন্তু তোমরা তা উপলব্ধি করতে পার না।',
     ref: 'সূরা আল বাকারা, আয়াত ১৫৪',
-    constellation: 'শহীদদের নাম তারকার মতো সাজানো; নিচে পূর্ণ তালিকা',
-    list: 'শহীদদের তালিকা',
-    shaheed: 'শহীদ',
-    more: 'বিস্তারিত পড়ুন',
+    all: 'সকল শহীদ',
+    read: 'গল্পটি পড়ুন',
   },
   {
-    meta: { title: 'In memory of our martyrs', description: 'In memory of the martyrs of the University of Chittagong branch.' },
+    meta: { title: 'In memory of our martyrs', description: 'In memory of the martyrs of the University of Chittagong branch: their lives, how they were martyred, and photographs.' },
     title: 'In memory of our martyrs',
     ayah: 'And do not say of those who are killed in the way of Allah that they are dead. Rather, they are alive, but you do not perceive it.',
     ref: 'Surah Al-Baqarah, verse 154',
-    constellation: 'The names of the martyrs set out like stars; the full list follows',
-    list: 'List of martyrs',
-    shaheed: 'Shaheed',
-    more: 'Read more',
+    all: 'All our martyrs',
+    read: 'Read his story',
   },
 )
 
@@ -41,126 +37,64 @@ export async function generateMetadata(): Promise<Metadata> {
   return pageMeta(lang, '/martyrs', T[lang].meta)
 }
 
-const W = 1000
-const H = 420
-
-function h(seed: string, n: number) {
-  let x = 2166136261
-  for (const ch of `${seed}:${n}`) x = Math.imul(x ^ ch.codePointAt(0)!, 16777619)
-  return ((x >>> 0) % 10000) / 10000
-}
-
-/** Place stars on a loose golden-angle spiral across the band, nudged by each name so it is stable. */
-function layout(martyrs: Martyr[]) {
-  const n = martyrs.length
-  const stars = martyrs.map((m, i) => {
-    const t = (i + 0.5) / n
-    const a = i * 2.39996
-    const r = Math.sqrt(t)
-    const x = W / 2 + Math.cos(a) * r * (W * 0.44) + (h(m.slug ?? m.name, 1) - 0.5) * 40
-    const y = H / 2 + Math.sin(a) * r * (H * 0.38) + (h(m.slug ?? m.name, 2) - 0.5) * 30
-    return { m, x, y, size: 2.6 + h(m.name, 3) * 2.2, delay: h(m.name, 4) * 6 }
-  })
-  // Faint lines to each star's nearest neighbour make the constellation.
-  const lines: [number, number][] = []
-  stars.forEach((s, i) => {
-    let best = -1
-    let bestD = Infinity
-    stars.forEach((o, j) => {
-      if (i === j) return
-      const d = (s.x - o.x) ** 2 + (s.y - o.y) ** 2
-      if (d < bestD) {
-        bestD = d
-        best = j
-      }
-    })
-    if (best >= 0 && !lines.some(([a, b]) => (a === best && b === i) || (a === i && b === best))) lines.push([i, best])
-  })
-  return { stars, lines }
-}
-
+/** শহীদ স্মরণ: the ayah, the journey through the branch's martyrs, and every martyr's card. Hidden while none is published. */
 export default async function MartyrsPage() {
   const lang = await getLang()
   const t = T[lang]
-  const martyrs = await getMartyrs(lang)
-  if (martyrs.length === 0) notFound()
-  const { stars, lines } = layout(martyrs)
+  const stations = toStations(await getMartyrs(lang), lang)
+  if (stations.length === 0) notFound()
 
   return (
-    <div className="relative isolate overflow-hidden bg-[#020817] pb-20 text-white md:pb-28">
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(60%_45%_at_50%_20%,rgb(30_58_138/0.35),transparent_70%)]" />
-      <header className="wrap pt-14 text-center md:pt-20">
-        <h1 className="text-[2.2rem] font-bold text-white md:text-[3rem]">{t.title}</h1>
-        <p lang="ar" dir="rtl" className="mx-auto mt-6 max-w-2xl font-[family-name:var(--font-quran)] text-[1.6rem] leading-[2.1] text-slate-200">
-          وَلَا تَقُولُوا لِمَنْ يُقْتَلُ فِي سَبِيلِ اللَّهِ أَمْوَاتٌ بَلْ أَحْيَاءٌ وَلَكِنْ لَا تَشْعُرُونَ
-        </p>
-        <p className="mx-auto mt-3 max-w-2xl leading-relaxed text-slate-300">
-          {t.ayah}
-          <span className="mt-1 block text-[0.9rem] text-slate-400">{t.ref}</span>
-        </p>
+    <div className="bg-night text-white">
+      <header className="relative isolate overflow-hidden pb-12 pt-14 text-center md:pb-16 md:pt-20">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+          <div className="journey-sky absolute inset-0" />
+          <div className="journey-stars absolute inset-0" />
+          <div className="lattice-night absolute inset-0 opacity-50 [mask-image:radial-gradient(60%_70%_at_50%_30%,#000,transparent)]" />
+        </div>
+        <div className="wrap max-w-3xl">
+          <h1 className="type-settle text-[2.4rem] font-bold text-white md:text-[3.2rem]">{t.title}</h1>
+          <p lang="ar" dir="rtl" className="load-rise mt-6 font-[family-name:var(--font-quran)] text-[1.6rem] leading-[2.1] text-white/90 md:text-[1.9rem]">
+            وَلَا تَقُولُوا لِمَنْ يُقْتَلُ فِي سَبِيلِ اللَّهِ أَمْوَاتٌ بَلْ أَحْيَاءٌ وَلَكِنْ لَا تَشْعُرُونَ
+          </p>
+          <p className="load-rise mt-3 leading-relaxed text-white/75">
+            {t.ayah}
+            <span className="mt-1 block text-[0.9rem] text-white/50">{t.ref}</span>
+          </p>
+        </div>
       </header>
 
-      <div className="wrap mt-10">
-        <svg viewBox={`0 0 ${W} ${H}`} className="mx-auto w-full max-w-5xl" role="img" aria-label={t.constellation}>
-          <g stroke="rgb(148 163 184 / 0.18)" strokeWidth="1">
-            {lines.map(([a, b]) => (
-              <line key={`${a}-${b}`} x1={stars[a].x} y1={stars[a].y} x2={stars[b].x} y2={stars[b].y} />
-            ))}
-          </g>
-          {stars.map((s) => (
-            <a key={s.m.id} href={`#m-${s.m.slug ?? s.m.id}`} className="group outline-none">
-              <circle cx={s.x} cy={s.y} r={s.size * 4} fill="rgb(191 219 254 / 0.08)" />
-              <circle cx={s.x} cy={s.y} r={s.size} fill="#e0f2fe" className="memorial-star" style={{ animationDelay: `${s.delay}s` }} />
-              <text
-                lang={langAttr(lang, s.m.name)}
-                x={s.x}
-                y={s.y - s.size - 10}
-                textAnchor="middle"
-                className="fill-white text-[15px] opacity-0 transition-opacity duration-700 group-hover:opacity-100 group-focus-visible:opacity-100"
-              >
-                {s.m.name}
-              </text>
-            </a>
-          ))}
-        </svg>
-      </div>
+      <JourneySection onMartyrsPage id="martyrs-journey" />
 
-      <section aria-labelledby="list" className="wrap mt-10 max-w-4xl">
-        <h2 id="list" className="sr-only">
-          {t.list}
+      <section aria-labelledby="all-martyrs" className="wrap pb-20 pt-4 md:pb-28">
+        <h2 id="all-martyrs" className="text-center text-[1.8rem] font-bold text-white md:text-[2.2rem]">
+          {t.all}
         </h2>
-        <ol className="grid gap-4">
-          {martyrs.map((m) => {
-            const img = pickImage(m.photo, 'thumb')
-            const when = m.dateText || (m.date ? date(lang, m.date) : null)
-            return (
-              <li key={m.id} id={`m-${m.slug ?? m.id}`} className="scroll-mt-24 rounded-2xl border border-white/10 bg-white/[0.03] p-5 md:p-6">
-                <div className="flex gap-4">
-                  {img && (
-                    <div className="relative size-20 shrink-0 overflow-hidden rounded-xl bg-white/5">
-                      <Image src={img.src} alt={m.name} fill sizes="80px" className="object-cover grayscale-[40%]" />
-                    </div>
-                  )}
-                  <div className="min-w-0">
-                    <h3 className="text-[1.3rem] font-bold text-white">
-                      {t.shaheed} <span lang={langAttr(lang, m.name)}>{m.name}</span>
-                    </h3>
-                    {(when || m.affiliation || m.place) && (
-                      <p className="mt-1 text-[0.95rem] text-slate-400">{[when, m.affiliation, m.place].filter(Boolean).join('। ')}</p>
-                    )}
-                    {m.summary && <p className="mt-2 leading-relaxed text-slate-300">{m.summary}</p>}
-                  </div>
-                </div>
-                {m.bio && (
-                  <details className="mt-4">
-                    <summary className="cursor-pointer font-semibold text-sky-200">{t.more}</summary>
-                    <RichText data={m.bio as never} className="prose-read prose-dark mt-4" />
-                  </details>
-                )}
-              </li>
-            )
-          })}
-        </ol>
+        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {stations.map((st, i) => (
+            <li key={st.slug} data-reveal="up" style={{ ['--d' as string]: `${(i % 3) * 90}ms` }}>
+              <Link href={`/martyrs/${st.slug}`} className="journey-card group flex h-full gap-4 rounded-[1.25rem] p-3">
+                <span className="journey-arch relative block h-[124px] w-[98px] shrink-0 overflow-hidden bg-navy">
+                  {st.portrait && <Image src={st.portrait.src} alt="" fill sizes="98px" className="object-cover object-top" />}
+                </span>
+                <span className="min-w-0 py-1">
+                  <span className="block text-[0.85rem] font-bold text-glow">
+                    {st.date}
+                    {st.ordinal && <span className="ml-2 font-semibold text-white/50">· {st.ordinal}</span>}
+                  </span>
+                  <span className="mt-0.5 block text-[1.1rem] font-bold leading-snug text-white" lang={langAttr(lang, st.name)}>
+                    {st.name}
+                  </span>
+                  <span className="mt-1 line-clamp-3 block text-[0.88rem] leading-relaxed text-white/65">{st.summary}</span>
+                  <span className="journey-read mt-2 inline-flex items-center gap-1 text-[0.84rem] font-semibold text-white">
+                    {t.read}
+                    <ArrowRight className="size-3.5" />
+                  </span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
     </div>
   )

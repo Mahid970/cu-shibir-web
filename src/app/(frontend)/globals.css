@@ -846,6 +846,79 @@
   transform: scaleY(var(--rail, 0));
 }
 
+/* A martyr's page: the portrait warms from grey to colour under a slow halo, and a rail
+   beside the story fills as it is read. */
+.martyr-halo {
+  background: radial-gradient(closest-side, rgb(255 197 97 / 0.45), rgb(255 159 94 / 0.12) 60%, transparent);
+  filter: blur(18px);
+  animation: dawn-breathe-soft 7s ease-in-out infinite;
+}
+@keyframes dawn-breathe-soft {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.martyr-arch {
+  box-shadow:
+    0 0 0 1px rgb(255 197 97 / 0.55),
+    0 30px 70px rgb(0 0 0 / 0.45);
+}
+.motion .martyr-arch img {
+  animation: portrait-warm 2.2s var(--ease-out) 0.2s both;
+}
+@keyframes portrait-warm {
+  from {
+    filter: grayscale(1) brightness(0.7);
+    transform: scale(1.06);
+  }
+}
+.story-thread::before,
+.story-thread::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 0.8rem;
+  bottom: 0;
+  width: 2px;
+  border-radius: 2px;
+}
+.story-thread::before {
+  background: var(--pale-3);
+}
+.story-thread::after {
+  background: linear-gradient(180deg, var(--cta), var(--primary));
+  transform-origin: top;
+}
+.motion .story-thread::after {
+  transform: scaleY(var(--rail, 0));
+}
+.story-node {
+  background: var(--cta);
+  color: var(--white);
+  box-shadow: 0 0 0 5px rgb(25 195 125 / 0.15);
+  transition: all 0.5s var(--ease-out);
+}
+.motion .story-part:not([data-lit]) .story-node {
+  background: var(--white);
+  color: var(--pale-4);
+  box-shadow: inset 0 0 0 2px var(--pale-3);
+}
+.motion .story-part > h3,
+.motion .story-part > .prose-read {
+  transition:
+    opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out);
+}
+.motion .story-part:not([data-lit]) > h3,
+.motion .story-part:not([data-lit]) > .prose-read {
+  opacity: 0.35;
+  transform: translateY(10px);
+}
+
 /* ------------------------------------------------------------------
    Scroll reveals. `html.motion` is set before first paint only when
    the visitor has not asked for reduced motion; without it everything
@@ -1260,25 +1333,6 @@
   ::view-transition-new(*) {
     animation: none !important;
   }
-}
-
-/* ---------- শহীদ স্মরণ: slow, quiet twinkle (none with reduced motion) ---------- */
-.motion .memorial-star {
-  animation: memorial-twinkle 7s ease-in-out infinite;
-}
-@keyframes memorial-twinkle {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.55;
-  }
-}
-.prose-dark,
-.prose-dark h2,
-.prose-dark h3 {
-  color: rgb(226 232 240);
 }
 
 /* ---------- Below-the-fold sections: skip layout and paint until they come near ---------- */

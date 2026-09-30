@@ -11,7 +11,7 @@ type Hit = { kind: string; title: string; href: string; meta?: string; external?
 
 const T = copy(
   {
-    kinds: { post: 'সংবাদ', person: 'দায়িত্বশীল', album: 'গ্যালারি', video: 'ভিডিও', press: 'মিডিয়া', page: 'পাতা' } as Record<string, string>,
+    kinds: { post: 'সংবাদ', person: 'দায়িত্বশীল', martyr: 'শহীদ', album: 'গ্যালারি', video: 'ভিডিও', press: 'মিডিয়া', page: 'পাতা' } as Record<string, string>,
     quick: [
       { kind: 'page', title: 'সমর্থক ফরম', href: '/join/supporter' },
       { kind: 'page', title: 'শিক্ষাবৃত্তি ও চিকিৎসা সহায়তা', href: '/services/assistance' },
@@ -29,7 +29,7 @@ const T = copy(
     all: 'সব ফলাফল দেখুন',
   },
   {
-    kinds: { post: 'News', person: 'Leader', album: 'Gallery', video: 'Video', press: 'Media', page: 'Page' },
+    kinds: { post: 'News', person: 'Leader', martyr: 'Martyr', album: 'Gallery', video: 'Video', press: 'Media', page: 'Page' },
     quick: [
       { kind: 'page', title: 'Supporter form', href: '/join/supporter' },
       { kind: 'page', title: 'Scholarships and medical aid', href: '/services/assistance' },
