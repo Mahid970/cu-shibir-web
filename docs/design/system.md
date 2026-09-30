@@ -73,6 +73,9 @@ Tokens live in `src/app/(frontend)/globals.css`; fonts in `src/app/(frontend)/fo
 | Rail timeline | history as stations on the shuttle line, pinned and scroll-driven on large screens | About |
 | Particle emblem | the logo gathers from scattered points, then re-forms as the slogan | About |
 | Folder stack | full-width cards pin and stack while scrolling | ৫ দফা |
+| Procession of light | pinned road through night hills; a lamp travels with the scroll, lantern-cards light (grey → colour), the year turns, the trail glows, the sky warms to dawn; vertical road on phones | শহীদি কাফেলা (home, /martyrs) |
+| Reading rail | a rail beside a story fills as it is read; each part's star lights at mid-screen | a martyr's page |
+| Portrait warm | a memorial portrait warms from grey to colour under a slow amber halo | a martyr's page |
 
 Everything is CSS plus one small observer (`components/motion/RevealObserver`); canvas is used only
 where the effect needs it. Elements animate once and never stay hidden or blurred.

@@ -39,6 +39,7 @@ The first `npx playwright install chromium` is needed for share images and e2e t
 | `npm run search:reindex` | Rebuilds the posts' search index (after an import or a change to the normaliser) |
 | `npm run seed:english` | Writes the English posts, album/video/photo titles, press headlines and committee names from `scripts/data/english-content.json` into the CMS's English locale. Re-run safe; Bangla untouched |
 | `npm run seed:places` | Loads the campus map's places (`scripts/data/campus-places.json`, from OpenStreetMap) in both languages. Matched by key; re-run safe |
+| `npm run seed:shaheeds` | Loads the branch's ten martyrs (`scripts/data/shaheeds.json` + photos in `scripts/data/shaheeds/`) in both languages, published. Matched by slug; photos by source key; re-run safe |
 | `npx tsx scripts/make-icons.ts [logo]` | Regenerates the app icons in `public/icons` (run again with the vector logo) |
 | `npm run test:int` | Vitest: Bangla utilities, encryption, form validation, language paths and translation coverage, API smoke test |
 | `npm run test:e2e` | Playwright: home, the language switch and every page's English twin, redirects, SEO shell, search, forms, syllabus, admin, the student services (issues, shuttle, blood, question bank, freshers), phone and 1024 px widths |
@@ -63,7 +64,7 @@ src/
       questions/ upload/           question bank: moderated uploads, browse by department and course
       freshers/ campus/            first-week checklist, emergency numbers, campus map; departments and halls
     syllabus/[level]/    কর্মী / সাথী / সদস্য with an on-device reading checklist
-    martyrs/             শহীদ স্মরণ (hidden until entries are published)
+    martyrs/[slug]       শহীদ স্মরণ: the journey + every martyr; one page per martyr (hidden while none is published)
     search/ (+ suggest/) site search
     offline/ privacy/ events/ (placeholder, Phase 3)
     blog_details/ responsible/         legacy id → new URL redirects
@@ -155,7 +156,11 @@ docs/                    design system, deploy guide, spikes
   - **Particle emblem** (About): a 2D canvas. The logo's pixels gather from scattered stars, then re-form as the slogan, drawn with the page's Bangla font.
   - **Rail timeline** (About): the history as stations on the shuttle line. It is pinned and scroll-driven on large screens and a vertical list elsewhere.
   - **View transitions**: news card image → article hero, and leader photo → profile, with React `<ViewTransition>`.
-  - **শহীদ স্মরণ** (`/martyrs`): a calm constellation plus a full list. It stays a 404 until the branch publishes verified entries.
+  - **শহীদি কাফেলা** (home and `/martyrs`, `components/martyrs`): the martyrs as a procession of light. On large
+    screens the section pins and scrolling carries a lamp along a road through night hills; each martyr's lantern-card
+    lights as it passes, the year turns over, the sky warms to dawn. Phones and reduced motion get a vertical road.
+  - **A page per martyr** (`/martyrs/[slug]`): portrait, facts, his words, the story beside a reading rail, photos
+    grouped by his life / the day / afterwards / the places (graphic ones veiled until asked for), sources, neighbours.
 - **Student services (Phase 4)**, each in both languages, each with its own CMS roles:
   - **Issues desk** (`service-desk`; harassment only for `safety-desk`): anonymous reports still get a tracking code, and the
     public figures leave out spam and confidential reports entirely, so nothing can be worked out by subtraction.
@@ -191,7 +196,20 @@ Every variable is listed with its purpose in [`.env.example`](.env.example). Pro
   Then re-run `scripts/make-icons.ts`.
 - [ ] Branch to check the English names of the committee (CMS → People → English tab; seeded from `src/content/people-en.ts`) and the English translations of the imported posts (`scripts/data/english-content.json`).
 - [ ] New posts: write the English version in the CMS's English tab (until then the English site shows the Bangla article with a note).
-- [ ] Branch to verify the history stops (`src/content/history.ts`) and send the verified শহীদ list (CMS → শহীদ স্মরণ).
+- [ ] Branch to verify the history stops (`src/content/history.ts`).
+- [ ] Branch to check the ten martyrs (CMS → শহীদ স্মরণ; source data in `scripts/data/shaheeds.json`). Points where the
+      organisation's own records disagree, and what the site uses:
+  - Mohiuddin Masum: 11 February 2010 and Political Science (Shuhada Foundation and the press); the central list says
+    11 March and Marketing. His portrait is the foundation's, because the central card is badly degraded.
+  - Mujahidul Islam: the central list's card shows a different, older man from every other photo of him (the
+    foundation's, the newspaper of 8 February 2012); the site uses his photo on campus instead.
+  - Masud Bin Habib: the central list's page shows 2 February 2013 and Mujahid's story; the site uses 8 February 2012
+    and the foundation's account (English, 4th year; born 26 July 1988; sixth of eight children).
+  - Harun-or-Rashid Kaiser: the central list gives 20 and 28 March 2010 and "the middle of three"; the site uses
+    28 March and the foundation's "eldest of two brothers and a sister". Shahjalal Hall is from a 2010 news report.
+  - Ainul Haque studied at Jagannath College (now University) and was a Dhaka associate; he was killed on the CU campus.
+  - Photos of bodies and wounds are marked graphic and stay veiled; a newspaper photo showing identifiable alleged
+    attackers was left out, and no individual is named as a killer anywhere (no one has been convicted).
 - [ ] Keep the legacy report builder running at `report.cushibir.org` until it is replaced.
 - [ ] Student services, from the branch:
   - the current shuttle timetable and its source (CMS → শাটল ট্রেনের সময়সূচি), then tick "show on the site";
