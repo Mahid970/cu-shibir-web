@@ -38,8 +38,8 @@ export const CHROME = {
     mobileMenu: 'মোবাইল মেনু',
     openMenu: 'মেনু খুলুন',
     closeMenu: 'মেনু বন্ধ করুন',
-    brand: 'চবি ছাত্রশিবির',
-    branch: 'চট্টগ্রাম বিশ্ববিদ্যালয় শাখা',
+    brand: 'বাংলাদেশ ইসলামী ছাত্রশিবির',
+    branch: 'চট্টগ্রাম বিশ্ববিদ্যালয়',
     language: 'ভাষা',
   },
   en: {
@@ -52,8 +52,8 @@ export const CHROME = {
     mobileMenu: 'Mobile menu',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
-    brand: 'CU Chhatrashibir',
-    branch: 'University of Chittagong branch',
+    brand: 'Bangladesh Islami Chhatrashibir',
+    branch: 'University of Chittagong',
     language: 'Language',
   },
 } satisfies Record<Locale, Record<string, string>>

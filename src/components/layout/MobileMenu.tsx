@@ -35,7 +35,7 @@ export function MobileMenu() {
   }, [open])
 
   return (
-    <div className={lang === 'en' ? 'xl:hidden' : 'lg:hidden'}>
+    <div className={lang === 'en' ? '2xl:hidden' : 'xl:hidden'}>
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}

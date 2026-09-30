@@ -15,15 +15,19 @@ export async function Logo({ tone = 'dark' }: { tone?: 'dark' | 'light' }) {
   const t = CHROME[lang]
   const en = lang === 'en'
   return (
-    <Link href="/" className="flex shrink-0 items-center gap-2.5 whitespace-nowrap">
+    <Link href="/" className="flex min-w-0 shrink items-center gap-2 sm:gap-2.5">
       <span className="sr-only">{t.home}</span>
-      <Image src="/brand/logo-legacy.png" alt="" width={42} height={42} priority className="size-[42px]" />
-      <span className="leading-none">
-        <span className={`block font-bold ${en ? 'text-[0.98rem] sm:text-[1.05rem]' : 'text-[1.2rem]'} ${tone === 'light' ? 'text-white' : 'text-ink'}`}>
+      <Image src="/brand/logo-legacy.png" alt="" width={42} height={42} priority className="size-9 shrink-0 sm:size-[42px]" />
+      <span className="min-w-0 leading-none">
+        {/* The full organisation name in bold, the university under it. On phones the English name may wrap. */}
+        <span
+          className={`block font-bold ${
+            en ? 'text-[0.8rem] leading-[1.15] sm:whitespace-nowrap sm:text-[0.95rem]' : 'whitespace-nowrap text-[0.92rem] sm:text-[1.1rem]'
+          } ${tone === 'light' ? 'text-white' : 'text-ink'}`}
+        >
           {t.brand}
         </span>
-        {/* The English subtitle is too long for a phone header next to search, language and menu. */}
-        <span className={`mt-1 text-[0.72rem] ${en && tone === 'dark' ? 'hidden sm:block' : 'block'} ${tone === 'light' ? 'text-white/70' : 'text-subtle'}`}>
+        <span className={`mt-1 block whitespace-nowrap text-[0.66rem] sm:text-[0.72rem] ${tone === 'light' ? 'text-white/70' : 'text-subtle'}`}>
           {t.branch}
         </span>
       </span>
@@ -43,7 +47,7 @@ export async function SiteHeader() {
       </a>
       <div className="wrap flex h-[72px] items-center justify-between gap-3">
         <Logo />
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
           <NavLinks />
           <SearchPalette />
           <LangSwitch className="hidden sm:flex" />

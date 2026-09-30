@@ -39,8 +39,8 @@ export function NavLinks() {
   const active = (href: string) => pathname.startsWith(href)
 
   return (
-    // English labels are longer: the full menu needs xl, below that the mobile menu is used.
-    <nav aria-label={t.mainMenu} className={lang === 'en' ? 'hidden xl:block' : 'hidden lg:block'}>
+    // With the full organisation name beside it, the menu needs xl (English labels: 2xl); below that the mobile menu is used.
+    <nav aria-label={t.mainMenu} className={lang === 'en' ? 'hidden 2xl:block' : 'hidden xl:block'}>
       <ul className="flex items-center gap-1">
         <li className="mr-1 xl:mr-2">
           <Link

@@ -136,12 +136,23 @@ test('the shuttle page says the timetable is coming when none is published', asy
   await expect(page.getByRole('heading', { name: 'সময়সূচি শীঘ্রই আসছে' })).toBeVisible()
 })
 
-test('the Bangla header fits a 1024 px screen', async ({ page }) => {
-  await page.setViewportSize({ width: 1024, height: 800 })
-  for (const path of ['/', '/services/campus']) {
-    await page.goto(`${BASE}${path}`)
-    expect(await page.evaluate(() => document.documentElement.scrollWidth), path).toBeLessThanOrEqual(1024)
+test('the header carries the full name and fits phones and laptops in both languages', async ({ page }) => {
+  for (const [path, name, uni] of [
+    ['/', 'বাংলাদেশ ইসলামী ছাত্রশিবির', 'চট্টগ্রাম বিশ্ববিদ্যালয়'],
+    ['/en', 'Bangladesh Islami Chhatrashibir', 'University of Chittagong'],
+  ]) {
+    for (const width of [375, 1024, 1280, 1536]) {
+      await page.setViewportSize({ width, height: 800 })
+      await page.goto(`${BASE}${path}`)
+      const brand = page.locator('header a').filter({ hasText: name })
+      await expect(brand).toBeVisible()
+      await expect(brand).toContainText(uni)
+      expect(await page.evaluate(() => document.documentElement.scrollWidth), `${path} @ ${width}`).toBeLessThanOrEqual(width)
+    }
   }
+  await page.setViewportSize({ width: 1024, height: 800 })
+  await page.goto(`${BASE}/services/campus`)
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(1024)
 })
 
 test.describe('Blood donor network', () => {
