@@ -31,7 +31,7 @@ export const SiteSettings: GlobalConfig = {
       type: 'upload',
       relationTo: 'media',
       label: { bn: 'হিরো ছবি', en: 'Hero photo' },
-      admin: { description: 'The large photo on the homepage. A wide photo of students works best.' },
+      admin: { description: 'The first photo the homepage hero draws in points of light. A bright, wide photo of many students works best.' },
     },
     {
       name: 'heroGallery',
@@ -39,8 +39,8 @@ export const SiteSettings: GlobalConfig = {
       relationTo: 'media',
       hasMany: true,
       maxRows: 2,
-      label: { bn: 'হিরোর ছোট ছবি (২টি)', en: 'Hero side photos (2)' },
-      admin: { description: 'Two smaller event photos that float beside the main photo. Falls back to recent albums.' },
+      label: { bn: 'হিরোর আরও ছবি (২টি)', en: 'More hero photos (2)' },
+      admin: { description: 'Two event photos the hero shows after the first one, each followed by the emblem; the caption shows under it. Falls back to recent albums.' },
     },
     {
       name: 'stats',

@@ -49,7 +49,7 @@ export default async function HomePage({ params }: Props) {
       }))
     : fallbackStats
 
-  // Side photos: chosen in Site settings, otherwise the covers of recent albums.
+  // More photos for the hero's living picture: chosen in Site settings, otherwise the covers of recent albums.
   const chosen = (settings.heroGallery ?? []).filter((m): m is Media => typeof m === 'object')
   const gallery = (
     chosen.length

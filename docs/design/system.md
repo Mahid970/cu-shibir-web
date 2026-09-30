@@ -55,6 +55,9 @@ Tokens live in `src/app/(frontend)/globals.css`; fonts in `src/app/(frontend)/fo
 
 | Pattern | What it does | Where |
 |---|---|---|
+| Dawn hero | sea-navy night warming to a dawn glow; three layers of CU hills rise at its foot (home) | home hero |
+| Living picture | star dust gathers into a campus photo as a mosaic of dots, bursts, re-forms as the emblem ("thousands of students… one caravan"), then the next photo; dots shy from the pointer; ImageData buffer, runs only on screen, static first photo with reduced motion | home hero |
+| Slogan settle | the slogan's letters arrive wide and light and tighten to firm and bold (Anek's width and weight axes), visible from first paint | home hero |
 | Title settle | each word group drops in with a soft blur, once, when the title arrives | every section title |
 | Highlighter | a hill-green (amber on night) marker stroke draws under highlighted words | section titles |
 | Shine | gradient text slowly slides across highlighted words | highlighted words |

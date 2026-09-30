@@ -576,6 +576,90 @@
 }
 
 /* ------------------------------------------------------------------
+   Home hero: night sea-navy warming to dawn over the hills.
+   ------------------------------------------------------------------ */
+.hero-dawn {
+  background:
+    radial-gradient(90% 60% at 18% 0%, rgb(28 155 214 / 0.28), transparent 62%),
+    linear-gradient(180deg, #031b27 0%, #052a3d 48%, #0a3a55 78%, #11506a 100%);
+}
+/* The sun just under the horizon: a warm glow that breathes very slowly */
+.dawn-sun {
+  background: radial-gradient(closest-side, rgb(255 190 110 / 0.55), rgb(255 150 90 / 0.18) 55%, transparent);
+  filter: blur(8px);
+  animation: dawn-breathe 9s ease-in-out infinite;
+}
+@keyframes dawn-breathe {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.06);
+  }
+}
+.hill {
+  transform-origin: bottom center;
+}
+.motion .hill-back {
+  animation: hill-rise 1.4s var(--ease-out) 0.2s both;
+}
+.motion .hill-mid {
+  animation: hill-rise 1.4s var(--ease-out) 0.35s both;
+}
+@keyframes hill-rise {
+  from {
+    transform: translateY(40px) scaleY(0.7);
+  }
+}
+/* Amber gradient words that slowly shine (the slogan's second half on night backgrounds) */
+.text-dawn {
+  background-image: linear-gradient(95deg, #ffd27f 0%, #ffb35e 35%, #ff8f5e 60%, #ffd27f 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shine 6s linear infinite;
+}
+/* The slogan settles: letters arrive wide and light, then tighten to firm and bold. Visible from the
+   first paint (it is the LCP text); only the font's width and weight move. */
+.motion .type-settle {
+  animation: type-settle 1.3s var(--ease-out) both;
+  animation-delay: var(--d, 0ms);
+}
+.motion .type-settle.text-dawn {
+  animation:
+    type-settle 1.3s var(--ease-out) both,
+    shine 6s linear infinite;
+  animation-delay: var(--d, 0ms), 0s;
+}
+@keyframes type-settle {
+  from {
+    font-variation-settings: 'wdth' 125;
+    font-weight: 250;
+    letter-spacing: 0.02em;
+  }
+  to {
+    font-variation-settings: 'wdth' 96;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+}
+.hero-caption span {
+  animation: caption-in 0.6s var(--ease-out) both;
+}
+@keyframes caption-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(4px);
+  }
+}
+
+/* ------------------------------------------------------------------
    Scroll reveals. `html.motion` is set before first paint only when
    the visitor has not asked for reduced motion; without it everything
    is simply visible. components/motion/RevealObserver flips data-state.

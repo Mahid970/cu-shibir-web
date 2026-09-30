@@ -1782,11 +1782,11 @@ export interface SiteSetting {
    */
   heroIntro?: string | null;
   /**
-   * The large photo on the homepage. A wide photo of students works best.
+   * The first photo the homepage hero draws in points of light. A bright, wide photo of many students works best.
    */
   heroImage?: (number | null) | Media;
   /**
-   * Two smaller event photos that float beside the main photo. Falls back to recent albums.
+   * Two event photos the hero shows after the first one, each followed by the emblem; the caption shows under it. Falls back to recent albums.
    */
   heroGallery?: (number | Media)[] | null;
   stats?:
