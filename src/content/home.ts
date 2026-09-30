@@ -96,7 +96,7 @@ export const FIVE_POINTS = [
       en: ['Freshers’ reception and career guideline programme', 'Quran Olympiad', 'Discussions and dua mahfils'],
     },
     icon: 'megaphone',
-    color: '#1c9bd6',
+    color: '#0b6fa4',
     ink: '#ffffff',
   },
   {
@@ -138,8 +138,8 @@ export const FIVE_POINTS = [
       en: ['Press conference demanding housing for every student', 'Call for CUCSU and Senate elections', 'Protest for a safe campus'],
     },
     icon: 'book',
-    color: '#0b6fa4',
-    ink: '#ffffff',
+    color: '#19c37d',
+    ink: '#0a2233',
   },
   {
     title: { bn: 'ইসলামী সমাজ বিনির্মাণ', en: 'Building an Islamic society' },
