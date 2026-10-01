@@ -90,7 +90,7 @@ function PressCard({ item, lang }: { item: PressCoverage; lang: Locale }) {
     >
       <span className="flex flex-wrap gap-2">
         <span className="rounded bg-[image:var(--gradient)] px-2 py-1 text-[0.85rem] font-semibold leading-tight">{outletName(item.outlet, lang)}</span>
-        <span className="rounded bg-success px-2 py-1 text-[0.85rem] font-semibold leading-tight">{date(lang, item.publishedAt, 'short')}</span>
+        <span className="rounded bg-white/10 px-2 py-1 text-[0.85rem] font-semibold leading-tight">{date(lang, item.publishedAt, 'short')}</span>
       </span>
       <span lang={langAttr(lang, pressHeadline(item, lang))} className="line-clamp-2 text-[1.1rem] font-semibold leading-snug">
         {pressHeadline(item, lang)}

@@ -98,7 +98,7 @@ export default async function FreshersPage() {
                 className="flex flex-col gap-2 rounded-2xl bg-white px-5 py-4 shadow-[0_4px_24px_rgb(11_31_51/0.06)] sm:flex-row sm:items-center sm:justify-between sm:gap-6"
               >
                 <span className="flex gap-3 leading-relaxed text-ink">
-                  <CheckCircle className="mt-1 size-5 shrink-0 text-success" />
+                  <CheckCircle className="mt-1 size-5 shrink-0 text-blue" />
                   {item.text}
                 </span>
                 {item.href && (

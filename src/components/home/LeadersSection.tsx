@@ -74,7 +74,7 @@ export async function LeaderCard({
         <ul className="space-y-1.5 px-2 pb-2 text-[0.85rem] text-white/75">
           {details.map((d) => (
             <li key={d} className="flex items-start gap-2">
-              <CheckCircle className="mt-0.5 size-4 shrink-0 text-success" />
+              <CheckCircle className="mt-0.5 size-4 shrink-0 text-blue-soft" />
               {d}
             </li>
           ))}
