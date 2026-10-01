@@ -148,6 +148,16 @@ test('the header carries the full name and fits phones and laptops in both langu
       await expect(brand).toBeVisible()
       await expect(brand).toContainText(uni)
       expect(await page.evaluate(() => document.documentElement.scrollWidth), `${path} @ ${width}`).toBeLessThanOrEqual(width)
+      // Laptops get the menu bar in both languages; only phones and tablets get the hamburger.
+      const bar = page.locator('header nav').first()
+      if (width >= 1024) {
+        await expect(bar, `${path} @ ${width}`).toBeVisible()
+        await expect(page.locator('header .burger')).toBeHidden()
+        await expect(bar.getByRole('link').first()).toHaveText(path === '/' ? 'হোম' : 'Home')
+        await expect(bar.getByRole('link', { name: path === '/' ? 'হোম' : 'Home' })).toHaveAttribute('aria-current', 'page')
+      } else {
+        await expect(page.locator('header .burger')).toBeVisible()
+      }
     }
   }
   await page.setViewportSize({ width: 1024, height: 800 })
