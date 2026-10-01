@@ -6,6 +6,7 @@ import { SiteFooter } from '@/components/layout/SiteFooter'
 import { ServiceWorker } from '@/components/layout/ServiceWorker'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 import { RevealObserver } from '@/components/motion/RevealObserver'
+import { SvgDefs } from '@/components/ui/SectionTitle'
 import { isLocale, LOCALES, type Locale } from '@/i18n/config'
 import { LangProvider } from '@/i18n/LangProvider'
 import { getSiteSettings } from '@/lib/cms'
@@ -96,6 +97,7 @@ export default async function FrontendLayout({ children, params }: Props) {
       </head>
       <body className={`flex min-h-dvh flex-col ${lang === 'en' ? 'en-site' : ''}`}>
         <LangProvider lang={lang}>
+          <SvgDefs />
           <SiteHeader />
           <main id="main" className="flex-1">
             {children}

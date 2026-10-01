@@ -5,7 +5,7 @@ import { useEffect, useLayoutEffect } from 'react'
 
 /**
  * One observer for the whole site. Elements opt in with
- * `data-reveal="up|fade|scale|wipe|title|sweep|draw"`; this flips their `data-state` to
+ * `data-reveal="up|fade|scale|wipe|title|sweep|swoosh|draw"`; this flips their `data-state` to
  * "visible" once, when `data-amount` (default 0.12) of them is on screen. CSS in globals.css does
  * the animating, so nothing re-hides or flickers on the way back up.
  */
