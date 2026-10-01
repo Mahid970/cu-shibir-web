@@ -47,8 +47,6 @@
   --gradient-green: linear-gradient(100deg, #8af5c7, #19c37d);
   --gradient-glow: linear-gradient(90deg, #ffd27f 0%, #ff9f5e 100%);
   --gradient-teal: linear-gradient(90deg, #5fe08a 0%, #3fb6a8 100%);
-  --mark: rgb(25 195 125 / 0.34);
-  --mark-dark: rgb(255 197 97 / 0.32);
 
   --shadow-card: 0 1px 0 rgb(10 34 51 / 0.04), 0 10px 30px rgb(10 34 51 / 0.07);
   --shadow-soft: 12px 12px 24px rgb(0 0 0 / 0.05);
@@ -69,6 +67,7 @@
   --color-border: var(--border);
   --color-primary: var(--primary);
   --color-blue: var(--blue);
+  --color-blue-soft: var(--blue-soft);
   --color-blue-deep: var(--blue-deep);
   --color-pale: var(--pale);
   --color-pale-2: var(--pale-2);
@@ -186,44 +185,12 @@
     color: var(--white);
   }
 
-  /* Highlighted words: sea-gradient text with a hill-green highlighter stroke across their lower half */
+  /* Highlighted words: the brand colour, nothing more */
   .hl {
-    position: relative;
-    isolation: isolate;
-    display: inline-block;
-    padding-bottom: 0.08em;
-    background-image: var(--gradient-text);
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    animation: shine 5s linear infinite;
+    color: var(--primary);
   }
-  .hl-green {
-    background-image: var(--gradient-glow);
-  }
-  .swoosh-host {
-    position: relative;
-    isolation: isolate;
-    display: inline-block;
-    padding-bottom: 0.08em;
-  }
-  /* The stroke never affects layout; it multiplies over the letters like a real highlighter. */
-  .hl svg,
-  .swoosh-host svg {
-    position: absolute;
-    left: -0.1em;
-    bottom: -0.04em;
-    width: calc(100% + 0.2em);
-    height: 0.34em;
-    overflow: visible;
-    mix-blend-mode: multiply;
-    pointer-events: none;
-  }
-  .title-dark .hl svg,
-  .hl-green svg {
-    mix-blend-mode: screen;
+  .title-dark .hl {
+    color: var(--blue-soft);
   }
 
   .lede {
@@ -1088,47 +1055,14 @@
   animation: blur-fade 0.55s var(--ease-out) both;
   animation-delay: calc(var(--i, 0) * 0.15s);
 }
-.motion [data-reveal='title'][data-state='visible'] > .hl {
-  animation:
-    blur-fade 0.55s var(--ease-out) both,
-    shine 4s linear infinite;
-  animation-delay: calc(var(--i, 0) * 0.15s), 0s;
-}
-.motion [data-reveal='title'] .hl svg,
-.motion [data-reveal='swoosh'] svg {
-  clip-path: inset(-50% 100% -50% 0);
-}
-.motion [data-reveal='title'][data-state='visible'] .hl svg,
-.motion [data-reveal='swoosh'][data-state='visible'] svg {
-  clip-path: inset(-50% 0 -50% 0);
-  transition: clip-path 0.8s var(--ease-out) calc(var(--i, 0) * 0.15s + 0.3s);
-}
-/* Page titles (h1): visible from the first paint; words settle into place and the swoosh draws. */
+/* Page titles (h1): visible from the first paint; words settle into place. */
 .motion [data-reveal='title-now'] > span {
   animation: word-rise 0.6s var(--ease-out) both;
   animation-delay: calc(var(--i, 0) * 0.12s);
 }
-.motion [data-reveal='title-now'] > .hl {
-  animation:
-    word-rise 0.6s var(--ease-out) both,
-    shine 4s linear infinite;
-  animation-delay: calc(var(--i, 0) * 0.12s), 0s;
-}
-.motion [data-reveal='title-now'] .hl svg {
-  animation: swoosh-draw 0.8s var(--ease-out) both;
-  animation-delay: calc(var(--i, 0) * 0.12s + 0.3s);
-}
 @keyframes word-rise {
   from {
     transform: translateY(-14px);
-  }
-}
-@keyframes swoosh-draw {
-  from {
-    clip-path: inset(-50% 100% -50% 0);
-  }
-  to {
-    clip-path: inset(-50% 0 -50% 0);
   }
 }
 /* A line that draws itself across (milestones) */

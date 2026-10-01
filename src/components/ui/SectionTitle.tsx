@@ -3,26 +3,11 @@ import type { CSSProperties, ReactNode } from 'react'
 /** Inline CSS custom properties, e.g. vars({ '--d': '120ms' }). */
 export const vars = (v: Record<`--${string}`, string | number>) => v as CSSProperties
 
-/** Highlighter stroke across the lower half of highlighted words (gradients live in <SvgDefs/>). */
-export function Swoosh({ dark = false }: { dark?: boolean }) {
-  return (
-    <svg viewBox="0 0 100 12" preserveAspectRatio="none" aria-hidden="true">
-      <path
-        d="M2.5 7.6C18 5.4 34 6.6 50 6.1S82 5 97.5 6.4"
-        fill="none"
-        stroke={dark ? 'url(#mark-dark)' : 'url(#mark-light)'}
-        strokeWidth={7.5}
-        strokeLinecap="round"
-      />
-    </svg>
-  )
-}
-
 export type TitlePart = string | { hl: string } | { node: ReactNode }
 
 /**
  * Section title: word groups drop in with a soft blur one after another when the title first
- * scrolls into view; highlighted groups get gradient text and a swoosh that draws itself.
+ * scrolls into view; highlighted groups take the brand colour.
  */
 export function SectionTitle({
   parts,
@@ -59,10 +44,9 @@ export function SectionTitle({
           )
         if ('hl' in part)
           return (
-            <span key={i} className={`hl ${dark ? 'hl-green' : ''}`} style={style}>
+            <span key={i} className="hl" style={style}>
               {space}
               {part.hl}
-              <Swoosh dark={dark} />
             </span>
           )
         return (
@@ -119,23 +103,5 @@ export function EyebrowTab({ text }: { text: string }) {
       <StarGlyph />
       <span>{text}</span>
     </div>
-  )
-}
-
-/** Shared SVG gradients referenced by id from the components above. Render once per page. */
-export function SvgDefs() {
-  return (
-    <svg width="0" height="0" className="absolute" aria-hidden="true" focusable="false">
-      <defs>
-        <linearGradient id="mark-light" x1="0" x2="1">
-          <stop stopColor="#8af5c7" stopOpacity="0.75" />
-          <stop offset="1" stopColor="#19c37d" stopOpacity="0.6" />
-        </linearGradient>
-        <linearGradient id="mark-dark" x1="0" x2="1">
-          <stop stopColor="#ffd27f" stopOpacity="0.55" />
-          <stop offset="1" stopColor="#ff9f5e" stopOpacity="0.45" />
-        </linearGradient>
-      </defs>
-    </svg>
   )
 }

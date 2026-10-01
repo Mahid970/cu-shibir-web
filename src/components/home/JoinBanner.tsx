@@ -4,7 +4,6 @@ import { Link } from '@/i18n/link'
 import { FloatIcon } from '@/components/art/FloatIcon'
 import { BallotBox, Book, Megaphone3D, Train } from '@/components/art/Icons3D'
 import { ArrowRight } from '@/components/ui/Icons'
-import { Swoosh } from '@/components/ui/SectionTitle'
 import { copy } from '@/i18n/config'
 import { getLang } from '@/i18n/server'
 
@@ -38,10 +37,7 @@ export async function JoinBanner({ email }: { email: string }) {
             <h2 id="join-banner" className="text-[1.9rem] font-bold leading-snug text-white md:text-[2.6rem]">
               {t.title[0]}
               <br />
-              <span className="swoosh-host" data-reveal="swoosh">
-                {t.title[1]}
-                <Swoosh dark />
-              </span>
+              <span className="text-blue-soft">{t.title[1]}</span>
             </h2>
             <p className="mt-4 max-w-xl text-[1.02rem] leading-relaxed text-white/75 md:text-[1.1rem]">
               {t.text}
