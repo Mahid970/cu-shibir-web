@@ -95,7 +95,7 @@ export function NextTrain({ timetable, journeyMinutes, ends }: Props) {
               <p className="mt-6 text-white/80">{t.none}</p>
             ) : (
               <>
-                <p className="mt-5 text-[2.6rem] font-bold leading-none text-glow md:text-[3rem]">{time(lang, clock(next.time))}</p>
+                <p className="mt-5 text-[2.6rem] font-bold leading-none text-blue-soft md:text-[3rem]">{time(lang, clock(next.time))}</p>
                 <p className="mt-3 text-[1.15rem] font-semibold">{when(next)}</p>
                 {arrival(next) && <p className="mt-1 text-[0.95rem] text-white/70">{t.reaches(arrival(next)!)}</p>}
                 {next.note && <p className="mt-1 text-[0.95rem] text-white/70">{next.note}</p>}

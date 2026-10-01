@@ -22,9 +22,9 @@ const T = copy(
 )
 
 const TONE = {
-  sky: { card: 'bg-[#e6f3f8]', chip: 'text-[#0b5f8c]' },
-  sand: { card: 'bg-[#fff3dd]', chip: 'text-[#9a5b00]' },
-  pink: { card: 'bg-[#fbe8e6]', chip: 'text-[#b23a2e]' },
+  pale: { card: 'bg-pale-2', chip: 'text-primary' },
+  mist: { card: 'bg-[#edf1f5]', chip: 'text-[#3b4b5c]' },
+  ice: { card: 'bg-pale-3', chip: 'text-blue-deep' },
 }
 
 /**
@@ -40,25 +40,25 @@ export async function ProblemSolution() {
       <div className="wrap">
         <SectionTitle
           id="problems"
-          parts={[t.title[0], { node: <Chevrons className="nudge size-9 text-success md:size-11" /> }, { hl: t.title[1] }]}
+          parts={[t.title[0], { node: <Chevrons className="nudge size-9 text-blue md:size-11" /> }, { hl: t.title[1] }]}
         />
         <p className="lede">{t.lede}</p>
 
         <ol className="mx-auto mt-12 max-w-5xl space-y-6 md:space-y-8">
           {PROBLEMS.map((p) => (
             <li key={p.href} data-reveal="chain" data-amount="0.35" className="ps-row grid items-center gap-3 md:grid-cols-[1fr_88px_1fr] md:gap-0">
-              <div className={`ps-problem rounded-[28px] p-6 shadow-[0_20px_40px_rgb(10_34_51/0.06)] md:p-8 ${TONE[p.tone].card}`}>
+              <div className={`ps-problem rounded-[28px] p-6 shadow-[0_20px_40px_rgb(11_31_51/0.06)] md:p-8 ${TONE[p.tone].card}`}>
                 <span className={`chip bg-white/80 ${TONE[p.tone].chip}`}>{p.tag[lang]}</span>
                 <p className="mt-4 text-[1.05rem] leading-relaxed text-ink md:text-[1.1rem]">{p.problem[lang]}</p>
               </div>
               <span aria-hidden="true" className="ps-link relative mx-auto block h-10 w-0.5 md:h-0.5 md:w-full">
-                <span className="ps-line absolute inset-0 rounded-full bg-[linear-gradient(90deg,#ffb35e,var(--cta))] max-md:bg-[linear-gradient(180deg,#ffb35e,var(--cta))]" />
-                <span className="ps-spark absolute left-1/2 top-0 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_12px_4px_rgb(25_195_125/0.8)] md:left-0 md:top-1/2" />
+                <span className="ps-line absolute inset-0 rounded-full bg-[linear-gradient(90deg,var(--blue-soft),var(--primary))] max-md:bg-[linear-gradient(180deg,var(--blue-soft),var(--primary))]" />
+                <span className="ps-spark absolute left-1/2 top-0 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_12px_4px_rgb(31_163_220/0.8)] md:left-0 md:top-1/2" />
               </span>
-              <div className="ps-answer rounded-[28px] bg-[linear-gradient(135deg,#119160,#075a3a)] p-6 text-white shadow-[0_20px_40px_rgb(7_90_58/0.28)] md:p-8">
+              <div className="ps-answer rounded-[28px] bg-[linear-gradient(135deg,#17599a,#0a2f52)] p-6 text-white shadow-[0_20px_40px_rgb(17_69_117/0.28)] md:p-8">
                 <span className="grid size-10 place-items-center rounded-full bg-white">
                   <svg viewBox="0 0 24 24" className="size-6" aria-hidden="true">
-                    <path className="ps-check" d="m6 12.5 4 4 8-9" fill="none" stroke="#119160" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" pathLength={1} />
+                    <path className="ps-check" d="m6 12.5 4 4 8-9" fill="none" stroke="#114575" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" pathLength={1} />
                   </svg>
                 </span>
                 <p className="mt-4 text-[1.05rem] font-semibold leading-relaxed md:text-[1.1rem]">{p.answer[lang]}</p>

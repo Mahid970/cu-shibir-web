@@ -48,19 +48,19 @@ export async function SiteFooter({ settings }: { settings: SiteSetting }) {
     <footer className="relative isolate overflow-hidden bg-night px-3 pb-8 pt-14 text-white md:pt-20">
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[radial-gradient(40%_60%_at_10%_0%,rgb(53_100_255/0.28),transparent_70%),radial-gradient(35%_55%_at_95%_100%,rgb(0_251_151/0.12),transparent_70%)]"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(40%_60%_at_10%_0%,rgb(31_163_220/0.28),transparent_70%),radial-gradient(35%_55%_at_95%_100%,rgb(92_200_242/0.12),transparent_70%)]"
       />
       <div className="wrap grid grid-cols-1 gap-10 md:grid-cols-12">
         <div className="md:col-span-5">
           <Logo tone="light" />
           <ul className="mt-6 space-y-3 text-[0.98rem] text-white/85">
             <li className="flex items-start gap-3">
-              <Pin className="mt-0.5 size-5 shrink-0 text-mint" />
+              <Pin className="mt-0.5 size-5 shrink-0 text-blue-soft" />
               {t.address}
             </li>
             {email && (
               <li className="flex items-start gap-3">
-                <Mail className="mt-0.5 size-5 shrink-0 text-mint" />
+                <Mail className="mt-0.5 size-5 shrink-0 text-blue-soft" />
                 <a href={`mailto:${email}`} className="underline-offset-2 hover:underline">
                   {email}
                 </a>

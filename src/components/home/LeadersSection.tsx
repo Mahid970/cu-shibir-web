@@ -45,7 +45,7 @@ export async function LeaderCard({
       style={vars({ '--d': `${(index % 4) * 100}ms` })}
       className="group relative flex h-full flex-col gap-3 rounded-[20px] border border-white/[0.08] bg-night-card p-3 text-white transition-colors hover:border-white/25"
     >
-      <div className="relative aspect-[4/3.6] overflow-hidden rounded-2xl bg-[radial-gradient(80%_75%_at_50%_100%,#1d4ed8,#0b1428_75%)]">
+      <div className="relative aspect-[4/3.6] overflow-hidden rounded-2xl bg-[radial-gradient(80%_75%_at_50%_100%,#1f8fcf,#0a1d30_75%)]">
         {img && (
           <ViewTransition name={`person-${person.slug}`} share="morph" default="none">
             <Image
@@ -65,7 +65,7 @@ export async function LeaderCard({
       </h3>
       <p
         className={`mx-auto rounded-lg px-3 py-1 text-center text-[0.8rem] font-semibold leading-snug ${
-          highlight ? 'bg-tag text-ink' : 'bg-white/10 text-white/85'
+          highlight ? 'bg-blue-soft text-ink' : 'bg-white/10 text-white/85'
         }`}
       >
         {personPosition(person.position, lang)}

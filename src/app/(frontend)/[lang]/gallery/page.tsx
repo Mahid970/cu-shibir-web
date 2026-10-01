@@ -67,7 +67,7 @@ export default async function GalleryPage() {
                   <article
                     data-reveal="fade"
                     style={vars({ '--d': `${(i % 3) * 90}ms` })}
-                    className="group relative flex h-full flex-col gap-4 rounded-2xl bg-white p-4 shadow-[0_4px_24px_rgb(11_15_46/0.06)] transition-shadow duration-300 hover:shadow-[0_18px_40px_rgb(11_15_46/0.12)] md:rounded-3xl md:p-5"
+                    className="group relative flex h-full flex-col gap-4 rounded-2xl bg-white p-4 shadow-[0_4px_24px_rgb(11_31_51/0.06)] transition-shadow duration-300 hover:shadow-[0_18px_40px_rgb(11_31_51/0.12)] md:rounded-3xl md:p-5"
                   >
                     <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-pale md:rounded-2xl">
                       {cover && (

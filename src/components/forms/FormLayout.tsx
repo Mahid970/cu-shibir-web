@@ -28,13 +28,13 @@ export async function FormLayout({
         <aside className="grid gap-4 lg:sticky lg:top-24">
           <div className="rounded-3xl bg-night p-6 text-white md:p-7">
             <p className="flex items-center gap-2 text-[1.1rem] font-bold">
-              <Lock className="size-5 text-mint" />
+              <Lock className="size-5 text-blue-soft" />
               {lang === 'en' ? 'Your information is safe' : 'আপনার তথ্য নিরাপদ'}
             </p>
             <ul className="mt-4 grid gap-3 text-[0.95rem] leading-relaxed text-white/80">
               {points.map((p) => (
                 <li key={p} className="flex gap-2.5">
-                  <CheckCircle className="mt-1 size-4 shrink-0 text-mint" />
+                  <CheckCircle className="mt-1 size-4 shrink-0 text-blue-soft" />
                   {p}
                 </li>
               ))}

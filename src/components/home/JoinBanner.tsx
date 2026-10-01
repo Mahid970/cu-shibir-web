@@ -29,7 +29,7 @@ export async function JoinBanner({ email }: { email: string }) {
     <section className="cv-auto wrap py-10 md:py-14" aria-labelledby="join-banner">
       <div
         data-reveal="up"
-        className="relative overflow-hidden rounded-3xl border-4 border-transparent [background:linear-gradient(115deg,#07334d,#04202e_55%,#083a55)_padding-box,linear-gradient(120deg,#5eead4,#1c9bd6_60%,#5eead4)_border-box]"
+        className="relative overflow-hidden rounded-3xl border-4 border-transparent [background:linear-gradient(115deg,#0e2e4d,#071a2c_55%,#0f3a60)_padding-box,linear-gradient(120deg,#5cc8f2,#1f8fcf_60%,#5cc8f2)_border-box]"
       >
         <div aria-hidden="true" className="lattice-night absolute inset-0 opacity-60" />
         <div className="relative grid items-center gap-8 p-7 sm:p-10 md:grid-cols-[1.25fr_1fr] md:p-12">
@@ -43,7 +43,7 @@ export async function JoinBanner({ email }: { email: string }) {
               {t.text}
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/join" className="btn btn-cta">
+              <Link href="/join" className="btn btn-sky">
                 {t.join}
                 <ArrowRight />
               </Link>
@@ -53,7 +53,7 @@ export async function JoinBanner({ email }: { email: string }) {
             </div>
           </div>
           <div aria-hidden="true" className="relative mx-auto h-56 w-full max-w-sm md:h-64">
-            <div className="absolute left-1/2 top-1/2 grid size-32 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[28px] bg-white shadow-[0_20px_50px_rgb(0_96_250/0.45)] md:size-36">
+            <div className="absolute left-1/2 top-1/2 grid size-32 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[28px] bg-white shadow-[0_20px_50px_rgb(31_163_220/0.4)] md:size-36">
               <Image src="/brand/logo-legacy.png" alt="" width={100} height={100} className="size-24 md:size-28" />
             </div>
             <FloatIcon className="left-[6%] top-[4%]" rotate={-12} drift={12} duration={5.6}>

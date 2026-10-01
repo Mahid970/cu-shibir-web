@@ -51,7 +51,7 @@ export default async function JoinPage() {
           {t.actions.map((a, i) => (
             <li
               key={a.href}
-              className="load-up group relative flex flex-col items-start gap-2 rounded-3xl bg-white p-6 text-left shadow-[0_4px_24px_rgb(11_15_46/0.06)] transition-shadow hover:shadow-[0_18px_40px_rgb(11_15_46/0.12)] md:p-7"
+              className="load-up group relative flex flex-col items-start gap-2 rounded-3xl bg-white p-6 text-left shadow-[0_4px_24px_rgb(11_31_51/0.06)] transition-shadow hover:shadow-[0_18px_40px_rgb(11_31_51/0.12)] md:p-7"
               style={vars({ '--d': `${350 + i * 120}ms` })}
             >
               <h2 className="text-[1.3rem] font-bold text-ink">

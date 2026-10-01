@@ -80,7 +80,7 @@ export default async function ShuttlePage() {
       <>
         {header}
         <div className="wrap max-w-2xl py-14 md:py-20">
-          <div className="rounded-3xl bg-white p-8 text-center shadow-[0_4px_24px_rgb(11_15_46/0.06)] md:p-10">
+          <div className="rounded-3xl bg-white p-8 text-center shadow-[0_4px_24px_rgb(11_31_51/0.06)] md:p-10">
             <h2 className="text-[1.4rem] font-bold text-ink">{t.empty.title}</h2>
             <p className="mt-3 leading-relaxed text-muted">{t.empty.text}</p>
           </div>
@@ -105,7 +105,7 @@ export default async function ShuttlePage() {
       {header}
       <div className="wrap max-w-5xl py-12 md:py-16">
         {shuttle.notice && (
-          <p role="note" className="mb-6 rounded-2xl border border-glow/60 bg-[#fffbea] p-4 leading-relaxed text-ink">
+          <p role="note" className="mb-6 rounded-2xl border border-pale-4 bg-pale p-4 leading-relaxed text-ink">
             <span className="font-bold">{t.notice}: </span>
             <span lang={langAttr(lang, shuttle.notice)}>{shuttle.notice}</span>
           </p>
@@ -125,7 +125,7 @@ export default async function ShuttlePage() {
             {(['to-campus', 'to-city'] as Direction[]).map((direction) => {
               const trips = timetable.trips.filter((trip) => trip.direction === direction).sort((a, b) => a.time.localeCompare(b.time))
               return (
-                <div key={direction} className="overflow-hidden rounded-3xl bg-white shadow-[0_4px_24px_rgb(11_15_46/0.06)]">
+                <div key={direction} className="overflow-hidden rounded-3xl bg-white shadow-[0_4px_24px_rgb(11_31_51/0.06)]">
                   <table className="w-full text-left">
                     <caption className="px-6 pb-2 pt-6 text-left text-[1.1rem] font-bold text-ink">{t.heading[direction]}</caption>
                     <thead className="text-[0.88rem] text-subtle">

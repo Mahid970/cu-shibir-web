@@ -6,7 +6,7 @@ import type { FieldErrors } from '@/lib/forms/validate'
 type Option = { value: string; label: string }
 
 const control =
-  'w-full rounded-xl border border-[#d9dde8] bg-white px-4 text-[1rem] text-ink shadow-[0_1px_2px_rgb(11_15_46/0.04)] transition-[border-color,box-shadow] placeholder:text-subtle/80 focus:border-blue focus:outline-none focus:ring-4 focus:ring-blue/15 aria-[invalid=true]:border-crimson aria-[invalid=true]:ring-crimson/10'
+  'w-full rounded-xl border border-[#d3dee8] bg-white px-4 text-[1rem] text-ink shadow-[0_1px_2px_rgb(11_31_51/0.04)] transition-[border-color,box-shadow] placeholder:text-subtle/80 focus:border-blue focus:outline-none focus:ring-4 focus:ring-blue/15 aria-[invalid=true]:border-crimson aria-[invalid=true]:ring-crimson/10'
 
 type Common = { name: string; label: string; hint?: ReactNode; required?: boolean; errors?: FieldErrors; className?: string }
 
@@ -137,7 +137,7 @@ export function Choices({
         {options.map((o) => (
           <label
             key={o.value}
-            className="cursor-pointer rounded-full border border-[#d9dde8] bg-white px-4 py-2 font-semibold text-ink transition-colors has-[:checked]:border-blue has-[:checked]:bg-pale-2 has-[:checked]:text-primary has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-blue/20"
+            className="cursor-pointer rounded-full border border-[#d3dee8] bg-white px-4 py-2 font-semibold text-ink transition-colors has-[:checked]:border-blue has-[:checked]:bg-pale-2 has-[:checked]:text-primary has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-blue/20"
           >
             <input
               type={type}
@@ -172,7 +172,7 @@ export function Consent({ name = 'consent', errors, children }: { name?: string;
           required
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? `e-${name}` : undefined}
-          className="mt-1 size-5 shrink-0 accent-[#0b6fa4]"
+          className="mt-1 size-5 shrink-0 accent-primary"
         />
         <span>{children}</span>
       </label>

@@ -81,7 +81,7 @@ export default async function IssuesDeskPage() {
           <SectionTitle id="how-title" parts={[t.how[0], { hl: t.how[1] }]} />
           <ol className="mx-auto mt-10 grid max-w-5xl gap-4 md:grid-cols-3">
             {t.steps.map((s, i) => (
-              <li key={s.title} data-reveal="fade" style={vars({ '--d': `${i * 100}ms` })} className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_15_46/0.06)] md:p-7">
+              <li key={s.title} data-reveal="fade" style={vars({ '--d': `${i * 100}ms` })} className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_31_51/0.06)] md:p-7">
                 <span aria-hidden="true" className="grid size-10 place-items-center rounded-full bg-pale-2 text-[1.1rem] font-bold text-primary">
                   {num(lang, i + 1)}
                 </span>

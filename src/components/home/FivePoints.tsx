@@ -38,7 +38,7 @@ export async function FivePoints() {
     <section className="relative isolate bg-deep pb-20 text-white md:pb-28" aria-labelledby="five-points">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="lattice-night absolute inset-0 [mask-image:radial-gradient(60%_50%_at_50%_20%,#000,transparent)]" />
-        <div className="absolute left-1/2 top-40 h-[480px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(11_111_164/0.4),transparent)] blur-2xl" />
+        <div className="absolute left-1/2 top-40 h-[480px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(31_143_207/0.35),transparent)] blur-2xl" />
       </div>
       <EyebrowTab text={t.eyebrow} />
       <div className="wrap mt-8 text-center md:mt-10">

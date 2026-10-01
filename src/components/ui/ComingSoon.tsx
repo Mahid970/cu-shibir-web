@@ -7,12 +7,8 @@ import { PageHeader } from './PageHeader'
 import { vars, type TitlePart } from './SectionTitle'
 
 const EDGES = [
-  ['#f0f8fb', 'linear-gradient(135deg,#1c9bd6,#9fdcf2 55%,#e8f6fa)'],
-  ['#effbf9', 'linear-gradient(135deg,#14b8a6,#99f6e4 55%,#effbf9)'],
-  ['#f6f2ff', 'linear-gradient(135deg,#8b5cf6,#d6c8ff 55%,#f6f2ff)'],
-  ['#fff6ed', 'linear-gradient(135deg,#f97316,#fed7aa 55%,#fff6ed)'],
-  ['#fff1f5', 'linear-gradient(135deg,#ec4899,#fbcfe8 55%,#fff1f5)'],
-  ['#effaf3', 'linear-gradient(135deg,#22c55e,#bbf7d0 55%,#effaf3)'],
+  ['#f3f9fd', 'linear-gradient(135deg,#1fa3dc,#b5e3f7 55%,#eaf3f9)'],
+  ['#f2f6fa', 'linear-gradient(135deg,#114575,#9cc3e0 55%,#eaf3f9)'],
 ]
 
 const T = copy(
@@ -46,7 +42,7 @@ export async function ComingSoon({
                 <li
                   key={f}
                   data-reveal="fade"
-                  style={vars({ '--d': `${(i % 3) * 120}ms`, '--fill': EDGES[i % 6][0], '--edge': EDGES[i % 6][1] })}
+                  style={vars({ '--d': `${(i % 3) * 120}ms`, '--fill': EDGES[i % 2][0], '--edge': EDGES[i % 2][1] })}
                   className="edge flex items-start justify-between gap-3 rounded-[18px] p-6"
                 >
                   <span className="text-[1.1rem] font-semibold text-ink">{f}</span>

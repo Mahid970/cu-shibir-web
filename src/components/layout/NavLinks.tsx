@@ -79,7 +79,7 @@ export function NavLinks() {
               <ChevronDown className={`size-4 transition-transform ${open ? 'rotate-180' : ''}`} />
             </button>
             <ul
-              className={`absolute right-0 top-full z-10 mt-2 w-56 rounded-xl bg-white p-2 shadow-[0_16px_40px_rgb(11_15_46/0.12)] ring-1 ring-border transition ${
+              className={`absolute right-0 top-full z-10 mt-2 w-56 rounded-xl bg-white p-2 shadow-[0_16px_40px_rgb(11_31_51/0.12)] ring-1 ring-border transition ${
                 open ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-1 opacity-0'
               }`}
             >

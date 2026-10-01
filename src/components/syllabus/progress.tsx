@@ -89,7 +89,7 @@ export function ProgressCheck({ id, label }: { id: string; label: string }) {
       checked={done}
       onChange={(e) => toggle(id, e.target.checked)}
       aria-label={t.done(label)}
-      className="mt-1 size-5 shrink-0 cursor-pointer accent-[#35b252]"
+      className="mt-1 size-5 shrink-0 cursor-pointer accent-primary"
     />
   )
 }
@@ -102,7 +102,7 @@ export function LevelProgress({ ids, compact = false }: { ids: string[]; compact
   const done = ids.filter((id) => progress[id]).length
   const pct = ids.length ? Math.round((done / ids.length) * 100) : 0
   return (
-    <div className={compact ? '' : 'rounded-2xl bg-white p-5 shadow-[0_4px_24px_rgb(11_15_46/0.06)]'}>
+    <div className={compact ? '' : 'rounded-2xl bg-white p-5 shadow-[0_4px_24px_rgb(11_31_51/0.06)]'}>
       <div className="flex items-baseline justify-between gap-3">
         <p className="font-semibold text-ink">{compact ? t.progress : t.mine}</p>
         <p className="text-[0.92rem] text-muted" aria-live="polite">
@@ -110,7 +110,7 @@ export function LevelProgress({ ids, compact = false }: { ids: string[]; compact
         </p>
       </div>
       <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-pale-3" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label={t.bar}>
-        <div className="h-full rounded-full bg-[linear-gradient(90deg,#7ef7a8,#2fce55)] transition-[width] duration-500" style={{ width: `${pct}%` }} />
+        <div className="h-full rounded-full bg-[linear-gradient(90deg,#5cc8f2,#1fa3dc)] transition-[width] duration-500" style={{ width: `${pct}%` }} />
       </div>
       {!compact && (
         <p className="mt-3 text-[0.85rem] text-subtle">{t.local}</p>

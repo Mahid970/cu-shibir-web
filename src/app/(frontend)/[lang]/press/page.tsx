@@ -65,7 +65,7 @@ export default async function PressPage() {
                     href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-start gap-4 rounded-2xl bg-white p-5 shadow-[0_4px_24px_rgb(11_15_46/0.06)] transition-shadow hover:shadow-[0_14px_34px_rgb(11_15_46/0.1)] md:p-6"
+                    className="group flex items-start gap-4 rounded-2xl bg-white p-5 shadow-[0_4px_24px_rgb(11_31_51/0.06)] transition-shadow hover:shadow-[0_14px_34px_rgb(11_31_51/0.1)] md:p-6"
                   >
                     <span className="min-w-0 flex-1">
                       <span className="flex flex-wrap items-center gap-2 text-[0.88rem]">

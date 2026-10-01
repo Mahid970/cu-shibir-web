@@ -60,7 +60,7 @@ export default async function FeedbackPage({ searchParams }: Props) {
       lede={t.lede}
       points={t.points}
       aside={
-        <div className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_15_46/0.06)]">
+        <div className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_31_51/0.06)]">
           <p className="font-bold text-ink">{t.email}</p>
           <a href={`mailto:${SITE.email}`} className="mt-2 block break-all font-semibold text-primary hover:underline">
             {SITE.email}

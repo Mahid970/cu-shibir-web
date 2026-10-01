@@ -47,7 +47,7 @@ const monthName = (lang: Locale, iso: string) =>
 export function IssueFigures({ stats, lang }: { stats: IssueStats; lang: Locale }) {
   const t = T[lang]
   if (stats.total === 0) {
-    return <p className="mx-auto max-w-2xl rounded-3xl bg-white p-8 text-center text-[1.05rem] leading-relaxed text-muted shadow-[0_4px_24px_rgb(11_15_46/0.06)]">{t.empty}</p>
+    return <p className="mx-auto max-w-2xl rounded-3xl bg-white p-8 text-center text-[1.05rem] leading-relaxed text-muted shadow-[0_4px_24px_rgb(11_31_51/0.06)]">{t.empty}</p>
   }
   const rate = Math.round((stats.resolved / stats.total) * 100)
   const peak = Math.max(1, ...stats.months.map((m) => Math.max(m.received, m.resolved)))
@@ -62,7 +62,7 @@ export function IssueFigures({ stats, lang }: { stats: IssueStats; lang: Locale 
     <div className="mx-auto grid max-w-5xl gap-6">
       <dl className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         {tiles.map((tile) => (
-          <div key={tile.k} className="rounded-3xl bg-white p-5 shadow-[0_4px_24px_rgb(11_15_46/0.06)] md:p-6">
+          <div key={tile.k} className="rounded-3xl bg-white p-5 shadow-[0_4px_24px_rgb(11_31_51/0.06)] md:p-6">
             <dt className="text-[0.92rem] font-semibold text-muted">{tile.k}</dt>
             <dd className="mt-1 text-[1.9rem] font-bold leading-tight text-ink md:text-[2.2rem]">{tile.v}</dd>
             {tile.sub && <dd className="mt-1 text-[0.88rem] text-subtle">{tile.sub}</dd>}
@@ -71,7 +71,7 @@ export function IssueFigures({ stats, lang }: { stats: IssueStats; lang: Locale 
       </dl>
 
       <div className="grid gap-6 lg:grid-cols-[1.2fr_1fr]">
-        <section aria-labelledby="by-category" className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_15_46/0.06)] md:p-8">
+        <section aria-labelledby="by-category" className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_31_51/0.06)] md:p-8">
           <h3 id="by-category" className="text-[1.15rem] font-bold text-ink">
             {t.byCategory}
           </h3>
@@ -96,7 +96,7 @@ export function IssueFigures({ stats, lang }: { stats: IssueStats; lang: Locale 
           </ul>
         </section>
 
-        <section aria-labelledby="by-month" className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_15_46/0.06)] md:p-8">
+        <section aria-labelledby="by-month" className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_31_51/0.06)] md:p-8">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
             <h3 id="by-month" className="text-[1.15rem] font-bold text-ink">
               {t.byMonth}

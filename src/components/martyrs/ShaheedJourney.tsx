@@ -35,7 +35,7 @@ function roadPath(from: number, to: number) {
   return d
 }
 
-/** Arch-topped portrait that warms from grey to colour when its lantern is lit. */
+/** Arch-topped portrait that comes from grey to colour when its light reaches it. */
 function Arch({ station, sizes, className = '' }: { station: Station; sizes: string; className?: string }) {
   return (
     <span className={`journey-arch relative block overflow-hidden bg-navy ${className}`}>
@@ -48,7 +48,7 @@ function Name({ name }: { name: string }) {
   const { honorific, rest } = splitHonorific(name)
   return (
     <>
-      {honorific && <span className="block text-[0.78rem] font-semibold text-glow/90">{honorific}</span>}
+      {honorific && <span className="block text-[0.78rem] font-semibold text-blue-soft/90">{honorific}</span>}
       <span className="block">{rest}</span>
     </>
   )
@@ -56,8 +56,8 @@ function Name({ name }: { name: string }) {
 
 /**
  * শহীদি কাফেলা: the branch's martyrs as a procession of light. On large screens the section pins
- * and scrolling carries a lamp along a road through the night hills; each martyr's lantern-card
- * lights as the lamp reaches it, the year turns over and the sky warms towards dawn. On phones,
+ * and scrolling carries a lamp along a road through the night hills; each martyr's card
+ * lights as the lamp reaches it, the year turns over and the sky lifts towards light. On phones,
  * and for anyone who prefers less motion, the same road runs down the page. Every card opens
  * that martyr's own page.
  */
@@ -156,12 +156,12 @@ export function ShaheedJourney({ stations, labels, id = 'shaheed-journey' }: { s
       <div ref={section} className="journey-h relative" style={{ height: `calc(100svh - 72px + ${D}px)` }}>
         <div ref={stage} className="journey-stage sticky top-[72px] h-[calc(100svh-72px)] overflow-hidden">
           <div aria-hidden="true" className="journey-sky absolute inset-0" />
-          <div aria-hidden="true" className="journey-dawn absolute inset-0" />
+          <div aria-hidden="true" className="journey-light absolute inset-0" />
           <div aria-hidden="true" className="journey-stars absolute inset-0" />
           <div aria-hidden="true" className="lattice-night absolute inset-0 opacity-40 [mask-image:linear-gradient(180deg,#000,transparent_70%)]" />
           <svg aria-hidden="true" viewBox="0 0 1440 220" preserveAspectRatio="none" className="journey-hills absolute inset-x-0 bottom-0 h-[26%] w-[112%]">
-            <path d="M0 150C120 92 236 112 360 82S604 38 760 90s262-32 404-20 200 42 276 20v130H0Z" fill="#0b6fa4" fillOpacity=".35" />
-            <path d="M0 172c160-50 300-22 460-58s296-12 440 22 280-34 400-14 104 22 140 12v86H0Z" fill="#19c37d" fillOpacity=".22" />
+            <path d="M0 150C120 92 236 112 360 82S604 38 760 90s262-32 404-20 200 42 276 20v130H0Z" fill="#1f8fcf" fillOpacity=".32" />
+            <path d="M0 172c160-50 300-22 460-58s296-12 440 22 280-34 400-14 104 22 140 12v86H0Z" fill="#5cc8f2" fillOpacity=".18" />
           </svg>
 
           <div className="wrap relative z-10 flex items-start justify-between gap-8 pt-8">
@@ -176,7 +176,7 @@ export function ShaheedJourney({ stations, labels, id = 'shaheed-journey' }: { s
               <p className="mt-2 max-w-sm text-[0.98rem] leading-relaxed text-white/70">{labels.lede}</p>
             </div>
             <div className="text-right" aria-live="polite">
-              <p key={current?.year} className="journey-year text-[4.5rem] font-bold leading-none text-glow xl:text-[5.5rem]">
+              <p key={current?.year} className="journey-year text-[4.5rem] font-bold leading-none text-blue-soft xl:text-[5.5rem]">
                 {current?.year}
               </p>
               <p className="mt-1 text-[0.95rem] font-semibold text-white/70">{labels.counts[Math.max(0, lit)]}</p>
@@ -187,8 +187,8 @@ export function ShaheedJourney({ stations, labels, id = 'shaheed-journey' }: { s
             <svg aria-hidden="true" className="absolute bottom-[12%] overflow-visible" style={{ left: -700, width: D + 1100, height: BAND }} viewBox={`-700 0 ${D + 1100} ${BAND}`}>
               <defs>
                 <linearGradient id={`${id}-trail`} x1="0" x2="1">
-                  <stop offset="0" stopColor="#ffd27f" stopOpacity="0.2" />
-                  <stop offset="1" stopColor="#ffc561" />
+                  <stop offset="0" stopColor="#a5e4fb" stopOpacity="0.2" />
+                  <stop offset="1" stopColor="#5cc8f2" />
                 </linearGradient>
                 <clipPath id={`${id}-lit`}>
                   <rect ref={trail} x={-700} y={0} width={700} height={BAND} />
@@ -220,7 +220,7 @@ export function ShaheedJourney({ stations, labels, id = 'shaheed-journey' }: { s
                       <span className="mt-0.5 block text-[1.08rem] font-bold leading-snug text-white">
                         <Name name={st.name} />
                       </span>
-                      <span className="mt-1 block text-[0.84rem] font-semibold text-glow">{st.date}</span>
+                      <span className="mt-1 block text-[0.84rem] font-semibold text-blue-soft">{st.date}</span>
                       <span className="mt-0.5 block text-[0.8rem] leading-snug text-white/60">{st.place}</span>
                       <span className="journey-read mt-2 inline-flex items-center gap-1 text-[0.82rem] font-semibold text-white">
                         {labels.read}
@@ -233,11 +233,11 @@ export function ShaheedJourney({ stations, labels, id = 'shaheed-journey' }: { s
             })}
 
             <div className="journey-end absolute bottom-[calc(12%+60px)] w-[320px] -translate-x-1/2 text-center" style={{ left: D - 60 }}>
-              <span aria-hidden="true" className="mx-auto block size-16 rounded-full bg-[radial-gradient(circle,#ffd27f,#ff9f5e_55%,transparent_72%)] blur-[1px]" />
+              <span aria-hidden="true" className="mx-auto block size-16 rounded-full bg-[radial-gradient(circle,#ffffff,#5cc8f2_55%,transparent_72%)] blur-[1px]" />
               <p className="mt-4 text-[1.4rem] font-bold text-white">{labels.endTitle}</p>
               <p className="mt-2 text-[0.95rem] leading-relaxed text-white/70">{labels.endText}</p>
               {labels.endLink && (
-                <Link href="/martyrs" className="btn btn-glow btn-sm mt-5">
+                <Link href="/martyrs" className="btn btn-sky btn-sm mt-5">
                   {labels.endLink}
                   <ArrowRight />
                 </Link>
@@ -268,7 +268,7 @@ export function ShaheedJourney({ stations, labels, id = 'shaheed-journey' }: { s
               <Link href={`/martyrs/${st.slug}`} className="journey-card group flex gap-4 rounded-[1.25rem] p-3 outline-none">
                 <Arch station={st} sizes="96px" className="h-[118px] w-[92px] shrink-0" />
                 <span className="min-w-0 py-1">
-                  <span className="block text-[0.85rem] font-bold text-glow">
+                  <span className="block text-[0.85rem] font-bold text-blue-soft">
                     {st.year}
                     {st.ordinal && <span className="ml-2 font-semibold text-white/55">· {st.ordinal}</span>}
                   </span>
@@ -286,11 +286,11 @@ export function ShaheedJourney({ stations, labels, id = 'shaheed-journey' }: { s
           ))}
         </ol>
         <div className="mx-auto mt-12 max-w-md text-center">
-          <span aria-hidden="true" className="mx-auto block size-14 rounded-full bg-[radial-gradient(circle,#ffd27f,#ff9f5e_55%,transparent_72%)]" />
+          <span aria-hidden="true" className="mx-auto block size-14 rounded-full bg-[radial-gradient(circle,#ffffff,#5cc8f2_55%,transparent_72%)]" />
           <p className="mt-3 text-[1.25rem] font-bold text-white">{labels.endTitle}</p>
           <p className="mt-2 leading-relaxed text-white/70">{labels.endText}</p>
           {labels.endLink && (
-            <Link href="/martyrs" className="btn btn-glow btn-sm mt-5">
+            <Link href="/martyrs" className="btn btn-sky btn-sm mt-5">
               {labels.endLink}
               <ArrowRight />
             </Link>

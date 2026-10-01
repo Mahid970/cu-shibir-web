@@ -95,7 +95,7 @@ export default async function FreshersPage() {
                 key={item.text}
                 data-reveal="fade"
                 style={vars({ '--d': `${(i % 4) * 80}ms` })}
-                className="flex flex-col gap-2 rounded-2xl bg-white px-5 py-4 shadow-[0_4px_24px_rgb(11_15_46/0.06)] sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+                className="flex flex-col gap-2 rounded-2xl bg-white px-5 py-4 shadow-[0_4px_24px_rgb(11_31_51/0.06)] sm:flex-row sm:items-center sm:justify-between sm:gap-6"
               >
                 <span className="flex gap-3 leading-relaxed text-ink">
                   <CheckCircle className="mt-1 size-5 shrink-0 text-success" />
@@ -120,7 +120,7 @@ export default async function FreshersPage() {
                 <p lang={langAttr(lang, c.name)} className="font-semibold text-white/80">
                   {c.name}
                 </p>
-                <a href={`tel:${c.phone.replace(/[^+0-9]/g, '')}`} aria-label={t.call(c.phone)} className="mt-2 block text-[2rem] font-bold leading-none text-glow">
+                <a href={`tel:${c.phone.replace(/[^+0-9]/g, '')}`} aria-label={t.call(c.phone)} className="mt-2 block text-[2rem] font-bold leading-none text-blue-soft">
                   {num(lang, c.phone)}
                 </a>
                 {c.note && (
@@ -145,7 +145,7 @@ export default async function FreshersPage() {
                 const here = places.filter((p) => p.category === category.value).sort((a, b) => a.name.localeCompare(b.name, lang))
                 if (!here.length) return null
                 return (
-                  <section key={category.value} aria-labelledby={`cat-${category.value}`} className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_15_46/0.06)]">
+                  <section key={category.value} aria-labelledby={`cat-${category.value}`} className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_31_51/0.06)]">
                     <h3 id={`cat-${category.value}`} className="text-[1.1rem] font-bold text-ink">
                       {category.label[lang]}
                     </h3>

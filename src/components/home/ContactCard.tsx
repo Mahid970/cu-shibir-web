@@ -30,7 +30,7 @@ export async function ContactCard({ email, facebook }: { email: string; facebook
     <section className="wrap pb-20 pt-6 md:pb-28" aria-labelledby="contact">
       <div
         data-reveal="up"
-        className="relative overflow-hidden rounded-3xl text-white [background:radial-gradient(70%_120%_at_50%_0%,#0341a6_0%,#052b62_55%,#042755_100%)] lg:rounded-[32px]"
+        className="relative overflow-hidden rounded-3xl text-white [background:radial-gradient(70%_120%_at_50%_0%,#134a78_0%,#0e2e4d_55%,#0a1d30_100%)] lg:rounded-[32px]"
       >
         <div aria-hidden="true" className="lattice-night absolute inset-0 [mask-image:linear-gradient(180deg,#000,transparent)]" />
         <div className="relative grid gap-10 p-7 sm:p-10 lg:grid-cols-2 lg:p-14">
@@ -42,7 +42,7 @@ export async function ContactCard({ email, facebook }: { email: string; facebook
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
               {CONTACT_TOPICS[lang].map((topic) => (
                 <li key={topic} className="flex items-center gap-2.5 text-[1.02rem] text-white/90">
-                  <CheckCircle className="size-5 shrink-0 text-mint" />
+                  <CheckCircle className="size-5 shrink-0 text-blue-soft" />
                   {topic}
                 </li>
               ))}
@@ -55,7 +55,7 @@ export async function ContactCard({ email, facebook }: { email: string; facebook
             </a>
             <p className="mt-3 text-[0.95rem] text-white/70">{t.reply}</p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <a href={`mailto:${email}`} className="btn btn-cta">
+              <a href={`mailto:${email}`} className="btn btn-sky">
                 {t.write}
                 <ArrowRight />
               </a>

@@ -71,7 +71,7 @@ export default async function NewsIndex({ searchParams }: Props) {
     <>
       <PageHeader title={[t.title[0], { hl: t.title[1] }]} lede={t.lede}>
         <nav aria-label={t.filter} className="mt-8 flex justify-center">
-          <ul className="flex max-w-full gap-1 overflow-x-auto rounded-full bg-white p-1.5 shadow-[0_4px_24px_rgb(11_15_46/0.06)] [scrollbar-width:none]">
+          <ul className="flex max-w-full gap-1 overflow-x-auto rounded-full bg-white p-1.5 shadow-[0_4px_24px_rgb(11_31_51/0.06)] [scrollbar-width:none]">
             {[{ value: undefined, label: { bn: t.all, en: t.all } }, ...POST_CATEGORIES].map((c) => {
               const active = c.value === category
               return (
@@ -80,7 +80,7 @@ export default async function NewsIndex({ searchParams }: Props) {
                     href={href({ category: c.value })}
                     aria-current={active ? 'page' : undefined}
                     className={`block rounded-full px-4 py-2 text-[0.95rem] font-bold transition-colors sm:px-5 ${
-                      active ? 'bg-blue text-white shadow-[0_8px_18px_rgb(53_100_255/0.35)]' : 'bg-pale-2 text-ink hover:bg-pale-3'
+                      active ? 'bg-primary text-white shadow-[0_8px_18px_rgb(17_69_117/0.3)]' : 'bg-pale-2 text-ink hover:bg-pale-3'
                     }`}
                   >
                     {c.label[lang]}
@@ -117,7 +117,7 @@ export default async function NewsIndex({ searchParams }: Props) {
                 {t.prev}
               </Link>
             )}
-            <span className="rounded-full bg-white px-4 py-2 font-semibold text-muted shadow-[0_4px_24px_rgb(11_15_46/0.06)]">
+            <span className="rounded-full bg-white px-4 py-2 font-semibold text-muted shadow-[0_4px_24px_rgb(11_31_51/0.06)]">
               {t.page(num(lang, page), num(lang, result.totalPages))}
             </span>
             {result.hasNextPage && (

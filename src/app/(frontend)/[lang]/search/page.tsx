@@ -55,7 +55,7 @@ function Hit({ hit, lang }: { hit: SearchHit; lang: Locale }) {
       {hit.external ? <ExternalLink className="mt-1 size-4 shrink-0 text-subtle" /> : <ArrowRight className="mt-1 size-4 shrink-0 text-subtle group-hover:text-primary" />}
     </>
   )
-  const cls = 'group flex items-start gap-4 rounded-2xl bg-white p-5 shadow-[0_4px_24px_rgb(11_15_46/0.06)] transition-shadow hover:shadow-[0_14px_34px_rgb(11_15_46/0.1)]'
+  const cls = 'group flex items-start gap-4 rounded-2xl bg-white p-5 shadow-[0_4px_24px_rgb(11_31_51/0.06)] transition-shadow hover:shadow-[0_14px_34px_rgb(11_31_51/0.1)]'
   return hit.external ? (
     <a href={hit.href} target="_blank" rel="noopener noreferrer" className={cls}>
       {inner}
@@ -88,7 +88,7 @@ export default async function SearchPage({ searchParams }: Props) {
               defaultValue={query}
               placeholder={t.placeholder}
               autoFocus={!query}
-              className="h-14 w-full rounded-full border border-[#d9dde8] bg-white pl-12 pr-5 text-[1.05rem] shadow-[0_4px_24px_rgb(11_15_46/0.06)] focus:border-blue focus:outline-none focus:ring-4 focus:ring-blue/15"
+              className="h-14 w-full rounded-full border border-[#d3dee8] bg-white pl-12 pr-5 text-[1.05rem] shadow-[0_4px_24px_rgb(11_31_51/0.06)] focus:border-blue focus:outline-none focus:ring-4 focus:ring-blue/15"
             />
           </label>
           <button type="submit" className="btn btn-gradient h-14 rounded-full px-6">

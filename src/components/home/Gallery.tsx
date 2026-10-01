@@ -75,7 +75,7 @@ export async function Gallery({
                 />
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgb(0_14_29/0.85))]"
+                  className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgb(7_26_44/0.85))]"
                 />
                 <div className="absolute inset-x-3 bottom-3 text-white md:inset-x-4 md:bottom-4">
                   <p className="text-[0.8rem] text-white/75">

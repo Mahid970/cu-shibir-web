@@ -208,7 +208,7 @@ export default async function MartyrPage({ params }: Props) {
           <div className="journey-sky absolute inset-0" />
           <div className="journey-stars absolute inset-0" />
           <div className="lattice-night absolute inset-0 opacity-50 [mask-image:radial-gradient(70%_60%_at_30%_20%,#000,transparent)]" />
-          <div className="dawn-sun absolute bottom-[-40%] left-[28%] h-[70%] w-[70%] -translate-x-1/2 rounded-[50%] opacity-70" />
+          <div className="hero-glow absolute bottom-[-40%] left-[28%] h-[70%] w-[70%] -translate-x-1/2 rounded-[50%] opacity-70" />
         </div>
         <div className="wrap max-w-6xl">
           <nav aria-label={t.crumbs} className="load-up flex flex-wrap gap-x-2 text-[0.92rem] text-white/60">
@@ -235,12 +235,12 @@ export default async function MartyrPage({ params }: Props) {
 
             <div className="text-center md:text-left">
               <p className="load-up flex flex-wrap justify-center gap-2 md:justify-start">
-                {m.number && <span className="rounded-full bg-glow px-3 py-1 text-[0.85rem] font-bold text-ink">{martyrOrdinal(lang, m.number)}</span>}
+                {m.number && <span className="rounded-full bg-blue-soft px-3 py-1 text-[0.85rem] font-bold text-ink">{martyrOrdinal(lang, m.number)}</span>}
                 {m.rank && <span className="rounded-full bg-white/10 px-3 py-1 text-[0.85rem] font-semibold text-white ring-1 ring-white/15">{RANKS[lang][m.rank]}</span>}
               </p>
               <h1 className="mt-5 text-white" lang={langAttr(lang, m.name)}>
                 {honorific && (
-                  <span className="load-rise block text-[1.2rem] font-semibold text-glow" style={vars({ '--d': '60ms' })}>
+                  <span className="load-rise block text-[1.2rem] font-semibold text-blue-soft" style={vars({ '--d': '60ms' })}>
                     {honorific}
                   </span>
                 )}
@@ -249,7 +249,7 @@ export default async function MartyrPage({ params }: Props) {
                 </span>
               </h1>
               {when && (
-                <p className="load-rise mt-4 text-[1.5rem] font-bold text-glow" style={vars({ '--d': '260ms' })}>
+                <p className="load-rise mt-4 text-[1.5rem] font-bold text-blue-soft" style={vars({ '--d': '260ms' })}>
                   {when}
                 </p>
               )}
@@ -267,8 +267,8 @@ export default async function MartyrPage({ params }: Props) {
           </div>
         </div>
         <svg aria-hidden="true" viewBox="0 0 1440 220" preserveAspectRatio="none" className="absolute inset-x-0 bottom-0 h-[90px] w-full md:h-[130px]">
-          <path className="hill hill-back" d="M0 150C120 92 236 112 360 82S604 38 760 90s262-32 404-20 200 42 276 20v130H0Z" fill="#0b6fa4" fillOpacity=".4" />
-          <path className="hill hill-mid" d="M0 172c160-50 300-22 460-58s296-12 440 22 280-34 400-14 104 22 140 12v86H0Z" fill="#19c37d" fillOpacity=".28" />
+          <path className="hill hill-back" d="M0 150C120 92 236 112 360 82S604 38 760 90s262-32 404-20 200 42 276 20v130H0Z" fill="#1f8fcf" fillOpacity=".36" />
+          <path className="hill hill-mid" d="M0 172c160-50 300-22 460-58s296-12 440 22 280-34 400-14 104 22 140 12v86H0Z" fill="#5cc8f2" fillOpacity=".2" />
           <path d="M0 202c180-40 360-16 540-36s360-14 540 10 240-12 360 6v38H0Z" fill="var(--bg)" />
         </svg>
       </header>
@@ -295,7 +295,7 @@ export default async function MartyrPage({ params }: Props) {
 
       {m.quote && (
         <figure data-reveal="fade" className="wrap mt-14 max-w-3xl text-center md:mt-20">
-          <StarGlyph className="mx-auto size-7 text-amber" />
+          <StarGlyph className="mx-auto size-7 text-blue" />
           <blockquote className="mt-4 text-[1.5rem] font-bold leading-[1.6] text-ink md:text-[1.9rem]">
             “{m.quote}”
           </blockquote>
