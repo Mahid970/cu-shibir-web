@@ -18,7 +18,6 @@ const T = copy(
       { kind: 'page', title: 'ক্যাম্পাস গাইড', href: '/services/campus' },
       { kind: 'page', title: 'এহতেসাব ও পরামর্শ', href: '/join/feedback' },
     ] as Hit[],
-    open: 'খুঁজুন (Ctrl+K)',
     dialog: 'ওয়েবসাইটে খুঁজুন',
     placeholder: 'কী খুঁজছেন? যেমন: আবাসন, শিক্ষাবৃত্তি',
     term: 'খোঁজার শব্দ',
@@ -36,7 +35,6 @@ const T = copy(
       { kind: 'page', title: 'Campus guide', href: '/services/campus' },
       { kind: 'page', title: 'Ehtesab and advice', href: '/join/feedback' },
     ],
-    open: 'Search (Ctrl+K)',
     dialog: 'Search the website',
     placeholder: 'What are you looking for? e.g. housing, scholarship',
     term: 'Search words',
@@ -48,9 +46,14 @@ const T = copy(
   },
 )
 
+const OPEN_EVENT = 'site:open-search'
+
+/** Opens the search dialog from anywhere, e.g. the "More" menu or the phone menu. */
+export const openSearch = () => window.dispatchEvent(new Event(OPEN_EVENT))
+
 /**
- * Header search: a button that opens a dialog with results as you type. ⌘K / Ctrl+K or "/"
- * open it from anywhere; arrow keys move through results; Enter opens one.
+ * Site search: a dialog with results as you type. ⌘K / Ctrl+K or "/" open it from anywhere, and
+ * so does `openSearch()`; arrow keys move through results; Enter opens one.
  */
 export function SearchPalette() {
   const lang = useLang()
@@ -79,7 +82,11 @@ export function SearchPalette() {
       }
     }
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    window.addEventListener(OPEN_EVENT, open)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener(OPEN_EVENT, open)
+    }
   }, [])
 
   useEffect(() => close(), [pathname])
@@ -122,15 +129,6 @@ export function SearchPalette() {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={open}
-        className="grid size-10 place-items-center rounded-xl text-ink transition-colors hover:bg-pale-2 sm:size-11"
-        aria-label={t.open}
-        aria-haspopup="dialog"
-      >
-        <Search className="size-5" />
-      </button>
       <dialog
         ref={dialog}
         aria-label={t.dialog}

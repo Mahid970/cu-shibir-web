@@ -1,19 +1,27 @@
 import type { Locale } from '@/i18n/config'
 
-export type NavItem = { href: string; label: Record<Locale, string>; external?: boolean }
+/** Widest screen at which an item still sits in the "More" menu; from the next size up it has its own place in the bar. */
+export type Fold = 'lg' | 'xl'
 
-/** Information architecture — plan §4. Paths are Bangla-root; links add /en on English pages. */
+export type NavItem = { href: string; label: Record<Locale, string>; external?: boolean; fold?: Record<Locale, Fold> }
+
+export const HOME_NAV: NavItem = { href: '/', label: { bn: 'হোম', en: 'Home' } }
+
+/**
+ * Information architecture — plan §4. Paths are Bangla-root; links add /en on English pages.
+ * The header shows these in the bar; items with `fold` move into "More" on smaller laptops
+ * (English labels are longer, so they fold earlier).
+ */
 export const MAIN_NAV: NavItem[] = [
-  { href: '/about', label: { bn: 'আমাদের কথা', en: 'About us' } },
-  { href: '/leadership', label: { bn: 'দায়িত্বশীলবৃন্দ', en: 'Leadership' } },
-  { href: '/news', label: { bn: 'সংবাদ', en: 'News' } },
-  { href: '/events', label: { bn: 'ইভেন্ট', en: 'Events' } },
+  HOME_NAV,
+  { href: '/services', label: { bn: 'শিক্ষার্থী সেবা', en: 'Student services' } },
+  { href: '/about', label: { bn: 'আমাদের কথা', en: 'About us' }, fold: { bn: 'lg', en: 'lg' } },
+  { href: '/leadership', label: { bn: 'দায়িত্বশীলবৃন্দ', en: 'Leadership' }, fold: { bn: 'lg', en: 'xl' } },
+  { href: '/news', label: { bn: 'সংবাদ', en: 'News' }, fold: { bn: 'lg', en: 'xl' } },
 ]
 
-/** Highlighted as an outline pill in the header (Phitron's "AI ML" slot). */
-export const FEATURED_NAV: NavItem = { href: '/services', label: { bn: 'শিক্ষার্থী সেবা', en: 'Student services' } }
-
 export const MORE_NAV: NavItem[] = [
+  { href: '/events', label: { bn: 'ইভেন্ট', en: 'Events' } },
   { href: '/gallery', label: { bn: 'গ্যালারি', en: 'Gallery' } },
   { href: '/videos', label: { bn: 'ভিডিও', en: 'Videos' } },
   { href: '/press', label: { bn: 'মিডিয়ায় আমরা', en: 'In the media' } },
@@ -22,7 +30,11 @@ export const MORE_NAV: NavItem[] = [
   { href: 'https://shibir.org.bd', label: { bn: 'কেন্দ্রীয় ওয়েবসাইট', en: 'Central website' }, external: true },
 ]
 
-export const ALL_NAV: NavItem[] = [FEATURED_NAV, ...MAIN_NAV, ...MORE_NAV.filter((i) => !i.external)]
+/** Every page, for the phone menu and the footer (home and external links left out). */
+export const ALL_NAV: NavItem[] = [...MAIN_NAV.filter((i) => i !== HOME_NAV), ...MORE_NAV.filter((i) => !i.external)]
+
+/** Is `href` the page the reader is on (or a section of it)? Home matches only itself. */
+export const isActive = (pathname: string, href: string) => (href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`))
 
 export const JOIN_HREF = '/join'
 
@@ -41,6 +53,7 @@ export const CHROME = {
     brand: 'বাংলাদেশ ইসলামী ছাত্রশিবির',
     branch: 'চট্টগ্রাম বিশ্ববিদ্যালয়',
     language: 'ভাষা',
+    search: 'খুঁজুন',
   },
   en: {
     home: 'Home: ',
@@ -55,5 +68,6 @@ export const CHROME = {
     brand: 'Bangladesh Islami Chhatrashibir',
     branch: 'University of Chittagong',
     language: 'Language',
+    search: 'Search',
   },
 } satisfies Record<Locale, Record<string, string>>

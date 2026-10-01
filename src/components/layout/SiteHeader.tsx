@@ -22,7 +22,7 @@ export async function Logo({ tone = 'dark' }: { tone?: 'dark' | 'light' }) {
         {/* The full organisation name in bold, the university under it. On phones the English name may wrap. */}
         <span
           className={`block font-bold ${
-            en ? 'text-[0.8rem] leading-[1.15] sm:whitespace-nowrap sm:text-[0.95rem]' : 'whitespace-nowrap text-[0.92rem] sm:text-[1.1rem]'
+            en ? 'text-[0.86rem] leading-[1.15] sm:whitespace-nowrap sm:text-[1.06rem]' : 'whitespace-nowrap text-[1rem] sm:text-[1.24rem]'
           } ${tone === 'light' ? 'text-white' : 'text-ink'}`}
         >
           {t.brand}
@@ -49,6 +49,7 @@ export async function SiteHeader() {
         <Logo />
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
           <NavLinks />
+          {/* Only the dialog: it opens from "More", the phone menu, Ctrl+K or "/" */}
           <SearchPalette />
           <LangSwitch className="hidden sm:flex" />
           <LangSwitch single className="sm:hidden" />
