@@ -296,7 +296,7 @@ export default async function MartyrPage({ params }: Props) {
       {m.quote && (
         <figure data-reveal="fade" className="wrap mt-14 max-w-3xl text-center md:mt-20">
           <StarGlyph className="mx-auto size-7 text-amber" />
-          <blockquote className="mt-4 text-[1.5rem] font-bold leading-[1.6] text-ink md:text-[1.9rem]">
+          <blockquote className="mt-4 text-[1.5rem] font-bold leading-[1.6] text-ink md:text-[1.9rem]" style={{ fontFamily: 'var(--font-display)' }}>
             “{m.quote}”
           </blockquote>
           {m.quoteBy && <figcaption className="mt-3 text-muted">{m.quoteBy}</figcaption>}

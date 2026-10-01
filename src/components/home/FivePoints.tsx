@@ -69,7 +69,7 @@ export async function FivePoints() {
                 >
                   <div className="five-art relative grid aspect-[4/3] place-items-center overflow-hidden rounded-2xl bg-white/15">
                     <div aria-hidden="true" className={`absolute inset-0 opacity-60 ${p.ink === '#ffffff' ? 'lattice-night' : 'lattice'}`} />
-                    <span aria-hidden="true" className="five-num absolute -bottom-10 -right-2 text-[13rem] font-bold leading-none opacity-15">
+                    <span aria-hidden="true" className="five-num absolute -bottom-10 -right-2 text-[13rem] font-bold leading-none opacity-15" style={{ fontFamily: 'var(--font-display)' }}>
                       {num(lang, i + 1)}
                     </span>
                     <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(60%_60%_at_40%_35%,rgb(255_255_255/0.35),transparent)]" />

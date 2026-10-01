@@ -133,7 +133,7 @@ docs/                    design system, deploy guide, spikes
 - **Weight budget.** Production build, Pixel-class phone, measured 2026-09-26:
   - Homepage transfer is about 700 KB including photos (old site: 3.7 MB).
   - Initial JS is 173 KB gzipped, most of it React and the Next.js router. The site's own home code is about 10 KB.
-  - Fonts: Hind Siliguri 400/600/700 is preloaded; Montserrat (Latin words, English pages) is not.
+  - Fonts: Hind Siliguri 400/600/700 and Anek Bangla (variable) are preloaded; Anek Latin and Hind (English pages) are not.
 - **Lighthouse (mobile, simulated 4G, 4× CPU)**, measured 2026-09-26:
 
   | Page | Performance | Accessibility | Best practices |
