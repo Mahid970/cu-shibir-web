@@ -32,7 +32,7 @@ export async function ContactCard({ email, facebook }: { email: string; facebook
         data-reveal="up"
         className="relative overflow-hidden rounded-3xl text-white [background:radial-gradient(70%_120%_at_50%_0%,#134a78_0%,#0e2e4d_55%,#0a1d30_100%)] lg:rounded-[32px]"
       >
-        <div aria-hidden="true" className="lattice-night absolute inset-0 [mask-image:linear-gradient(180deg,#000,transparent)]" />
+        <div aria-hidden="true" className="grid-lines-night absolute inset-0 [mask-image:linear-gradient(180deg,#000,transparent)]" />
         <div className="relative grid gap-10 p-7 sm:p-10 lg:grid-cols-2 lg:p-14">
           <div>
             <span className="chip bg-white/10 text-white">{t.chip}</span>

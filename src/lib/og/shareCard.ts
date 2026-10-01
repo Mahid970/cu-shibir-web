@@ -5,7 +5,7 @@ import { isUrgentCategory } from '@/lib/taxonomy'
 
 /**
  * Branded 1200×630 share card (Facebook/Telegram/WhatsApp preview) as a standalone HTML page,
- * in the site's design system (docs/design/system.md): star lattice, sea-blue accents, navy
+ * in the site's design system (docs/design/system.md): a thin line grid, navy and sky accents, navy
  * footer. Rendered by real Chromium (see render.ts) because Satori/next/og cannot shape Bangla
  * (docs/spikes/og-bangla.md).
  */
@@ -46,7 +46,7 @@ export function shareCardHtml({ title, kicker, category, meta, siteLabel = 'cush
 html,body{width:1200px;height:630px}
 body{position:relative;overflow:hidden;color:#0b1f33;font-family:'Hind',sans-serif;font-weight:500;
   background:linear-gradient(192deg,rgba(255,255,255,0) 6%,rgba(227,238,246,.85) 42%,rgba(207,227,240,.6) 80%),#f5f8fb}
-.grid{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%230b6fa4' stroke-opacity='.09' stroke-width='1'%3E%3Cpath d='M44 20 68 44 44 68 20 44Z'/%3E%3Cpath d='M27 27h34v34H27z'/%3E%3Cpath d='M27 27 0 0M61 27 88 0M61 61l27 27M27 61 0 88M44 20V0M68 44h20M44 68v20M20 44H0'/%3E%3C/g%3E%3C/svg%3E");background-size:88px 88px}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(17,69,117,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(17,69,117,.07) 1px,transparent 1px);background-size:32px 32px;-webkit-mask-image:radial-gradient(80% 90% at 50% 30%,#000 35%,transparent)}
 .brand{position:absolute;left:64px;top:48px;display:flex;align-items:center;gap:14px;background:#fff;border-radius:999px;padding:8px 26px 8px 8px;font-size:26px;box-shadow:0 4px 24px rgba(11,31,51,.08)}
 .brand img{width:52px;height:52px}
 .body{position:absolute;left:64px;right:64px;top:160px}

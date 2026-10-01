@@ -5,7 +5,7 @@ import { Fragment } from 'react'
 import { FloatIcon } from '@/components/art/FloatIcon'
 import { CountUp } from '@/components/motion/CountUp'
 import { ArrowRight } from '@/components/ui/Icons'
-import { StarGlyph, vars } from '@/components/ui/SectionTitle'
+import { vars } from '@/components/ui/SectionTitle'
 import { copy } from '@/i18n/config'
 import { num } from '@/i18n/format'
 import { getLang } from '@/i18n/server'
@@ -100,7 +100,7 @@ export async function Hero({
   return (
     <section className="hero-sky relative isolate overflow-hidden text-white" aria-labelledby="hero-title">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="lattice-night absolute inset-0 [mask-image:radial-gradient(70%_70%_at_75%_35%,#000,transparent)]" />
+        <div className="grid-lines-night absolute inset-0 [mask-image:radial-gradient(70%_70%_at_75%_35%,#000,transparent)]" />
         <div className="hero-glow absolute bottom-[-30%] left-1/2 h-[70%] w-[90%] -translate-x-1/2 rounded-[50%]" />
       </div>
 
@@ -158,10 +158,9 @@ export async function Hero({
           <HeroParticles scenes={scenes} emblemCaption={t.one} label={t.picture} />
           {first && (
             <FloatIcon className="left-0 top-[6%] sm:left-[2%]" rotate={-3} wobble={2} drift={8} duration={6} delay={1.1}>
-              <span className="flex items-center gap-2.5 rounded-2xl bg-white/10 px-3.5 py-2.5 ring-1 ring-white/15 backdrop-blur-md sm:px-4 sm:py-3">
-                <StarGlyph className="size-7 text-blue-soft" />
+              <span className="flex items-center rounded-2xl bg-white/10 px-4 py-2.5 ring-1 ring-white/15 backdrop-blur-md sm:px-5 sm:py-3">
                 <span className="leading-tight">
-                  <CountUp value={first.value} suffix={first.suffix ?? ''} className="block text-[1.25rem] font-bold text-white sm:text-[1.5rem]" />
+                  <CountUp value={first.value} suffix={first.suffix ?? ''} className="block text-[1.25rem] font-bold text-blue-soft sm:text-[1.5rem]" />
                   <span className="block text-[0.75rem] text-white/70 sm:text-[0.82rem]">{first.label}</span>
                 </span>
               </span>
@@ -169,10 +168,9 @@ export async function Hero({
           )}
           {second && (
             <FloatIcon className="bottom-[14%] right-0 sm:right-[2%]" rotate={3} wobble={-3} drift={10} duration={6.8} delay={1.3}>
-              <span className="flex items-center gap-2.5 rounded-2xl bg-white/10 px-3.5 py-2.5 ring-1 ring-white/15 backdrop-blur-md sm:px-4 sm:py-3">
-                <StarGlyph className="size-7 text-blue-soft" />
+              <span className="flex items-center rounded-2xl bg-white/10 px-4 py-2.5 ring-1 ring-white/15 backdrop-blur-md sm:px-5 sm:py-3">
                 <span className="leading-tight">
-                  <CountUp value={second.value} suffix={second.suffix ?? ''} className="block text-[1.25rem] font-bold text-white sm:text-[1.5rem]" />
+                  <CountUp value={second.value} suffix={second.suffix ?? ''} className="block text-[1.25rem] font-bold text-blue-soft sm:text-[1.5rem]" />
                   <span className="block text-[0.75rem] text-white/70 sm:text-[0.82rem]">{second.label}</span>
                 </span>
               </span>

@@ -115,7 +115,7 @@ export function RailTimeline({ stops }: { stops: Stop[] }) {
   if (!pinned) {
     return (
       <section id="history" aria-labelledby="history-title" className="relative isolate scroll-mt-24 overflow-hidden bg-deep py-16 md:py-22">
-        <div aria-hidden="true" className="lattice-night absolute inset-0 -z-10 opacity-60 [mask-image:linear-gradient(180deg,#000,transparent)]" />
+        <div aria-hidden="true" className="grid-lines-night absolute inset-0 -z-10 opacity-60 [mask-image:linear-gradient(180deg,#000,transparent)]" />
         {heading}
         <ol className="wrap relative mt-10 grid gap-8 pl-12 md:pl-14">
           <li aria-hidden="true" className="absolute bottom-0 left-4 top-0 w-3 md:left-5 [background:repeating-linear-gradient(180deg,rgb(148_163_184/0.35)_0_3px,transparent_3px_14px)]">
@@ -141,7 +141,7 @@ export function RailTimeline({ stops }: { stops: Stop[] }) {
   return (
     <section ref={section} id="history" aria-labelledby="history-title" className="relative bg-deep">
       <div className="sticky top-[72px] flex h-[calc(100dvh-72px)] flex-col justify-center overflow-hidden">
-        <div aria-hidden="true" className="lattice-night absolute inset-0 opacity-60 [mask-image:linear-gradient(180deg,#000,transparent)]" />
+        <div aria-hidden="true" className="grid-lines-night absolute inset-0 opacity-60 [mask-image:linear-gradient(180deg,#000,transparent)]" />
         <div className="relative">{heading}</div>
 
         <div className="relative mt-10 h-[360px]">

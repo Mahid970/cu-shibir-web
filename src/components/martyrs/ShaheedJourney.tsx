@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
 import { ArrowRight } from '@/components/ui/Icons'
-import { StarGlyph } from '@/components/ui/SectionTitle'
 import { Link } from '@/i18n/link'
 import type { Station } from '@/lib/martyrs'
 import { splitHonorific } from '@/lib/martyrs'
@@ -158,7 +157,7 @@ export function ShaheedJourney({ stations, labels, id = 'shaheed-journey' }: { s
           <div aria-hidden="true" className="journey-sky absolute inset-0" />
           <div aria-hidden="true" className="journey-light absolute inset-0" />
           <div aria-hidden="true" className="journey-stars absolute inset-0" />
-          <div aria-hidden="true" className="lattice-night absolute inset-0 opacity-40 [mask-image:linear-gradient(180deg,#000,transparent_70%)]" />
+          <div aria-hidden="true" className="grid-lines-night absolute inset-0 opacity-40 [mask-image:linear-gradient(180deg,#000,transparent_70%)]" />
           <svg aria-hidden="true" viewBox="0 0 1440 220" preserveAspectRatio="none" className="journey-hills absolute inset-x-0 bottom-0 h-[26%] w-[112%]">
             <path d="M0 150C120 92 236 112 360 82S604 38 760 90s262-32 404-20 200 42 276 20v130H0Z" fill="#1f8fcf" fillOpacity=".32" />
             <path d="M0 172c160-50 300-22 460-58s296-12 440 22 280-34 400-14 104 22 140 12v86H0Z" fill="#5cc8f2" fillOpacity=".18" />
@@ -167,7 +166,6 @@ export function ShaheedJourney({ stations, labels, id = 'shaheed-journey' }: { s
           <div className="wrap relative z-10 flex items-start justify-between gap-8 pt-8">
             <div className="max-w-md">
               <p className="eyebrow-tab !mx-0">
-                <StarGlyph />
                 <span>{labels.eyebrow}</span>
               </p>
               <h2 id={`${id}-title`} className="mt-4 text-[2.4rem] font-bold leading-tight text-white xl:text-[2.8rem]">
@@ -204,7 +202,7 @@ export function ShaheedJourney({ stations, labels, id = 'shaheed-journey' }: { s
               return (
                 <div key={st.slug} data-lit={i <= lit || undefined} data-current={i === lit || undefined} className="journey-station absolute" style={{ left: s, bottom: node }}>
                   <span aria-hidden="true" className="journey-node absolute left-0 top-0 grid size-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full">
-                    <StarGlyph className="size-4" />
+                    <span className="size-2.5 rounded-full bg-current" />
                   </span>
                   <span aria-hidden="true" className="journey-post absolute bottom-0 left-0 h-9 w-px -translate-x-1/2" />
                   <span aria-hidden="true" className="journey-milestone absolute left-0 top-[calc(100%+22px)] -translate-x-1/2 whitespace-nowrap text-[0.85rem] font-bold">
@@ -253,7 +251,6 @@ export function ShaheedJourney({ stations, labels, id = 'shaheed-journey' }: { s
       <div className="journey-v wrap py-16 md:py-20">
         <div className="text-center">
           <p className="eyebrow-tab">
-            <StarGlyph />
             <span>{labels.eyebrow}</span>
           </p>
           <h2 className="mt-4 text-[2rem] font-bold text-white md:text-[2.4rem]">{labels.title}</h2>
@@ -263,7 +260,7 @@ export function ShaheedJourney({ stations, labels, id = 'shaheed-journey' }: { s
           {stations.map((st) => (
             <li key={st.slug} data-station className="journey-vstation relative pb-8 pl-12 last:pb-0">
               <span aria-hidden="true" className="journey-node absolute left-[18px] top-6 grid size-9 -translate-x-1/2 place-items-center rounded-full">
-                <StarGlyph className="size-4" />
+                <span className="size-2.5 rounded-full bg-current" />
               </span>
               <Link href={`/martyrs/${st.slug}`} className="journey-card group flex gap-4 rounded-[1.25rem] p-3 outline-none">
                 <Arch station={st} sizes="96px" className="h-[118px] w-[92px] shrink-0" />

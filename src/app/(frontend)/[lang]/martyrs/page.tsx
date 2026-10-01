@@ -50,7 +50,7 @@ export default async function MartyrsPage() {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
           <div className="journey-sky absolute inset-0" />
           <div className="journey-stars absolute inset-0" />
-          <div className="lattice-night absolute inset-0 opacity-50 [mask-image:radial-gradient(60%_70%_at_50%_30%,#000,transparent)]" />
+          <div className="grid-lines-night absolute inset-0 opacity-50 [mask-image:radial-gradient(60%_70%_at_50%_30%,#000,transparent)]" />
         </div>
         <div className="wrap max-w-3xl">
           <h1 className="type-settle text-[2.4rem] font-bold text-white md:text-[3.2rem]">{t.title}</h1>

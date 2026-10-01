@@ -87,20 +87,10 @@ export function SweepTitle({
   )
 }
 
-/** Eight-point star (two overlapping squares), the site's small ornament. */
-export function StarGlyph({ className = '', style }: { className?: string; style?: CSSProperties }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} style={style} aria-hidden="true">
-      <path d="M12 1.5 15 5.2l4.4-.6-.6 4.4 3.7 3-3.7 3 .6 4.4-4.4-.6-3 3.7-3-3.7-4.4.6.6-4.4-3.7-3 3.7-3-.6-4.4 4.4.6Z" fill="currentColor" />
-    </svg>
-  )
-}
-
-/** Label that opens a night section: a slowly turning star and amber text; the text wipes in on view. */
+/** Label that opens a night section: a pulsing sky dot and sky text; the text wipes in on view. */
 export function EyebrowTab({ text }: { text: string }) {
   return (
     <div className="eyebrow-tab" data-reveal="label" data-amount="0.5">
-      <StarGlyph />
       <span>{text}</span>
     </div>
   )

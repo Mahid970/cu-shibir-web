@@ -7,7 +7,7 @@ import { ShareBar } from '@/components/content/ShareBar'
 import { MartyrGallery, type GalleryGroup } from '@/components/martyrs/MartyrGallery'
 import { ReadingThread } from '@/components/martyrs/ReadingThread'
 import { ArrowRight, ChevronLeft, ChevronRight } from '@/components/ui/Icons'
-import { StarGlyph, vars } from '@/components/ui/SectionTitle'
+import { vars } from '@/components/ui/SectionTitle'
 import { copy, langAttr, localePath } from '@/i18n/config'
 import { date } from '@/i18n/format'
 import { Link } from '@/i18n/link'
@@ -207,7 +207,7 @@ export default async function MartyrPage({ params }: Props) {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
           <div className="journey-sky absolute inset-0" />
           <div className="journey-stars absolute inset-0" />
-          <div className="lattice-night absolute inset-0 opacity-50 [mask-image:radial-gradient(70%_60%_at_30%_20%,#000,transparent)]" />
+          <div className="grid-lines-night absolute inset-0 opacity-50 [mask-image:radial-gradient(70%_60%_at_30%_20%,#000,transparent)]" />
           <div className="hero-glow absolute bottom-[-40%] left-[28%] h-[70%] w-[70%] -translate-x-1/2 rounded-[50%] opacity-70" />
         </div>
         <div className="wrap max-w-6xl">
@@ -295,7 +295,7 @@ export default async function MartyrPage({ params }: Props) {
 
       {m.quote && (
         <figure data-reveal="fade" className="wrap mt-14 max-w-3xl text-center md:mt-20">
-          <StarGlyph className="mx-auto size-7 text-blue" />
+          <span aria-hidden="true" className="mx-auto block h-1 w-12 rounded-full bg-blue" />
           <blockquote className="mt-4 text-[1.5rem] font-bold leading-[1.6] text-ink md:text-[1.9rem]">
             “{m.quote}”
           </blockquote>
@@ -312,7 +312,7 @@ export default async function MartyrPage({ params }: Props) {
             {m.story.map((part) => (
               <section key={part.id ?? part.heading} data-part className="story-part relative pb-10 pl-11 last:pb-2">
                 <span aria-hidden="true" className="story-node absolute left-[11px] top-[0.35rem] grid size-6 -translate-x-1/2 place-items-center rounded-full">
-                  <StarGlyph className="size-3" />
+                  <span className="size-2 rounded-full bg-current" />
                 </span>
                 <h3 className="text-[1.45rem] font-bold text-ink md:text-[1.6rem]">{part.heading}</h3>
                 <div className="prose-read mt-3">
@@ -374,7 +374,7 @@ export default async function MartyrPage({ params }: Props) {
       </nav>
 
       <section className="relative isolate mt-16 overflow-hidden bg-night py-16 text-center text-white md:mt-24 md:py-20">
-        <div aria-hidden="true" className="lattice-night absolute inset-0 -z-10 opacity-60" />
+        <div aria-hidden="true" className="grid-lines-night absolute inset-0 -z-10 opacity-60" />
         <div className="wrap max-w-3xl">
           <p lang="ar" dir="rtl" className="font-[family-name:var(--font-quran)] text-[1.6rem] leading-[2.1] text-white/90 md:text-[1.9rem]">
             وَلَا تَقُولُوا لِمَنْ يُقْتَلُ فِي سَبِيلِ اللَّهِ أَمْوَاتٌ بَلْ أَحْيَاءٌ وَلَكِنْ لَا تَشْعُرُونَ

@@ -31,7 +31,7 @@ export async function JoinBanner({ email }: { email: string }) {
         data-reveal="up"
         className="relative overflow-hidden rounded-3xl border-4 border-transparent [background:linear-gradient(115deg,#0e2e4d,#071a2c_55%,#0f3a60)_padding-box,linear-gradient(120deg,#5cc8f2,#1f8fcf_60%,#5cc8f2)_border-box]"
       >
-        <div aria-hidden="true" className="lattice-night absolute inset-0 opacity-60" />
+        <div aria-hidden="true" className="grid-lines-night absolute inset-0 opacity-60" />
         <div className="relative grid items-center gap-8 p-7 sm:p-10 md:grid-cols-[1.25fr_1fr] md:p-12">
           <div>
             <h2 id="join-banner" className="text-[1.9rem] font-bold leading-snug text-white md:text-[2.6rem]">

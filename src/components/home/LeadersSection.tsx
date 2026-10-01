@@ -96,7 +96,7 @@ export async function LeadersSection({ leaders }: { leaders: Person[] }) {
     >
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgb(255_255_255/0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/0.04)_1px,transparent_1px)] bg-[size:72px_72px]"
+        className="grid-lines-night absolute inset-0 -z-10 [mask-image:radial-gradient(80%_70%_at_50%_30%,#000,transparent)]"
       />
       <div className="wrap">
         <SectionTitle id="leaders" dark parts={[t.title[0], { hl: t.title[1] }]} />
