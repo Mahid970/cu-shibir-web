@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
 
 import { ART } from '@/components/art/Icons3D'
-import { EyebrowTab, SweepTitle, vars } from '@/components/ui/SectionTitle'
+import { EyebrowTab, StarGlyph, SweepTitle, vars } from '@/components/ui/SectionTitle'
 import { FIVE_POINTS } from '@/content/home'
 import { copy } from '@/i18n/config'
 import { num } from '@/i18n/format'
@@ -37,7 +37,7 @@ export async function FivePoints() {
   return (
     <section className="relative isolate bg-deep pb-20 text-white md:pb-28" aria-labelledby="five-points">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="grid-lines-night absolute inset-0 [mask-image:radial-gradient(60%_50%_at_50%_20%,#000,transparent)]" />
+        <div className="lattice-night absolute inset-0 [mask-image:radial-gradient(60%_50%_at_50%_20%,#000,transparent)]" />
         <div className="absolute left-1/2 top-40 h-[480px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(31_143_207/0.35),transparent)] blur-2xl" />
       </div>
       <EyebrowTab text={t.eyebrow} />
@@ -55,9 +55,10 @@ export async function FivePoints() {
             <li key={p.icon} className="md:sticky" style={{ top: `calc(96px + ${i * 16}px)` }}>
               <div className="relative pt-10">
                 <span
-                  className="absolute left-6 top-0 flex h-11 items-center rounded-t-2xl px-5 pb-1 text-[0.88rem] font-bold md:left-[var(--tab-x)]"
+                  className="absolute left-6 top-0 flex h-11 items-center gap-2 rounded-t-2xl px-5 pb-1 text-[0.88rem] font-bold md:left-[var(--tab-x)]"
                   style={{ '--tab-x': `${4 + i * 17}%`, background: p.color, color: p.ink } as CSSProperties}
                 >
+                  <StarGlyph className="size-3.5" />
                   {t.point} {num(lang, String(i + 1).padStart(2, '0'))}
                 </span>
                 <div
@@ -67,7 +68,7 @@ export async function FivePoints() {
                   style={{ background: p.color, color: p.ink }}
                 >
                   <div className="five-art relative grid aspect-[4/3] place-items-center overflow-hidden rounded-2xl bg-white/15">
-                    <div aria-hidden="true" className={`absolute inset-0 opacity-60 ${p.ink === '#ffffff' ? 'grid-lines-night' : 'grid-lines'}`} />
+                    <div aria-hidden="true" className={`absolute inset-0 opacity-60 ${p.ink === '#ffffff' ? 'lattice-night' : 'lattice'}`} />
                     <span aria-hidden="true" className="five-num absolute -bottom-10 -right-2 text-[13rem] font-bold leading-none opacity-15">
                       {num(lang, i + 1)}
                     </span>
@@ -87,7 +88,7 @@ export async function FivePoints() {
                     <ul className="mt-2 space-y-1.5">
                       {p.items[lang].map((item, k) => (
                         <li key={item} className="five-rise flex items-start gap-2.5 text-[1rem]" style={vars({ '--d': `${300 + k * 90}ms` })}>
-                          <span aria-hidden="true" className="mt-[0.65em] size-1.5 shrink-0 rounded-full bg-current opacity-70" />
+                          <StarGlyph className="mt-[0.35em] size-3.5 shrink-0 opacity-80" />
                           {item}
                         </li>
                       ))}

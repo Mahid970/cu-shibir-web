@@ -41,7 +41,7 @@ export function CampusMap({ places }: { places: MapPlace[] }) {
       {open ? (
         <MapView places={places} label={t.label} />
       ) : (
-        <div className="grid-lines flex h-[260px] flex-col items-center justify-center gap-4 bg-pale px-6 text-center md:h-[320px]">
+        <div className="lattice flex h-[260px] flex-col items-center justify-center gap-4 bg-pale px-6 text-center md:h-[320px]">
           <button type="button" onClick={() => setOpen(true)} className="btn btn-gradient">
             {t.open}
           </button>

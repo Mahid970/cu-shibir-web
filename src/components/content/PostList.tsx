@@ -61,7 +61,7 @@ export async function PostCard({
             />
           </ViewTransition>
         ) : (
-          <div className="grid-lines absolute inset-0" />
+          <div className="lattice absolute inset-0" />
         )}
       </div>
       <PostMeta category={post.category} publishedAt={post.publishedAt} />

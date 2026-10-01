@@ -96,7 +96,7 @@ export default async function AlbumPage({ params }: Props) {
     <article>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <header className="hero-wash relative isolate overflow-hidden pb-12 pt-8 md:pb-16 md:pt-14">
-        <div aria-hidden="true" className="grid-lines absolute inset-0 -z-10" />
+        <div aria-hidden="true" className="lattice absolute inset-0 -z-10" />
         <div className="wrap max-w-4xl">
           <nav aria-label={t.crumbs} className="load-up mb-6 flex flex-wrap gap-x-2 text-[0.92rem] text-subtle">
             <Link href="/" className="hover:text-primary">

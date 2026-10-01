@@ -124,7 +124,7 @@ export default async function LeadershipPage() {
     <div className="relative isolate overflow-hidden bg-deep pb-20 text-white md:pb-28">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="grid-lines-night absolute inset-0 [mask-image:radial-gradient(70%_40%_at_50%_0%,#000,transparent)]" />
+        <div className="lattice-night absolute inset-0 [mask-image:radial-gradient(70%_40%_at_50%_0%,#000,transparent)]" />
         <div className="absolute left-1/2 top-24 h-[420px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(31_143_207/0.4),transparent)] blur-2xl" />
       </div>
 
