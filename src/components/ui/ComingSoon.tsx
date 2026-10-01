@@ -7,7 +7,7 @@ import { PageHeader } from './PageHeader'
 import { vars, type TitlePart } from './SectionTitle'
 
 const EDGES = [
-  ['#f0f8fb', 'linear-gradient(135deg,#1c9bd6,#9fdcf2 55%,#e8f6fa)'],
+  ['#f3f6ff', 'linear-gradient(135deg,#3564ff,#a9bcff 55%,#eef2ff)'],
   ['#effbf9', 'linear-gradient(135deg,#14b8a6,#99f6e4 55%,#effbf9)'],
   ['#f6f2ff', 'linear-gradient(135deg,#8b5cf6,#d6c8ff 55%,#f6f2ff)'],
   ['#fff6ed', 'linear-gradient(135deg,#f97316,#fed7aa 55%,#fff6ed)'],
@@ -61,7 +61,7 @@ export async function ComingSoon({
             {t.news}
             <ArrowRight />
           </Link>
-          <Link href="/join" className="btn btn-cta">
+          <Link href="/join" className="btn btn-yellow">
             {t.join}
             <ArrowRight />
           </Link>

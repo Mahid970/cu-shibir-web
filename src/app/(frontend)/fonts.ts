@@ -1,9 +1,9 @@
-import { Amiri_Quran, Anek_Bangla, Anek_Latin, Hind, Hind_Siliguri } from 'next/font/google'
+import { Amiri_Quran, Hind_Siliguri, Montserrat } from 'next/font/google'
 
 // Self-hosted at build time by next/font (no runtime request to Google), subset, swap.
-// Type roles: Anek for display (headlines, big numbers), Hind for reading and UI.
+// Type roles follow docs/design/phitron-system.md.
 
-/** Bangla (and Latin inside Bangla pages): UI and body. */
+/** All Bangla: headlines, UI and body. */
 export const hind = Hind_Siliguri({
   subsets: ['bengali', 'latin'],
   weight: ['400', '600', '700'],
@@ -11,30 +11,11 @@ export const hind = Hind_Siliguri({
   display: 'swap',
 })
 
-/** Headlines. Variable weight and width, so titles can tighten and settle as they animate in. */
-export const anekBangla = Anek_Bangla({
-  subsets: ['bengali', 'latin'],
-  weight: 'variable',
-  axes: ['wdth'],
-  variable: '--font-anek',
-  display: 'swap',
-})
-
-/** English headlines. Not preloaded: most visitors read the Bangla site. */
-export const anekLatin = Anek_Latin({
+/** Latin words and numbers. Not preloaded: the Bangla faces matter more for the first paint. */
+export const montserrat = Montserrat({
   subsets: ['latin'],
   weight: 'variable',
-  axes: ['wdth'],
-  variable: '--font-anek-latin',
-  display: 'swap',
-  preload: false,
-})
-
-/** English body text: Hind Siliguri's Latin sibling. */
-export const hindLatin = Hind({
-  subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  variable: '--font-hind-latin',
+  variable: '--font-montserrat',
   display: 'swap',
   preload: false,
 })
@@ -48,4 +29,4 @@ export const amiriQuran = Amiri_Quran({
   preload: false,
 })
 
-export const fontVariables = [hind.variable, anekBangla.variable, anekLatin.variable, hindLatin.variable, amiriQuran.variable].join(' ')
+export const fontVariables = [hind.variable, montserrat.variable, amiriQuran.variable].join(' ')

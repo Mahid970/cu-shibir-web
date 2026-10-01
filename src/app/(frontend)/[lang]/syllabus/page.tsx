@@ -39,7 +39,7 @@ const T = copy(
   },
 )
 
-const TONE = ['bg-[#fdf3e7]', 'bg-[#e8f6fa]', 'bg-[#e9f9ff]']
+const TONE = ['bg-[#fdf3e7]', 'bg-[#eef2ff]', 'bg-[#e9f9ff]']
 
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await getLang()

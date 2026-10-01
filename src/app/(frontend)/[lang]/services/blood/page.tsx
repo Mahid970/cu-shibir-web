@@ -72,7 +72,7 @@ export default async function BloodPage() {
     <>
       <PageHeader title={[t.title[0], { hl: t.title[1] }]} lede={t.lede}>
         <div className="load-rise mt-8 flex flex-wrap justify-center gap-3" style={vars({ '--d': '350ms' })}>
-          <Link href="/services/blood/request" className="btn btn-cta">
+          <Link href="/services/blood/request" className="btn btn-yellow">
             {t.need}
             <ArrowRight />
           </Link>

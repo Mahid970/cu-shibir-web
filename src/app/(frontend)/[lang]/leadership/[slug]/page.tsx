@@ -127,7 +127,7 @@ export default async function PersonPage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <header className="relative isolate overflow-hidden bg-deep pb-28 pt-8 text-white md:pb-36 md:pt-12">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-          <div className="lattice-night absolute inset-0 [mask-image:radial-gradient(70%_60%_at_30%_0%,#000,transparent)]" />
+          <div className="dot-grid absolute inset-0 [mask-image:radial-gradient(70%_60%_at_30%_0%,#000,transparent)]" />
           <div className="absolute -left-40 top-10 h-[380px] w-[700px] rounded-full bg-[radial-gradient(closest-side,rgb(0_96_250/0.45),transparent)] blur-2xl" />
         </div>
         <div className="wrap max-w-5xl">

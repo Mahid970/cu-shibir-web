@@ -20,7 +20,7 @@ const HISTORY: { year: number; date?: L; title: L; text: L; tone: string }[] = [
       bn: 'ঢাকা বিশ্ববিদ্যালয় কেন্দ্রীয় মসজিদে বাংলাদেশ ইসলামী ছাত্রশিবির প্রতিষ্ঠিত হয়।',
       en: 'Bangladesh Islami Chhatrashibir is founded at the Central Mosque of the University of Dhaka.',
     },
-    tone: '#6cc6ee',
+    tone: '#6ea0ff',
   },
   {
     year: 1981,
@@ -29,7 +29,7 @@ const HISTORY: { year: number; date?: L; title: L; text: L; tone: string }[] = [
       bn: 'চট্টগ্রাম বিশ্ববিদ্যালয় কেন্দ্রীয় ছাত্র সংসদ নির্বাচনে সমর্থিত প্যানেলের পূর্ণ জয়। ভিপি জসিম উদ্দিন সরকার, জিএস আবদুল গাফফার।',
       en: 'The panel it backed wins every post in the Chittagong University Central Students’ Union election. VP Jasim Uddin Sarkar, GS Abdul Gaffar.',
     },
-    tone: '#5fd4ff',
+    tone: '#00fbee',
   },
   {
     year: 1990,
@@ -51,7 +51,7 @@ const HISTORY: { year: number; date?: L; title: L; text: L; tone: string }[] = [
       bn: 'গণঅভ্যুত্থানের পর শাখা আবার প্রকাশ্যে কার্যক্রম শুরু করে। সেপ্টেম্বরে কমিটি পুনর্গঠিত হয়।',
       en: 'After the mass uprising the branch resumes its work in the open. The committee is reorganised in September.',
     },
-    tone: '#3ee0a4',
+    tone: '#00fb97',
   },
   {
     year: 2025,
@@ -61,7 +61,7 @@ const HISTORY: { year: number; date?: L; title: L; text: L; tone: string }[] = [
       bn: '৩৫ বছর পর অনুষ্ঠিত চাকসু নির্বাচনে সম্প্রীতির শিক্ষার্থী জোট ২৬টি পদের ২৪টিতে জয়ী। ভিপি ইব্রাহীম হোসেন রনি, জিএস সাঈদ বিন হাবিব।',
       en: 'In the first CUCSU election in 35 years, Sompritir Shikkharthi Jot wins 24 of the 26 posts. VP Ibrahim Hossain Rony, GS Saeed Bin Habib.',
     },
-    tone: '#ffc561',
+    tone: '#fbc900',
   },
   {
     year: 2026,
@@ -71,7 +71,7 @@ const HISTORY: { year: number; date?: L; title: L; text: L; tone: string }[] = [
       bn: 'সভাপতি ইব্রাহীম হোসেন রনি ও সেক্রেটারি হাবিব উল্লাহ খালেদের নেতৃত্বে নতুন পথচলা।',
       en: 'A new chapter led by President Ibrahim Hossain Rony and Secretary Habib Ullah Khaled.',
     },
-    tone: '#ff9f5e',
+    tone: '#f9a8d4',
   },
 ]
 

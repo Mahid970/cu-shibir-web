@@ -23,7 +23,7 @@ export function RouteMap({ stations, lang }: { stations: { name: string; minutes
           <rect x="5" y="5" width="7" height="5" rx="1.5" fill="#fff" />
           <rect x="14.5" y="5" width="7" height="5" rx="1.5" fill="#fff" />
           <rect x="24" y="5" width="7" height="5" rx="1.5" fill="#fff" />
-          <rect x="1" y="12.5" width="34" height="2" fill="var(--cta)" />
+          <rect x="1" y="12.5" width="34" height="2" fill="var(--yellow)" />
           <circle cx="9" cy="19.5" r="2.5" fill="var(--ink)" />
           <circle cx="27" cy="19.5" r="2.5" fill="var(--ink)" />
         </svg>

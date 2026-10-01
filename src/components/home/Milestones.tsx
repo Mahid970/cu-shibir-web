@@ -17,7 +17,7 @@ export async function Milestones({ overlap = true, link = true, id }: { overlap?
     <section id={id} className={`wrap relative z-10 scroll-mt-24 ${overlap ? '-mt-16 lg:-mt-20' : ''}`} aria-labelledby="milestones">
       <div
         data-reveal="up"
-        className="rounded-[25px] border border-transparent px-6 py-7 [background:linear-gradient(#07334d,#07334d)_padding-box,radial-gradient(90%_190%_at_35%_-45%,#3ee0a4_0%,rgba(11,111,164,0)_100%)_border-box] sm:px-10 sm:py-9"
+        className="rounded-[25px] border border-transparent px-6 py-7 [background:linear-gradient(#002545,#002545)_padding-box,radial-gradient(90%_190%_at_35%_-45%,#00fb97_0%,rgba(53,100,255,0)_100%)_border-box] sm:px-10 sm:py-9"
       >
         <div className="flex flex-wrap items-end justify-between gap-3">
           <h2 id="milestones" className="text-[1.5rem] font-bold text-white md:text-[1.8rem]">
@@ -35,7 +35,7 @@ export async function Milestones({ overlap = true, link = true, id }: { overlap?
           <li aria-hidden="true" className="absolute inset-x-0 top-[11px] hidden h-[2px] bg-white/10 lg:block">
             <span
               data-reveal="draw"
-              className="block h-full bg-[linear-gradient(90deg,#6cc6ee,#5fd4ff,#3ee0a4,#ffc561,#ff9f5e)]"
+              className="block h-full bg-[linear-gradient(90deg,#6ea0ff,#00fbee,#00fb97,#fbc900,#f9a8d4)]"
             />
           </li>
           {MILESTONES.map((m, i) => (

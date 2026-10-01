@@ -3,16 +3,17 @@ import type { CSSProperties, ReactNode } from 'react'
 /** Inline CSS custom properties, e.g. vars({ '--d': '120ms' }). */
 export const vars = (v: Record<`--${string}`, string | number>) => v as CSSProperties
 
-/** Highlighter stroke across the lower half of highlighted words (gradients live in <SvgDefs/>). */
+/** Curved underline drawn under highlighted words (gradients live in <SvgDefs/>). */
 export function Swoosh({ dark = false }: { dark?: boolean }) {
   return (
-    <svg viewBox="0 0 100 12" preserveAspectRatio="none" aria-hidden="true">
+    <svg viewBox="0 0 367 10" preserveAspectRatio="none" aria-hidden="true">
       <path
-        d="M2.5 7.6C18 5.4 34 6.6 50 6.1S82 5 97.5 6.4"
+        d="M2 8C52.54 3.47 195.89-2.87 365 8"
         fill="none"
-        stroke={dark ? 'url(#mark-dark)' : 'url(#mark-light)'}
-        strokeWidth={7.5}
+        stroke={dark ? 'url(#swoosh-green)' : 'url(#swoosh-blue)'}
+        strokeWidth={4}
         strokeLinecap="round"
+        vectorEffect="non-scaling-stroke"
       />
     </svg>
   )
@@ -77,7 +78,7 @@ export function SectionTitle({
 
 /**
  * Night-section heading: white text; when it scrolls into view a light band wipes across and
- * leaves the `.glow` words highlighted. Plain text without JavaScript or with reduced motion.
+ * leaves the `.lime` words highlighted. Plain text without JavaScript or with reduced motion.
  */
 export function SweepTitle({
   children,
@@ -103,21 +104,22 @@ export function SweepTitle({
   )
 }
 
-/** Eight-point star (two overlapping squares), the site's small ornament. */
-export function StarGlyph({ className = '', style }: { className?: string; style?: CSSProperties }) {
+/** Bangla label in a tab hanging from the top edge of a night section; wipes in on view. */
+export function EyebrowTab({ text, fill = '#061327' }: { text: string; fill?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className={className} style={style} aria-hidden="true">
-      <path d="M12 1.5 15 5.2l4.4-.6-.6 4.4 3.7 3-3.7 3 .6 4.4-4.4-.6-3 3.7-3-3.7-4.4.6.6-4.4-3.7-3 3.7-3-.6-4.4 4.4.6Z" fill="currentColor" />
-    </svg>
-  )
-}
-
-/** Label that opens a night section: a slowly turning star and amber text; the text wipes in on view. */
-export function EyebrowTab({ text }: { text: string }) {
-  return (
-    <div className="eyebrow-tab" data-reveal="label" data-amount="0.5">
-      <StarGlyph />
-      <span>{text}</span>
+    <div className="eyebrow-tab">
+      <svg viewBox="0 0 270 45" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0H270L263.99 23.06C261.23 33.63 251.69 41 240.76 41H29.24C18.31 41 8.77 33.63 6.01 23.06L0 0Z" fill={fill} />
+        <path
+          d="M269.35.5 263.5 22.93C260.8 33.28 251.46 40.5 240.76 40.5H29.24C18.54 40.5 9.2 33.28 6.5 22.93L.65.5"
+          fill="none"
+          stroke="url(#eyebrow-edge)"
+          vectorEffect="non-scaling-stroke"
+        />
+      </svg>
+      <span data-reveal="wipe" data-amount="0.5">
+        {text}
+      </span>
     </div>
   )
 }
@@ -127,13 +129,17 @@ export function SvgDefs() {
   return (
     <svg width="0" height="0" className="absolute" aria-hidden="true" focusable="false">
       <defs>
-        <linearGradient id="mark-light" x1="0" x2="1">
-          <stop stopColor="#8af5c7" stopOpacity="0.75" />
-          <stop offset="1" stopColor="#19c37d" stopOpacity="0.6" />
+        <radialGradient id="swoosh-blue" cx="50%" cy="50%" r="60%">
+          <stop stopColor="#0060fa" />
+          <stop offset="1" stopColor="#002b70" />
+        </radialGradient>
+        <linearGradient id="swoosh-green" x1="0" x2="1">
+          <stop stopColor="#7ef7a8" />
+          <stop offset="1" stopColor="#2fce55" />
         </linearGradient>
-        <linearGradient id="mark-dark" x1="0" x2="1">
-          <stop stopColor="#ffd27f" stopOpacity="0.55" />
-          <stop offset="1" stopColor="#ff9f5e" stopOpacity="0.45" />
+        <linearGradient id="eyebrow-edge" x1="0" y1="1" x2="0" y2="0">
+          <stop stopColor="#e1fd14" />
+          <stop offset="1" stopColor="#002b70" stopOpacity="0" />
         </linearGradient>
       </defs>
     </svg>

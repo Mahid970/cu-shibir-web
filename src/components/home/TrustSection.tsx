@@ -118,9 +118,9 @@ export async function TrustSection({ press }: { press: PressCoverage[] }) {
             <span className="absolute left-1/2 top-0 z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-md bg-tag px-4 py-1.5 text-[0.95rem] font-bold text-ink shadow-[0_10px_20px_rgb(245_201_69/0.35)]">
               {t.tag}
             </span>
-            <div className="flex flex-col items-center gap-3 rounded-3xl bg-[linear-gradient(90deg,#0b6fa4,#1c9bd6_55%,#0a5d8c)] px-6 pb-8 pt-10 text-center shadow-[0_0_70px_rgb(11_111_164/0.45)] sm:flex-row sm:justify-center sm:gap-6 sm:text-left">
+            <div className="flex flex-col items-center gap-3 rounded-3xl bg-[linear-gradient(90deg,#2140d0,#3564ff_55%,#2a49dc)] px-6 pb-8 pt-10 text-center shadow-[0_0_70px_rgb(53_100_255/0.45)] sm:flex-row sm:justify-center sm:gap-6 sm:text-left">
               <Trophy3D className="art-shadow w-16 sm:w-20" />
-              <CountUp value={24} suffix={`/${num(lang, 26)}`} className="text-[3.2rem] font-bold leading-none text-glow sm:text-[4rem]" />
+              <CountUp value={24} suffix={`/${num(lang, 26)}`} className="text-[3.2rem] font-bold leading-none text-yellow sm:text-[4rem]" />
               <div>
                 <p className="text-[1.6rem] font-bold text-white sm:text-[2rem]">{t.won}</p>
                 <p className="text-[0.9rem] text-white/75">{t.panel}</p>
@@ -134,7 +134,7 @@ export async function TrustSection({ press }: { press: PressCoverage[] }) {
               figures={[
                 { value: 27516, label: t.voters, color: 'text-mint' },
                 { value: 65, suffix: '%', label: t.turnout, color: 'text-aqua' },
-                { value: 26, label: t.posts, color: 'text-[#6cc6ee]' },
+                { value: 26, label: t.posts, color: 'text-[#6ea0ff]' },
               ]}
             />
             <StatPanel
@@ -143,7 +143,7 @@ export async function TrustSection({ press }: { press: PressCoverage[] }) {
               figures={[
                 { text: num(lang, 1981), label: t.fullPanel, color: 'text-mint' },
                 { value: 44, suffix: t.years, label: t.wait, color: 'text-aqua' },
-                { text: num(lang, 2025), label: t.again, color: 'text-[#6cc6ee]' },
+                { text: num(lang, 2025), label: t.again, color: 'text-[#6ea0ff]' },
               ]}
             />
           </div>

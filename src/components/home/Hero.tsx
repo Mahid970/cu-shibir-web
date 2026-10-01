@@ -5,7 +5,7 @@ import { Fragment } from 'react'
 import { FloatIcon } from '@/components/art/FloatIcon'
 import { CountUp } from '@/components/motion/CountUp'
 import { ArrowRight } from '@/components/ui/Icons'
-import { StarGlyph, vars } from '@/components/ui/SectionTitle'
+import { vars } from '@/components/ui/SectionTitle'
 import { copy } from '@/i18n/config'
 import { num } from '@/i18n/format'
 import { getLang } from '@/i18n/server'
@@ -39,11 +39,11 @@ const T = copy(
   },
 )
 
-/** `**words**` in the CMS intro become amber emphasis. */
+/** `**words**` in the CMS intro become lime emphasis. */
 function withHighlights(text: string) {
   return text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
     i % 2 ? (
-      <span key={i} className="font-bold text-glow">
+      <span key={i} className="font-bold text-lime">
         {part}
       </span>
     ) : (
@@ -52,7 +52,7 @@ function withHighlights(text: string) {
   )
 }
 
-/** "আমরা তরুণ, আমরাই পারি" → ["আমরা তরুণ,", "আমরাই পারি"]; the second half glows (same in English). */
+/** "আমরা তরুণ, আমরাই পারি" → ["আমরা তরুণ,", "আমরাই পারি"]; the second half shines lime (same in English). */
 function splitTagline(tagline: string) {
   const i = tagline.indexOf(',')
   return i === -1 ? ['', tagline] : [tagline.slice(0, i + 1), tagline.slice(i + 1).trim()]
@@ -62,17 +62,17 @@ function splitTagline(tagline: string) {
 function Hills() {
   return (
     <svg aria-hidden="true" viewBox="0 0 1440 220" preserveAspectRatio="none" className="absolute inset-x-0 bottom-0 h-[110px] w-full sm:h-[150px] lg:h-[190px]">
-      <path className="hill hill-back" d="M0 150C120 92 236 112 360 82S604 38 760 90s262-32 404-20 200 42 276 20v130H0Z" fill="#0b6fa4" fillOpacity=".42" />
-      <path className="hill hill-mid" d="M0 172c160-50 300-22 460-58s296-12 440 22 280-34 400-14 104 22 140 12v86H0Z" fill="#19c37d" fillOpacity=".3" />
+      <path className="hill hill-back" d="M0 150C120 92 236 112 360 82S604 38 760 90s262-32 404-20 200 42 276 20v130H0Z" fill="#0052d8" fillOpacity=".45" />
+      <path className="hill hill-mid" d="M0 172c160-50 300-22 460-58s296-12 440 22 280-34 400-14 104 22 140 12v86H0Z" fill="#4c8df5" fillOpacity=".3" />
       <path d="M0 202c180-40 360-16 540-36s360-14 540 10 240-12 360 6v38H0Z" fill="var(--bg)" />
     </svg>
   )
 }
 
 /**
- * Home hero: a sea-navy night that warms towards dawn over the CU hills. On the left the name
- * and the slogan, whose letters settle from wide and light to firm and bold; on the right a
- * living picture where campus photos gather from star dust and re-form as the emblem.
+ * Home hero: a night sky deepening to royal blue over the CU hills. On the left the name and
+ * the slogan, whose letters draw together and sharpen; on the right a living picture where
+ * campus photos gather from star dust and re-form as the emblem.
  */
 export async function Hero({
   tagline,
@@ -98,10 +98,10 @@ export async function Hero({
   const scenes = [...(photo ? [{ src: photo.src, caption: t.many }] : []), ...gallery.map((g) => ({ src: g.src, caption: g.caption || t.many }))].slice(0, 3)
 
   return (
-    <section className="hero-dawn relative isolate overflow-hidden text-white" aria-labelledby="hero-title">
+    <section className="hero-night relative isolate overflow-hidden text-white" aria-labelledby="hero-title">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="lattice-night absolute inset-0 [mask-image:radial-gradient(70%_70%_at_75%_35%,#000,transparent)]" />
-        <div className="dawn-sun absolute bottom-[-30%] left-1/2 h-[70%] w-[90%] -translate-x-1/2 rounded-[50%]" />
+        <div className="dot-grid absolute inset-0 [mask-image:radial-gradient(70%_70%_at_75%_35%,#000,transparent)]" />
+        <div className="hero-glow absolute bottom-[-30%] left-1/2 h-[70%] w-[90%] -translate-x-1/2 rounded-[50%]" />
       </div>
 
       <div className="wrap grid items-center gap-6 pb-32 pt-10 sm:pt-12 lg:grid-cols-[1fr_1.02fr] lg:gap-10 lg:pb-36 lg:pt-10">
@@ -116,7 +116,7 @@ export async function Hero({
                 {lead}
               </span>
             )}
-            <span className="type-settle text-dawn block pb-1" style={vars({ '--d': '380ms' })}>
+            <span className="type-settle text-lime-shine block pb-1" style={vars({ '--d': '380ms' })}>
               {highlight}
             </span>
           </h1>
@@ -126,7 +126,7 @@ export async function Hero({
             </p>
           )}
           <div className="load-up mt-8 flex flex-wrap justify-center gap-3 lg:justify-start" style={vars({ '--d': '420ms' })}>
-            <Link href="/join" className="btn btn-cta">
+            <Link href="/join" className="btn btn-yellow">
               {t.join}
               <ArrowRight />
             </Link>
@@ -144,7 +144,7 @@ export async function Hero({
                 ))}
               </span>
               <p className="text-left text-[0.92rem] leading-snug text-white/70">
-                <Link href="/leadership" className="font-bold text-white hover:text-glow">
+                <Link href="/leadership" className="font-bold text-white hover:text-lime">
                   {t.leaders(num(lang, leaderCount))}
                 </Link>
                 <br />
@@ -158,10 +158,9 @@ export async function Hero({
           <HeroParticles scenes={scenes} emblemCaption={t.one} label={t.picture} />
           {first && (
             <FloatIcon className="left-0 top-[6%] sm:left-[2%]" rotate={-3} wobble={2} drift={8} duration={6} delay={1.1}>
-              <span className="flex items-center gap-2.5 rounded-2xl bg-white/10 px-3.5 py-2.5 ring-1 ring-white/15 backdrop-blur-md sm:px-4 sm:py-3">
-                <StarGlyph className="size-7 text-glow" />
+              <span className="flex items-center rounded-2xl bg-white/10 px-4 py-2.5 ring-1 ring-white/15 backdrop-blur-md sm:px-5 sm:py-3">
                 <span className="leading-tight">
-                  <CountUp value={first.value} suffix={first.suffix ?? ''} className="block text-[1.25rem] font-bold text-white sm:text-[1.5rem]" />
+                  <CountUp value={first.value} suffix={first.suffix ?? ''} className="block text-[1.25rem] font-bold text-yellow sm:text-[1.5rem]" />
                   <span className="block text-[0.75rem] text-white/70 sm:text-[0.82rem]">{first.label}</span>
                 </span>
               </span>
@@ -169,10 +168,9 @@ export async function Hero({
           )}
           {second && (
             <FloatIcon className="bottom-[14%] right-0 sm:right-[2%]" rotate={3} wobble={-3} drift={10} duration={6.8} delay={1.3}>
-              <span className="flex items-center gap-2.5 rounded-2xl bg-white/10 px-3.5 py-2.5 ring-1 ring-white/15 backdrop-blur-md sm:px-4 sm:py-3">
-                <StarGlyph className="size-7 text-mint" />
+              <span className="flex items-center rounded-2xl bg-white/10 px-4 py-2.5 ring-1 ring-white/15 backdrop-blur-md sm:px-5 sm:py-3">
                 <span className="leading-tight">
-                  <CountUp value={second.value} suffix={second.suffix ?? ''} className="block text-[1.25rem] font-bold text-white sm:text-[1.5rem]" />
+                  <CountUp value={second.value} suffix={second.suffix ?? ''} className="block text-[1.25rem] font-bold text-mint sm:text-[1.5rem]" />
                   <span className="block text-[0.75rem] text-white/70 sm:text-[0.82rem]">{second.label}</span>
                 </span>
               </span>

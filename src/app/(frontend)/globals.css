@@ -1,56 +1,52 @@
 @import 'tailwindcss';
 
 /* ------------------------------------------------------------------
-   Design system: "sea, hills and dawn" — docs/design/system.md
-   Sea-blue from the Shibir emblem, green of the CU hills for actions,
-   a dawn amber on deep sea-navy night sections, an eight-point star
-   lattice for texture, and lively motion that answers the reader.
+   Design system modelled on phitron.io — see docs/design/phitron-system.md
+   Light, airy blue pages with a grid texture; deep night sections;
+   yellow calls to action; lively, replaying motion.
    ------------------------------------------------------------------ */
 
 :root {
-  --bg: #f2f6f6;
+  --bg: #f6f6f6;
   --white: #ffffff;
-  --ink: #0a2233;
-  --text: #1a2a33;
-  --muted: #56646c;
-  --subtle: #62707a; /* 5.1:1 on white (WCAG AA) */
-  --border: #e1e8ea;
+  --ink: #0b0f2e;
+  --text: #1a1a1a;
+  --muted: #5c5c5c;
+  --subtle: #6b6b6b; /* 5.3:1 on white (WCAG AA) */
+  --border: #e7e7e7;
 
-  --primary: #0b6fa4; /* sea blue, 5.4:1 on white */
-  --blue: #1c9bd6;
-  --blue-soft: #5cc0ea;
-  --blue-deep: #06456a;
-  --pale: #e8f4f8;
-  --pale-2: #e0f0f6;
-  --pale-3: #c9e6f1;
-  --pale-4: #afdaeb;
+  --primary: #0052d8;
+  --blue: #3564ff;
+  --blue-soft: #4c8df5;
+  --blue-deep: #002b70;
+  --pale: #eff3ff;
+  --pale-2: #ebf0ff;
+  --pale-3: #dbe4ff;
+  --pale-4: #c3d3ff;
 
-  --cta: #19c37d; /* hill green, ink text 7:1 */
-  --cta-hover: #2fd690;
-  --tag: #ffd27f;
-  --amber: #ffc561;
+  --yellow: #fbc900;
+  --yellow-hover: #ffd52e;
+  --tag: #f5c945;
 
-  --night: #04202e;
-  --night-card: #062a3b;
-  --navy: #07334d;
-  --deep: #052636;
-  --glow: #ffc561; /* dawn amber on night sections */
-  --glow-band: #ffd27f;
-  --mint: #3ee0a4;
-  --aqua: #5fd4ff;
-  --success: #1fae5d;
-  --danger: #e5402f;
-  --crimson: #c0262d;
+  --night: #000e1d;
+  --night-card: #070d18;
+  --navy: #002545;
+  --deep: #061327;
+  --lime: #e1fd14;
+  --lime-band: #dcff3d;
+  --mint: #00fb97;
+  --aqua: #00fbee;
+  --success: #35b252;
+  --danger: #f9271a;
+  --crimson: #c82028;
 
-  --gradient: linear-gradient(120deg, #1596d1 0%, #0b6fa4 45%, #06456a 100%);
-  --gradient-text: linear-gradient(100deg, #1ea5dd 0%, #0b6fa4 45%, #0a2f4a 100%);
-  --gradient-green: linear-gradient(100deg, #8af5c7, #19c37d);
-  --gradient-glow: linear-gradient(90deg, #ffd27f 0%, #ff9f5e 100%);
+  --gradient: radial-gradient(65.14% 924.42% at 50% 50%, #0060fa 0%, #002b70 100%);
+  --gradient-text: radial-gradient(65.14% 924.42% at 50% 50%, #4c8df5 0%, #002b70 100%);
+  --gradient-green: linear-gradient(180deg, #7ef7a8, #2fce55);
+  --gradient-lime: linear-gradient(90deg, #e1fd14 0%, #4ade80 100%);
   --gradient-teal: linear-gradient(90deg, #5fe08a 0%, #3fb6a8 100%);
-  --mark: rgb(25 195 125 / 0.34);
-  --mark-dark: rgb(255 197 97 / 0.32);
 
-  --shadow-card: 0 1px 0 rgb(10 34 51 / 0.04), 0 10px 30px rgb(10 34 51 / 0.07);
+  --shadow-card: 0 4px 24px rgb(11 15 46 / 0.06);
   --shadow-soft: 12px 12px 24px rgb(0 0 0 / 0.05);
   --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -74,14 +70,13 @@
   --color-pale-2: var(--pale-2);
   --color-pale-3: var(--pale-3);
   --color-pale-4: var(--pale-4);
-  --color-cta: var(--cta);
-  --color-amber: var(--amber);
+  --color-yellow: var(--yellow);
   --color-tag: var(--tag);
   --color-night: var(--night);
   --color-night-card: var(--night-card);
   --color-navy: var(--navy);
   --color-deep: var(--deep);
-  --color-glow: var(--glow);
+  --color-lime: var(--lime);
   --color-mint: var(--mint);
   --color-aqua: var(--aqua);
   --color-success: var(--success);
@@ -89,9 +84,7 @@
   --color-crimson: var(--crimson);
 
   --font-sans: var(--font-hind), 'Hind Siliguri', 'Noto Sans Bengali', system-ui, sans-serif;
-  --font-en: var(--font-hind-latin), var(--font-hind), system-ui, sans-serif;
-  --font-display: var(--font-anek), var(--font-hind), 'Noto Sans Bengali', system-ui, sans-serif;
-  --font-display-en: var(--font-anek-latin), var(--font-anek), system-ui, sans-serif;
+  --font-en: var(--font-montserrat), var(--font-hind), system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
   --font-quran: var(--font-amiri-quran), 'Amiri Quran', serif;
 }
@@ -113,8 +106,6 @@
   h2,
   h3 {
     color: var(--ink);
-    font-family: var(--font-display);
-    font-variation-settings: 'wdth' 96;
     text-wrap: balance;
   }
   p {
@@ -147,17 +138,20 @@
     }
   }
 
-  /* Eight-point star lattice (khatam) behind light heroes and on night sections */
-  .lattice {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%230b6fa4' stroke-opacity='.085' stroke-width='1'%3E%3Cpath d='M44 20 68 44 44 68 20 44Z'/%3E%3Cpath d='M27 27h34v34H27z'/%3E%3Cpath d='M27 27 0 0M61 27 88 0M61 61l27 27M27 61 0 88M44 20V0M68 44h20M44 68v20M20 44H0'/%3E%3C/g%3E%3C/svg%3E");
-    background-size: 88px 88px;
+  /* Blue grid paper behind light heroes */
+  .grid-paper {
+    background-image:
+      linear-gradient(to right, rgb(53 100 255 / 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(53 100 255 / 0.07) 1px, transparent 1px);
+    background-size: 72px 72px;
   }
   .hero-wash {
-    background: linear-gradient(192deg, rgb(255 255 255 / 0) 6%, rgb(224 242 248 / 0.85) 40%, rgb(214 244 230 / 0.7) 78%);
+    background: linear-gradient(194deg, rgb(255 255 255 / 0) 8%, rgb(238 242 255 / 0.8) 39%, rgb(216 225 255 / 0.6) 61%);
   }
-  .lattice-night {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.07' stroke-width='1'%3E%3Cpath d='M44 20 68 44 44 68 20 44Z'/%3E%3Cpath d='M27 27h34v34H27z'/%3E%3Cpath d='M27 27 0 0M61 27 88 0M61 61l27 27M27 61 0 88M44 20V0M68 44h20M44 68v20M20 44H0'/%3E%3C/g%3E%3C/svg%3E");
-    background-size: 88px 88px;
+  /* Dot texture for night sections */
+  .dot-grid {
+    background-image: radial-gradient(rgb(255 255 255 / 0.09) 1px, transparent 1px);
+    background-size: 18px 18px;
   }
 
   /* ---------- Section titles ---------- */
@@ -166,8 +160,6 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 0 0.3em;
-    font-family: var(--font-display);
-    font-variation-settings: 'wdth' 94;
     font-weight: 700;
     font-size: 2rem;
     line-height: 1.35;
@@ -192,44 +184,36 @@
     color: var(--white);
   }
 
-  /* Highlighted words: sea-gradient text with a hill-green highlighter stroke across their lower half */
+  /* Highlighted words: gradient text that shines, with a swoosh under it */
   .hl {
     position: relative;
-    isolation: isolate;
     display: inline-block;
-    padding-bottom: 0.08em;
+    padding-bottom: 0.12em;
     background-image: var(--gradient-text);
     background-size: 200% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    animation: shine 5s linear infinite;
+    animation: shine 4s linear infinite;
   }
   .hl-green {
-    background-image: var(--gradient-glow);
+    background-image: var(--gradient-green);
   }
   .swoosh-host {
     position: relative;
-    isolation: isolate;
     display: inline-block;
-    padding-bottom: 0.08em;
+    padding-bottom: 0.12em;
   }
-  /* The stroke never affects layout; it multiplies over the letters like a real highlighter. */
+  /* The swoosh never affects layout: it hangs under the words. */
   .hl svg,
   .swoosh-host svg {
     position: absolute;
-    left: -0.1em;
-    bottom: -0.04em;
-    width: calc(100% + 0.2em);
-    height: 0.34em;
+    left: 0;
+    bottom: -0.08em;
+    width: 100%;
+    height: 0.2em;
     overflow: visible;
-    mix-blend-mode: multiply;
-    pointer-events: none;
-  }
-  .title-dark .hl svg,
-  .hl-green svg {
-    mix-blend-mode: screen;
   }
 
   .lede {
@@ -256,8 +240,8 @@
     justify-content: center;
     gap: 0.75rem;
     height: 3.5rem;
-    padding: 0 1.6rem;
-    border-radius: 999px;
+    padding: 0 1.5rem;
+    border-radius: 0.5rem;
     font-size: 1.0625rem;
     font-weight: 700;
     white-space: nowrap;
@@ -281,27 +265,27 @@
     font-size: 0.95rem;
     font-weight: 600;
   }
-  .btn-cta {
-    background: var(--cta);
+  .btn-yellow {
+    background: var(--yellow);
     color: var(--ink);
-    box-shadow: 0 10px 28px rgb(25 195 125 / 0.38);
+    box-shadow: 0 10px 30px rgb(251 201 0 / 0.45);
   }
-  .btn-cta:hover {
-    background: var(--cta-hover);
+  .btn-yellow:hover {
+    background: var(--yellow-hover);
     transform: translateY(-2px);
-    box-shadow: 0 14px 32px rgb(25 195 125 / 0.48);
+    box-shadow: 0 14px 34px rgb(251 201 0 / 0.55);
   }
-  .btn-cta::before,
-  .btn-cta::after {
+  .btn-yellow::before,
+  .btn-yellow::after {
     content: '';
     position: absolute;
     inset: 0;
     z-index: -1;
     border-radius: inherit;
-    animation: pulse-ring 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    animation: pulse-ring 2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
   }
-  .btn-cta::after {
-    animation-delay: 1.2s;
+  .btn-yellow::after {
+    animation-delay: 1s;
   }
   .btn-gradient {
     background: var(--gradient);
@@ -334,21 +318,27 @@
   .btn-ghost-light:hover {
     background: rgb(255 255 255 / 0.1);
   }
-  .btn-glow {
-    background: var(--glow);
-    color: var(--ink);
+  .btn-blue-glow {
+    border: 3px solid #022451;
+    border-radius: 0.75rem;
+    background: radial-gradient(1356% 1106% at 463% 55%, #0060fa 0%, #002b70 100%);
+    color: var(--white);
+    box-shadow: 0 12px 20px rgb(0 96 250 / 0.3);
   }
-  .btn-glow:hover {
+  .btn-lime {
+    border-radius: 0.75rem;
+    background: var(--lime);
+    color: #000;
+  }
+  .btn-lime:hover {
     opacity: 0.9;
   }
 
   /* ---------- Cards, chips ---------- */
   .card {
-    border-radius: 1.25rem;
+    border-radius: 1.5rem;
     background: var(--white);
-    box-shadow:
-      inset 0 0 0 1px rgb(10 34 51 / 0.05),
-      var(--shadow-card);
+    box-shadow: var(--shadow-card);
   }
   .chip {
     display: inline-flex;
@@ -366,7 +356,7 @@
     background: rgb(200 32 40 / 0.1);
     color: var(--crimson);
   }
-  .chip-amber {
+  .chip-yellow {
     background: var(--tag);
     color: var(--ink);
   }
@@ -382,38 +372,42 @@
     font-family: var(--font-mono);
   }
 
-  /* Label that opens a night section: a star glyph and amber text in a thin pill */
+  /* Scramble label hanging from the top of a night section */
   .eyebrow-tab {
-    display: flex;
-    align-items: center;
-    gap: 0.55rem;
+    position: relative;
     margin-inline: auto;
     width: fit-content;
-    border-radius: 999px;
-    padding: 0.4rem 1.1rem 0.4rem 0.8rem;
-    box-shadow: inset 0 0 0 1px rgb(255 197 97 / 0.35);
-    background: rgb(255 197 97 / 0.07);
+    padding: 0.55rem 2rem 1rem;
   }
   .eyebrow-tab svg {
-    width: 1rem;
-    height: 1rem;
-    color: var(--glow);
-    animation: star-turn 12s linear infinite;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
   }
   .eyebrow-tab > span {
+    position: relative;
     display: block;
     font-size: 0.95rem;
     font-weight: 700;
-    color: var(--glow);
+    color: var(--lime);
     white-space: nowrap;
   }
+  @media (min-width: 640px) {
+    .eyebrow-tab {
+      padding: 0.8rem 3rem 1.5rem;
+    }
+    .eyebrow-tab > span {
+      font-size: 1.05rem;
+    }
+  }
 
-  /* Light-sweep heading on night sections: white text, an amber band wipes across */
+  /* Light-sweep heading (AI/ML page): white text, a lime band wipes across */
   .sweep {
     position: relative;
   }
-  .sweep .glow {
-    color: var(--glow-band);
+  .sweep .lime {
+    color: var(--lime-band);
   }
   .sweep__layer {
     display: none;
@@ -426,12 +420,12 @@
     display: block;
   }
   .sweep__cover,
-  .sweep__cover .glow {
+  .sweep__cover .lime {
     color: var(--white);
   }
   .sweep__band,
-  .sweep__band .glow {
-    color: var(--glow-band);
+  .sweep__band .lime {
+    color: var(--lime-band);
   }
   .sweep__cover {
     clip-path: inset(0 0 0 0);
@@ -576,20 +570,20 @@
 }
 
 /* ------------------------------------------------------------------
-   Home hero: night sea-navy warming to dawn over the hills.
+   Home hero: a night sky deepening to royal blue over the hills.
    ------------------------------------------------------------------ */
-.hero-dawn {
+.hero-night {
   background:
-    radial-gradient(90% 60% at 18% 0%, rgb(28 155 214 / 0.28), transparent 62%),
-    linear-gradient(180deg, #031b27 0%, #052a3d 48%, #0a3a55 78%, #11506a 100%);
+    radial-gradient(90% 60% at 18% 0%, rgb(0 96 250 / 0.28), transparent 62%),
+    linear-gradient(180deg, #000e1d 0%, #021a3a 48%, #04286a 78%, #0a3c9c 100%);
 }
-/* The sun just under the horizon: a warm glow that breathes very slowly */
-.dawn-sun {
-  background: radial-gradient(closest-side, rgb(255 190 110 / 0.55), rgb(255 150 90 / 0.18) 55%, transparent);
+/* A blue glow just under the horizon that breathes very slowly */
+.hero-glow {
+  background: radial-gradient(closest-side, rgb(0 96 250 / 0.55), rgb(53 100 255 / 0.18) 55%, transparent);
   filter: blur(8px);
-  animation: dawn-breathe 9s ease-in-out infinite;
+  animation: glow-breathe 9s ease-in-out infinite;
 }
-@keyframes dawn-breathe {
+@keyframes glow-breathe {
   0%,
   100% {
     opacity: 0.8;
@@ -614,9 +608,9 @@
     transform: translateY(40px) scaleY(0.7);
   }
 }
-/* Amber gradient words that slowly shine (the slogan's second half on night backgrounds) */
-.text-dawn {
-  background-image: linear-gradient(95deg, #ffd27f 0%, #ffb35e 35%, #ff8f5e 60%, #ffd27f 100%);
+/* Lime-to-green words that slowly shine (the slogan's second half on night backgrounds) */
+.text-lime-shine {
+  background-image: linear-gradient(95deg, #e1fd14 0%, #7ef7a8 35%, #4ade80 60%, #e1fd14 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -624,13 +618,13 @@
   -webkit-text-fill-color: transparent;
   animation: shine 6s linear infinite;
 }
-/* The slogan settles: letters arrive wide and light, then tighten to firm and bold. Visible from the
-   first paint (it is the LCP text); only the font's width and weight move. */
+/* The slogan settles: letters arrive spaced out and soft, then draw together and sharpen. Visible
+   from the first paint (it is the LCP text); only spacing and focus move. */
 .motion .type-settle {
   animation: type-settle 1.3s var(--ease-out) both;
   animation-delay: var(--d, 0ms);
 }
-.motion .type-settle.text-dawn {
+.motion .type-settle.text-lime-shine {
   animation:
     type-settle 1.3s var(--ease-out) both,
     shine 6s linear infinite;
@@ -638,14 +632,12 @@
 }
 @keyframes type-settle {
   from {
-    font-variation-settings: 'wdth' 125;
-    font-weight: 250;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.08em;
+    filter: blur(6px);
   }
   to {
-    font-variation-settings: 'wdth' 96;
-    font-weight: 700;
     letter-spacing: 0;
+    filter: blur(0);
   }
 }
 .hero-caption span {
@@ -677,15 +669,15 @@
 }
 .journey-sky {
   background:
-    radial-gradient(80% 60% at 70% 0%, rgb(28 155 214 / 0.18), transparent 60%),
-    linear-gradient(180deg, #021620 0%, #04202e 55%, #072c3d 100%);
+    radial-gradient(80% 60% at 70% 0%, rgb(0 96 250 / 0.18), transparent 60%),
+    linear-gradient(180deg, #000a16 0%, #000e1d 55%, #061327 100%);
 }
-/* Dawn rises as the journey goes on (--p is 0 → 1) */
-.journey-dawn {
+/* Light rises as the journey goes on (--p is 0 → 1) */
+.journey-light {
   opacity: calc(var(--p, 0) * 0.95);
   background:
-    radial-gradient(70% 55% at 80% 105%, rgb(255 178 100 / 0.55), transparent 70%),
-    linear-gradient(180deg, transparent 35%, rgb(17 80 106 / 0.8) 100%);
+    radial-gradient(70% 55% at 80% 105%, rgb(0 96 250 / 0.5), transparent 70%),
+    linear-gradient(180deg, transparent 35%, rgb(4 40 106 / 0.8) 100%);
 }
 .journey-stars {
   opacity: calc(1 - var(--p, 0) * 0.7);
@@ -720,11 +712,11 @@
 .journey-card:focus-visible {
   background: rgb(255 255 255 / 0.09);
   box-shadow:
-    inset 0 0 0 1px rgb(255 197 97 / 0.6),
-    0 20px 50px rgb(255 170 80 / 0.2);
+    inset 0 0 0 1px rgb(225 253 20 / 0.6),
+    0 20px 50px rgb(225 253 20 / 0.2);
 }
 .journey-card:focus-visible {
-  outline: 3px solid var(--glow);
+  outline: 3px solid var(--lime);
   outline-offset: 3px;
 }
 .journey-arch img {
@@ -737,17 +729,17 @@
   transform: translateX(4px);
 }
 .journey-node {
-  background: var(--glow);
+  background: var(--lime);
   color: var(--ink);
-  box-shadow: 0 0 0 6px rgb(255 197 97 / 0.15), 0 0 24px rgb(255 197 97 / 0.6);
+  box-shadow: 0 0 0 6px rgb(225 253 20 / 0.15), 0 0 24px rgb(225 253 20 / 0.6);
   transition: all 0.6s var(--ease-out);
 }
 .journey-post {
-  background: var(--glow);
+  background: var(--lime);
   transition: background-color 0.6s var(--ease-out);
 }
 .journey-milestone {
-  color: var(--glow);
+  color: var(--lime);
   transition: color 0.6s var(--ease-out);
 }
 /* Before the lamp reaches a station its lantern is dark and its portrait grey */
@@ -775,18 +767,18 @@
   transform: translateY(-8px) scale(1.04);
   background: rgb(255 255 255 / 0.08);
   box-shadow:
-    inset 0 0 0 1px rgb(255 197 97 / 0.55),
-    0 24px 60px rgb(255 170 80 / 0.22);
+    inset 0 0 0 1px rgb(225 253 20 / 0.55),
+    0 24px 60px rgb(225 253 20 / 0.22);
 }
 .journey-station[data-current] .journey-node {
   animation: node-pulse 1.8s ease-out infinite;
 }
 @keyframes node-pulse {
   0% {
-    box-shadow: 0 0 0 0 rgb(255 197 97 / 0.55), 0 0 24px rgb(255 197 97 / 0.6);
+    box-shadow: 0 0 0 0 rgb(225 253 20 / 0.55), 0 0 24px rgb(225 253 20 / 0.6);
   }
   100% {
-    box-shadow: 0 0 0 16px rgb(255 197 97 / 0), 0 0 24px rgb(255 197 97 / 0.6);
+    box-shadow: 0 0 0 16px rgb(225 253 20 / 0), 0 0 24px rgb(225 253 20 / 0.6);
   }
 }
 .journey-lamp {
@@ -794,25 +786,23 @@
   height: 28px;
   margin-left: 0;
   border-radius: 999px;
-  background: radial-gradient(circle, #fff6df 0%, #ffd27f 35%, #ff9f5e 60%, transparent 72%);
-  box-shadow: 0 0 40px 14px rgb(255 190 100 / 0.45);
+  background: radial-gradient(circle, #ffffff 0%, #f0ff8a 35%, #e1fd14 60%, transparent 72%);
+  box-shadow: 0 0 40px 14px rgb(225 253 20 / 0.45);
   animation: lamp-flicker 2.6s ease-in-out infinite;
 }
 @keyframes lamp-flicker {
   0%,
   100% {
-    box-shadow: 0 0 40px 14px rgb(255 190 100 / 0.45);
+    box-shadow: 0 0 40px 14px rgb(225 253 20 / 0.45);
   }
   50% {
-    box-shadow: 0 0 52px 20px rgb(255 190 100 / 0.6);
+    box-shadow: 0 0 52px 20px rgb(225 253 20 / 0.6);
   }
 }
 .journey-trail {
-  filter: drop-shadow(0 0 6px rgb(255 197 97 / 0.8));
+  filter: drop-shadow(0 0 6px rgb(225 253 20 / 0.8));
 }
 .journey-year {
-  font-family: var(--font-display);
-  font-variation-settings: 'wdth' 90;
   animation: year-roll 0.55s var(--ease-out) both;
 }
 @keyframes year-roll {
@@ -837,8 +827,8 @@
   background: rgb(255 255 255 / 0.12);
 }
 .journey-rail::after {
-  background: linear-gradient(180deg, #ffd27f, #ff9f5e);
-  box-shadow: 0 0 10px rgb(255 197 97 / 0.7);
+  background: var(--gradient-lime);
+  box-shadow: 0 0 10px rgb(225 253 20 / 0.7);
   transform-origin: top;
   transform: scaleY(1);
 }
@@ -849,11 +839,11 @@
 /* A martyr's page: the portrait warms from grey to colour under a slow halo, and a rail
    beside the story fills as it is read. */
 .martyr-halo {
-  background: radial-gradient(closest-side, rgb(255 197 97 / 0.45), rgb(255 159 94 / 0.12) 60%, transparent);
+  background: radial-gradient(closest-side, rgb(76 141 245 / 0.5), rgb(0 96 250 / 0.14) 60%, transparent);
   filter: blur(18px);
-  animation: dawn-breathe-soft 7s ease-in-out infinite;
+  animation: glow-breathe-soft 7s ease-in-out infinite;
 }
-@keyframes dawn-breathe-soft {
+@keyframes glow-breathe-soft {
   0%,
   100% {
     opacity: 0.75;
@@ -864,7 +854,7 @@
 }
 .martyr-arch {
   box-shadow:
-    0 0 0 1px rgb(255 197 97 / 0.55),
+    0 0 0 1px rgb(76 141 245 / 0.6),
     0 30px 70px rgb(0 0 0 / 0.45);
 }
 .motion .martyr-arch img {
@@ -890,16 +880,16 @@
   background: var(--pale-3);
 }
 .story-thread::after {
-  background: linear-gradient(180deg, var(--cta), var(--primary));
+  background: linear-gradient(180deg, var(--blue), var(--primary));
   transform-origin: top;
 }
 .motion .story-thread::after {
   transform: scaleY(var(--rail, 0));
 }
 .story-node {
-  background: var(--cta);
+  background: var(--blue);
   color: var(--white);
-  box-shadow: 0 0 0 5px rgb(25 195 125 / 0.15);
+  box-shadow: 0 0 0 5px rgb(53 100 255 / 0.15);
   transition: all 0.5s var(--ease-out);
 }
 .motion .story-part:not([data-lit]) .story-node {
@@ -962,7 +952,7 @@
 }
 .ps-answer:hover {
   transform: translateY(-4px);
-  box-shadow: 0 26px 50px rgb(7 90 58 / 0.35);
+  box-shadow: 0 26px 50px rgb(46 139 87 / 0.35);
 }
 .ps-spark {
   opacity: 0;
@@ -1075,18 +1065,7 @@
   opacity: 0;
   transform: scale(0.92);
 }
-/* Section label: the pill rises in, then its text wipes in from the star */
-.motion [data-reveal='label']:not([data-state='visible']) {
-  opacity: 0;
-  transform: translateY(10px);
-}
-.motion [data-reveal='label'] > span {
-  transition: clip-path 0.9s var(--ease-out) 0.2s;
-}
-.motion [data-reveal='label']:not([data-state='visible']) > span {
-  clip-path: inset(0 100% 0 0);
-}
-/* Clip wipe from left to right */
+/* Clip wipe from left to right (eyebrow labels) */
 .motion [data-reveal='wipe']:not([data-state='visible']) {
   clip-path: inset(0 100% 0 0);
 }
@@ -1292,11 +1271,11 @@
 }
 @keyframes pulse-ring {
   0% {
-    box-shadow: 0 0 0 0 rgb(25 195 125 / 0.5);
+    box-shadow: 0 0 0 0 rgb(251 201 0 / 0.55);
   }
   70%,
   100% {
-    box-shadow: 0 0 6px 14px rgb(25 195 125 / 0);
+    box-shadow: 0 0 6px 14px rgb(251 201 0 / 0);
   }
 }
 @keyframes play-pulse {
@@ -1315,26 +1294,6 @@
   }
   50% {
     transform: translateX(4px);
-  }
-}
-/* Decorative stars in page headers: pop in, then turn and drift slowly */
-.page-star {
-  animation:
-    pop 0.6s var(--ease-back) 0.3s both,
-    star-drift var(--dur, 22s) ease-in-out infinite;
-}
-@keyframes star-drift {
-  0%,
-  100% {
-    transform: rotate(0deg) translateY(0);
-  }
-  50% {
-    transform: rotate(180deg) translateY(-10px);
-  }
-}
-@keyframes star-turn {
-  to {
-    transform: rotate(360deg);
   }
 }
 @keyframes marquee {
@@ -1433,12 +1392,6 @@
 /* ---------- English pages (/en) ---------- */
 .en-site {
   font-family: var(--font-en);
-}
-.en-site h1,
-.en-site h2,
-.en-site h3,
-.en-site .title {
-  font-family: var(--font-display-en);
 }
 .en-site :lang(bn) {
   font-family: var(--font-sans);

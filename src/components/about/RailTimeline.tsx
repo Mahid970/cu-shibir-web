@@ -21,7 +21,7 @@ function Train({ lit }: { lit: boolean }) {
       {[0, 84].map((x) => (
         <g key={x} transform={`translate(${x} 6)`}>
           <rect width="78" height="34" rx="6" fill="#1e3a8a" />
-          <rect y="22" width="78" height="5" fill="#ffc561" />
+          <rect y="22" width="78" height="5" fill="#fbc900" />
           {[8, 30, 52].map((w) => (
             <rect key={w} x={w} y="6" width="16" height="11" rx="2" fill={win} />
           ))}
@@ -31,7 +31,7 @@ function Train({ lit }: { lit: boolean }) {
       ))}
       <g transform="translate(168 6)">
         <path d="M0 6a6 6 0 0 1 6-6h52l20 20v14H0z" fill="#b91c1c" />
-        <rect y="22" width="78" height="5" fill="#ffc561" />
+        <rect y="22" width="78" height="5" fill="#fbc900" />
         <rect x="8" y="6" width="16" height="11" rx="2" fill={win} />
         <path d="M34 6h22l12 12H34z" fill={win} />
         <circle cx="16" cy="40" r="6" fill="#0f172a" stroke="#64748b" strokeWidth="2" />
@@ -115,7 +115,7 @@ export function RailTimeline({ stops }: { stops: Stop[] }) {
   if (!pinned) {
     return (
       <section id="history" aria-labelledby="history-title" className="relative isolate scroll-mt-24 overflow-hidden bg-deep py-16 md:py-22">
-        <div aria-hidden="true" className="lattice-night absolute inset-0 -z-10 opacity-60 [mask-image:linear-gradient(180deg,#000,transparent)]" />
+        <div aria-hidden="true" className="dot-grid absolute inset-0 -z-10 opacity-60 [mask-image:linear-gradient(180deg,#000,transparent)]" />
         {heading}
         <ol className="wrap relative mt-10 grid gap-8 pl-12 md:pl-14">
           <li aria-hidden="true" className="absolute bottom-0 left-4 top-0 w-3 md:left-5 [background:repeating-linear-gradient(180deg,rgb(148_163_184/0.35)_0_3px,transparent_3px_14px)]">
@@ -141,7 +141,7 @@ export function RailTimeline({ stops }: { stops: Stop[] }) {
   return (
     <section ref={section} id="history" aria-labelledby="history-title" className="relative bg-deep">
       <div className="sticky top-[72px] flex h-[calc(100dvh-72px)] flex-col justify-center overflow-hidden">
-        <div aria-hidden="true" className="lattice-night absolute inset-0 opacity-60 [mask-image:linear-gradient(180deg,#000,transparent)]" />
+        <div aria-hidden="true" className="dot-grid absolute inset-0 opacity-60 [mask-image:linear-gradient(180deg,#000,transparent)]" />
         <div className="relative">{heading}</div>
 
         <div className="relative mt-10 h-[360px]">
@@ -191,7 +191,7 @@ export function RailTimeline({ stops }: { stops: Stop[] }) {
 
         <div className="wrap relative mt-4">
           <div className="h-1 overflow-hidden rounded-full bg-white/10" aria-hidden="true">
-            <div className="h-full origin-left rounded-full bg-[linear-gradient(90deg,#6cc6ee,#5fd4ff,#3ee0a4,#ffc561,#ff9f5e)]" style={{ transform: 'scaleX(var(--p, 0))' }} />
+            <div className="h-full origin-left rounded-full bg-[linear-gradient(90deg,#6ea0ff,#00fbee,#00fb97,#fbc900,#f9a8d4)]" style={{ transform: 'scaleX(var(--p, 0))' }} />
           </div>
         </div>
       </div>

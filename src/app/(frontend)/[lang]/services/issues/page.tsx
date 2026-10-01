@@ -65,7 +65,7 @@ export default async function IssuesDeskPage() {
     <>
       <PageHeader title={[t.title[0], { hl: t.title[1] }]} lede={t.lede}>
         <div className="load-rise mt-8 flex flex-wrap justify-center gap-3" style={vars({ '--d': '350ms' })}>
-          <Link href="/services/issues/report" className="btn btn-cta">
+          <Link href="/services/issues/report" className="btn btn-yellow">
             {t.report}
             <ArrowRight />
           </Link>

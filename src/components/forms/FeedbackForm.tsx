@@ -86,7 +86,7 @@ export function FeedbackForm({ people, to }: { people: { value: string; label: s
           <TextArea name="message" label={t.message} required maxLength={4000} rows={7} hint={t.messageHint} errors={errors} />
 
           <label className="flex cursor-pointer items-start gap-3 rounded-2xl bg-pale p-4">
-            <input type="checkbox" name="anonymous" checked={anonymous} onChange={(e) => setAnonymous(e.target.checked)} className="mt-1 size-5 shrink-0 accent-[#0b6fa4]" />
+            <input type="checkbox" name="anonymous" checked={anonymous} onChange={(e) => setAnonymous(e.target.checked)} className="mt-1 size-5 shrink-0 accent-[#0052d8]" />
             <span>
               <span className="block font-semibold text-ink">{t.anonymous}</span>
               <span className="text-[0.92rem] text-muted">{t.anonymousHint}</span>

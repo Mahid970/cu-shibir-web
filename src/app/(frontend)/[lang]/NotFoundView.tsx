@@ -30,7 +30,7 @@ export function NotFoundView() {
   const t = T[useLang()]
   return (
     <div className="hero-wash relative isolate overflow-hidden">
-      <div aria-hidden="true" className="lattice absolute inset-0 -z-10" />
+      <div aria-hidden="true" className="grid-paper absolute inset-0 -z-10" />
       <div className="wrap flex min-h-[60vh] max-w-xl flex-col items-center justify-center py-20 text-center">
         <p className="font-[family-name:var(--font-en)] text-[4.5rem] font-bold leading-none text-primary">404</p>
         <h1 className="mt-4 text-[2rem] font-bold text-ink">{t.title}</h1>

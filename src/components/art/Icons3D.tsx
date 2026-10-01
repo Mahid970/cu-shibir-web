@@ -1,7 +1,7 @@
 import type { SVGProps } from 'react'
 
 /**
- * Glossy "3D" icons drawn for campus life
+ * Glossy "3D" icons in the spirit of Phitron's floating tech icons, drawn for campus life
  * (election, books, training, shuttle, welfare). Pure SVG, a few hundred bytes each.
  */
 type P = SVGProps<SVGSVGElement>
@@ -46,7 +46,7 @@ export const Book = (p: P) => (
     <path d="M17 52h31l4-3V14" fill="#f3f4ff" />
     <path d="M17 55.5h29" stroke="#d8dbff" strokeWidth="1.2" />
     <rect x="12" y="8" width="36" height="44" rx="4" fill="url(#bk-c)" />
-    <path d="M38 8h6v16l-3-2.5-3 2.5Z" fill="#ffc561" />
+    <path d="M38 8h6v16l-3-2.5-3 2.5Z" fill="#fbc900" />
     <rect x="19" y="20" width="14" height="3" rx="1.5" fill="#fff" opacity=".8" />
     <rect x="19" y="27" width="20" height="3" rx="1.5" fill="#fff" opacity=".45" />
     <rect x="14.5" y="10.5" width="2.6" height="39" rx="1.3" fill="#fff" opacity=".25" />
@@ -65,9 +65,9 @@ export const GradCap = (p: P) => (
     <path d="M18 38c0 4 6.3 7 14 7s14-3 14-7" fill="none" stroke="#2b3a60" strokeWidth="1.5" />
     <path d="M32 12 60 25 32 38 4 25Z" fill="url(#gc-t)" />
     <path d="M32 14.5 55.5 25" stroke="#fff" strokeOpacity=".25" strokeWidth="1.5" strokeLinecap="round" />
-    <path d="M32 25 50 30v14" fill="none" stroke="#ffc561" strokeWidth="2.4" strokeLinecap="round" />
-    <path d="M47.5 44h5l1 7h-7Z" fill="#ffc561" />
-    <circle cx="32" cy="25" r="2.4" fill="#ffc561" />
+    <path d="M32 25 50 30v14" fill="none" stroke="#fbc900" strokeWidth="2.4" strokeLinecap="round" />
+    <path d="M47.5 44h5l1 7h-7Z" fill="#fbc900" />
+    <circle cx="32" cy="25" r="2.4" fill="#fbc900" />
   </svg>
 )
 
@@ -84,7 +84,7 @@ export const Megaphone3D = (p: P) => (
     <ellipse cx="46" cy="31" rx="6" ry="19" fill="#fb923c" />
     <ellipse cx="46.5" cy="31" rx="3.6" ry="14" fill="#9a3412" />
     <path d="M11 28h7v6h-7Z" fill="#fff" opacity=".35" />
-    <path d="M55 22c3 2.4 3 15.6 0 18M58.5 17c5 4 5 24 0 28" fill="none" stroke="#ffc561" strokeWidth="2.4" strokeLinecap="round" />
+    <path d="M55 22c3 2.4 3 15.6 0 18M58.5 17c5 4 5 24 0 28" fill="none" stroke="#fbc900" strokeWidth="2.4" strokeLinecap="round" />
   </svg>
 )
 
@@ -97,7 +97,7 @@ export const Train = (p: P) => (
       </linearGradient>
       <linearGradient id="tr-w" x1="0" y1="0" x2="1" y2="1">
         <stop stopColor="#bfe3ff" />
-        <stop offset="1" stopColor="#5cc0ea" />
+        <stop offset="1" stopColor="#4c8df5" />
       </linearGradient>
     </defs>
     <path d="M18 54 12 61M46 54l6 7" stroke="#334155" strokeWidth="3" strokeLinecap="round" />
@@ -150,8 +150,8 @@ export const Medal = (p: P) => (
         <stop offset="1" stopColor="#e3a100" />
       </linearGradient>
     </defs>
-    <path d="M20 4h10l6 18h-10Z" fill="#1c9bd6" />
-    <path d="M44 4H34l-6 18h10Z" fill="#c0262d" />
+    <path d="M20 4h10l6 18h-10Z" fill="#3564ff" />
+    <path d="M44 4H34l-6 18h10Z" fill="#c82028" />
     <circle cx="32" cy="40" r="19" fill="url(#md-g)" />
     <circle cx="32" cy="40" r="13.5" fill="none" stroke="#fff" strokeOpacity=".55" strokeWidth="2" />
     <path d="m32 31 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2-4.5-4.4 6.2-.9Z" fill="#fff" />
@@ -191,8 +191,8 @@ export const Trophy3D = (p: P) => (
     <path d="M22 10v10a10 10 0 0 0 4 8" fill="none" stroke="#fff" strokeOpacity=".55" strokeWidth="3" strokeLinecap="round" />
     <path d="M28 36h8v8h-8Z" fill="#e3a100" />
     <rect x="18" y="44" width="28" height="12" rx="3" fill="#7c2d12" />
-    <rect x="24" y="48" width="16" height="4" rx="2" fill="#ffc561" />
-    <path d="m32 11 2 4 4.4.6-3.2 3.1.8 4.4-4-2.1-4 2.1.8-4.4-3.2-3.1L30 15Z" fill="#c0262d" />
+    <rect x="24" y="48" width="16" height="4" rx="2" fill="#fbc900" />
+    <path d="m32 11 2 4 4.4.6-3.2 3.1.8 4.4-4-2.1-4 2.1.8-4.4-3.2-3.1L30 15Z" fill="#c82028" />
   </svg>
 )
 

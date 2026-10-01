@@ -7,7 +7,7 @@ import { ShareBar } from '@/components/content/ShareBar'
 import { MartyrGallery, type GalleryGroup } from '@/components/martyrs/MartyrGallery'
 import { ReadingThread } from '@/components/martyrs/ReadingThread'
 import { ArrowRight, ChevronLeft, ChevronRight } from '@/components/ui/Icons'
-import { StarGlyph, vars } from '@/components/ui/SectionTitle'
+import { vars } from '@/components/ui/SectionTitle'
 import { copy, langAttr, localePath } from '@/i18n/config'
 import { date } from '@/i18n/format'
 import { Link } from '@/i18n/link'
@@ -207,8 +207,8 @@ export default async function MartyrPage({ params }: Props) {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
           <div className="journey-sky absolute inset-0" />
           <div className="journey-stars absolute inset-0" />
-          <div className="lattice-night absolute inset-0 opacity-50 [mask-image:radial-gradient(70%_60%_at_30%_20%,#000,transparent)]" />
-          <div className="dawn-sun absolute bottom-[-40%] left-[28%] h-[70%] w-[70%] -translate-x-1/2 rounded-[50%] opacity-70" />
+          <div className="dot-grid absolute inset-0 opacity-50 [mask-image:radial-gradient(70%_60%_at_30%_20%,#000,transparent)]" />
+          <div className="hero-glow absolute bottom-[-40%] left-[28%] h-[70%] w-[70%] -translate-x-1/2 rounded-[50%] opacity-70" />
         </div>
         <div className="wrap max-w-6xl">
           <nav aria-label={t.crumbs} className="load-up flex flex-wrap gap-x-2 text-[0.92rem] text-white/60">
@@ -235,12 +235,12 @@ export default async function MartyrPage({ params }: Props) {
 
             <div className="text-center md:text-left">
               <p className="load-up flex flex-wrap justify-center gap-2 md:justify-start">
-                {m.number && <span className="rounded-full bg-glow px-3 py-1 text-[0.85rem] font-bold text-ink">{martyrOrdinal(lang, m.number)}</span>}
+                {m.number && <span className="rounded-full bg-lime px-3 py-1 text-[0.85rem] font-bold text-ink">{martyrOrdinal(lang, m.number)}</span>}
                 {m.rank && <span className="rounded-full bg-white/10 px-3 py-1 text-[0.85rem] font-semibold text-white ring-1 ring-white/15">{RANKS[lang][m.rank]}</span>}
               </p>
               <h1 className="mt-5 text-white" lang={langAttr(lang, m.name)}>
                 {honorific && (
-                  <span className="load-rise block text-[1.2rem] font-semibold text-glow" style={vars({ '--d': '60ms' })}>
+                  <span className="load-rise block text-[1.2rem] font-semibold text-lime" style={vars({ '--d': '60ms' })}>
                     {honorific}
                   </span>
                 )}
@@ -249,7 +249,7 @@ export default async function MartyrPage({ params }: Props) {
                 </span>
               </h1>
               {when && (
-                <p className="load-rise mt-4 text-[1.5rem] font-bold text-glow" style={vars({ '--d': '260ms' })}>
+                <p className="load-rise mt-4 text-[1.5rem] font-bold text-lime" style={vars({ '--d': '260ms' })}>
                   {when}
                 </p>
               )}
@@ -267,8 +267,8 @@ export default async function MartyrPage({ params }: Props) {
           </div>
         </div>
         <svg aria-hidden="true" viewBox="0 0 1440 220" preserveAspectRatio="none" className="absolute inset-x-0 bottom-0 h-[90px] w-full md:h-[130px]">
-          <path className="hill hill-back" d="M0 150C120 92 236 112 360 82S604 38 760 90s262-32 404-20 200 42 276 20v130H0Z" fill="#0b6fa4" fillOpacity=".4" />
-          <path className="hill hill-mid" d="M0 172c160-50 300-22 460-58s296-12 440 22 280-34 400-14 104 22 140 12v86H0Z" fill="#19c37d" fillOpacity=".28" />
+          <path className="hill hill-back" d="M0 150C120 92 236 112 360 82S604 38 760 90s262-32 404-20 200 42 276 20v130H0Z" fill="#0052d8" fillOpacity=".42" />
+          <path className="hill hill-mid" d="M0 172c160-50 300-22 460-58s296-12 440 22 280-34 400-14 104 22 140 12v86H0Z" fill="#4c8df5" fillOpacity=".28" />
           <path d="M0 202c180-40 360-16 540-36s360-14 540 10 240-12 360 6v38H0Z" fill="var(--bg)" />
         </svg>
       </header>
@@ -295,8 +295,8 @@ export default async function MartyrPage({ params }: Props) {
 
       {m.quote && (
         <figure data-reveal="fade" className="wrap mt-14 max-w-3xl text-center md:mt-20">
-          <StarGlyph className="mx-auto size-7 text-amber" />
-          <blockquote className="mt-4 text-[1.5rem] font-bold leading-[1.6] text-ink md:text-[1.9rem]" style={{ fontFamily: 'var(--font-display)' }}>
+          <span aria-hidden="true" className="mx-auto block h-1 w-12 rounded-full bg-[image:var(--gradient)]" />
+          <blockquote className="mt-4 text-[1.5rem] font-bold leading-[1.6] text-ink md:text-[1.9rem]">
             “{m.quote}”
           </blockquote>
           {m.quoteBy && <figcaption className="mt-3 text-muted">{m.quoteBy}</figcaption>}
@@ -312,7 +312,7 @@ export default async function MartyrPage({ params }: Props) {
             {m.story.map((part) => (
               <section key={part.id ?? part.heading} data-part className="story-part relative pb-10 pl-11 last:pb-2">
                 <span aria-hidden="true" className="story-node absolute left-[11px] top-[0.35rem] grid size-6 -translate-x-1/2 place-items-center rounded-full">
-                  <StarGlyph className="size-3" />
+                  <span className="size-2 rounded-full bg-current" />
                 </span>
                 <h3 className="text-[1.45rem] font-bold text-ink md:text-[1.6rem]">{part.heading}</h3>
                 <div className="prose-read mt-3">
@@ -374,7 +374,7 @@ export default async function MartyrPage({ params }: Props) {
       </nav>
 
       <section className="relative isolate mt-16 overflow-hidden bg-night py-16 text-center text-white md:mt-24 md:py-20">
-        <div aria-hidden="true" className="lattice-night absolute inset-0 -z-10 opacity-60" />
+        <div aria-hidden="true" className="dot-grid absolute inset-0 -z-10 opacity-60" />
         <div className="wrap max-w-3xl">
           <p lang="ar" dir="rtl" className="font-[family-name:var(--font-quran)] text-[1.6rem] leading-[2.1] text-white/90 md:text-[1.9rem]">
             وَلَا تَقُولُوا لِمَنْ يُقْتَلُ فِي سَبِيلِ اللَّهِ أَمْوَاتٌ بَلْ أَحْيَاءٌ وَلَكِنْ لَا تَشْعُرُونَ

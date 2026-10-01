@@ -15,7 +15,7 @@ export type NewsTab = { key: string; label: string; categories?: string[] }
 const MAX = 6
 
 /**
- * Pill tabs with a sliding blue indicator. The cards are rendered on
+ * Pill tabs with a sliding blue indicator (Phitron's journey tabs). The cards are rendered on
  * the server; switching tabs only shows/hides them and replays their entrance.
  */
 export function NewsTabs({ tabs, children }: { tabs: NewsTab[]; children: ReactNode }) {

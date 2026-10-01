@@ -68,7 +68,7 @@ const T = copy(
 )
 
 const PILLAR_STYLE = [
-  { fill: '#f0f8fb', edge: 'linear-gradient(135deg,#1c9bd6,#9fdcf2 55%,#e8f6fa)' },
+  { fill: '#f3f6ff', edge: 'linear-gradient(135deg,#3564ff,#a9bcff 55%,#eef2ff)' },
   { fill: '#effaf3', edge: 'linear-gradient(135deg,#22c55e,#bbf7d0 55%,#effaf3)' },
 ]
 

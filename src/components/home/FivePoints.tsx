@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
 
 import { ART } from '@/components/art/Icons3D'
-import { EyebrowTab, StarGlyph, SweepTitle, vars } from '@/components/ui/SectionTitle'
+import { EyebrowTab, SweepTitle, vars } from '@/components/ui/SectionTitle'
 import { FIVE_POINTS } from '@/content/home'
 import { copy } from '@/i18n/config'
 import { num } from '@/i18n/format'
@@ -27,7 +27,7 @@ const T = copy(
 )
 
 /**
- * ৫ দফা as stacked cards on the night background: each card pins under the header and the next
+ * ৫ দফা as stacked folder cards on the night background: each card pins under the header and the next
  * slides over it, leaving the coloured tabs visible, while the covered card sinks back a little.
  * Each card's contents rise in as it arrives.
  */
@@ -37,13 +37,13 @@ export async function FivePoints() {
   return (
     <section className="relative isolate bg-deep pb-20 text-white md:pb-28" aria-labelledby="five-points">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="lattice-night absolute inset-0 [mask-image:radial-gradient(60%_50%_at_50%_20%,#000,transparent)]" />
-        <div className="absolute left-1/2 top-40 h-[480px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(11_111_164/0.4),transparent)] blur-2xl" />
+        <div className="dot-grid absolute inset-0 [mask-image:radial-gradient(60%_50%_at_50%_20%,#000,transparent)]" />
+        <div className="absolute left-1/2 top-40 h-[480px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(0_96_250/0.35),transparent)] blur-2xl" />
       </div>
       <EyebrowTab text={t.eyebrow} />
       <div className="wrap mt-8 text-center md:mt-10">
         <SweepTitle id="five-points" className="mx-auto max-w-3xl text-[2rem] font-bold leading-snug text-white sm:text-[2.75rem]">
-          {t.title[0]} <span className="glow">{t.title[1]}</span> {t.title[2]}
+          {t.title[0]} <span className="lime">{t.title[1]}</span> {t.title[2]}
         </SweepTitle>
         <p className="mx-auto mt-4 max-w-2xl text-[1rem] leading-relaxed text-slate-400 sm:text-[1.1rem]">{t.lede}</p>
       </div>
@@ -55,10 +55,9 @@ export async function FivePoints() {
             <li key={p.icon} className="md:sticky" style={{ top: `calc(96px + ${i * 16}px)` }}>
               <div className="relative pt-10">
                 <span
-                  className="absolute left-6 top-0 flex h-11 items-center gap-2 rounded-t-2xl px-5 pb-1 text-[0.88rem] font-bold md:left-[var(--tab-x)]"
+                  className="absolute left-6 top-0 flex h-11 items-start rounded-t-2xl px-6 pt-2.5 text-[0.85rem] font-bold tracking-[0.2em] md:left-[var(--tab-x)]"
                   style={{ '--tab-x': `${4 + i * 17}%`, background: p.color, color: p.ink } as CSSProperties}
                 >
-                  <StarGlyph className="size-3.5" />
                   {t.point} {num(lang, String(i + 1).padStart(2, '0'))}
                 </span>
                 <div
@@ -68,8 +67,7 @@ export async function FivePoints() {
                   style={{ background: p.color, color: p.ink }}
                 >
                   <div className="five-art relative grid aspect-[4/3] place-items-center overflow-hidden rounded-2xl bg-white/15">
-                    <div aria-hidden="true" className={`absolute inset-0 opacity-60 ${p.ink === '#ffffff' ? 'lattice-night' : 'lattice'}`} />
-                    <span aria-hidden="true" className="five-num absolute -bottom-10 -right-2 text-[13rem] font-bold leading-none opacity-15" style={{ fontFamily: 'var(--font-display)' }}>
+                    <span aria-hidden="true" className="five-num absolute -bottom-10 -right-2 text-[13rem] font-bold leading-none opacity-15">
                       {num(lang, i + 1)}
                     </span>
                     <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(60%_60%_at_40%_35%,rgb(255_255_255/0.35),transparent)]" />
@@ -88,7 +86,7 @@ export async function FivePoints() {
                     <ul className="mt-2 space-y-1.5">
                       {p.items[lang].map((item, k) => (
                         <li key={item} className="five-rise flex items-start gap-2.5 text-[1rem]" style={vars({ '--d': `${300 + k * 90}ms` })}>
-                          <StarGlyph className="mt-[0.35em] size-3.5 shrink-0 opacity-80" />
+                          <span aria-hidden="true" className="mt-[0.6em] size-1.5 shrink-0 rounded-full bg-current" />
                           {item}
                         </li>
                       ))}

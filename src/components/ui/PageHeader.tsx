@@ -1,19 +1,15 @@
 import type { ReactNode } from 'react'
 
-import { SectionTitle, StarGlyph, vars, type TitlePart } from './SectionTitle'
+import { SectionTitle, vars, type TitlePart } from './SectionTitle'
 
-/** Inner-page header: the star lattice and wash, a few slowly turning stars, a centred title with a highlight. */
+/** Inner-page header: the home hero's grid paper and wash, a centred title with a highlight. */
 export function PageHeader({ title, lede, children }: { title: string | TitlePart[]; lede?: ReactNode; children?: ReactNode }) {
   return (
     <header className="hero-wash relative isolate overflow-hidden pb-14 pt-12 md:pb-20 md:pt-16">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="lattice absolute inset-0 [mask-image:radial-gradient(80%_90%_at_50%_30%,#000_35%,transparent)]" />
-        {[
-          ['top-[10%] left-[10%] size-10 md:size-14 text-pale-4', '22s'],
-          ['top-[52%] left-[82%] size-12 md:size-16 text-cta/30', '28s'],
-          ['top-[68%] left-[5%] size-8 md:size-10 text-glow/45', '18s'],
-        ].map(([p, dur]) => (
-          <StarGlyph key={p} className={`page-star absolute ${p}`} style={vars({ '--dur': dur })} />
+        <div className="grid-paper absolute inset-0" />
+        {['top-[8%] left-[12%]', 'top-[55%] left-[80%]', 'top-[70%] left-[6%]'].map((p) => (
+          <div key={p} className={`absolute size-12 bg-pale-4/45 md:size-16 ${p}`} />
         ))}
       </div>
       <div className="wrap">
