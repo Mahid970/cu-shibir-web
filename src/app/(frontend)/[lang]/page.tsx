@@ -8,7 +8,6 @@ import { JourneySection } from '@/components/martyrs/JourneySection'
 import { LeadersSection } from '@/components/home/LeadersSection'
 import { Milestones } from '@/components/home/Milestones'
 import { NewsSection } from '@/components/home/NewsSection'
-import { NewsTicker } from '@/components/home/NewsTicker'
 import { ProblemSolution } from '@/components/home/ProblemSolution'
 import { TrustSection } from '@/components/home/TrustSection'
 import { DEFAULT_STATS, HERO_DEFAULTS } from '@/content/home'
@@ -66,7 +65,6 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <>
-      <NewsTicker posts={posts.slice(0, 6)} />
       <Hero
         tagline={cmsText(lang, settings.tagline, defaults)}
         intro={cmsText(lang, settings.heroIntro, { bn: HERO_DEFAULTS.bn.intro, en: HERO_DEFAULTS.en.intro })}

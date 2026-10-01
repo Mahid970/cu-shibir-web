@@ -18,7 +18,7 @@ patterns were changed or dropped:
 |---|---|
 | Centred sales hero with floating tech icons and a stats card | Photo collage of real events, the organisation's name and slogan, and the leaders' faces |
 | English monospace tagline and scramble labels | Bangla labels that wipe in |
-| Enrolment-dates toast | A "সর্বশেষ" news ticker under the header |
+| Enrolment-dates toast | Dropped (a "সর্বশেষ" news ticker under the header was tried and removed) |
 | Journey funnel, "4 easy steps", FAQ and price-style contact card on the home page | Moved to the About and Join pages |
 | Yellow pulsing button repeated in every section | The yellow button appears once per screen |
 | Replaying blur-to-focus reveals | Reveal once, starting a little before the element arrives |
@@ -50,7 +50,7 @@ marquee, count-up, sliding tab pill, stacked ৫ দফা cards, light-sweep he
 | `--lime` | `#e1fd14` / sweep band `#dcff3d` | AI/ML CTA, eyebrow text | ৫ দফা section accents |
 | pastels | `#eff3ff` `#ebf0ff` `#dbe4ff` `#c3d3ff` | section fill, pills, grid squares | same |
 | problem cards | sky `#deedf7`, sand `#f7f0d8`, pink `#f1d7f3` | "why Phitron" questions | student problems |
-| red notice | red gradient | enrolment-dates toast | "সর্বশেষ" ticker label, statement chips (branch red `#c82028`) |
+| red notice | red gradient | enrolment-dates toast | statement chips (branch red `#c82028`) |
 
 Grid texture: 1px lines `rgba(53,100,255,.07)` every 72px, with a few `#c3d3ff` squares at 45% opacity.
 
@@ -84,7 +84,7 @@ Grid texture: 1px lines `rgba(53,100,255,.07)` every 72px, with a few `#c3d3ff` 
 | Pulse rings | two box-shadow rings, 2s, offset 1s | the one yellow button per screen |
 | Play pulse | scale 1→1.25→1, 2s loop | video cards |
 | Banner scale-in | 0.8→1, 0.5s after the hero text | hero main photo |
-| Marquee | track `translateX(0 → −50%)`, pauses on hover, drag to scroll | news ticker, press coverage |
+| Marquee | track `translateX(0 → −50%)`, pauses on hover, drag to scroll | press coverage |
 | Journey line | connecting lines fill with `scaleX` in sequence, 4.2s loop | কর্মী → সাথী → সদস্য (About); milestone line draws once (home) |
 | Nudge arrows | chevrons `x 0→4→0`, 1.6s | tabs, steps |
 | Tab pill | active background slides with a spring | news tabs |
@@ -102,7 +102,7 @@ Grid texture: 1px lines `rgba(53,100,255,.07)` every 72px, with a few `#c3d3ff` 
 | Procession of light | — | pinned road through night hills; a lime lamp travels with the scroll, cards light (grey → colour), the year turns, the trail glows, light rises; vertical road on phones (শহীদি কাফেলা, home and /martyrs) |
 | Reading rail | — | a rail beside a martyr's story fills as it is read; each part's dot lights at mid-screen |
 | Portrait | — | a memorial portrait comes from grey to colour under a slow blue halo (a martyr's page) |
-| Toast | slides up after load, can be minimised to a round button | not used: replaced by the news ticker |
+| Toast | slides up after load, can be minimised to a round button | not used |
 
 Phitron ships this with `motion` (Framer Motion). Here the same effects are built with CSS
 and one small observer (`components/motion`), so the homepage stays light on mobile data.
