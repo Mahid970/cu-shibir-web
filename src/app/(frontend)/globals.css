@@ -89,9 +89,7 @@
   --color-crimson: var(--crimson);
 
   --font-sans: var(--font-hind), 'Hind Siliguri', 'Noto Sans Bengali', system-ui, sans-serif;
-  --font-en: var(--font-hind-latin), var(--font-hind), system-ui, sans-serif;
-  --font-display: var(--font-anek), var(--font-hind), 'Noto Sans Bengali', system-ui, sans-serif;
-  --font-display-en: var(--font-anek-latin), var(--font-anek), system-ui, sans-serif;
+  --font-en: var(--font-montserrat), var(--font-hind), system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
   --font-quran: var(--font-amiri-quran), 'Amiri Quran', serif;
 }
@@ -113,8 +111,6 @@
   h2,
   h3 {
     color: var(--ink);
-    font-family: var(--font-display);
-    font-variation-settings: 'wdth' 96;
     text-wrap: balance;
   }
   p {
@@ -166,8 +162,6 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 0 0.3em;
-    font-family: var(--font-display);
-    font-variation-settings: 'wdth' 94;
     font-weight: 700;
     font-size: 2rem;
     line-height: 1.35;
@@ -624,8 +618,8 @@
   -webkit-text-fill-color: transparent;
   animation: shine 6s linear infinite;
 }
-/* The slogan settles: letters arrive wide and light, then tighten to firm and bold. Visible from the
-   first paint (it is the LCP text); only the font's width and weight move. */
+/* The slogan settles: letters arrive spaced out and soft, then draw together and sharpen. Visible
+   from the first paint (it is the LCP text); only spacing and focus move. */
 .motion .type-settle {
   animation: type-settle 1.3s var(--ease-out) both;
   animation-delay: var(--d, 0ms);
@@ -638,14 +632,12 @@
 }
 @keyframes type-settle {
   from {
-    font-variation-settings: 'wdth' 125;
-    font-weight: 250;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.08em;
+    filter: blur(6px);
   }
   to {
-    font-variation-settings: 'wdth' 96;
-    font-weight: 700;
     letter-spacing: 0;
+    filter: blur(0);
   }
 }
 .hero-caption span {
@@ -811,8 +803,6 @@
   filter: drop-shadow(0 0 6px rgb(255 197 97 / 0.8));
 }
 .journey-year {
-  font-family: var(--font-display);
-  font-variation-settings: 'wdth' 90;
   animation: year-roll 0.55s var(--ease-out) both;
 }
 @keyframes year-roll {
@@ -1433,12 +1423,6 @@
 /* ---------- English pages (/en) ---------- */
 .en-site {
   font-family: var(--font-en);
-}
-.en-site h1,
-.en-site h2,
-.en-site h3,
-.en-site .title {
-  font-family: var(--font-display-en);
 }
 .en-site :lang(bn) {
   font-family: var(--font-sans);
