@@ -4,9 +4,9 @@ The new website of **Bangladesh Islami Chhatrashibir, University of Chittagong b
 (বাংলাদেশ ইসলামী ছাত্রশিবির, চট্টগ্রাম বিশ্ববিদ্যালয় শাখা). It is built to replace the current cushibir.org.
 
 - **Stack:** Next.js 16 (App Router) + Payload CMS 3 + PostgreSQL + Tailwind CSS 4.
-- **Design:** "sea, hills and dawn": sea-blue from the emblem, hill-green actions, dawn amber on deep sea-navy night
-  sections, an eight-point star lattice, Anek headlines, and lively motion that plays once. Real campus photos, news and
-  statements first, people and history over stats. Details in `docs/design/system.md`.
+- **Design:** "navy and sky": Shibir's navy and one sky blue, deep navy night sections, a thin line grid, Hind Siliguri
+  and Montserrat, and lively motion that plays once. Real campus photos, news and statements first, people and history
+  over stats. Details in `docs/design/system.md`.
 - **Content:** Bangla first, with every page also in English (switch in the header; English lives under `/en`).
 - **Plan:** research, targets and roadmap are in the approved plan (§ numbers in code comments refer to it).
 
@@ -53,7 +53,7 @@ The first `npx playwright install chromium` is needed for share images and e2e t
 src/
   proxy.ts               /… → /bn/… rewrite, so Bangla keeps short URLs; /en/… served as is
   app/(frontend)/[lang]/ every page, once, for both languages; root layout sets <html lang> (RSC, ISR 1h + on-demand purge)
-    page.tsx             home: ticker, dawn hero (living picture), milestones, news, campaigns, CUCSU, ৫ দফা, gallery + videos, leaders
+    page.tsx             home: ticker, night-to-sky hero (living picture), milestones, news, campaigns, CUCSU, ৫ দফা, gallery + videos, leaders
     about/ leadership/[slug] news/[slug] gallery/[slug] videos/ press/
     join/ supporter/ feedback/         forms (server actions, encrypted)
     services/            the student services hub (Phase 4)
@@ -158,7 +158,7 @@ docs/                    design system, deploy guide, spikes
   - **View transitions**: news card image → article hero, and leader photo → profile, with React `<ViewTransition>`.
   - **শহীদি কাফেলা** (home and `/martyrs`, `components/martyrs`): the martyrs as a procession of light. On large
     screens the section pins and scrolling carries a lamp along a road through night hills; each martyr's lantern-card
-    lights as it passes, the year turns over, the sky warms to dawn. Phones and reduced motion get a vertical road.
+    lights as it passes, the year turns over, the sky lifts towards light. Phones and reduced motion get a vertical road.
   - **A page per martyr** (`/martyrs/[slug]`): portrait, facts, his words, the story beside a reading rail, photos
     grouped by his life / the day / afterwards / the places (graphic ones veiled until asked for), sources, neighbours.
 - **Student services (Phase 4)**, each in both languages, each with its own CMS roles:
