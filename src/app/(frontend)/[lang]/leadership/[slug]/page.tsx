@@ -163,7 +163,7 @@ export default async function PersonPage({ params }: Props) {
               <dl className="load-up mt-5 grid gap-x-6 gap-y-3 sm:grid-cols-2" style={vars({ '--d': '240ms' })}>
                 {details.map((d) => (
                   <div key={d.k} className="flex items-start gap-2.5">
-                    <CheckCircle className="mt-1 size-5 shrink-0 text-blue-soft" />
+                    <CheckCircle className="mt-1 size-5 shrink-0 text-success" />
                     <div>
                       <dt className="text-[0.85rem] text-subtle">{d.k}</dt>
                       <dd className="font-semibold text-ink">{d.v}</dd>

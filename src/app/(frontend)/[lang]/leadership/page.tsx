@@ -73,7 +73,7 @@ function LeadCard({ person, index, lang }: { person: Person; index: number; lang
           <ul className="mt-3 space-y-1.5 text-[0.95rem] text-white/75">
             {details.map((d) => (
               <li key={d} className="flex items-center gap-2">
-                <CheckCircle className="size-4 shrink-0 text-blue-soft" />
+                <CheckCircle className="size-4 shrink-0 text-success" />
                 {d}
               </li>
             ))}

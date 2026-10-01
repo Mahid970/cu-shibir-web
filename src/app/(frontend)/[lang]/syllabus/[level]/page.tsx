@@ -79,7 +79,7 @@ function Objectives({ items }: { items: string[] }) {
     <ul className="mt-4 grid gap-1.5">
       {items.map((o) => (
         <li key={o} className="flex items-start gap-2 text-[0.98rem] leading-relaxed text-ink/80">
-          <CheckCircle className="mt-1 size-4 shrink-0 text-blue" />
+          <CheckCircle className="mt-1 size-4 shrink-0 text-success" />
           {o}
         </li>
       ))}
