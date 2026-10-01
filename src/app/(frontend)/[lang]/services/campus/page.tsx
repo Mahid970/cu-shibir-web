@@ -68,7 +68,7 @@ export default async function CampusPage() {
       <div className="wrap py-12 md:py-16">
         <dl className="mx-auto grid max-w-5xl gap-4 md:grid-cols-3">
           {t.facts.map((f, i) => (
-            <div key={f.k} data-reveal="fade" style={vars({ '--d': `${i * 100}ms` })} className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_31_51/0.06)]">
+            <div key={f.k} data-reveal="fade" style={vars({ '--d': `${i * 100}ms` })} className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_15_46/0.06)]">
               <dt className="text-[0.9rem] font-semibold text-primary">{f.k}</dt>
               <dd className="mt-1 text-[1.02rem] leading-relaxed text-ink">{f.v}</dd>
               {'link' in f && (
@@ -98,7 +98,7 @@ export default async function CampusPage() {
                 key={h.value}
                 data-reveal="fade"
                 style={vars({ '--d': `${(i % 3) * 80}ms` })}
-                className="rounded-2xl bg-white px-5 py-4 font-semibold text-ink shadow-[0_4px_24px_rgb(11_31_51/0.06)]"
+                className="rounded-2xl bg-white px-5 py-4 font-semibold text-ink shadow-[0_4px_24px_rgb(11_15_46/0.06)]"
               >
                 {optionLabel(h, lang)}
               </li>

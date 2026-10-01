@@ -57,13 +57,13 @@ function LeadCard({ person, index, lang }: { person: Person; index: number; lang
   return (
     <article
       style={vars({ '--d': `${index * 150}ms` })}
-      className="load-rise grid items-center gap-5 rounded-[28px] border border-white/10 bg-white/[0.04] p-4 shadow-[0_0_60px_rgb(31_143_207/0.15)] sm:grid-cols-[200px_1fr] sm:p-5"
+      className="load-rise grid items-center gap-5 rounded-[28px] border border-white/10 bg-white/[0.04] p-4 shadow-[0_0_60px_rgb(0_96_250/0.15)] sm:grid-cols-[200px_1fr] sm:p-5"
     >
-      <div className="relative aspect-square overflow-hidden rounded-2xl bg-[radial-gradient(80%_75%_at_50%_100%,#1f8fcf,#0a1d30_75%)]">
+      <div className="relative aspect-square overflow-hidden rounded-2xl bg-[radial-gradient(80%_75%_at_50%_100%,#1d4ed8,#0b1428_75%)]">
         {img && <Image src={img.src} alt={name} fill sizes="200px" className="object-cover object-top" priority />}
       </div>
       <div className="px-1 pb-2 sm:pb-0">
-        <p className="w-fit rounded-lg bg-blue-soft px-3 py-1 text-[0.85rem] font-bold text-ink">{personPosition(person.position, lang)}</p>
+        <p className="w-fit rounded-lg bg-tag px-3 py-1 text-[0.85rem] font-bold text-ink">{personPosition(person.position, lang)}</p>
         <h2 className="mt-3 text-[1.6rem] font-bold leading-snug text-white md:text-[2rem]">
           <Link href={`/leadership/${person.slug}`} className="hover:underline">
             {name}
@@ -125,7 +125,7 @@ export default async function LeadershipPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <div className="lattice-night absolute inset-0 [mask-image:radial-gradient(70%_40%_at_50%_0%,#000,transparent)]" />
-        <div className="absolute left-1/2 top-24 h-[420px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(31_143_207/0.4),transparent)] blur-2xl" />
+        <div className="absolute left-1/2 top-24 h-[420px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(0_96_250/0.4),transparent)] blur-2xl" />
       </div>
 
       <EyebrowTab text={t.eyebrow} />
@@ -147,7 +147,7 @@ export default async function LeadershipPage() {
           <section className="mt-20" aria-labelledby="secretariat">
             <h2 id="secretariat" className="text-center text-[1.9rem] font-bold text-white md:text-[2.5rem]">
               {t.secretariat.before}
-              <span className="text-blue-soft">{t.secretariat.hl}</span>
+              <span className="text-mint">{t.secretariat.hl}</span>
               {t.secretariat.after}
             </h2>
             <ul className="mx-auto mt-10 grid max-w-6xl grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">

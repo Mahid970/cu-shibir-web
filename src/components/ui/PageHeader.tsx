@@ -11,7 +11,7 @@ export function PageHeader({ title, lede, children }: { title: string | TitlePar
         {[
           ['top-[10%] left-[10%] size-10 md:size-14 text-pale-4', '22s'],
           ['top-[52%] left-[82%] size-12 md:size-16 text-cta/30', '28s'],
-          ['top-[68%] left-[5%] size-8 md:size-10 text-blue-soft/45', '18s'],
+          ['top-[68%] left-[5%] size-8 md:size-10 text-glow/45', '18s'],
         ].map(([p, dur]) => (
           <StarGlyph key={p} className={`page-star absolute ${p}`} style={vars({ '--dur': dur })} />
         ))}

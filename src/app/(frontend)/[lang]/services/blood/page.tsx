@@ -87,8 +87,8 @@ export default async function BloodPage() {
           <SectionTitle id="how-title" parts={[t.how[0], { hl: t.how[1] }]} />
           <ol className="mx-auto mt-10 grid max-w-5xl gap-4 md:grid-cols-3">
             {t.steps.map((s, i) => (
-              <li key={s.title} data-reveal="fade" style={vars({ '--d': `${i * 100}ms` })} className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_31_51/0.06)] md:p-7">
-                <span aria-hidden="true" className="grid size-10 place-items-center rounded-full bg-[#fbeaea] text-[1.1rem] font-bold text-crimson">
+              <li key={s.title} data-reveal="fade" style={vars({ '--d': `${i * 100}ms` })} className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_15_46/0.06)] md:p-7">
+                <span aria-hidden="true" className="grid size-10 place-items-center rounded-full bg-[#fce7f3] text-[1.1rem] font-bold text-[#be185d]">
                   {num(lang, i + 1)}
                 </span>
                 <h3 className="mt-4 text-[1.15rem] font-bold text-ink">{s.title}</h3>
@@ -102,12 +102,12 @@ export default async function BloodPage() {
           <SectionTitle id="list-title" parts={[t.list[0], { hl: t.list[1] }]} />
           <p className="lede">{t.listLede}</p>
           {stats.total === 0 ? (
-            <p className="mx-auto mt-10 max-w-xl rounded-3xl bg-white p-8 text-center text-[1.05rem] text-muted shadow-[0_4px_24px_rgb(11_31_51/0.06)]">{t.empty}</p>
+            <p className="mx-auto mt-10 max-w-xl rounded-3xl bg-white p-8 text-center text-[1.05rem] text-muted shadow-[0_4px_24px_rgb(11_15_46/0.06)]">{t.empty}</p>
           ) : (
             <ul className="mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4">
               {stats.groups.map((g) => (
-                <li key={g.group} className="rounded-3xl bg-white p-5 text-center shadow-[0_4px_24px_rgb(11_31_51/0.06)]">
-                  <p className="font-[family-name:var(--font-en)] text-[2rem] font-bold leading-none text-crimson">{g.group}</p>
+                <li key={g.group} className="rounded-3xl bg-white p-5 text-center shadow-[0_4px_24px_rgb(11_15_46/0.06)]">
+                  <p className="font-[family-name:var(--font-en)] text-[2rem] font-bold leading-none text-[#be185d]">{g.group}</p>
                   <p className="mt-3 font-semibold text-ink">{t.donors(num(lang, g.donors))}</p>
                   <p className="mt-0.5 text-[0.88rem] text-subtle">{t.ready(num(lang, g.ready))}</p>
                 </li>

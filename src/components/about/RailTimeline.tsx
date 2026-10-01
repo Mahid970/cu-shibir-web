@@ -15,13 +15,13 @@ const GAP = 440 // px between stations on the pinned rail
 
 /** Side view of the CU shuttle: engine and two carriages, windows lit. */
 function Train({ lit }: { lit: boolean }) {
-  const win = lit ? '#c4ecfc' : '#cbd5e1'
+  const win = lit ? '#fde68a' : '#cbd5e1'
   return (
     <svg viewBox="0 0 250 56" className="h-12 w-[214px] drop-shadow-[0_8px_18px_rgb(0_0_0/0.4)]" aria-hidden="true">
       {[0, 84].map((x) => (
         <g key={x} transform={`translate(${x} 6)`}>
-          <rect width="78" height="34" rx="6" fill="#114575" />
-          <rect y="22" width="78" height="5" fill="#5cc8f2" />
+          <rect width="78" height="34" rx="6" fill="#1e3a8a" />
+          <rect y="22" width="78" height="5" fill="#ffc561" />
           {[8, 30, 52].map((w) => (
             <rect key={w} x={w} y="6" width="16" height="11" rx="2" fill={win} />
           ))}
@@ -30,13 +30,13 @@ function Train({ lit }: { lit: boolean }) {
         </g>
       ))}
       <g transform="translate(168 6)">
-        <path d="M0 6a6 6 0 0 1 6-6h52l20 20v14H0z" fill="#1f8fcf" />
-        <rect y="22" width="78" height="5" fill="#5cc8f2" />
+        <path d="M0 6a6 6 0 0 1 6-6h52l20 20v14H0z" fill="#b91c1c" />
+        <rect y="22" width="78" height="5" fill="#ffc561" />
         <rect x="8" y="6" width="16" height="11" rx="2" fill={win} />
         <path d="M34 6h22l12 12H34z" fill={win} />
         <circle cx="16" cy="40" r="6" fill="#0f172a" stroke="#64748b" strokeWidth="2" />
         <circle cx="60" cy="40" r="6" fill="#0f172a" stroke="#64748b" strokeWidth="2" />
-        <circle cx="76" cy="26" r="2.5" fill="#ffffff" />
+        <circle cx="76" cy="26" r="2.5" fill="#fef3c7" />
       </g>
     </svg>
   )
@@ -106,7 +106,7 @@ export function RailTimeline({ stops }: { stops: Stop[] }) {
   const heading = (
     <div className="wrap">
       <h2 id="history-title" className="text-[2rem] font-bold text-white md:text-[2.6rem]">
-        {t.title[0]} <span className="text-blue-soft">{t.title[1]}</span>
+        {t.title[0]} <span className="text-mint">{t.title[1]}</span>
       </h2>
       <p className="mt-2 max-w-2xl text-[1.02rem] text-slate-400">{t.lede}</p>
     </div>
@@ -191,7 +191,7 @@ export function RailTimeline({ stops }: { stops: Stop[] }) {
 
         <div className="wrap relative mt-4">
           <div className="h-1 overflow-hidden rounded-full bg-white/10" aria-hidden="true">
-            <div className="h-full origin-left rounded-full bg-[linear-gradient(90deg,#c4ecfc,#8fdcff,#5cc8f2,#1fa3dc)]" style={{ transform: 'scaleX(var(--p, 0))' }} />
+            <div className="h-full origin-left rounded-full bg-[linear-gradient(90deg,#6cc6ee,#5fd4ff,#3ee0a4,#ffc561,#ff9f5e)]" style={{ transform: 'scaleX(var(--p, 0))' }} />
           </div>
         </div>
       </div>

@@ -94,10 +94,10 @@ export default async function QuestionsPage({ searchParams }: { searchParams: Pr
       </PageHeader>
 
       <div className="wrap max-w-5xl py-12 md:py-16">
-        <form role="search" className="grid gap-3 rounded-3xl bg-white p-5 shadow-[0_4px_24px_rgb(11_31_51/0.06)] sm:grid-cols-[1.2fr_1fr_auto] sm:items-end md:p-6">
+        <form role="search" className="grid gap-3 rounded-3xl bg-white p-5 shadow-[0_4px_24px_rgb(11_15_46/0.06)] sm:grid-cols-[1.2fr_1fr_auto] sm:items-end md:p-6">
           <label className="grid min-w-0 gap-1.5">
             <span className="font-semibold text-ink">{t.department}</span>
-            <select name="dept" defaultValue={department ?? ''} className="h-12 w-full min-w-0 rounded-xl border border-[#d3dee8] bg-white px-3 text-ink">
+            <select name="dept" defaultValue={department ?? ''} className="h-12 w-full min-w-0 rounded-xl border border-[#d9dde8] bg-white px-3 text-ink">
               <option value="">{t.all}</option>
               {FACULTIES.map((f) => (
                 <optgroup key={f.value} label={optionLabel(f, lang)}>
@@ -112,7 +112,7 @@ export default async function QuestionsPage({ searchParams }: { searchParams: Pr
           </label>
           <label className="grid min-w-0 gap-1.5">
             <span className="font-semibold text-ink">{t.q}</span>
-            <input name="q" defaultValue={q} placeholder="CSE 211" className="h-12 w-full min-w-0 rounded-xl border border-[#d3dee8] px-4 text-ink" />
+            <input name="q" defaultValue={q} placeholder="CSE 211" className="h-12 w-full min-w-0 rounded-xl border border-[#d9dde8] px-4 text-ink" />
           </label>
           <button type="submit" className="btn btn-gradient h-12">
             <Search className="size-5" />
@@ -132,7 +132,7 @@ export default async function QuestionsPage({ searchParams }: { searchParams: Pr
                 const first = papers[0]
                 const dept = DEPARTMENTS.find((d) => d.value === first.department)
                 return (
-                  <li key={`${first.department}-${first.courseCode}`} className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_31_51/0.06)]">
+                  <li key={`${first.department}-${first.courseCode}`} className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_15_46/0.06)]">
                     <h2 className="text-[1.15rem] font-bold text-ink">
                       <span className="font-[family-name:var(--font-en)]">{first.courseCode}</span>
                       {first.courseTitle && <span className="font-semibold text-ink/80">: {first.courseTitle}</span>}

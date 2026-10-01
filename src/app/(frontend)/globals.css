@@ -1,45 +1,54 @@
 @import 'tailwindcss';
 
 /* ------------------------------------------------------------------
-   Design system: "navy and sky" — docs/design/system.md
-   Shibir's own navy for text and actions, one sky blue for accents and
-   light, deep navy night sections, a thin line grid for texture, and
-   lively motion that answers the reader. No other hues except status.
+   Design system: "sea, hills and dawn" — docs/design/system.md
+   Sea-blue from the Shibir emblem, green of the CU hills for actions,
+   a dawn amber on deep sea-navy night sections, an eight-point star
+   lattice for texture, and lively motion that answers the reader.
    ------------------------------------------------------------------ */
 
 :root {
-  --bg: #f5f8fb;
+  --bg: #f2f6f6;
   --white: #ffffff;
-  --ink: #0b1f33;
-  --text: #1b2a38;
-  --muted: #55636f;
-  --subtle: #5e6b77; /* 5.4:1 on white (WCAG AA) */
-  --border: #e2e9ef;
+  --ink: #0a2233;
+  --text: #1a2a33;
+  --muted: #56646c;
+  --subtle: #62707a; /* 5.1:1 on white (WCAG AA) */
+  --border: #e1e8ea;
 
-  --primary: #114575; /* Shibir navy, 9.8:1 on white */
-  --primary-hover: #17599a;
-  --blue: #1fa3dc; /* sky: accents, graphics, focus */
-  --blue-soft: #5cc8f2; /* sky on night backgrounds */
-  --blue-deep: #0a2f52;
-  --pale: #eaf3f9;
-  --pale-2: #e3eef6;
-  --pale-3: #cfe3f0;
-  --pale-4: #b5d5ea;
+  --primary: #0b6fa4; /* sea blue, 5.4:1 on white */
+  --blue: #1c9bd6;
+  --blue-soft: #5cc0ea;
+  --blue-deep: #06456a;
+  --pale: #e8f4f8;
+  --pale-2: #e0f0f6;
+  --pale-3: #c9e6f1;
+  --pale-4: #afdaeb;
 
-  --night: #071a2c;
-  --night-card: #0c2238;
-  --navy: #0e2e4d;
-  --deep: #0a1d30;
-  --success: #1f9d55;
+  --cta: #19c37d; /* hill green, ink text 7:1 */
+  --cta-hover: #2fd690;
+  --tag: #ffd27f;
+  --amber: #ffc561;
+
+  --night: #04202e;
+  --night-card: #062a3b;
+  --navy: #07334d;
+  --deep: #052636;
+  --glow: #ffc561; /* dawn amber on night sections */
+  --glow-band: #ffd27f;
+  --mint: #3ee0a4;
+  --aqua: #5fd4ff;
+  --success: #1fae5d;
   --danger: #e5402f;
   --crimson: #c0262d;
 
-  --gradient: linear-gradient(120deg, #1f8fcf 0%, #114575 55%, #0a2f52 100%);
-  --gradient-sky: linear-gradient(90deg, #5cc8f2 0%, #1fa3dc 100%);
-  --grid-line: rgb(17 69 117 / 0.07);
-  --grid-line-night: rgb(255 255 255 / 0.05);
+  --gradient: linear-gradient(120deg, #1596d1 0%, #0b6fa4 45%, #06456a 100%);
+  --gradient-text: linear-gradient(100deg, #1ea5dd 0%, #0b6fa4 45%, #0a2f4a 100%);
+  --gradient-green: linear-gradient(100deg, #8af5c7, #19c37d);
+  --gradient-glow: linear-gradient(90deg, #ffd27f 0%, #ff9f5e 100%);
+  --gradient-teal: linear-gradient(90deg, #5fe08a 0%, #3fb6a8 100%);
 
-  --shadow-card: 0 1px 0 rgb(11 31 51 / 0.04), 0 10px 30px rgb(11 31 51 / 0.07);
+  --shadow-card: 0 1px 0 rgb(10 34 51 / 0.04), 0 10px 30px rgb(10 34 51 / 0.07);
   --shadow-soft: 12px 12px 24px rgb(0 0 0 / 0.05);
   --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -64,10 +73,16 @@
   --color-pale-2: var(--pale-2);
   --color-pale-3: var(--pale-3);
   --color-pale-4: var(--pale-4);
+  --color-cta: var(--cta);
+  --color-amber: var(--amber);
+  --color-tag: var(--tag);
   --color-night: var(--night);
   --color-night-card: var(--night-card);
   --color-navy: var(--navy);
   --color-deep: var(--deep);
+  --color-glow: var(--glow);
+  --color-mint: var(--mint);
+  --color-aqua: var(--aqua);
   --color-success: var(--success);
   --color-danger: var(--danger);
   --color-crimson: var(--crimson);
@@ -133,7 +148,7 @@
     background-size: 88px 88px;
   }
   .hero-wash {
-    background: linear-gradient(192deg, rgb(255 255 255 / 0) 6%, rgb(227 238 246 / 0.85) 42%, rgb(207 227 240 / 0.6) 80%);
+    background: linear-gradient(192deg, rgb(255 255 255 / 0) 6%, rgb(224 242 248 / 0.85) 40%, rgb(214 244 230 / 0.7) 78%);
   }
   .lattice-night {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.07' stroke-width='1'%3E%3Cpath d='M44 20 68 44 44 68 20 44Z'/%3E%3Cpath d='M27 27h34v34H27z'/%3E%3Cpath d='M27 27 0 0M61 27 88 0M61 61l27 27M27 61 0 88M44 20V0M68 44h20M44 68v20M20 44H0'/%3E%3C/g%3E%3C/svg%3E");
@@ -227,33 +242,18 @@
     font-size: 0.95rem;
     font-weight: 600;
   }
-  /* Main action: navy on light pages, sky on night sections (.btn-sky). One per screen. */
   .btn-cta {
-    --ring: rgb(17 69 117 / 0.45);
-    background: var(--primary);
-    color: var(--white);
-    box-shadow: 0 10px 28px rgb(17 69 117 / 0.3);
+    background: var(--cta);
+    color: var(--ink);
+    box-shadow: 0 10px 28px rgb(25 195 125 / 0.38);
   }
   .btn-cta:hover {
-    background: var(--primary-hover);
+    background: var(--cta-hover);
     transform: translateY(-2px);
-    box-shadow: 0 14px 32px rgb(17 69 117 / 0.4);
-  }
-  .btn-sky {
-    --ring: rgb(92 200 242 / 0.55);
-    background: var(--blue-soft);
-    color: var(--ink);
-    box-shadow: 0 10px 28px rgb(31 163 220 / 0.35);
-  }
-  .btn-sky:hover {
-    background: #7fd5f6;
-    transform: translateY(-2px);
-    box-shadow: 0 14px 32px rgb(31 163 220 / 0.45);
+    box-shadow: 0 14px 32px rgb(25 195 125 / 0.48);
   }
   .btn-cta::before,
-  .btn-cta::after,
-  .btn-sky::before,
-  .btn-sky::after {
+  .btn-cta::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -261,8 +261,7 @@
     border-radius: inherit;
     animation: pulse-ring 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
   }
-  .btn-cta::after,
-  .btn-sky::after {
+  .btn-cta::after {
     animation-delay: 1.2s;
   }
   .btn-gradient {
@@ -296,6 +295,13 @@
   .btn-ghost-light:hover {
     background: rgb(255 255 255 / 0.1);
   }
+  .btn-glow {
+    background: var(--glow);
+    color: var(--ink);
+  }
+  .btn-glow:hover {
+    opacity: 0.9;
+  }
 
   /* ---------- Cards, chips ---------- */
   .card {
@@ -321,8 +327,8 @@
     background: rgb(200 32 40 / 0.1);
     color: var(--crimson);
   }
-  .chip-sky {
-    background: var(--blue-soft);
+  .chip-amber {
+    background: var(--tag);
     color: var(--ink);
   }
   /* Gradient border via padding-box/border-box (set --fill and --edge) */
@@ -337,7 +343,7 @@
     font-family: var(--font-mono);
   }
 
-  /* Label that opens a night section: sky text in a thin pill */
+  /* Label that opens a night section: a star glyph and amber text in a thin pill */
   .eyebrow-tab {
     display: flex;
     align-items: center;
@@ -346,29 +352,29 @@
     width: fit-content;
     border-radius: 999px;
     padding: 0.4rem 1.1rem 0.4rem 0.8rem;
-    box-shadow: inset 0 0 0 1px rgb(92 200 242 / 0.35);
-    background: rgb(92 200 242 / 0.07);
+    box-shadow: inset 0 0 0 1px rgb(255 197 97 / 0.35);
+    background: rgb(255 197 97 / 0.07);
   }
   .eyebrow-tab svg {
     width: 1rem;
     height: 1rem;
-    color: var(--blue-soft);
+    color: var(--glow);
     animation: star-turn 12s linear infinite;
   }
   .eyebrow-tab > span {
     display: block;
     font-size: 0.95rem;
     font-weight: 700;
-    color: var(--blue-soft);
+    color: var(--glow);
     white-space: nowrap;
   }
 
-  /* Light-sweep heading on night sections: white text, a sky band wipes across */
+  /* Light-sweep heading on night sections: white text, an amber band wipes across */
   .sweep {
     position: relative;
   }
   .sweep .glow {
-    color: var(--blue-soft);
+    color: var(--glow-band);
   }
   .sweep__layer {
     display: none;
@@ -386,7 +392,7 @@
   }
   .sweep__band,
   .sweep__band .glow {
-    color: var(--blue-soft);
+    color: var(--glow-band);
   }
   .sweep__cover {
     clip-path: inset(0 0 0 0);
@@ -407,7 +413,7 @@
   .prose-read {
     font-size: 1.125rem;
     line-height: 1.85;
-    color: var(--text);
+    color: #2a2a2a;
     max-width: 70ch;
   }
   .prose-read > * + * {
@@ -499,7 +505,7 @@
   .float-icon svg,
   .float-icon img,
   .art-shadow {
-    filter: drop-shadow(0 12px 16px rgb(11 31 51 / 0.18));
+    filter: drop-shadow(0 12px 16px rgb(11 15 46 / 0.18));
   }
 }
 
@@ -508,7 +514,11 @@
   display: none;
 }
 .faq[open] .faq-q {
-  color: var(--primary);
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 @supports (interpolate-size: allow-keywords) {
   .faq {
@@ -527,20 +537,20 @@
 }
 
 /* ------------------------------------------------------------------
-   Home hero: deep navy lifting to sky blue over the hills.
+   Home hero: night sea-navy warming to dawn over the hills.
    ------------------------------------------------------------------ */
-.hero-sky {
+.hero-dawn {
   background:
-    radial-gradient(90% 60% at 18% 0%, rgb(31 163 220 / 0.22), transparent 62%),
-    linear-gradient(180deg, #06182a 0%, #0a2742 48%, #0f3a60 78%, #134a78 100%);
+    radial-gradient(90% 60% at 18% 0%, rgb(28 155 214 / 0.28), transparent 62%),
+    linear-gradient(180deg, #031b27 0%, #052a3d 48%, #0a3a55 78%, #11506a 100%);
 }
-/* Light just under the horizon: a sky glow that breathes very slowly */
-.hero-glow {
-  background: radial-gradient(closest-side, rgb(92 200 242 / 0.42), rgb(31 163 220 / 0.14) 55%, transparent);
+/* The sun just under the horizon: a warm glow that breathes very slowly */
+.dawn-sun {
+  background: radial-gradient(closest-side, rgb(255 190 110 / 0.55), rgb(255 150 90 / 0.18) 55%, transparent);
   filter: blur(8px);
-  animation: glow-breathe 9s ease-in-out infinite;
+  animation: dawn-breathe 9s ease-in-out infinite;
 }
-@keyframes glow-breathe {
+@keyframes dawn-breathe {
   0%,
   100% {
     opacity: 0.8;
@@ -565,11 +575,27 @@
     transform: translateY(40px) scaleY(0.7);
   }
 }
+/* Amber gradient words that slowly shine (the slogan's second half on night backgrounds) */
+.text-dawn {
+  background-image: linear-gradient(95deg, #ffd27f 0%, #ffb35e 35%, #ff8f5e 60%, #ffd27f 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shine 6s linear infinite;
+}
 /* The slogan settles: letters arrive spaced out and soft, then draw together and sharpen. Visible
    from the first paint (it is the LCP text); only spacing and focus move. */
 .motion .type-settle {
   animation: type-settle 1.3s var(--ease-out) both;
   animation-delay: var(--d, 0ms);
+}
+.motion .type-settle.text-dawn {
+  animation:
+    type-settle 1.3s var(--ease-out) both,
+    shine 6s linear infinite;
+  animation-delay: var(--d, 0ms), 0s;
 }
 @keyframes type-settle {
   from {
@@ -610,15 +636,15 @@
 }
 .journey-sky {
   background:
-    radial-gradient(80% 60% at 70% 0%, rgb(31 163 220 / 0.16), transparent 60%),
-    linear-gradient(180deg, #05131f 0%, #071a2c 55%, #0b2540 100%);
+    radial-gradient(80% 60% at 70% 0%, rgb(28 155 214 / 0.18), transparent 60%),
+    linear-gradient(180deg, #021620 0%, #04202e 55%, #072c3d 100%);
 }
-/* Light rises as the journey goes on (--p is 0 → 1) */
-.journey-light {
+/* Dawn rises as the journey goes on (--p is 0 → 1) */
+.journey-dawn {
   opacity: calc(var(--p, 0) * 0.95);
   background:
-    radial-gradient(70% 55% at 80% 105%, rgb(92 200 242 / 0.35), transparent 70%),
-    linear-gradient(180deg, transparent 35%, rgb(19 74 120 / 0.8) 100%);
+    radial-gradient(70% 55% at 80% 105%, rgb(255 178 100 / 0.55), transparent 70%),
+    linear-gradient(180deg, transparent 35%, rgb(17 80 106 / 0.8) 100%);
 }
 .journey-stars {
   opacity: calc(1 - var(--p, 0) * 0.7);
@@ -653,11 +679,11 @@
 .journey-card:focus-visible {
   background: rgb(255 255 255 / 0.09);
   box-shadow:
-    inset 0 0 0 1px rgb(92 200 242 / 0.6),
-    0 20px 50px rgb(31 163 220 / 0.2);
+    inset 0 0 0 1px rgb(255 197 97 / 0.6),
+    0 20px 50px rgb(255 170 80 / 0.2);
 }
 .journey-card:focus-visible {
-  outline: 3px solid var(--blue-soft);
+  outline: 3px solid var(--glow);
   outline-offset: 3px;
 }
 .journey-arch img {
@@ -670,20 +696,20 @@
   transform: translateX(4px);
 }
 .journey-node {
-  background: var(--blue-soft);
+  background: var(--glow);
   color: var(--ink);
-  box-shadow: 0 0 0 6px rgb(92 200 242 / 0.15), 0 0 24px rgb(92 200 242 / 0.6);
+  box-shadow: 0 0 0 6px rgb(255 197 97 / 0.15), 0 0 24px rgb(255 197 97 / 0.6);
   transition: all 0.6s var(--ease-out);
 }
 .journey-post {
-  background: var(--blue-soft);
+  background: var(--glow);
   transition: background-color 0.6s var(--ease-out);
 }
 .journey-milestone {
-  color: var(--blue-soft);
+  color: var(--glow);
   transition: color 0.6s var(--ease-out);
 }
-/* Before the lamp reaches a station its light is off and its portrait grey */
+/* Before the lamp reaches a station its lantern is dark and its portrait grey */
 .motion .journey-station:not([data-lit]) .journey-card,
 .motion .journey-vstation:not([data-lit]) .journey-card {
   opacity: 0.5;
@@ -708,18 +734,18 @@
   transform: translateY(-8px) scale(1.04);
   background: rgb(255 255 255 / 0.08);
   box-shadow:
-    inset 0 0 0 1px rgb(92 200 242 / 0.55),
-    0 24px 60px rgb(31 163 220 / 0.22);
+    inset 0 0 0 1px rgb(255 197 97 / 0.55),
+    0 24px 60px rgb(255 170 80 / 0.22);
 }
 .journey-station[data-current] .journey-node {
   animation: node-pulse 1.8s ease-out infinite;
 }
 @keyframes node-pulse {
   0% {
-    box-shadow: 0 0 0 0 rgb(92 200 242 / 0.55), 0 0 24px rgb(92 200 242 / 0.6);
+    box-shadow: 0 0 0 0 rgb(255 197 97 / 0.55), 0 0 24px rgb(255 197 97 / 0.6);
   }
   100% {
-    box-shadow: 0 0 0 16px rgb(92 200 242 / 0), 0 0 24px rgb(92 200 242 / 0.6);
+    box-shadow: 0 0 0 16px rgb(255 197 97 / 0), 0 0 24px rgb(255 197 97 / 0.6);
   }
 }
 .journey-lamp {
@@ -727,21 +753,21 @@
   height: 28px;
   margin-left: 0;
   border-radius: 999px;
-  background: radial-gradient(circle, #ffffff 0%, #c4ecfc 35%, #5cc8f2 60%, transparent 72%);
-  box-shadow: 0 0 40px 14px rgb(92 200 242 / 0.4);
+  background: radial-gradient(circle, #fff6df 0%, #ffd27f 35%, #ff9f5e 60%, transparent 72%);
+  box-shadow: 0 0 40px 14px rgb(255 190 100 / 0.45);
   animation: lamp-flicker 2.6s ease-in-out infinite;
 }
 @keyframes lamp-flicker {
   0%,
   100% {
-    box-shadow: 0 0 40px 14px rgb(92 200 242 / 0.4);
+    box-shadow: 0 0 40px 14px rgb(255 190 100 / 0.45);
   }
   50% {
-    box-shadow: 0 0 52px 20px rgb(92 200 242 / 0.55);
+    box-shadow: 0 0 52px 20px rgb(255 190 100 / 0.6);
   }
 }
 .journey-trail {
-  filter: drop-shadow(0 0 6px rgb(92 200 242 / 0.8));
+  filter: drop-shadow(0 0 6px rgb(255 197 97 / 0.8));
 }
 .journey-year {
   animation: year-roll 0.55s var(--ease-out) both;
@@ -768,8 +794,8 @@
   background: rgb(255 255 255 / 0.12);
 }
 .journey-rail::after {
-  background: linear-gradient(180deg, #a5e4fb, #1fa3dc);
-  box-shadow: 0 0 10px rgb(92 200 242 / 0.7);
+  background: linear-gradient(180deg, #ffd27f, #ff9f5e);
+  box-shadow: 0 0 10px rgb(255 197 97 / 0.7);
   transform-origin: top;
   transform: scaleY(1);
 }
@@ -777,14 +803,14 @@
   transform: scaleY(var(--rail, 0));
 }
 
-/* A martyr's page: the portrait comes from grey to colour under a slow halo, and a rail
+/* A martyr's page: the portrait warms from grey to colour under a slow halo, and a rail
    beside the story fills as it is read. */
 .martyr-halo {
-  background: radial-gradient(closest-side, rgb(92 200 242 / 0.4), rgb(31 163 220 / 0.12) 60%, transparent);
+  background: radial-gradient(closest-side, rgb(255 197 97 / 0.45), rgb(255 159 94 / 0.12) 60%, transparent);
   filter: blur(18px);
-  animation: glow-breathe-soft 7s ease-in-out infinite;
+  animation: dawn-breathe-soft 7s ease-in-out infinite;
 }
-@keyframes glow-breathe-soft {
+@keyframes dawn-breathe-soft {
   0%,
   100% {
     opacity: 0.75;
@@ -795,7 +821,7 @@
 }
 .martyr-arch {
   box-shadow:
-    0 0 0 1px rgb(92 200 242 / 0.5),
+    0 0 0 1px rgb(255 197 97 / 0.55),
     0 30px 70px rgb(0 0 0 / 0.45);
 }
 .motion .martyr-arch img {
@@ -821,16 +847,16 @@
   background: var(--pale-3);
 }
 .story-thread::after {
-  background: linear-gradient(180deg, var(--blue), var(--primary));
+  background: linear-gradient(180deg, var(--cta), var(--primary));
   transform-origin: top;
 }
 .motion .story-thread::after {
   transform: scaleY(var(--rail, 0));
 }
 .story-node {
-  background: var(--primary);
+  background: var(--cta);
   color: var(--white);
-  box-shadow: 0 0 0 5px rgb(17 69 117 / 0.12);
+  box-shadow: 0 0 0 5px rgb(25 195 125 / 0.15);
   transition: all 0.5s var(--ease-out);
 }
 .motion .story-part:not([data-lit]) .story-node {
@@ -893,7 +919,7 @@
 }
 .ps-answer:hover {
   transform: translateY(-4px);
-  box-shadow: 0 26px 50px rgb(17 69 117 / 0.35);
+  box-shadow: 0 26px 50px rgb(7 90 58 / 0.35);
 }
 .ps-spark {
   opacity: 0;
@@ -1190,11 +1216,11 @@
 }
 @keyframes pulse-ring {
   0% {
-    box-shadow: 0 0 0 0 var(--ring, rgb(17 69 117 / 0.45));
+    box-shadow: 0 0 0 0 rgb(25 195 125 / 0.5);
   }
   70%,
   100% {
-    box-shadow: 0 0 6px 14px transparent;
+    box-shadow: 0 0 6px 14px rgb(25 195 125 / 0);
   }
 }
 @keyframes play-pulse {

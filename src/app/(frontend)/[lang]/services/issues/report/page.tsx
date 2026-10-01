@@ -54,7 +54,7 @@ export default async function ReportIssuePage() {
       lede={t.lede}
       points={t.points}
       aside={
-        <div className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_31_51/0.06)]">
+        <div className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgb(11_15_46/0.06)]">
           <p className="font-bold text-ink">{t.aside.title}</p>
           <p className="mt-1 text-[0.95rem] text-muted">{t.aside.text}</p>
           <Link href="/services/issues/status" className="btn btn-outline-blue btn-sm mt-4">

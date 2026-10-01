@@ -37,7 +37,7 @@ export function CampusMap({ places }: { places: MapPlace[] }) {
   const used = PLACE_CATEGORIES.filter((c) => places.some((p) => p.category === c.value))
 
   return (
-    <div className="overflow-hidden rounded-3xl bg-white shadow-[0_4px_24px_rgb(11_31_51/0.06)]">
+    <div className="overflow-hidden rounded-3xl bg-white shadow-[0_4px_24px_rgb(11_15_46/0.06)]">
       {open ? (
         <MapView places={places} label={t.label} />
       ) : (

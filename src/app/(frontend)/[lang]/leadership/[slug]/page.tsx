@@ -128,7 +128,7 @@ export default async function PersonPage({ params }: Props) {
       <header className="relative isolate overflow-hidden bg-deep pb-28 pt-8 text-white md:pb-36 md:pt-12">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
           <div className="lattice-night absolute inset-0 [mask-image:radial-gradient(70%_60%_at_30%_0%,#000,transparent)]" />
-          <div className="absolute -left-40 top-10 h-[380px] w-[700px] rounded-full bg-[radial-gradient(closest-side,rgb(31_143_207/0.45),transparent)] blur-2xl" />
+          <div className="absolute -left-40 top-10 h-[380px] w-[700px] rounded-full bg-[radial-gradient(closest-side,rgb(0_96_250/0.45),transparent)] blur-2xl" />
         </div>
         <div className="wrap max-w-5xl">
           <nav aria-label={t.crumbs} className="load-up flex flex-wrap gap-x-2 text-[0.92rem] text-white/60">
@@ -145,7 +145,7 @@ export default async function PersonPage({ params }: Props) {
 
       <div className="wrap relative -mt-24 max-w-5xl md:-mt-32">
         <div className="card grid gap-8 p-5 sm:p-8 md:grid-cols-[280px_1fr] md:gap-10 md:p-10">
-          <div className="load-scale relative mx-auto aspect-[4/4.6] w-full max-w-[280px] overflow-hidden rounded-2xl bg-[radial-gradient(80%_75%_at_50%_100%,#1f8fcf,#0a1d30_75%)] shadow-[0_18px_40px_rgb(10_47_82/0.25)]">
+          <div className="load-scale relative mx-auto aspect-[4/4.6] w-full max-w-[280px] overflow-hidden rounded-2xl bg-[radial-gradient(80%_75%_at_50%_100%,#1d4ed8,#0b1428_75%)] shadow-[0_18px_40px_rgb(0_43_112/0.25)]">
             {img && (
               <ViewTransition name={`person-${person.slug}`} share="morph" default="none">
                 <Image src={img.src} alt={name} fill priority sizes="280px" className="object-cover object-top" />
@@ -153,7 +153,7 @@ export default async function PersonPage({ params }: Props) {
             )}
           </div>
           <div className="min-w-0">
-            <p className="load-up w-fit rounded-lg bg-blue-soft px-3 py-1 text-[0.9rem] font-bold text-ink" style={vars({ '--d': '80ms' })}>
+            <p className="load-up w-fit rounded-lg bg-tag px-3 py-1 text-[0.9rem] font-bold text-ink" style={vars({ '--d': '80ms' })}>
               {position}
             </p>
             <h1 className="load-rise mt-3 text-[2rem] font-bold leading-snug text-ink md:text-[2.6rem]" style={vars({ '--d': '160ms' })}>

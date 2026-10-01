@@ -68,8 +68,8 @@ const T = copy(
 )
 
 const PILLAR_STYLE = [
-  { fill: '#f3f9fd', edge: 'linear-gradient(135deg,#1fa3dc,#b5e3f7 55%,#eaf3f9)' },
-  { fill: '#f2f6fa', edge: 'linear-gradient(135deg,#114575,#9cc3e0 55%,#eaf3f9)' },
+  { fill: '#f0f8fb', edge: 'linear-gradient(135deg,#1c9bd6,#9fdcf2 55%,#e8f6fa)' },
+  { fill: '#effaf3', edge: 'linear-gradient(135deg,#22c55e,#bbf7d0 55%,#effaf3)' },
 ]
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -90,7 +90,7 @@ export default async function AboutPage() {
       <PageHeader title={[t.title[0], { hl: t.title[1] }]} lede={t.lede} />
 
       <section className="relative isolate overflow-hidden bg-night" aria-label={t.emblem}>
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(45%_70%_at_50%_50%,rgb(31_163_220/0.2),transparent_70%)]" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(45%_70%_at_50%_50%,rgb(53_100_255/0.22),transparent_70%)]" />
         <div className="wrap">
           <ParticleEmblem slogan={t.slogan} />
         </div>
@@ -111,7 +111,7 @@ export default async function AboutPage() {
           </div>
           {photo && (
             <div data-reveal="scale" className="relative">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] border-[8px] border-white bg-pale-3 shadow-[0_30px_60px_rgb(11_31_51/0.15)]">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] border-[8px] border-white bg-pale-3 shadow-[0_30px_60px_rgb(11_15_46/0.15)]">
                 <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1024px) 600px, 100vw" className="object-cover" />
               </div>
             </div>
@@ -137,7 +137,7 @@ export default async function AboutPage() {
       {martyrs.length > 0 && (
         <div className="bg-deep pb-14">
           <Link href="/martyrs" className="wrap flex items-center justify-center gap-3 text-center font-semibold text-slate-200 hover:text-white">
-            <span aria-hidden="true" className="size-2 rounded-full bg-blue-soft shadow-[0_0_12px_#c4ecfc]" />
+            <span aria-hidden="true" className="size-2 rounded-full bg-sky-200 shadow-[0_0_12px_#e0f2fe]" />
             {t.martyrs}
           </Link>
         </div>

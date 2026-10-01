@@ -45,9 +45,9 @@ function sampleText(lines: string[], W: number, H: number, font: string, step: n
   for (let y = 0; y < H; y += step) {
     for (let x = 0; x < W; x += step) {
       if (data[(y * W + x) * 4 + 3] > 128) {
-        // sky → pale sky across the line
+        // mint → white → sky across the line
         const t = x / W
-        pts.push([x, y, Math.round(92 + 120 * t), Math.round(200 + 40 * t), Math.round(242 + 13 * t)])
+        pts.push([x, y, Math.round(126 + 129 * t * 0.6), 247 - Math.round(40 * t), Math.round(168 + 87 * t)])
       }
     }
   }

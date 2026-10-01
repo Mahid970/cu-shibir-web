@@ -8,11 +8,11 @@ type L<T = string> = Record<Locale, T>
 
 /** The branch's story in five dates (verified in the plan's research, §1). */
 export const MILESTONES: { year: number; label: L; color: string }[] = [
-  { year: 1977, label: { bn: 'ঢাকায় ছাত্রশিবিরের প্রতিষ্ঠা', en: 'Chhatrashibir founded in Dhaka' }, color: 'text-white' },
-  { year: 1981, label: { bn: 'চাকসুর পূর্ণ প্যানেলে জয়', en: 'Full panel wins CUCSU' }, color: 'text-blue-soft' },
-  { year: 2024, label: { bn: 'এক যুগ পর আবার প্রকাশ্যে', en: 'Back in the open after a decade' }, color: 'text-white' },
-  { year: 2025, label: { bn: 'চাকসুতে ২৬ পদের ২৪টিতে জয়', en: '24 of 26 CUCSU posts won' }, color: 'text-blue-soft' },
-  { year: 2026, label: { bn: 'নতুন কমিটি, নতুন পথচলা', en: 'A new committee, a new start' }, color: 'text-white' },
+  { year: 1977, label: { bn: 'ঢাকায় ছাত্রশিবিরের প্রতিষ্ঠা', en: 'Chhatrashibir founded in Dhaka' }, color: 'text-[#6cc6ee]' },
+  { year: 1981, label: { bn: 'চাকসুর পূর্ণ প্যানেলে জয়', en: 'Full panel wins CUCSU' }, color: 'text-aqua' },
+  { year: 2024, label: { bn: 'এক যুগ পর আবার প্রকাশ্যে', en: 'Back in the open after a decade' }, color: 'text-mint' },
+  { year: 2025, label: { bn: 'চাকসুতে ২৬ পদের ২৪টিতে জয়', en: '24 of 26 CUCSU posts won' }, color: 'text-glow' },
+  { year: 2026, label: { bn: 'নতুন কমিটি, নতুন পথচলা', en: 'A new committee, a new start' }, color: 'text-[#ff9f5e]' },
 ]
 
 /** Fallback for Site settings → stats (shown as floating badges on the hero photos). */
@@ -38,16 +38,16 @@ export const HERO_DEFAULTS: L<{ tagline: string; intro: string }> = {
 
 /** Member levels, in order. */
 export const JOURNEY = [
-  { title: { bn: 'কর্মী', en: 'Worker' }, text: { bn: 'কর্মী সিলেবাস ও নিয়মিত কার্যক্রম', en: 'Worker syllabus and regular activities' }, icon: 'book', bg: '#eaf3f9' },
-  { title: { bn: 'সাথী', en: 'Associate' }, text: { bn: 'সাথী সিলেবাস ও শিক্ষা শিবির', en: 'Associate syllabus and training camps' }, icon: 'tent', bg: '#e3eef6' },
-  { title: { bn: 'সদস্য', en: 'Member' }, text: { bn: 'সদস্য সিলেবাস ও সর্বোচ্চ দায়িত্ব', en: 'Member syllabus and the highest responsibility' }, icon: 'medal', bg: '#d9e9f4' },
+  { title: { bn: 'কর্মী', en: 'Worker' }, text: { bn: 'কর্মী সিলেবাস ও নিয়মিত কার্যক্রম', en: 'Worker syllabus and regular activities' }, icon: 'book', bg: '#fdf3e7' },
+  { title: { bn: 'সাথী', en: 'Associate' }, text: { bn: 'সাথী সিলেবাস ও শিক্ষা শিবির', en: 'Associate syllabus and training camps' }, icon: 'tent', bg: '#e8f6fa' },
+  { title: { bn: 'সদস্য', en: 'Member' }, text: { bn: 'সদস্য সিলেবাস ও সর্বোচ্চ দায়িত্ব', en: 'Member syllabus and the highest responsibility' }, icon: 'medal', bg: '#e9f9ff' },
 ] as const
 
 /** Student problems and what the branch did about them (each links to the record). */
 export const PROBLEMS = [
   {
     tag: { bn: 'আবাসন', en: 'Housing' },
-    tone: 'pale',
+    tone: 'sky',
     problem: {
       bn: 'হলে পর্যাপ্ত সিট নেই। অনেক শিক্ষার্থীকে ক্যাম্পাসের বাইরে থেকে শাটলে যাতায়াত করতে হয়।',
       en: 'The halls do not have enough seats. Many students live off campus and travel in on the shuttle train.',
@@ -60,7 +60,7 @@ export const PROBLEMS = [
   },
   {
     tag: { bn: 'বিশুদ্ধ পানি', en: 'Drinking water' },
-    tone: 'mist',
+    tone: 'sand',
     problem: {
       bn: 'তীব্র গরমে ক্যাম্পাসের ব্যস্ত জায়গাগুলোতে খাবার পানির সংকট।',
       en: 'In the summer heat, the busiest spots on campus run short of drinking water.',
@@ -70,7 +70,7 @@ export const PROBLEMS = [
   },
   {
     tag: { bn: 'নবীন শিক্ষার্থী', en: 'New students' },
-    tone: 'ice',
+    tone: 'pink',
     problem: {
       bn: 'নতুন ক্যাম্পাস, নতুন শহর — প্রথম বর্ষে কোথায় কী, কার কাছে যাব বোঝা যায় না।',
       en: 'A new campus in a new city: in first year it is hard to know where things are and whom to ask.',
@@ -96,7 +96,7 @@ export const FIVE_POINTS = [
       en: ['Freshers’ reception and career guideline programme', 'Quran Olympiad', 'Discussions and dua mahfils'],
     },
     icon: 'megaphone',
-    color: '#114575',
+    color: '#0b6fa4',
     ink: '#ffffff',
   },
   {
@@ -110,8 +110,8 @@ export const FIVE_POINTS = [
       en: ['Work in every hall and faculty', 'Growing from worker to associate and member', 'Regular organisational meetings'],
     },
     icon: 'ballot',
-    color: '#1f8fcf',
-    ink: '#0b1f33',
+    color: '#8fd3f7',
+    ink: '#0a2233',
   },
   {
     title: { bn: 'প্রশিক্ষণ', en: 'Training' },
@@ -124,8 +124,8 @@ export const FIVE_POINTS = [
       en: ['Associate training camp 2026', 'Study circles based on the syllabus', 'Skills development programmes'],
     },
     icon: 'cap',
-    color: '#5cc8f2',
-    ink: '#0b1f33',
+    color: '#5cc8c0',
+    ink: '#0a2233',
   },
   {
     title: { bn: 'শিক্ষা আন্দোলন ও ছাত্রসমস্যার সমাধান', en: 'Education movement and student welfare' },
@@ -138,8 +138,8 @@ export const FIVE_POINTS = [
       en: ['Press conference demanding housing for every student', 'Call for CUCSU and Senate elections', 'Protest for a safe campus'],
     },
     icon: 'book',
-    color: '#b5d5ea',
-    ink: '#0b1f33',
+    color: '#19c37d',
+    ink: '#0a2233',
   },
   {
     title: { bn: 'ইসলামী সমাজ বিনির্মাণ', en: 'Building an Islamic society' },
@@ -152,8 +152,8 @@ export const FIVE_POINTS = [
       en: ['Shaheed Mir Mugdho water corner', 'Tree-planting drive 2026', 'Discussion on Islamic Education Day'],
     },
     icon: 'seedling',
-    color: '#ffffff',
-    ink: '#0b1f33',
+    color: '#ffc561',
+    ink: '#0a2233',
   },
 ] as const
 
@@ -161,22 +161,22 @@ export const JOIN_STEPS = [
   {
     title: { bn: 'যোগাযোগ করো', en: 'Get in touch' },
     text: { bn: 'ফেসবুক পেজে মেসেজ দাও বা তোমার হল/বিভাগের দায়িত্বশীলকে জানাও।', en: 'Message our Facebook page, or tell the leader in your hall or department.' },
-    color: '#c4ecfc',
+    color: '#5eead4',
   },
   {
     title: { bn: 'সমর্থক হও', en: 'Become a supporter' },
     text: { bn: 'সমর্থক ফরম পূরণ করো — শুধু প্রয়োজনীয় তথ্য, নিরাপদে সংরক্ষিত।', en: 'Fill in the supporter form: only what we need, stored securely.' },
-    color: '#8fdcff',
+    color: '#ffc561',
   },
   {
     title: { bn: 'প্রোগ্রামে এসো', en: 'Come to a programme' },
     text: { bn: 'পাঠচক্র, আলোচনা সভা আর ক্যাম্পাসের কর্মসূচিতে অংশ নাও।', en: 'Join study circles, discussions and our work on campus.' },
-    color: '#5cc8f2',
+    color: '#4ade80',
   },
   {
     title: { bn: 'দায়িত্ব নাও', en: 'Take responsibility' },
     text: { bn: 'কর্মী সিলেবাস শুরু করো, শিক্ষার্থীদের পাশে দাঁড়াও।', en: 'Start the worker syllabus and stand by your fellow students.' },
-    color: '#1fa3dc',
+    color: '#a78bfa',
   },
 ] as const
 
@@ -185,42 +185,42 @@ export const SERVICES = [
   {
     title: { bn: 'শাটল ট্রেনের সময়সূচি', en: 'Shuttle train timetable' },
     text: { bn: 'পরের ট্রেন কখন, কোন স্টেশন থেকে — এক নজরে।', en: 'When the next train leaves, and from which station, at a glance.' },
-    theme: 'sky',
+    theme: 'blue',
     icon: 'train',
     href: '/services/shuttle',
   },
   {
     title: { bn: 'নবীন গাইড ও ক্যাম্পাস ম্যাপ', en: 'Freshers’ guide and campus map' },
     text: { bn: 'হল, অনুষদ, মেডিকেল সেন্টার, মসজিদ — সব কোথায়।', en: 'Halls, faculties, the medical centre, mosques: where everything is.' },
-    theme: 'navy',
+    theme: 'teal',
     icon: 'cap',
     href: '/services/freshers',
   },
   {
     title: { bn: 'প্রশ্ন ব্যাংক', en: 'Question bank' },
     text: { bn: 'বিভাগ ও কোর্স অনুযায়ী আগের বছরের প্রশ্ন।', en: 'Past exam questions by department and course.' },
-    theme: 'sky',
+    theme: 'purple',
     icon: 'book',
     href: '/services/questions',
   },
   {
     title: { bn: 'রক্তদাতা নেটওয়ার্ক', en: 'Blood donor network' },
     text: { bn: 'জরুরি প্রয়োজনে রক্তদাতা খোঁজা, নম্বর প্রকাশ না করেই।', en: 'Find a blood donor in an emergency without publishing anyone’s number.' },
-    theme: 'navy',
+    theme: 'pink',
     icon: 'drop',
     href: '/services/blood',
   },
   {
     title: { bn: 'শিক্ষাবৃত্তি ও চিকিৎসা সহায়তা', en: 'Scholarships and medical aid' },
     text: { bn: 'অনলাইনে আবেদন আর ট্র্যাকিং কোড দিয়ে অগ্রগতি দেখা।', en: 'Apply online and follow your application with a tracking code.' },
-    theme: 'sky',
+    theme: 'orange',
     icon: 'medal',
     href: '/services/assistance',
   },
   {
     title: { bn: 'ছাত্র সমস্যা ডেস্ক', en: 'Student issues desk' },
     text: { bn: 'হল, পরিবহন, খাবার বা নিরাপত্তা — সমস্যা জানাও, সমাধান ট্র্যাক করো।', en: 'Halls, transport, food or safety: report a problem and follow the fix.' },
-    theme: 'navy',
+    theme: 'green',
     icon: 'megaphone',
     href: '/services/issues',
   },

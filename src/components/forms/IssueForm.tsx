@@ -80,8 +80,8 @@ export function IssueForm() {
         <>
           <Choices name="category" label={t.category} options={choices(ISSUE_CATEGORIES, lang)} required onChange={setCategory} errors={errors} />
           {category === CONFIDENTIAL_CATEGORY && (
-            <div role="note" className="rounded-2xl border border-pale-4 bg-pale p-5 leading-relaxed">
-              <p className="flex items-center gap-2 font-bold text-primary">
+            <div role="note" className="rounded-2xl border border-[#c4b5fd] bg-[#f6f2ff] p-5 leading-relaxed">
+              <p className="flex items-center gap-2 font-bold text-[#5b21b6]">
                 <Lock className="size-5 shrink-0" />
                 {t.confidential.title}
               </p>
@@ -97,7 +97,7 @@ export function IssueForm() {
           <TextArea name="details" label={t.details} required rows={7} maxLength={4000} hint={t.detailsHint} errors={errors} />
 
           <label className="flex cursor-pointer items-start gap-3 rounded-2xl bg-pale p-4">
-            <input type="checkbox" name="anonymous" checked={anonymous} onChange={(e) => setAnonymous(e.target.checked)} className="mt-1 size-5 shrink-0 accent-primary" />
+            <input type="checkbox" name="anonymous" checked={anonymous} onChange={(e) => setAnonymous(e.target.checked)} className="mt-1 size-5 shrink-0 accent-[#0b6fa4]" />
             <span>
               <span className="block font-semibold text-ink">{t.anonymous}</span>
               <span className="text-[0.92rem] text-muted">{t.anonymousHint}</span>

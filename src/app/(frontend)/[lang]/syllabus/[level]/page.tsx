@@ -121,7 +121,7 @@ export default async function LevelPage({ params }: Props) {
         </div>
         <aside className="lg:sticky lg:top-24">
           <LevelProgress ids={ids} />
-          <nav aria-label={t.subjects} className="mt-4 hidden rounded-2xl bg-white p-5 shadow-[0_4px_24px_rgb(11_31_51/0.06)] lg:block">
+          <nav aria-label={t.subjects} className="mt-4 hidden rounded-2xl bg-white p-5 shadow-[0_4px_24px_rgb(11_15_46/0.06)] lg:block">
             <p className="font-semibold text-ink">{t.subjects}</p>
             <ol className="mt-2 grid gap-1 text-[0.95rem]">
               {level.subjects.map((s, i) => (

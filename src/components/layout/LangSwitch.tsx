@@ -97,7 +97,7 @@ export function LangSwitch({ single = false, long = false, className = '' }: { s
         aria-label={single ? (target === 'en' ? 'Read this page in English' : 'এই পাতাটি বাংলায় পড়ুন') : undefined}
         className={`inline-flex h-8 min-w-10 items-center justify-center rounded-full px-3 text-[0.85rem] font-bold transition-colors ${
           target === 'en' ? 'font-[family-name:var(--font-en)]' : ''
-        } ${on ? 'bg-primary text-white shadow-[0_6px_14px_rgb(17_69_117/0.3)]' : 'text-ink hover:bg-pale-3'}`}
+        } ${on ? 'bg-blue text-white shadow-[0_6px_14px_rgb(53_100_255/0.3)]' : 'text-ink hover:bg-pale-3'}`}
       >
         {text}
       </NextLink>

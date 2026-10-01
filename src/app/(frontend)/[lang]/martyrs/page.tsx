@@ -78,7 +78,7 @@ export default async function MartyrsPage() {
                   {st.portrait && <Image src={st.portrait.src} alt="" fill sizes="98px" className="object-cover object-top" />}
                 </span>
                 <span className="min-w-0 py-1">
-                  <span className="block text-[0.85rem] font-bold text-blue-soft">
+                  <span className="block text-[0.85rem] font-bold text-glow">
                     {st.date}
                     {st.ordinal && <span className="ml-2 font-semibold text-white/50">· {st.ordinal}</span>}
                   </span>

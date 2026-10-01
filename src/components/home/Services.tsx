@@ -9,10 +9,13 @@ import { getLang } from '@/i18n/server'
 
 const T = copy({ live: 'চালু আছে', soon: 'শীঘ্রই', use: 'ব্যবহার করুন' }, { live: 'Available now', soon: 'Coming soon', use: 'Open' })
 
-/** Two edges from the one palette, alternating down the grid. */
 const THEMES = {
-  sky: { fill: '#f3f9fd', edge: 'linear-gradient(135deg,#1fa3dc,#b5e3f7 55%,#eaf3f9)', badge: 'bg-pale-2 text-primary' },
-  navy: { fill: '#f2f6fa', edge: 'linear-gradient(135deg,#114575,#9cc3e0 55%,#eaf3f9)', badge: 'bg-pale-3 text-blue-deep' },
+  blue: { fill: '#f0f8fb', edge: 'linear-gradient(135deg,#1c9bd6,#9fdcf2 55%,#e8f6fa)', badge: 'bg-[#dcf0f7] text-[#0b5f8c]' },
+  teal: { fill: '#effbf9', edge: 'linear-gradient(135deg,#14b8a6,#99f6e4 55%,#effbf9)', badge: 'bg-[#ccfbf1] text-[#0f766e]' },
+  purple: { fill: '#f6f2ff', edge: 'linear-gradient(135deg,#8b5cf6,#d6c8ff 55%,#f6f2ff)', badge: 'bg-[#ede9fe] text-[#6d28d9]' },
+  pink: { fill: '#fff1f5', edge: 'linear-gradient(135deg,#ec4899,#fbcfe8 55%,#fff1f5)', badge: 'bg-[#fce7f3] text-[#be185d]' },
+  orange: { fill: '#fff6ed', edge: 'linear-gradient(135deg,#f97316,#fed7aa 55%,#fff6ed)', badge: 'bg-[#ffedd5] text-[#c2410c]' },
+  green: { fill: '#effaf3', edge: 'linear-gradient(135deg,#22c55e,#bbf7d0 55%,#effaf3)', badge: 'bg-[#dcfce7] text-[#15803d]' },
 } as const
 
 /** Gradient-bordered service cards: live services link through, the rest say when. */
@@ -28,14 +31,14 @@ export async function ServiceCards() {
         const href = 'href' in s ? s.href : undefined
         return (
           <li
-            key={s.icon}
+            key={s.icon + s.theme}
             data-reveal="fade"
             style={vars({ '--d': `${(i % 3) * 120}ms`, '--fill': t.fill, '--edge': t.edge })}
             className={`edge group relative flex flex-col items-start gap-3 rounded-[18px] p-7 md:p-9 ${href ? 'transition-transform hover:-translate-y-1' : ''}`}
           >
             <div className="flex w-full items-start justify-between gap-4">
               <Art className="art-shadow w-12" />
-              <span className={`chip ${href ? 'bg-[#e3f4ea] text-[#17703e]' : t.badge}`}>{href ? words.live : words.soon}</span>
+              <span className={`chip ${href ? 'bg-[#dcfce7] text-[#15803d]' : t.badge}`}>{href ? words.live : words.soon}</span>
             </div>
             <h3 className="mt-2 text-[1.25rem] font-bold leading-snug text-ink">
               {href ? (
