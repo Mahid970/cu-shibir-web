@@ -39,7 +39,8 @@ export default async function HomePage({ params }: Props) {
 
   // Photos for the hero's ribbon: the hero photo and the ones chosen in Site settings first, then
   // recent album photos (each album's cover first, then its other photos) until there are ten.
-  // The cards are ~220 px wide, so the 400 px thumbnails are sharp on 2x screens.
+  // The cards are 168–224 px wide, so 2–3x screens need ~450–500 px: start from the 800 px size and let
+  // next/image serve the width each screen needs.
   const chosen = [settings.heroImage, ...(settings.heroGallery ?? [])]
     .filter((m): m is Media => typeof m === 'object' && m !== null)
     .map((m) => ({ media: m, caption: m.caption || m.alt || '' }))
@@ -55,7 +56,7 @@ export default async function HomePage({ params }: Props) {
       return true
     })
     .map(({ media, caption }) => {
-      const image = pickImage(media, 'thumb')
+      const image = pickImage(media, 'card')
       return image && { ...image, caption }
     })
     .filter((p): p is ImageInfo & { caption: string } => p !== null)

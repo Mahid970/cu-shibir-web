@@ -8,8 +8,8 @@ const PREVIEW = 'data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAACwBACdASogABIA
 /** Two crops of the campus aerial loop: landscape for most screens, portrait for phones held upright. */
 const PHONE = '(max-aspect-ratio: 2/3)'
 const LOOPS = {
-  landscape: { base: '/video/hero/campus-720', width: 1280, height: 720, bitrate: 400_000 },
-  portrait: { base: '/video/hero/campus-540x960', width: 540, height: 960, bitrate: 280_000 },
+  landscape: { base: '/video/hero/campus-1080', width: 1920, height: 1080, bitrate: 1_200_000 },
+  portrait: { base: '/video/hero/campus-608x1080', width: 608, height: 1080, bitrate: 550_000 },
 }
 
 /** AV1 only where the device decodes it smoothly (and, on phones, in hardware); H.264 everywhere else. */
@@ -17,7 +17,7 @@ async function pickCodec(loop: (typeof LOOPS)['landscape'], phone: boolean) {
   try {
     const info = await navigator.mediaCapabilities.decodingInfo({
       type: 'file',
-      video: { contentType: 'video/mp4; codecs="av01.0.05M.08"', width: loop.width, height: loop.height, bitrate: loop.bitrate, framerate: 30 },
+      video: { contentType: 'video/mp4; codecs="av01.0.08M.08"', width: loop.width, height: loop.height, bitrate: loop.bitrate, framerate: 30 },
     })
     if (info.supported && info.smooth && (info.powerEfficient || !phone)) return 'av1'
   } catch {}
@@ -28,7 +28,7 @@ type Connection = { saveData?: boolean; effectiveType?: string }
 
 /**
  * Silent aerial loop of the campus behind the home hero. A 132-byte blurred frame shows at once
- * and the loop's first frame (15–28 KB) over it; the video only loads once the page has finished
+ * and the loop's first frame (25–56 KB) over it; the video only loads once the page has finished
  * loading and the browser is idle, then fades in over that still. Data saver, 2G and reduced
  * motion keep the still. Plays only while the hero is on screen.
  *
