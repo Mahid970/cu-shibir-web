@@ -50,11 +50,13 @@ export default async function HomePage({ params }: Props) {
     : fallbackStats
 
   // More photos for the hero's living picture: chosen in Site settings, otherwise the covers of recent albums.
+  // The picture samples them into a grid of at most ~160 dots, so the 400 px thumbnails carry every detail
+  // it can show (the hero and card sizes were 4–10x the bytes and a long decode on phones).
   const chosen = (settings.heroGallery ?? []).filter((m): m is Media => typeof m === 'object')
   const gallery = (
     chosen.length
-      ? chosen.map((m) => ({ image: pickImage(m, 'card'), caption: m.caption || m.alt || '' }))
-      : albums.slice(1).map((a) => ({ image: pickImage(Array.isArray(a.photos) ? a.photos[0] : null, 'card'), caption: a.title }))
+      ? chosen.map((m) => ({ image: pickImage(m, 'thumb'), caption: m.caption || m.alt || '' }))
+      : albums.slice(1).map((a) => ({ image: pickImage(Array.isArray(a.photos) ? a.photos[0] : null, 'thumb'), caption: a.title }))
   )
     .filter((g): g is { image: ImageInfo; caption: string } => g.image !== null)
     .slice(0, 2)
@@ -68,7 +70,7 @@ export default async function HomePage({ params }: Props) {
       <Hero
         tagline={cmsText(lang, settings.tagline, defaults)}
         intro={cmsText(lang, settings.heroIntro, { bn: HERO_DEFAULTS.bn.intro, en: HERO_DEFAULTS.en.intro })}
-        photo={pickImage(settings.heroImage, 'hero')}
+        photo={pickImage(settings.heroImage, 'thumb')}
         gallery={gallery}
         stats={stats}
         faces={faces}

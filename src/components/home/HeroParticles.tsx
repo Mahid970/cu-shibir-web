@@ -72,10 +72,9 @@ function toShape(xs: number[], ys: number[], cs: number[]): Shape {
 const load = (src: string) =>
   new Promise<HTMLImageElement>((resolve, reject) => {
     const img = new Image()
-    img.decoding = 'async'
-    img.onload = () => resolve(img)
-    img.onerror = reject
     img.src = src
+    // decode() works off the main thread; drawing an undecoded image would decode it synchronously.
+    img.decode().then(() => resolve(img), reject)
   })
 
 /**
