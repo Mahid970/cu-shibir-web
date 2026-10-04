@@ -33,8 +33,8 @@ type Connection = { saveData?: boolean; effectiveType?: string }
  * motion keep the still. Plays only while the hero is on screen.
  *
  * The still has to be there from the start: it is the hero's largest paint. The video frame that
- * later replaces it is drawn 2 px smaller on each side (the same still shows in that sliver), so
- * it never counts as a new, later largest paint.
+ * later replaces it starts 4 px lower (that strip of the still is plain misty sky, so it doesn't
+ * show), which keeps it smaller, so it never counts as a new, later largest paint.
  */
 export function HeroVideo() {
   const ref = useRef<HTMLVideoElement>(null)
@@ -93,6 +93,7 @@ export function HeroVideo() {
         onPlaying={() => setPlaying(true)}
         className={`hero-video__media hero-video__clip ${playing ? 'is-playing' : ''}`}
       />
+      <div className="hero-video__shade absolute inset-0" />
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { FAQS, FIVE_POINTS, MILESTONES } from '@/content/home'
+import { FAQS, FIVE_POINTS } from '@/content/home'
 import { historyStops } from '@/content/history'
 import { getLevel, levelItems, SYLLABUS_KEYS } from '@/content/syllabus'
 import { alternates, cmsText, hasBangla, langAttr, localeOf, localePath, stripLocale } from '@/i18n/config'
@@ -71,7 +71,6 @@ describe('translations are complete', () => {
   })
 
   it('homepage copy and history have both languages', () => {
-    for (const m of MILESTONES) expect(m.label.en).not.toMatch(/[\u0980-\u09FF]/)
     for (const p of FIVE_POINTS) expect([p.title.en, p.body.en, ...p.items.en].join(' ')).not.toMatch(/[\u0980-\u09FF]/)
     expect(FAQS.en).toHaveLength(FAQS.bn.length)
     expect(JSON.stringify(historyStops('en'))).not.toMatch(/[\u0980-\u09FF]/)

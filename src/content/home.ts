@@ -6,27 +6,6 @@ import type { Locale } from '@/i18n/config'
 
 type L<T = string> = Record<Locale, T>
 
-/** The branch's story in five dates (verified in the plan's research, §1). */
-export const MILESTONES: { year: number; label: L; color: string }[] = [
-  { year: 1977, label: { bn: 'ঢাকায় ছাত্রশিবিরের প্রতিষ্ঠা', en: 'Chhatrashibir founded in Dhaka' }, color: 'text-[#6ea0ff]' },
-  { year: 1981, label: { bn: 'চাকসুর পূর্ণ প্যানেলে জয়', en: 'Full panel wins CUCSU' }, color: 'text-aqua' },
-  { year: 2024, label: { bn: 'এক যুগ পর আবার প্রকাশ্যে', en: 'Back in the open after a decade' }, color: 'text-mint' },
-  { year: 2025, label: { bn: 'চাকসুতে ২৬ পদের ২৪টিতে জয়', en: '24 of 26 CUCSU posts won' }, color: 'text-yellow' },
-  { year: 2026, label: { bn: 'নতুন কমিটি, নতুন পথচলা', en: 'A new committee, a new start' }, color: 'text-[#f9a8d4]' },
-]
-
-/** Fallback for Site settings → stats (shown as floating badges on the hero photos). */
-export const DEFAULT_STATS: L<{ value: number; suffix: string; label: string }[]> = {
-  bn: [
-    { value: 24, suffix: '/২৬', label: 'চাকসু ২০২৫-এ পদে জয়' },
-    { value: 2500, suffix: '+', label: 'নবীন এসেছিল নবীনবরণে' },
-  ],
-  en: [
-    { value: 24, suffix: '/26', label: 'CUCSU 2025 posts won' },
-    { value: 2500, suffix: '+', label: 'freshers at our reception' },
-  ],
-}
-
 /** Slogan and hero intro when Site settings has no English version yet. */
 export const HERO_DEFAULTS: L<{ tagline: string; intro: string }> = {
   bn: { tagline: 'আমরা তরুণ, আমরাই পারি', intro: '' },

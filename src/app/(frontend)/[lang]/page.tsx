@@ -6,7 +6,6 @@ import { Hero } from '@/components/home/Hero'
 import { JoinBanner } from '@/components/home/JoinBanner'
 import { JourneySection } from '@/components/martyrs/JourneySection'
 import { LeadersSection } from '@/components/home/LeadersSection'
-import { Milestones } from '@/components/home/Milestones'
 import { NewsSection } from '@/components/home/NewsSection'
 import { ProblemSolution } from '@/components/home/ProblemSolution'
 import { TrustSection } from '@/components/home/TrustSection'
@@ -43,7 +42,6 @@ export default async function HomePage({ params }: Props) {
         tagline={cmsText(lang, settings.tagline, defaults)}
         intro={cmsText(lang, settings.heroIntro, { bn: HERO_DEFAULTS.bn.intro, en: HERO_DEFAULTS.en.intro })}
       />
-      <Milestones />
       <NewsSection posts={posts} />
       <ProblemSolution />
       <TrustSection press={press} />

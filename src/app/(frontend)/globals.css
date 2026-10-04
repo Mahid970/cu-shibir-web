@@ -630,8 +630,7 @@
   object-fit: cover;
 }
 .hero-video__clip {
-  inset: 2px;
-  width: calc(100% - 4px);
+  top: 4px;
   height: calc(100% - 4px);
   opacity: 0;
   transition: opacity 1.4s var(--ease-out);
@@ -639,7 +638,10 @@
 .hero-video__clip.is-playing {
   opacity: 1;
 }
-/* No colour layer over the video: a soft shadow keeps the white text readable over the bright sky */
+/* A light black wash over the video calms the bright sky; the soft shadow keeps the text crisp */
+.hero-video__shade {
+  background: rgb(0 0 0 / 0.32);
+}
 .hero-text {
   text-shadow:
     0 1px 2px rgb(0 0 0 / 0.45),
@@ -1199,15 +1201,6 @@
     clip-path: inset(-50% 0 -50% 0);
   }
 }
-/* A line that draws itself across (milestones) */
-.motion [data-reveal='draw'] {
-  transform-origin: left center;
-  transition: transform 1.4s var(--ease-out) 0.2s;
-}
-.motion [data-reveal='draw']:not([data-state='visible']) {
-  transform: scaleX(0);
-}
-
 /* Count-up numbers stay hidden until the counter has taken over (or 2.5s have passed). */
 .motion .count-num:not([data-ready]) {
   opacity: 0;

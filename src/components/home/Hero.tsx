@@ -45,7 +45,7 @@ export async function Hero({ tagline, intro }: { tagline: string; intro: string 
     <section className="home-hero relative isolate overflow-hidden text-white" aria-labelledby="hero-title">
       <HeroVideo />
 
-      <div className="wrap pb-[clamp(14rem,32vh,20rem)] pt-14 text-center sm:pt-20 lg:pt-24">
+      <div className="wrap pb-[clamp(13rem,30vh,19rem)] pt-14 text-center sm:pt-20 lg:pt-24">
         <h1 id="hero-title" className="hero-text mx-auto max-w-4xl text-[2.7rem] font-bold text-white leading-[1.2] sm:text-[3.8rem] xl:text-[4.6rem]">
           {lead && (
             <span className="hero-rise inline-block" style={vars({ '--d': '60ms' })}>
@@ -72,9 +72,6 @@ export async function Hero({ tagline, intro }: { tagline: string; intro: string 
         </div>
       </div>
 
-      <svg aria-hidden="true" viewBox="0 0 1440 60" preserveAspectRatio="none" className="absolute inset-x-0 bottom-0 h-10 w-full sm:h-14">
-        <path d="M0 60V40C360 0 1080 0 1440 40v20Z" fill="var(--bg)" />
-      </svg>
     </section>
   )
 }
