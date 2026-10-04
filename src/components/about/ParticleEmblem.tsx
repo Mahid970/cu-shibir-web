@@ -25,52 +25,29 @@ function sampleImage(img: HTMLImageElement, W: number, H: number, fill: number, 
   return toShape(pts)
 }
 
-export type LineStyle = { rgb: [number, number, number]; scale: number }
-
-/**
- * Sample text drawn with the page's Bangla font. Without `styles` every line is the same size and
- * coloured mint → white → sky across (About); with them each line gets its own solid colour and
- * relative size (home hero).
- */
-function sampleText(lines: string[], W: number, H: number, font: string, step: number, styles?: LineStyle[]): Shape {
+/** Sample text drawn with the page's Bangla font. */
+function sampleText(lines: string[], W: number, H: number, font: string, step: number): Shape {
   const c = document.createElement('canvas')
   c.width = W
   c.height = H
   const ctx = c.getContext('2d', { willReadFrequently: true })!
-  const k = lines.map((_, i) => styles?.[i]?.scale ?? 1)
-  const units = k.reduce((a, b) => a + b, 0)
-  let size = Math.min(H / (units * 1.45), 120)
-  const widest = () => Math.max(...lines.map((l, i) => ((ctx.font = `700 ${size * k[i]}px ${font}`), ctx.measureText(l).width)))
-  const w = widest()
-  const room = styles ? 0.92 : 0.9
-  if (w > W * room) size *= (W * room) / w
+  let size = Math.min(H / (lines.length * 1.45), 120)
+  ctx.font = `700 ${size}px ${font}`
+  const widest = Math.max(...lines.map((l) => ctx.measureText(l).width))
+  if (widest > W * 0.9) size *= (W * 0.9) / widest
+  ctx.font = `700 ${size}px ${font}`
+  ctx.fillStyle = '#fff'
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
-  // Lines stacked around the middle, each taking 1.35× its own size.
-  let y = H / 2 - (units * size * 1.35) / 2
-  const rows: [number, number][] = [] // [top, bottom] of each line, to colour its points
-  lines.forEach((l, i) => {
-    const h = size * k[i] * 1.35
-    ctx.font = `700 ${size * k[i]}px ${font}`
-    ctx.fillStyle = '#fff'
-    ctx.fillText(l, W / 2, y + h / 2)
-    rows.push([y, y + h])
-    y += h
-  })
+  lines.forEach((l, i) => ctx.fillText(l, W / 2, H / 2 + (i - (lines.length - 1) / 2) * size * 1.35))
   const data = ctx.getImageData(0, 0, W, H).data
   const pts: number[][] = []
   for (let y = 0; y < H; y += step) {
     for (let x = 0; x < W; x += step) {
       if (data[(y * W + x) * 4 + 3] > 128) {
-        if (styles) {
-          const row = Math.max(0, rows.findIndex(([a, b]) => y >= a && y < b))
-          const [r, g, b] = styles[row]?.rgb ?? [255, 255, 255]
-          pts.push([x, y, r, g, b])
-        } else {
-          // mint → white → sky across the line
-          const t = x / W
-          pts.push([x, y, Math.round(126 + 129 * t * 0.6), 247 - Math.round(40 * t), Math.round(168 + 87 * t)])
-        }
+        // mint → white → sky across the line
+        const t = x / W
+        pts.push([x, y, Math.round(126 + 129 * t * 0.6), 247 - Math.round(40 * t), Math.round(168 + 87 * t)])
       }
     }
   }
@@ -93,31 +70,11 @@ function toShape(pts: number[][]): Shape {
 const SLOGAN = ['আমরা তরুণ,', 'আমরাই পারি']
 
 /**
- * Scattered points ("stars") gather into the branch emblem, then re-form as the slogan, and back.
- * Points shy away from the pointer. Runs only while visible; with reduced motion one shape is
- * simply drawn (the emblem, or the text when `calm="text"`).
- *
- * About page: one slogan line on wide screens, mint → sky colours. Home hero: its own lines for
- * wide and narrow screens, solid colours per line (`styles`), the text held longer, and the text
- * drawn for reduced motion since it is the page title.
+ * Night band on the About page: scattered points ("stars") gather into the branch emblem, then
+ * re-form as the slogan, and back. Points shy away from the pointer. Runs only while visible;
+ * with reduced motion the emblem is simply drawn.
  */
-export function ParticleEmblem({
-  slogan = SLOGAN,
-  narrowSlogan,
-  styles,
-  narrowStyles,
-  holds = [4200, 4600],
-  calm: calmShape = 'emblem',
-  className = 'relative h-[340px] w-full sm:h-[380px] lg:h-[420px]',
-}: {
-  slogan?: string[]
-  narrowSlogan?: string[]
-  styles?: LineStyle[]
-  narrowStyles?: LineStyle[]
-  holds?: [number, number]
-  calm?: 'emblem' | 'text'
-  className?: string
-}) {
+export function ParticleEmblem({ slogan = SLOGAN }: { slogan?: string[] }) {
   const wrap = useRef<HTMLDivElement>(null)
   const canvas = useRef<HTMLCanvasElement>(null)
 
@@ -147,24 +104,16 @@ export function ParticleEmblem({
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
       const narrow = W < 640
-      const fill = narrow ? 0.72 : 0.86
-      // A small emblem (home hero) samples fewer pixels so the points stay ~3 px apart and read as dots.
-      const scale = (Math.min(W, H) * fill) / 100
-      const small = scale < 2
-      const step = small ? Math.max(2, Math.round(2.8 / scale)) : narrow ? 2 : 1
-      const emblem = sampleImage(img, W, H, fill, step)
+      const emblem = sampleImage(img, W, H, narrow ? 0.72 : 0.86, narrow ? 2 : 1)
       const font = getComputedStyle(document.body).fontFamily
-      const lines = narrow ? (narrowSlogan ?? slogan) : styles ? slogan : [slogan.join(' ')]
-      // Solid-colour title text (home hero) uses finer dots so the Bangla letters stay legible.
-      const text = sampleText(lines, W, H, font, styles ? 2 : 3, narrow ? (narrowStyles ?? styles) : styles)
+      const text = sampleText(narrow ? slogan : [slogan.join(' ')], W, H, font, 3)
       const n = Math.max(emblem.n, text.n)
-      const dot = styles ? 1.6 : small ? Math.min(1.8, step * scale * 0.7) : narrow ? 1.8 : 2.2
+      const dot = narrow ? 1.8 : 2.2
 
       if (calm) {
-        const still = calmShape === 'text' ? text : emblem
-        for (let i = 0; i < still.n; i++) {
-          ctx.fillStyle = `rgb(${still.r[i]},${still.g[i]},${still.b[i]})`
-          ctx.fillRect(still.x[i], still.y[i], dot, dot)
+        for (let i = 0; i < emblem.n; i++) {
+          ctx.fillStyle = `rgb(${emblem.r[i]},${emblem.g[i]},${emblem.b[i]})`
+          ctx.fillRect(emblem.x[i], emblem.y[i], dot, dot)
         }
         return
       }
@@ -215,8 +164,8 @@ export function ParticleEmblem({
         }
       }
       const phases = [
-        { shape: emblem, hold: holds[0] },
-        { shape: text, hold: holds[1] },
+        { shape: emblem, hold: 4200 },
+        { shape: text, hold: 4600 },
       ]
       let phase = -1
       let nextAt = performance.now() + 700 // a moment of stars first
@@ -297,10 +246,10 @@ export function ParticleEmblem({
       el.removeEventListener('pointermove', onMove)
       el.removeEventListener('pointerleave', onLeave)
     }
-  }, [slogan, narrowSlogan, styles, narrowStyles, holds, calmShape])
+  }, [slogan])
 
   return (
-    <div ref={wrap} className={className}>
+    <div ref={wrap} className="relative h-[340px] w-full sm:h-[380px] lg:h-[420px]">
       <canvas ref={canvas} className="absolute inset-0 size-full touch-pan-y" aria-hidden="true" />
     </div>
   )
