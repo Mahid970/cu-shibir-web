@@ -196,6 +196,7 @@ Every variable is listed with its purpose in [`.env.example`](.env.example). Pro
   Then re-run `scripts/make-icons.ts`.
 - [ ] Branch to check the English names of the committee (CMS → People → English tab; seeded from `src/content/people-en.ts`) and the English translations of the imported posts (`scripts/data/english-content.json`).
 - [ ] New posts: write the English version in the CMS's English tab (until then the English site shows the Bangla article with a note).
+- [ ] Get written permission from **Films By Ashfaq** for the campus aerial video behind the home hero (`public/video/hero/`, from facebook.com/reel/965890053057187), or replace it with the branch's own footage: same file names, see "Hero video" in `docs/design/phitron-system.md`.
 - [ ] Branch to verify the history stops (`src/content/history.ts`).
 - [ ] Branch to check the ten martyrs (CMS → শহীদ স্মরণ; source data in `scripts/data/shaheeds.json`). Points where the
       organisation's own records disagree, and what the site uses:
