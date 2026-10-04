@@ -70,11 +70,18 @@ function toShape(pts: number[][]): Shape {
 const SLOGAN = ['আমরা তরুণ,', 'আমরাই পারি']
 
 /**
- * Night band on the About page: scattered points ("stars") gather into the branch emblem, then
- * re-form as the slogan, and back. Points shy away from the pointer. Runs only while visible;
- * with reduced motion the emblem is simply drawn.
+ * Scattered points ("stars") gather into the branch emblem, then re-form as the slogan, and back
+ * (night band on the About page). With `slogan={null}` the emblem stays and breathes instead: the
+ * points drift a little apart and gather again every few seconds (home hero). Points shy away from
+ * the pointer. Runs only while visible; with reduced motion the emblem is simply drawn.
  */
-export function ParticleEmblem({ slogan = SLOGAN }: { slogan?: string[] }) {
+export function ParticleEmblem({
+  slogan = SLOGAN,
+  className = 'relative h-[340px] w-full sm:h-[380px] lg:h-[420px]',
+}: {
+  slogan?: string[] | null
+  className?: string
+}) {
   const wrap = useRef<HTMLDivElement>(null)
   const canvas = useRef<HTMLCanvasElement>(null)
 
@@ -104,11 +111,16 @@ export function ParticleEmblem({ slogan = SLOGAN }: { slogan?: string[] }) {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
       const narrow = W < 640
-      const emblem = sampleImage(img, W, H, narrow ? 0.72 : 0.86, narrow ? 2 : 1)
+      const fill = narrow ? 0.72 : 0.86
+      // A small emblem (home hero) samples fewer pixels so the points stay ~3 px apart and read as dots.
+      const scale = (Math.min(W, H) * fill) / 100
+      const small = scale < 2
+      const step = small ? Math.max(2, Math.round(2.8 / scale)) : narrow ? 2 : 1
+      const emblem = sampleImage(img, W, H, fill, step)
       const font = getComputedStyle(document.body).fontFamily
-      const text = sampleText(narrow ? slogan : [slogan.join(' ')], W, H, font, 3)
-      const n = Math.max(emblem.n, text.n)
-      const dot = narrow ? 1.8 : 2.2
+      const text = slogan && sampleText(narrow ? slogan : [slogan.join(' ')], W, H, font, 3)
+      const n = Math.max(emblem.n, text ? text.n : 0)
+      const dot = small ? Math.min(1.8, step * scale * 0.7) : narrow ? 1.8 : 2.2
 
       if (calm) {
         for (let i = 0; i < emblem.n; i++) {
@@ -163,10 +175,23 @@ export function ParticleEmblem({ slogan = SLOGAN }: { slogan?: string[] }) {
           }
         }
       }
-      const phases = [
-        { shape: emblem, hold: 4200 },
-        { shape: text, hold: 4600 },
-      ]
+      // The emblem's points pushed out from its centre and loosened: a breath between two holds.
+      const cx = W / 2
+      const cy = H / 2
+      const breath: Shape = { ...emblem, x: new Float32Array(emblem.n), y: new Float32Array(emblem.n) }
+      for (let i = 0; i < emblem.n; i++) {
+        breath.x[i] = emblem.x[i] + (emblem.x[i] - cx) * 0.55 + (Math.random() - 0.5) * 26
+        breath.y[i] = emblem.y[i] + (emblem.y[i] - cy) * 0.55 + (Math.random() - 0.5) * 26
+      }
+      const phases = text
+        ? [
+            { shape: emblem, hold: 4200 },
+            { shape: text, hold: 4600 },
+          ]
+        : [
+            { shape: emblem, hold: 6500 },
+            { shape: breath, hold: 1100 },
+          ]
       let phase = -1
       let nextAt = performance.now() + 700 // a moment of stars first
 
@@ -249,7 +274,7 @@ export function ParticleEmblem({ slogan = SLOGAN }: { slogan?: string[] }) {
   }, [slogan])
 
   return (
-    <div ref={wrap} className="relative h-[340px] w-full sm:h-[380px] lg:h-[420px]">
+    <div ref={wrap} className={className}>
       <canvas ref={canvas} className="absolute inset-0 size-full touch-pan-y" aria-hidden="true" />
     </div>
   )

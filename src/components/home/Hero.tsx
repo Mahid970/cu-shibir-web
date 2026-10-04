@@ -1,7 +1,6 @@
-import Image from 'next/image'
-
 import { Link } from '@/i18n/link'
 
+import { ParticleEmblem } from '@/components/about/ParticleEmblem'
 import { ArrowRight, Pin } from '@/components/ui/Icons'
 import { vars } from '@/components/ui/SectionTitle'
 import { copy } from '@/i18n/config'
@@ -31,8 +30,8 @@ const T = copy(
 )
 
 /**
- * Home hero: a silent aerial loop of the campus in its own colours with the logo, the organisation's
- * name and its objective centred above it; the branch sits in the top corner and the video's
+ * Home hero: a silent aerial loop of the campus in its own colours with the emblem gathering from
+ * points of light, the organisation's name and its objective centred above it; the branch sits in the top corner and the video's
  * credit at the foot. The lower part stays open so the campus shows.
  */
 export async function Hero() {
@@ -45,7 +44,7 @@ export async function Hero() {
 
       <div className="pointer-events-none absolute inset-x-0 top-0">
         <div className="wrap flex justify-start pt-4 sm:pt-6">
-          <p className="hero-glass load-up pointer-events-auto inline-flex items-center gap-1.5 rounded-full py-1.5 pl-2.5 pr-3.5 text-[0.88rem] font-semibold sm:text-[0.95rem]" style={vars({ '--d': '120ms' })}>
+          <p className="hero-text load-up inline-flex items-center gap-1.5 text-[0.92rem] font-semibold sm:text-[1rem]" style={vars({ '--d': '120ms' })}>
             <Pin className="size-4 text-[#5ec8ff]" aria-hidden="true" />
             {t.branch}
           </p>
@@ -53,15 +52,10 @@ export async function Hero() {
       </div>
 
       <div className="wrap pb-[clamp(13rem,30vh,19rem)] pt-20 text-center sm:pt-24 lg:pt-28">
-        <Image
-          src="/brand/logo-legacy.png"
-          alt=""
-          width={100}
-          height={100}
-          className="hero-logo load-up mx-auto size-[68px] rounded-full bg-white p-1.5 sm:size-20"
-          style={vars({ '--d': '0ms' })}
-        />
-        <h1 id="hero-title" className={`hero-text hero-rise mx-auto mt-5 max-w-5xl font-bold leading-[1.25] text-white ${lang === 'en' ? 'text-[2.1rem] sm:text-[3.1rem] xl:text-[3.6rem]' : 'text-[2.3rem] sm:text-[3.5rem] xl:text-[4.2rem]'}`} style={vars({ '--d': '60ms' })}>
+        <div className="load-up" style={vars({ '--d': '0ms' })}>
+          <ParticleEmblem slogan={null} className="relative mx-auto h-[118px] w-full max-w-xl sm:h-[150px] lg:h-[168px]" />
+        </div>
+        <h1 id="hero-title" className={`hero-text hero-rise mx-auto mt-3 max-w-5xl font-bold leading-[1.25] text-white ${lang === 'en' ? 'text-[2.1rem] sm:text-[3.1rem] xl:text-[3.6rem]' : 'text-[2.3rem] sm:text-[3.5rem] xl:text-[4.2rem]'}`} style={vars({ '--d': '60ms' })}>
           {t.name}
         </h1>
         <p className="hero-rise hero-text mx-auto mt-5 max-w-3xl text-[1.02rem] font-semibold leading-[1.85] text-white/90 sm:text-[1.15rem]" style={vars({ '--d': '220ms' })}>
