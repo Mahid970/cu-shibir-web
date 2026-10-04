@@ -10,6 +10,7 @@ import { getLang } from '@/i18n/server'
 import type { ImageInfo } from '@/lib/media'
 
 import { HeroAurora } from './HeroAurora'
+import { HeroVideo } from './HeroVideo'
 
 type Photo = ImageInfo & { caption: string }
 
@@ -38,8 +39,8 @@ function splitTagline(tagline: string) {
 }
 
 /**
- * Home hero: soft blue and mint light drifting over the night, one centred message, and a slow
- * ribbon of real photos from campus along the bottom.
+ * Home hero: a silent aerial loop of the campus under a night tint and soft drifting light, one
+ * centred message, and a slow ribbon of real photos from campus along the bottom.
  */
 export async function Hero({ tagline, intro, photos }: { tagline: string; intro: string; photos: Photo[] }) {
   const lang = await getLang()
@@ -48,6 +49,7 @@ export async function Hero({ tagline, intro, photos }: { tagline: string; intro:
 
   return (
     <section className="hero-aurora relative isolate overflow-hidden text-white" aria-labelledby="hero-title">
+      <HeroVideo />
       <HeroAurora />
 
       <div className="wrap pb-12 pt-14 text-center sm:pb-14 sm:pt-20 lg:pt-24">

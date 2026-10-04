@@ -47,6 +47,7 @@ const nextConfig: NextConfig = {
       { source: '/api/media/file/:path*', headers: week },
       { source: '/icons/:path*', headers: week },
       { source: '/brand/:path*', headers: week },
+      { source: '/video/:path*', headers: week },
       {
         source: '/sw.js',
         headers: [
