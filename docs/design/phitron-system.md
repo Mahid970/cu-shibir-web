@@ -94,7 +94,7 @@ Grid texture: 1px lines `rgba(53,100,255,.07)` every 72px, with a few `#c3d3ff` 
 | Rail timeline | — | history stations on the shuttle line; pinned and scroll-driven on large screens (About) |
 | Particle emblem | — | the logo gathers from scattered points, then re-forms as the slogan (About) |
 | Hero video | — | a silent 16 s aerial loop of the campus (seamless crossfade) in its own colours, with no colour layer over it (the white text carries a soft shadow instead); landscape 1920×1072 or a full-resolution 608×1072 portrait crop for phones (the source's top 8 rows are black and cut off), AV1 where decoded smoothly (in hardware on phones), else H.264, 1.1–4 MB; loads only after the page has loaded and the browser is idle, fades in over a 25–56 KB still that is the hero's largest paint; data saver, 2G and reduced motion keep the still; pauses off screen (home) |
-| Slogan rise | — | the slogan and intro rise into place from the first paint; the second half is solid yellow (no gradient on hero text), the yellow button beside a frosted-glass one (home hero) |
+| Slogan rise | — | the slogan and intro rise into place from the first paint; the branch line is solid cyan #5ec8ff (no gradient on hero text), a cyan #29b6f6 button with navy text beside a frosted-glass one (home hero) |
 | Light sweep | a lime band wipes across the heading and reveals the highlight, 1.2s | dark-section titles |
 | Folder stack | full-width coloured "folder" cards pin and stack while scrolling | ৫ দফা; a covered card sinks back and each card's contents rise in as it arrives |
 | Problem chain | — | the problem slides in, a green line draws across with a spark, the answer card arrives and its tick draws (সমস্যা তোমার, লড়াই আমাদের) |

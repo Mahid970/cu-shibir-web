@@ -51,7 +51,7 @@ export async function Hero() {
           {t.objective}
         </p>
         <div className="load-up mt-8 flex flex-wrap justify-center gap-3" style={vars({ '--d': '480ms' })}>
-          <Link href="/join" className="btn btn-yellow">
+          <Link href="/join" className="btn hero-cta">
             {t.join}
             <ArrowRight />
           </Link>
