@@ -610,10 +610,10 @@
 }
 
 /* ------------------------------------------------------------------
-   Home hero: a campus aerial loop under soft drifting light (components/home/Hero).
+   Home hero: a campus aerial loop in its own colours (components/home/Hero).
    ------------------------------------------------------------------ */
-.hero-aurora {
-  background: linear-gradient(180deg, #000e1d 0%, #021a3a 55%, #052a6e 100%);
+.home-hero {
+  background: #0a2350;
 }
 /* Campus aerial loop (HeroVideo): blurred frame at once, the still over it, the video fades in when it plays */
 .hero-video__preview {
@@ -639,105 +639,18 @@
 .hero-video__clip.is-playing {
   opacity: 1;
 }
-/* Night tint so the white slogan reads over the misty sky; deepest at the top (under the header) and foot */
-.hero-video__tint {
-  background:
-    linear-gradient(180deg, rgb(0 14 29 / 0.82) 0%, rgb(0 14 29 / 0.6) 40%, rgb(2 26 58 / 0.62) 70%, rgb(4 40 106 / 0.9) 100%);
+/* No colour layer over the video: a soft shadow keeps the white text readable over the bright sky */
+.hero-text {
+  text-shadow:
+    0 1px 2px rgb(0 0 0 / 0.45),
+    0 4px 24px rgb(0 0 0 / 0.55);
 }
-/* Over the video the lights are a softer wash of colour */
-.hero-aurora .aurora {
-  opacity: 0.7;
+/* Gradient text is transparent, so a text-shadow would show through it: shadow its shape instead */
+.hero-text .text-lime-shine {
+  text-shadow: none;
+  filter: drop-shadow(0 2px 12px rgb(0 0 0 / 0.5));
 }
-/* Each light sits in a wrapper that leans toward the pointer (--px/--py, set by HeroAurora);
-   the light itself drifts. Only transform and opacity move, so it stays on the compositor. */
-.aurora__lean {
-  position: absolute;
-  inset: 0;
-  transition: transform 1.6s var(--ease-out);
-}
-.aurora__lean--a {
-  transform: translate(calc(var(--px, 0px) * 0.6), calc(var(--py, 0px) * 0.6));
-}
-.aurora__lean--b {
-  transform: translate(calc(var(--px, 0px) * -0.8), calc(var(--py, 0px) * -0.5));
-}
-.aurora__lean--c {
-  transform: translate(calc(var(--px, 0px) * 1), calc(var(--py, 0px) * 0.8));
-}
-.aurora__lean--d {
-  transform: translate(calc(var(--px, 0px) * -0.4), calc(var(--py, 0px) * 0.4));
-}
-.aurora__light {
-  position: absolute;
-  border-radius: 50%;
-}
-.aurora__light--a {
-  left: -18%;
-  top: -30%;
-  width: max(75%, 560px);
-  aspect-ratio: 4 / 3;
-  background: radial-gradient(closest-side, rgb(0 82 216 / 0.7), rgb(0 82 216 / 0.25) 55%, transparent);
-}
-.aurora__light--b {
-  right: -20%;
-  top: -10%;
-  width: max(70%, 520px);
-  aspect-ratio: 4 / 3;
-  background: radial-gradient(closest-side, rgb(0 163 122 / 0.42), rgb(0 163 122 / 0.12) 55%, transparent);
-}
-.aurora__light--c {
-  left: 20%;
-  bottom: -25%;
-  width: max(65%, 480px);
-  aspect-ratio: 3 / 2;
-  background: radial-gradient(closest-side, rgb(53 100 255 / 0.5), rgb(53 100 255 / 0.15) 55%, transparent);
-}
-.aurora__light--d {
-  left: 45%;
-  top: 5%;
-  width: max(35%, 260px);
-  aspect-ratio: 4 / 3;
-  background: radial-gradient(closest-side, rgb(225 253 20 / 0.1), transparent);
-}
-.motion .aurora__light--a {
-  animation: aurora-a 22s ease-in-out infinite alternate;
-}
-.motion .aurora__light--b {
-  animation: aurora-b 27s ease-in-out infinite alternate;
-}
-.motion .aurora__light--c {
-  animation: aurora-c 19s ease-in-out infinite alternate;
-}
-.motion .aurora__light--d {
-  animation: aurora-d 31s ease-in-out infinite alternate;
-}
-@keyframes aurora-a {
-  to {
-    transform: translate(14%, 10%) scale(1.15);
-    opacity: 0.8;
-  }
-}
-@keyframes aurora-b {
-  50% {
-    opacity: 0.65;
-  }
-  to {
-    transform: translate(-16%, 14%) scale(1.2);
-  }
-}
-@keyframes aurora-c {
-  to {
-    transform: translate(-18%, -12%) scale(0.9);
-    opacity: 0.75;
-  }
-}
-@keyframes aurora-d {
-  to {
-    transform: translate(-60%, 40%) scale(1.4);
-  }
-}
-.hero-aurora[data-paused] .aurora__light,
-.hero-aurora[data-paused] .marquee__track {
+.home-hero[data-paused] .marquee__track {
   animation-play-state: paused;
 }
 /* The slogan and intro rise into place; they are visible from the first paint (LCP text). */

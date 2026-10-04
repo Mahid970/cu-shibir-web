@@ -33,8 +33,8 @@ type Connection = { saveData?: boolean; effectiveType?: string }
  * motion keep the still. Plays only while the hero is on screen.
  *
  * The still has to be there from the start: it is the hero's largest paint. The video frame that
- * later replaces it is drawn 2 px smaller on each side (hidden under the tint), so it never
- * counts as a new, later largest paint.
+ * later replaces it is drawn 2 px smaller on each side (the same still shows in that sliver), so
+ * it never counts as a new, later largest paint.
  */
 export function HeroVideo() {
   const ref = useRef<HTMLVideoElement>(null)
@@ -44,8 +44,15 @@ export function HeroVideo() {
     const video = ref.current
     const hero = video?.closest('section')
     if (!video || !hero) return
-    let io: IntersectionObserver | undefined
     let cancelled = false
+    // Off screen, the video and the photo ribbon pause (the ribbon reads data-paused from CSS).
+    const io = new IntersectionObserver(([e]) => {
+      hero.toggleAttribute('data-paused', !e.isIntersecting)
+      if (!video.src) return
+      if (e.isIntersecting) video.play().catch(() => {})
+      else video.pause()
+    })
+    io.observe(hero)
 
     const start = async () => {
       const conn = (navigator as Navigator & { connection?: Connection }).connection
@@ -56,8 +63,7 @@ export function HeroVideo() {
       const codec = await pickCodec(loop, phone)
       if (cancelled) return
       video.src = `${loop.base}.${codec}.mp4`
-      io = new IntersectionObserver(([e]) => (e.isIntersecting ? video.play().catch(() => {}) : video.pause()))
-      io.observe(hero)
+      if (!hero.hasAttribute('data-paused')) video.play().catch(() => {})
     }
     const idle = () => ('requestIdleCallback' in window ? requestIdleCallback(start, { timeout: 2000 }) : setTimeout(start, 300))
     if (document.readyState === 'complete') idle()
@@ -66,7 +72,7 @@ export function HeroVideo() {
     return () => {
       cancelled = true
       removeEventListener('load', idle)
-      io?.disconnect()
+      io.disconnect()
     }
   }, [])
 
@@ -87,7 +93,6 @@ export function HeroVideo() {
         onPlaying={() => setPlaying(true)}
         className={`hero-video__media hero-video__clip ${playing ? 'is-playing' : ''}`}
       />
-      <div className="hero-video__tint absolute inset-0" />
     </div>
   )
 }

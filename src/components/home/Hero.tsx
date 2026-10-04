@@ -9,7 +9,6 @@ import { copy } from '@/i18n/config'
 import { getLang } from '@/i18n/server'
 import type { ImageInfo } from '@/lib/media'
 
-import { HeroAurora } from './HeroAurora'
 import { HeroVideo } from './HeroVideo'
 
 type Photo = ImageInfo & { caption: string }
@@ -39,8 +38,8 @@ function splitTagline(tagline: string) {
 }
 
 /**
- * Home hero: a silent aerial loop of the campus under a night tint and soft drifting light, one
- * centred message, and a slow ribbon of real photos from campus along the bottom.
+ * Home hero: a silent aerial loop of the campus in its own colours, one centred message, and a
+ * slow ribbon of real photos from campus along the bottom.
  */
 export async function Hero({ tagline, intro, photos }: { tagline: string; intro: string; photos: Photo[] }) {
   const lang = await getLang()
@@ -48,12 +47,11 @@ export async function Hero({ tagline, intro, photos }: { tagline: string; intro:
   const [lead, highlight] = splitTagline(tagline)
 
   return (
-    <section className="hero-aurora relative isolate overflow-hidden text-white" aria-labelledby="hero-title">
+    <section className="home-hero relative isolate overflow-hidden text-white" aria-labelledby="hero-title">
       <HeroVideo />
-      <HeroAurora />
 
       <div className="wrap pb-12 pt-14 text-center sm:pb-14 sm:pt-20 lg:pt-24">
-        <h1 id="hero-title" className="mx-auto max-w-4xl text-[2.7rem] font-bold text-white leading-[1.2] sm:text-[3.8rem] xl:text-[4.6rem]">
+        <h1 id="hero-title" className="hero-text mx-auto max-w-4xl text-[2.7rem] font-bold text-white leading-[1.2] sm:text-[3.8rem] xl:text-[4.6rem]">
           {lead && (
             <span className="hero-rise inline-block" style={vars({ '--d': '60ms' })}>
               {lead}
@@ -64,7 +62,7 @@ export async function Hero({ tagline, intro, photos }: { tagline: string; intro:
           </span>
         </h1>
         {intro && (
-          <p className="hero-rise mx-auto mt-5 max-w-2xl text-[1.05rem] leading-[1.8] text-white/75 sm:text-[1.2rem]" style={vars({ '--d': '360ms' })}>
+          <p className="hero-rise hero-text mx-auto mt-5 max-w-2xl text-[1.05rem] font-semibold leading-[1.8] text-white/90 sm:text-[1.2rem]" style={vars({ '--d': '360ms' })}>
             {withHighlights(intro)}
           </p>
         )}
