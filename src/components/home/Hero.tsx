@@ -1,21 +1,16 @@
-import Image from 'next/image'
 import { Link } from '@/i18n/link'
 import { Fragment } from 'react'
 
-import { Marquee } from '@/components/motion/Marquee'
 import { ArrowRight } from '@/components/ui/Icons'
 import { vars } from '@/components/ui/SectionTitle'
 import { copy } from '@/i18n/config'
 import { getLang } from '@/i18n/server'
-import type { ImageInfo } from '@/lib/media'
 
 import { HeroVideo } from './HeroVideo'
 
-type Photo = ImageInfo & { caption: string }
-
 const T = copy(
-  { join: 'সমর্থক হোন', about: 'আমাদের কথা', ribbon: 'ক্যাম্পাসে আমাদের কার্যক্রমের ছবি' },
-  { join: 'Become a supporter', about: 'About us', ribbon: 'Photos of our work on campus' },
+  { join: 'সমর্থক হোন', about: 'আমাদের কথা' },
+  { join: 'Become a supporter', about: 'About us' },
 )
 
 /** `**words**` in the CMS intro become lime emphasis. */
@@ -38,10 +33,10 @@ function splitTagline(tagline: string) {
 }
 
 /**
- * Home hero: a silent aerial loop of the campus in its own colours, one centred message, and a
- * slow ribbon of real photos from campus along the bottom.
+ * Home hero: a silent aerial loop of the campus in its own colours and one centred message above
+ * it; the lower part stays open so the campus shows.
  */
-export async function Hero({ tagline, intro, photos }: { tagline: string; intro: string; photos: Photo[] }) {
+export async function Hero({ tagline, intro }: { tagline: string; intro: string }) {
   const lang = await getLang()
   const t = T[lang]
   const [lead, highlight] = splitTagline(tagline)
@@ -50,7 +45,7 @@ export async function Hero({ tagline, intro, photos }: { tagline: string; intro:
     <section className="home-hero relative isolate overflow-hidden text-white" aria-labelledby="hero-title">
       <HeroVideo />
 
-      <div className="wrap pb-12 pt-14 text-center sm:pb-14 sm:pt-20 lg:pt-24">
+      <div className="wrap pb-[clamp(14rem,32vh,20rem)] pt-14 text-center sm:pt-20 lg:pt-24">
         <h1 id="hero-title" className="hero-text mx-auto max-w-4xl text-[2.7rem] font-bold text-white leading-[1.2] sm:text-[3.8rem] xl:text-[4.6rem]">
           {lead && (
             <span className="hero-rise inline-block" style={vars({ '--d': '60ms' })}>
@@ -76,25 +71,6 @@ export async function Hero({ tagline, intro, photos }: { tagline: string; intro:
           </Link>
         </div>
       </div>
-
-      {photos.length > 0 && (
-        <div className="hero-ribbon load-up pb-16 lg:pb-20" style={vars({ '--d': '700ms' })}>
-          <Marquee label={t.ribbon} duration={Math.max(40, photos.length * 8)}>
-            {photos.map((p, i) => (
-              <figure key={i} className="ribbon-card">
-                <Image
-                  src={p.src}
-                  alt={p.alt || p.caption}
-                  fill
-                  sizes="(min-width: 640px) 224px, 168px"
-                  className="object-cover"
-                />
-                {p.caption && <figcaption>{p.caption}</figcaption>}
-              </figure>
-            ))}
-          </Marquee>
-        </div>
-      )}
 
       <svg aria-hidden="true" viewBox="0 0 1440 60" preserveAspectRatio="none" className="absolute inset-x-0 bottom-0 h-10 w-full sm:h-14">
         <path d="M0 60V40C360 0 1080 0 1440 40v20Z" fill="var(--bg)" />

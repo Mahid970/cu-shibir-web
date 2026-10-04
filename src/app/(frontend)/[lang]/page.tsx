@@ -13,9 +13,7 @@ import { TrustSection } from '@/components/home/TrustSection'
 import { HERO_DEFAULTS } from '@/content/home'
 import { alternates, cmsText, toLocale } from '@/i18n/config'
 import { getAlbums, getLatestPosts, getLeaders, getPressCoverage, getSiteSettings, getVideos } from '@/lib/cms'
-import { pickImage, type ImageInfo } from '@/lib/media'
 import { SITE } from '@/lib/site'
-import type { Media } from '@/payload-types'
 
 export const revalidate = 3600
 
@@ -37,31 +35,6 @@ export default async function HomePage({ params }: Props) {
     getVideos(3, lang),
   ])
 
-  // Photos for the hero's ribbon: the hero photo and the ones chosen in Site settings first, then
-  // recent album photos (each album's cover first, then its other photos) until there are ten.
-  // The cards are 168–224 px wide, so 2–3x screens need ~450–500 px: start from the 800 px size and let
-  // next/image serve the width each screen needs.
-  const chosen = [settings.heroImage, ...(settings.heroGallery ?? [])]
-    .filter((m): m is Media => typeof m === 'object' && m !== null)
-    .map((m) => ({ media: m, caption: m.caption || m.alt || '' }))
-  const albumPhotos = albums.map((a) => (Array.isArray(a.photos) ? a.photos : []).filter((m): m is Media => typeof m === 'object'))
-  const fromAlbums = [0, 1, 2].flatMap((k) =>
-    albums.flatMap((a, i) => (albumPhotos[i][k] ? [{ media: albumPhotos[i][k], caption: a.title }] : [])),
-  )
-  const seen = new Set<number>()
-  const photos = [...chosen, ...fromAlbums]
-    .filter(({ media }) => {
-      if (seen.has(media.id)) return false
-      seen.add(media.id)
-      return true
-    })
-    .map(({ media, caption }) => {
-      const image = pickImage(media, 'card')
-      return image && { ...image, caption }
-    })
-    .filter((p): p is ImageInfo & { caption: string } => p !== null)
-    .slice(0, 10)
-
   const defaults = { bn: HERO_DEFAULTS.bn.tagline, en: HERO_DEFAULTS.en.tagline }
 
   return (
@@ -69,7 +42,6 @@ export default async function HomePage({ params }: Props) {
       <Hero
         tagline={cmsText(lang, settings.tagline, defaults)}
         intro={cmsText(lang, settings.heroIntro, { bn: HERO_DEFAULTS.bn.intro, en: HERO_DEFAULTS.en.intro })}
-        photos={photos}
       />
       <Milestones />
       <NewsSection posts={posts} />

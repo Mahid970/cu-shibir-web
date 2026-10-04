@@ -650,9 +650,6 @@
   text-shadow: none;
   filter: drop-shadow(0 2px 12px rgb(0 0 0 / 0.5));
 }
-.home-hero[data-paused] .marquee__track {
-  animation-play-state: paused;
-}
 /* The slogan and intro rise into place; they are visible from the first paint (LCP text). */
 .motion .hero-rise {
   animation: hero-rise 0.9s var(--ease-out) both;
@@ -668,57 +665,6 @@
   from {
     transform: translateY(22px);
     opacity: 0.35;
-  }
-}
-/* Photo ribbon: rounded 4:3 cards laid by hand (a slight alternating tilt), caption on hover */
-.hero-ribbon .marquee__group {
-  gap: 1.25rem;
-  /* room for the cards' shadows: the marquee clips anything outside its box */
-  padding: 1.25rem 1.25rem 2.75rem 0;
-}
-.ribbon-card {
-  position: relative;
-  width: 168px;
-  aspect-ratio: 4 / 3;
-  flex: none;
-  overflow: hidden;
-  border-radius: 18px;
-  background: #0a2350;
-  box-shadow:
-    0 0 0 1px rgb(255 255 255 / 0.12),
-    0 16px 30px -14px rgb(0 0 0 / 0.6);
-  transform: translateY(6px) rotate(-1.2deg);
-  transition: transform 0.5s var(--ease-out);
-}
-.ribbon-card:nth-child(even) {
-  transform: translateY(-6px) rotate(1.2deg);
-}
-.ribbon-card:hover {
-  transform: translateY(-10px) rotate(0deg) scale(1.04);
-}
-.ribbon-card figcaption {
-  position: absolute;
-  inset: auto 0.5rem 0.5rem;
-  overflow: hidden;
-  border-radius: 999px;
-  background: rgb(0 14 29 / 0.7);
-  padding: 0.2rem 0.7rem;
-  font-size: 0.78rem;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateY(6px);
-  transition:
-    opacity 0.3s,
-    transform 0.3s var(--ease-out);
-}
-.ribbon-card:hover figcaption {
-  opacity: 1;
-  transform: none;
-}
-@media (min-width: 640px) {
-  .ribbon-card {
-    width: 224px;
   }
 }
 /* A blue glow just under the horizon that breathes very slowly */

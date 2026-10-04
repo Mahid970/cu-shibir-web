@@ -53,7 +53,7 @@ The first `npx playwright install chromium` is needed for share images and e2e t
 src/
   proxy.ts               /… → /bn/… rewrite, so Bangla keeps short URLs; /en/… served as is
   app/(frontend)/[lang]/ every page, once, for both languages; root layout sets <html lang> (RSC, ISR 1h + on-demand purge)
-    page.tsx             home: aurora hero (photo ribbon), milestones, news, campaigns, CUCSU, ৫ দফা, gallery + videos, leaders
+    page.tsx             home: hero with the campus video, milestones, news, campaigns, CUCSU, ৫ দফা, gallery + videos, leaders
     about/ leadership/[slug] news/[slug] gallery/[slug] videos/ press/
     join/ supporter/ feedback/         forms (server actions, encrypted)
     services/            the student services hub (Phase 4)

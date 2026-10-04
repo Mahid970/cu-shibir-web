@@ -1857,11 +1857,11 @@ export interface SiteSetting {
    */
   heroIntro?: string | null;
   /**
-   * The first photo in the homepage hero's photo ribbon. A bright photo of many students works best.
+   * Not shown at the moment: the homepage hero plays the campus video instead.
    */
   heroImage?: (number | null) | Media;
   /**
-   * Event photos for the slowly drifting ribbon at the foot of the homepage hero; the caption shows on hover. Topped up with photos from recent albums.
+   * Not shown at the moment: the homepage hero plays the campus video instead.
    */
   heroGallery?: (number | Media)[] | null;
   stats?:

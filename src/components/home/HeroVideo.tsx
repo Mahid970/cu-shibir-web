@@ -45,7 +45,7 @@ export function HeroVideo() {
     const hero = video?.closest('section')
     if (!video || !hero) return
     let cancelled = false
-    // Off screen, the video and the photo ribbon pause (the ribbon reads data-paused from CSS).
+    // Off screen, the video pauses.
     const io = new IntersectionObserver(([e]) => {
       hero.toggleAttribute('data-paused', !e.isIntersecting)
       if (!video.src) return

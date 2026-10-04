@@ -31,7 +31,7 @@ export const SiteSettings: GlobalConfig = {
       type: 'upload',
       relationTo: 'media',
       label: { bn: 'হিরো ছবি', en: 'Hero photo' },
-      admin: { description: 'The first photo in the homepage hero\'s photo ribbon. A bright photo of many students works best.' },
+      admin: { description: 'Not shown at the moment: the homepage hero plays the campus video instead.' },
     },
     {
       name: 'heroGallery',
@@ -40,7 +40,7 @@ export const SiteSettings: GlobalConfig = {
       hasMany: true,
       maxRows: 10,
       label: { bn: 'হিরোর আরও ছবি (১০টি পর্যন্ত)', en: 'More hero photos (up to 10)' },
-      admin: { description: 'Event photos for the slowly drifting ribbon at the foot of the homepage hero; the caption shows on hover. Topped up with photos from recent albums.' },
+      admin: { description: 'Not shown at the moment: the homepage hero plays the campus video instead.' },
     },
     {
       name: 'stats',

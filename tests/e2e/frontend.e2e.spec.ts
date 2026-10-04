@@ -13,16 +13,19 @@ test.describe('Frontend', () => {
   })
 
   for (const reducedMotion of ['no-preference', 'reduce'] as const) {
-    test(`the hero's photo ribbon shows photos (${reducedMotion} motion)`, async ({ browser }) => {
+    test(`the hero shows the campus (${reducedMotion} motion)`, async ({ browser }) => {
       const page = await browser.newPage({ reducedMotion })
       await page.goto('http://localhost:3000')
-      const ribbon = page.getByRole('region', { name: /কার্যক্রমের ছবি/ })
-      await expect(ribbon).toBeVisible()
-      await expect
-        .poll(() => ribbon.locator('img').evaluateAll((imgs: HTMLImageElement[]) => imgs.filter((i) => i.complete && i.naturalWidth > 0).length), {
-          timeout: 15000,
-        })
-        .toBeGreaterThan(0)
+      // The still frame paints from the start; with motion on, the loop loads once the page has.
+      const still = page.locator('.home-hero picture img')
+      await expect.poll(() => still.evaluate((i: HTMLImageElement) => i.complete && i.naturalWidth > 0), { timeout: 15000 }).toBe(true)
+      const video = page.locator('.home-hero video')
+      if (reducedMotion === 'reduce') {
+        await page.waitForTimeout(2500)
+        await expect(video).not.toHaveAttribute('src', /.+/)
+      } else {
+        await expect(video).toHaveAttribute('src', /\/video\/hero\/campus-/, { timeout: 15000 })
+      }
       await page.close()
     })
   }

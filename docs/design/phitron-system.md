@@ -94,7 +94,6 @@ Grid texture: 1px lines `rgba(53,100,255,.07)` every 72px, with a few `#c3d3ff` 
 | Rail timeline | — | history stations on the shuttle line; pinned and scroll-driven on large screens (About) |
 | Particle emblem | — | the logo gathers from scattered points, then re-forms as the slogan (About) |
 | Hero video | — | a silent 16 s aerial loop of the campus (seamless crossfade) in its own colours, with no colour layer over it (the white text carries a soft shadow instead); landscape 1080p or a full-resolution 608×1080 portrait crop for phones, AV1 where decoded smoothly (in hardware on phones), else H.264, 1.1–4 MB; loads only after the page has loaded and the browser is idle, fades in over a 25–56 KB still that is the hero's largest paint; data saver, 2G and reduced motion keep the still; pauses off screen (home) |
-| Photo ribbon | — | real campus photos as rounded 4:3 cards laid with a slight alternating tilt drift slowly under the hero; pause on hover, drag to scroll, caption on hover (home hero) |
 | Slogan rise | — | the slogan and intro rise into place from the first paint; the second half shines lime (home hero) |
 | Light sweep | a lime band wipes across the heading and reveals the highlight, 1.2s | dark-section titles |
 | Folder stack | full-width coloured "folder" cards pin and stack while scrolling | ৫ দফা; a covered card sinks back and each card's contents rise in as it arrives |
