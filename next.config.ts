@@ -17,6 +17,8 @@ const nextConfig: NextConfig = {
     // YouTube thumbnails for the branch's own videos
     remotePatterns: [{ protocol: 'https', hostname: 'i.ytimg.com', pathname: '/vi/**' }],
     formats: ['image/avif', 'image/webp'],
+    // Optimised copies are keyed by source URL; uploads get new file names, so a week is safe.
+    minimumCacheTTL: 604800,
   },
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {
@@ -37,8 +39,14 @@ const nextConfig: NextConfig = {
       { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
       { key: 'Permissions-Policy', value: 'camera=(self), microphone=(), geolocation=(self)' },
     ]
+    const week = [{ key: 'Cache-Control', value: 'public, max-age=604800, stale-while-revalidate=86400' }]
     return [
       { source: '/:path*', headers: security },
+      // Payload sends media files with no cache header, so every visit downloaded them again. Only the
+      // public Media collection: question papers and other uploads keep their own access rules.
+      { source: '/api/media/file/:path*', headers: week },
+      { source: '/icons/:path*', headers: week },
+      { source: '/brand/:path*', headers: week },
       {
         source: '/sw.js',
         headers: [
