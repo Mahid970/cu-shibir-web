@@ -318,13 +318,6 @@
   .btn-ghost-light:hover {
     background: rgb(255 255 255 / 0.1);
   }
-  .btn-blue-glow {
-    border: 3px solid #022451;
-    border-radius: 0.75rem;
-    background: radial-gradient(1356% 1106% at 463% 55%, #0060fa 0%, #002b70 100%);
-    color: var(--white);
-    box-shadow: 0 12px 20px rgb(0 96 250 / 0.3);
-  }
   .btn-lime {
     border-radius: 0.75rem;
     background: var(--lime);
@@ -356,10 +349,6 @@
     background: rgb(200 32 40 / 0.1);
     color: var(--crimson);
   }
-  .chip-yellow {
-    background: var(--tag);
-    color: var(--ink);
-  }
   /* Gradient border via padding-box/border-box (set --fill and --edge) */
   .edge {
     border: 2px solid transparent;
@@ -368,9 +357,6 @@
       var(--edge, var(--gradient)) border-box;
   }
 
-  .mono {
-    font-family: var(--font-mono);
-  }
 
   /* Scramble label hanging from the top of a night section */
   .eyebrow-tab {
@@ -1213,45 +1199,12 @@
     transform: translateY(18px);
   }
 }
-/* Hero photo: grows into place without fading, so it counts as painted as soon as it loads. */
-.load-grow {
-  animation: grow 0.7s var(--ease-out) both;
-  animation-delay: var(--d, 0ms);
-}
-@keyframes grow {
-  from {
-    transform: scale(0.94);
-  }
-}
 
-.caret {
-  animation: caret 1.2s linear infinite;
-}
 .nudge {
   animation: nudge 1.6s ease-in-out infinite;
 }
 .play-pulse {
   animation: play-pulse 2s linear infinite;
-}
-
-/* Journey line: connectors fill one after another, then fade and repeat */
-.journey-1 {
-  transform-origin: left center;
-  animation: journey-1 4.7s ease-in-out infinite;
-}
-.journey-2 {
-  transform-origin: left center;
-  animation: journey-2 4.7s ease-in-out infinite;
-}
-@media (max-width: 767px) {
-  .journey-1,
-  .journey-2 {
-    transform-origin: center top;
-    animation-name: journey-1-y;
-  }
-  .journey-2 {
-    animation-name: journey-2-y;
-  }
 }
 
 @keyframes fade-up {
@@ -1292,16 +1245,6 @@
   }
   to {
     background-position: -200% 0;
-  }
-}
-@keyframes caret {
-  0%,
-  45% {
-    opacity: 1;
-  }
-  55%,
-  100% {
-    opacity: 0;
   }
 }
 @keyframes pop {
@@ -1353,72 +1296,6 @@
 @keyframes marquee {
   to {
     transform: translateX(-50%);
-  }
-}
-@keyframes journey-1 {
-  0% {
-    transform: scaleX(0);
-    opacity: 1;
-  }
-  27%,
-  82% {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-  92%,
-  100% {
-    transform: scaleX(1);
-    opacity: 0;
-  }
-}
-@keyframes journey-2 {
-  0%,
-  40% {
-    transform: scaleX(0);
-    opacity: 1;
-  }
-  70%,
-  82% {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-  92%,
-  100% {
-    transform: scaleX(1);
-    opacity: 0;
-  }
-}
-@keyframes journey-1-y {
-  0% {
-    transform: scaleY(0);
-    opacity: 1;
-  }
-  27%,
-  82% {
-    transform: scaleY(1);
-    opacity: 1;
-  }
-  92%,
-  100% {
-    transform: scaleY(1);
-    opacity: 0;
-  }
-}
-@keyframes journey-2-y {
-  0%,
-  40% {
-    transform: scaleY(0);
-    opacity: 1;
-  }
-  70%,
-  82% {
-    transform: scaleY(1);
-    opacity: 1;
-  }
-  92%,
-  100% {
-    transform: scaleY(1);
-    opacity: 0;
   }
 }
 @keyframes toast-in {
