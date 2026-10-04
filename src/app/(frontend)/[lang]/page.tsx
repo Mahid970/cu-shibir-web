@@ -10,10 +10,8 @@ import { Milestones } from '@/components/home/Milestones'
 import { NewsSection } from '@/components/home/NewsSection'
 import { ProblemSolution } from '@/components/home/ProblemSolution'
 import { TrustSection } from '@/components/home/TrustSection'
-import { DEFAULT_STATS, HERO_DEFAULTS } from '@/content/home'
-import { alternates, cmsText, hasBangla, toLocale } from '@/i18n/config'
-import { num } from '@/i18n/format'
-import { toLatinDigits } from '@/lib/bn'
+import { HERO_DEFAULTS } from '@/content/home'
+import { alternates, cmsText, toLocale } from '@/i18n/config'
 import { getAlbums, getLatestPosts, getLeaders, getPressCoverage, getSiteSettings, getVideos } from '@/lib/cms'
 import { pickImage, type ImageInfo } from '@/lib/media'
 import { SITE } from '@/lib/site'
@@ -39,30 +37,30 @@ export default async function HomePage({ params }: Props) {
     getVideos(3, lang),
   ])
 
-  // Stats typed in the CMS; on English pages a label without an English version uses ours.
-  const fallbackStats = DEFAULT_STATS[lang]
-  const stats = settings.stats?.length
-    ? settings.stats.map((s, i) => ({
-        value: s.value,
-        suffix: s.suffix && num(lang, toLatinDigits(s.suffix)),
-        label: lang === 'en' && hasBangla(s.label) ? (fallbackStats[i]?.label ?? s.label) : s.label,
-      }))
-    : fallbackStats
-
-  // More photos for the hero's living picture: chosen in Site settings, otherwise the covers of recent albums.
-  // The picture samples them into a grid of at most ~160 dots, so the 400 px thumbnails carry every detail
-  // it can show (the hero and card sizes were 4–10x the bytes and a long decode on phones).
-  const chosen = (settings.heroGallery ?? []).filter((m): m is Media => typeof m === 'object')
-  const gallery = (
-    chosen.length
-      ? chosen.map((m) => ({ image: pickImage(m, 'thumb'), caption: m.caption || m.alt || '' }))
-      : albums.slice(1).map((a) => ({ image: pickImage(Array.isArray(a.photos) ? a.photos[0] : null, 'thumb'), caption: a.title }))
+  // Photos for the hero's ribbon: the hero photo and the ones chosen in Site settings first, then
+  // recent album photos (each album's cover first, then its other photos) until there are ten.
+  // The cards are ~220 px wide, so the 400 px thumbnails are sharp on 2x screens.
+  const chosen = [settings.heroImage, ...(settings.heroGallery ?? [])]
+    .filter((m): m is Media => typeof m === 'object' && m !== null)
+    .map((m) => ({ media: m, caption: m.caption || m.alt || '' }))
+  const albumPhotos = albums.map((a) => (Array.isArray(a.photos) ? a.photos : []).filter((m): m is Media => typeof m === 'object'))
+  const fromAlbums = [0, 1, 2].flatMap((k) =>
+    albums.flatMap((a, i) => (albumPhotos[i][k] ? [{ media: albumPhotos[i][k], caption: a.title }] : [])),
   )
-    .filter((g): g is { image: ImageInfo; caption: string } => g.image !== null)
-    .slice(0, 2)
-    .map((g) => ({ ...g.image, caption: g.caption }))
+  const seen = new Set<number>()
+  const photos = [...chosen, ...fromAlbums]
+    .filter(({ media }) => {
+      if (seen.has(media.id)) return false
+      seen.add(media.id)
+      return true
+    })
+    .map(({ media, caption }) => {
+      const image = pickImage(media, 'thumb')
+      return image && { ...image, caption }
+    })
+    .filter((p): p is ImageInfo & { caption: string } => p !== null)
+    .slice(0, 10)
 
-  const faces = leaders.map((p) => pickImage(p.photo, 'thumb')).filter((f): f is ImageInfo => f !== null)
   const defaults = { bn: HERO_DEFAULTS.bn.tagline, en: HERO_DEFAULTS.en.tagline }
 
   return (
@@ -70,11 +68,7 @@ export default async function HomePage({ params }: Props) {
       <Hero
         tagline={cmsText(lang, settings.tagline, defaults)}
         intro={cmsText(lang, settings.heroIntro, { bn: HERO_DEFAULTS.bn.intro, en: HERO_DEFAULTS.en.intro })}
-        photo={pickImage(settings.heroImage, 'thumb')}
-        gallery={gallery}
-        stats={stats}
-        faces={faces}
-        leaderCount={leaders.length}
+        photos={photos}
       />
       <Milestones />
       <NewsSection posts={posts} />

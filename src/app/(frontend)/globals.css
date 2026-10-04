@@ -610,12 +610,170 @@
 }
 
 /* ------------------------------------------------------------------
-   Home hero: a night sky deepening to royal blue over the hills.
+   Home hero: soft light drifting over the night (components/home/Hero).
    ------------------------------------------------------------------ */
-.hero-night {
-  background:
-    radial-gradient(90% 60% at 18% 0%, rgb(0 96 250 / 0.28), transparent 62%),
-    linear-gradient(180deg, #000e1d 0%, #021a3a 48%, #04286a 78%, #0a3c9c 100%);
+.hero-aurora {
+  background: linear-gradient(180deg, #000e1d 0%, #021a3a 55%, #052a6e 100%);
+}
+/* Each light sits in a wrapper that leans toward the pointer (--px/--py, set by HeroAurora);
+   the light itself drifts. Only transform and opacity move, so it stays on the compositor. */
+.aurora__lean {
+  position: absolute;
+  inset: 0;
+  transition: transform 1.6s var(--ease-out);
+}
+.aurora__lean--a {
+  transform: translate(calc(var(--px, 0px) * 0.6), calc(var(--py, 0px) * 0.6));
+}
+.aurora__lean--b {
+  transform: translate(calc(var(--px, 0px) * -0.8), calc(var(--py, 0px) * -0.5));
+}
+.aurora__lean--c {
+  transform: translate(calc(var(--px, 0px) * 1), calc(var(--py, 0px) * 0.8));
+}
+.aurora__lean--d {
+  transform: translate(calc(var(--px, 0px) * -0.4), calc(var(--py, 0px) * 0.4));
+}
+.aurora__light {
+  position: absolute;
+  border-radius: 50%;
+}
+.aurora__light--a {
+  left: -18%;
+  top: -30%;
+  width: max(75%, 560px);
+  aspect-ratio: 4 / 3;
+  background: radial-gradient(closest-side, rgb(0 82 216 / 0.7), rgb(0 82 216 / 0.25) 55%, transparent);
+}
+.aurora__light--b {
+  right: -20%;
+  top: -10%;
+  width: max(70%, 520px);
+  aspect-ratio: 4 / 3;
+  background: radial-gradient(closest-side, rgb(0 163 122 / 0.42), rgb(0 163 122 / 0.12) 55%, transparent);
+}
+.aurora__light--c {
+  left: 20%;
+  bottom: -25%;
+  width: max(65%, 480px);
+  aspect-ratio: 3 / 2;
+  background: radial-gradient(closest-side, rgb(53 100 255 / 0.5), rgb(53 100 255 / 0.15) 55%, transparent);
+}
+.aurora__light--d {
+  left: 45%;
+  top: 5%;
+  width: max(35%, 260px);
+  aspect-ratio: 4 / 3;
+  background: radial-gradient(closest-side, rgb(225 253 20 / 0.1), transparent);
+}
+.motion .aurora__light--a {
+  animation: aurora-a 22s ease-in-out infinite alternate;
+}
+.motion .aurora__light--b {
+  animation: aurora-b 27s ease-in-out infinite alternate;
+}
+.motion .aurora__light--c {
+  animation: aurora-c 19s ease-in-out infinite alternate;
+}
+.motion .aurora__light--d {
+  animation: aurora-d 31s ease-in-out infinite alternate;
+}
+@keyframes aurora-a {
+  to {
+    transform: translate(14%, 10%) scale(1.15);
+    opacity: 0.8;
+  }
+}
+@keyframes aurora-b {
+  50% {
+    opacity: 0.65;
+  }
+  to {
+    transform: translate(-16%, 14%) scale(1.2);
+  }
+}
+@keyframes aurora-c {
+  to {
+    transform: translate(-18%, -12%) scale(0.9);
+    opacity: 0.75;
+  }
+}
+@keyframes aurora-d {
+  to {
+    transform: translate(-60%, 40%) scale(1.4);
+  }
+}
+.hero-aurora[data-paused] .aurora__light,
+.hero-aurora[data-paused] .marquee__track {
+  animation-play-state: paused;
+}
+/* The slogan and intro rise into place; they are visible from the first paint (LCP text). */
+.motion .hero-rise {
+  animation: hero-rise 0.9s var(--ease-out) both;
+  animation-delay: var(--d, 0ms);
+}
+.motion .hero-rise.text-lime-shine {
+  animation:
+    hero-rise 0.9s var(--ease-out) both,
+    shine 6s linear infinite;
+  animation-delay: var(--d, 0ms), 0s;
+}
+@keyframes hero-rise {
+  from {
+    transform: translateY(22px);
+    opacity: 0.35;
+  }
+}
+/* Photo ribbon: rounded 4:3 cards laid by hand (a slight alternating tilt), caption on hover */
+.hero-ribbon .marquee__group {
+  gap: 1.25rem;
+  /* room for the cards' shadows: the marquee clips anything outside its box */
+  padding: 1.25rem 1.25rem 2.75rem 0;
+}
+.ribbon-card {
+  position: relative;
+  width: 168px;
+  aspect-ratio: 4 / 3;
+  flex: none;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #0a2350;
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.12),
+    0 16px 30px -14px rgb(0 0 0 / 0.6);
+  transform: translateY(6px) rotate(-1.2deg);
+  transition: transform 0.5s var(--ease-out);
+}
+.ribbon-card:nth-child(even) {
+  transform: translateY(-6px) rotate(1.2deg);
+}
+.ribbon-card:hover {
+  transform: translateY(-10px) rotate(0deg) scale(1.04);
+}
+.ribbon-card figcaption {
+  position: absolute;
+  inset: auto 0.5rem 0.5rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgb(0 14 29 / 0.7);
+  padding: 0.2rem 0.7rem;
+  font-size: 0.78rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.3s,
+    transform 0.3s var(--ease-out);
+}
+.ribbon-card:hover figcaption {
+  opacity: 1;
+  transform: none;
+}
+@media (min-width: 640px) {
+  .ribbon-card {
+    width: 224px;
+  }
 }
 /* A blue glow just under the horizon that breathes very slowly */
 .hero-glow {
@@ -680,17 +838,6 @@
     filter: blur(0);
   }
 }
-.hero-caption span {
-  animation: caption-in 0.6s var(--ease-out) both;
-}
-@keyframes caption-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-    filter: blur(4px);
-  }
-}
-
 /* ------------------------------------------------------------------
    শহীদি কাফেলা: the martyrs' journey (components/martyrs/ShaheedJourney).
    The pinned road shows only on large screens with motion on; otherwise
