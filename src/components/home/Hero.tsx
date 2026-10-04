@@ -1,6 +1,6 @@
 import { Link } from '@/i18n/link'
 
-import { ParticleEmblem } from '@/components/about/ParticleEmblem'
+import { ParticleEmblem, type LineStyle } from '@/components/about/ParticleEmblem'
 import { ArrowRight, Pin } from '@/components/ui/Icons'
 import { vars } from '@/components/ui/SectionTitle'
 import { copy } from '@/i18n/config'
@@ -11,6 +11,7 @@ import { HeroVideo } from './HeroVideo'
 const T = copy(
   {
     name: 'বাংলাদেশ ইসলামী ছাত্রশিবির',
+    nameNarrow: ['বাংলাদেশ ইসলামী', 'ছাত্রশিবির'],
     branch: 'চট্টগ্রাম বিশ্ববিদ্যালয়',
     objective:
       'বাংলাদেশ ইসলামী ছাত্রশিবিরের লক্ষ্য ও উদ্দেশ্য হলো “আল্লাহ প্রদত্ত ও রাসূল (সা.) প্রদর্শিত বিধান অনুযায়ী মানুষের সার্বিক জীবনের পুনর্বিন্যাস সাধন করে আল্লাহর সন্তুষ্টি অর্জন”।',
@@ -20,6 +21,7 @@ const T = copy(
   },
   {
     name: 'Bangladesh Islami Chhatrashibir',
+    nameNarrow: ['Bangladesh Islami', 'Chhatrashibir'],
     branch: 'University of Chittagong',
     objective:
       'The aim and objective of Bangladesh Islami Chhatrashibir is “to win the pleasure of Allah by reshaping every part of human life according to the guidance given by Allah and shown by the Messenger (peace be upon him)”.',
@@ -29,9 +31,16 @@ const T = copy(
   },
 )
 
+/** The name in white, the branch smaller in cyan (solid colours, no gradient). */
+const WHITE: LineStyle = { rgb: [255, 255, 255], scale: 1 }
+const CYAN: LineStyle = { rgb: [94, 200, 255], scale: 0.62 }
+const STYLES = [WHITE, CYAN]
+const NARROW_STYLES = [WHITE, WHITE, CYAN]
+const HOLDS: [number, number] = [3800, 7000]
+
 /**
- * Home hero: a silent aerial loop of the campus in its own colours with the emblem gathering from
- * points of light, the organisation's name and its objective centred above it; the branch sits in the top corner and the video's
+ * Home hero: a silent aerial loop of the campus in its own colours; above it, points of light gather
+ * into the emblem and re-form as the organisation's name (the visual title), then its objective; the branch sits in the top corner and the video's
  * credit at the foot. The lower part stays open so the campus shows.
  */
 export async function Hero() {
@@ -52,12 +61,21 @@ export async function Hero() {
       </div>
 
       <div className="wrap pb-[clamp(13rem,30vh,19rem)] pt-20 text-center sm:pt-24 lg:pt-28">
-        <div className="load-up" style={vars({ '--d': '0ms' })}>
-          <ParticleEmblem slogan={null} className="relative mx-auto h-[118px] w-full max-w-xl sm:h-[150px] lg:h-[168px]" />
-        </div>
-        <h1 id="hero-title" className={`hero-text hero-rise mx-auto mt-3 max-w-5xl font-bold leading-[1.25] text-white ${lang === 'en' ? 'text-[2.1rem] sm:text-[3.1rem] xl:text-[3.6rem]' : 'text-[2.3rem] sm:text-[3.5rem] xl:text-[4.2rem]'}`} style={vars({ '--d': '60ms' })}>
-          {t.name}
+        {/* The title is drawn in points of light: the emblem gathers, then re-forms as the name. */}
+        <h1 id="hero-title" className="sr-only">
+          {t.name}, {t.branch}
         </h1>
+        <div className="load-up" style={vars({ '--d': '0ms' })}>
+          <ParticleEmblem
+            slogan={[t.name, t.branch]}
+            narrowSlogan={[...t.nameNarrow, t.branch]}
+            styles={STYLES}
+            narrowStyles={NARROW_STYLES}
+            holds={HOLDS}
+            calm="text"
+            className="relative mx-auto h-[200px] w-full max-w-5xl sm:h-[210px] lg:h-[230px]"
+          />
+        </div>
         <p className="hero-rise hero-text mx-auto mt-5 max-w-3xl text-[1.02rem] font-semibold leading-[1.85] text-white/90 sm:text-[1.15rem]" style={vars({ '--d': '220ms' })}>
           {t.objective}
         </p>
