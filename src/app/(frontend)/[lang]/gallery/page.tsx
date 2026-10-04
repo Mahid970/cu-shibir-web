@@ -65,7 +65,8 @@ export default async function GalleryPage() {
               return (
                 <li key={album.id}>
                   <article
-                    data-reveal="fade"
+                    // The first row is shown at once so its photos don't wait for the reveal observer (as on /news).
+                    data-reveal={i < 3 ? undefined : 'fade'}
                     style={vars({ '--d': `${(i % 3) * 90}ms` })}
                     className="group relative flex h-full flex-col gap-4 rounded-2xl bg-white p-4 shadow-[0_4px_24px_rgb(11_15_46/0.06)] transition-shadow duration-300 hover:shadow-[0_18px_40px_rgb(11_15_46/0.12)] md:rounded-3xl md:p-5"
                   >
@@ -75,7 +76,7 @@ export default async function GalleryPage() {
                           src={cover.src}
                           alt={cover.alt}
                           fill
-                          priority={i < 3}
+                          priority={i === 0}
                           sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />

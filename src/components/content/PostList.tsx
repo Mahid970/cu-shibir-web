@@ -55,7 +55,8 @@ export async function PostCard({
               src={img.src}
               alt={img.alt}
               fill
-              priority={priority}
+              // Only the first photo competes for the opening bandwidth; the rest load as they come into view.
+              priority={priority && index === 0}
               sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
