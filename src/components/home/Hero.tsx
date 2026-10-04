@@ -1,5 +1,6 @@
 import { Link } from '@/i18n/link'
 
+import { ParticleEmblem } from '@/components/about/ParticleEmblem'
 import { ArrowRight, Pin } from '@/components/ui/Icons'
 import { vars } from '@/components/ui/SectionTitle'
 import { copy } from '@/i18n/config'
@@ -29,9 +30,10 @@ const T = copy(
 )
 
 /**
- * Home hero: a silent aerial loop of the campus in its own colours with the organisation's name
- * and its objective centred above it; the branch sits in the top corner and the video's
- * credit at the foot. The lower part stays open so the campus shows.
+ * Home hero over a silent aerial loop of the campus: on wide screens the name, branch, objective
+ * and buttons on the left and the emblem gathering from points of light on the right, in a box as
+ * tall as the text; on phones the emblem sits above the text. The video's credit is at the foot,
+ * and the lower part stays open so the campus shows.
  */
 export async function Hero() {
   const lang = await getLang()
@@ -41,30 +43,32 @@ export async function Hero() {
     <section className="home-hero relative isolate overflow-hidden text-white" aria-labelledby="hero-title">
       <HeroVideo />
 
-      <div className="pointer-events-none absolute inset-x-0 top-0">
-        <div className="wrap flex justify-start pt-4 sm:pt-6">
-          <p className="hero-text load-up inline-flex items-center gap-1.5 text-[0.92rem] font-semibold sm:text-[1rem]" style={vars({ '--d': '120ms' })}>
-            <Pin className="size-4 text-[#5ec8ff]" aria-hidden="true" />
-            {t.branch}
+      <div className="wrap grid items-stretch gap-6 pb-[clamp(10rem,24vh,16rem)] pt-10 sm:pt-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12 lg:pt-20">
+        <div className="text-center lg:order-1 lg:text-left">
+          <h1 id="hero-title" className="hero-text hero-rise font-bold leading-[1.22] text-white" style={vars({ '--d': '60ms' })}>
+            <span className={`block ${lang === 'en' ? 'text-[2.1rem] sm:text-[3rem] xl:text-[3.4rem]' : 'text-[2.4rem] sm:text-[3.4rem] xl:text-[3.9rem]'}`}>{t.name}</span>
+            <span className="mt-2 inline-flex items-center gap-2 text-[1.35rem] text-[#5ec8ff] sm:text-[1.7rem] xl:text-[1.95rem]">
+              <Pin className="size-[0.8em]" aria-hidden="true" />
+              {t.branch}
+            </span>
+          </h1>
+          <p className="hero-rise hero-text mx-auto mt-5 max-w-2xl text-[1.02rem] font-semibold leading-[1.85] text-white/90 sm:text-[1.12rem] lg:mx-0" style={vars({ '--d': '220ms' })}>
+            {t.objective}
           </p>
+          <div className="load-up mt-8 flex flex-wrap justify-center gap-3 lg:justify-start" style={vars({ '--d': '360ms' })}>
+            <Link href="/join" className="btn hero-cta">
+              {t.join}
+              <ArrowRight />
+            </Link>
+            <Link href="/about" className="btn hero-glass">
+              {t.about}
+            </Link>
+          </div>
         </div>
-      </div>
 
-      <div className="wrap pb-[clamp(13rem,30vh,19rem)] pt-20 text-center sm:pt-24 lg:pt-28">
-        <h1 id="hero-title" className={`hero-text hero-rise mx-auto max-w-5xl font-bold leading-[1.25] text-white ${lang === 'en' ? 'text-[2.1rem] sm:text-[3.1rem] xl:text-[3.6rem]' : 'text-[2.3rem] sm:text-[3.5rem] xl:text-[4.2rem]'}`} style={vars({ '--d': '60ms' })}>
-          {t.name}
-        </h1>
-        <p className="hero-rise hero-text mx-auto mt-5 max-w-3xl text-[1.02rem] font-semibold leading-[1.85] text-white/90 sm:text-[1.15rem]" style={vars({ '--d': '220ms' })}>
-          {t.objective}
-        </p>
-        <div className="load-up mt-8 flex flex-wrap justify-center gap-3" style={vars({ '--d': '360ms' })}>
-          <Link href="/join" className="btn hero-cta">
-            {t.join}
-            <ArrowRight />
-          </Link>
-          <Link href="/about" className="btn hero-glass">
-            {t.about}
-          </Link>
+        {/* The emblem gathers from points of light; its box matches the text column's height on wide screens. */}
+        <div className="load-up -order-1 lg:order-2" style={vars({ '--d': '0ms' })}>
+          <ParticleEmblem slogan={null} className="relative mx-auto h-[150px] w-full sm:h-[190px] lg:h-full lg:min-h-[320px]" />
         </div>
       </div>
 
