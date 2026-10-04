@@ -26,7 +26,7 @@ function withHighlights(text: string) {
   )
 }
 
-/** "আমরা তরুণ, আমরাই পারি" → ["আমরা তরুণ,", "আমরাই পারি"]; the second half shines lime (same in English). */
+/** "আমরা তরুণ, আমরাই পারি" → ["আমরা তরুণ,", "আমরাই পারি"]; the second half is set in the accent colour (same in English). */
 function splitTagline(tagline: string) {
   const i = tagline.indexOf(',')
   return i === -1 ? ['', tagline] : [tagline.slice(0, i + 1), tagline.slice(i + 1).trim()]
@@ -52,7 +52,7 @@ export async function Hero({ tagline, intro }: { tagline: string; intro: string 
               {lead}
             </span>
           )}{' '}
-          <span className="hero-rise text-lime-shine inline-block pb-1" style={vars({ '--d': '220ms' })}>
+          <span className="hero-rise hero-accent inline-block pb-1" style={vars({ '--d': '220ms' })}>
             {highlight}
           </span>
         </h1>
@@ -66,7 +66,7 @@ export async function Hero({ tagline, intro }: { tagline: string; intro: string 
             {t.join}
             <ArrowRight />
           </Link>
-          <Link href="/about" className="btn btn-ghost-light">
+          <Link href="/about" className="btn hero-glass">
             {t.about}
           </Link>
         </div>
