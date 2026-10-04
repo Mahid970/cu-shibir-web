@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test.describe('Frontend', () => {
-  test('homepage renders the Bangla hero, stats and share metadata', async ({ page }) => {
+  test('homepage renders the Bangla hero and share metadata', async ({ page }) => {
     await page.goto('http://localhost:3000')
 
     await expect(page).toHaveTitle(/ছাত্রশিবির/)
@@ -13,24 +13,16 @@ test.describe('Frontend', () => {
   })
 
   for (const reducedMotion of ['no-preference', 'reduce'] as const) {
-    test(`the hero's living picture draws (${reducedMotion} motion)`, async ({ browser }) => {
+    test(`the hero's photo ribbon shows photos (${reducedMotion} motion)`, async ({ browser }) => {
       const page = await browser.newPage({ reducedMotion })
       await page.goto('http://localhost:3000')
-      const picture = page.getByRole('img', { name: /সংগঠনের প্রতীক/ })
-      await expect(picture).toBeVisible()
-      // Some dots are lit once the photos have loaded and the first scene has formed.
+      const ribbon = page.getByRole('region', { name: /কার্যক্রমের ছবি/ })
+      await expect(ribbon).toBeVisible()
       await expect
-        .poll(
-          () =>
-            picture.locator('canvas').evaluate((c: HTMLCanvasElement) => {
-              const d = c.getContext('2d')!.getImageData(0, 0, c.width, c.height).data
-              let lit = 0
-              for (let i = 3; i < d.length; i += 4 * 97) if (d[i] > 0) lit++
-              return lit
-            }),
-          { timeout: 15000 },
-        )
-        .toBeGreaterThan(50)
+        .poll(() => ribbon.locator('img').evaluateAll((imgs: HTMLImageElement[]) => imgs.filter((i) => i.complete && i.naturalWidth > 0).length), {
+          timeout: 15000,
+        })
+        .toBeGreaterThan(0)
       await page.close()
     })
   }

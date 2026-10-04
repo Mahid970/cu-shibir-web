@@ -75,7 +75,7 @@ Grid texture: 1px lines `rgba(53,100,255,.07)` every 72px, with a few `#c3d3ff` 
 |---|---|---|
 | Hero load | children fade up 28px, 0.55s ease-out, 0.12s stagger | hero |
 | Typing caret | `|` blinks, 1.2s cycle | after hero headline |
-| Floating icons | pop in (scale 0.5→1, backOut), then bob `y 0→−drift→0` and wobble rotate, 5–7s loop | hero photo cards and badges, join banner |
+| Floating icons | pop in (scale 0.5→1, backOut), then bob `y 0→−drift→0` and wobble rotate, 5–7s loop | join banner |
 | Title blur-fade | each word group drops in with a blur, staggered (Phitron replays it; we play it once) | every section title |
 | Shine | gradient text slides `background-position` 200%→−200%, 2–3s loop | highlighted words |
 | Swoosh | curved gradient stroke under the highlight | section titles |
@@ -83,7 +83,7 @@ Grid texture: 1px lines `rgba(53,100,255,.07)` every 72px, with a few `#c3d3ff` 
 | Count-up | 0 → value, 1.8s ease-out, on 50% visibility | stats |
 | Pulse rings | two box-shadow rings, 2s, offset 1s | the one yellow button per screen |
 | Play pulse | scale 1→1.25→1, 2s loop | video cards |
-| Banner scale-in | 0.8→1, 0.5s after the hero text | hero main photo |
+| Banner scale-in | 0.8→1, 0.5s after the hero text | not used |
 | Marquee | track `translateX(0 → −50%)`, pauses on hover, drag to scroll | press coverage |
 | Journey line | connecting lines fill with `scaleX` in sequence, 4.2s loop | কর্মী → সাথী → সদস্য (About); milestone line draws once (home) |
 | Nudge arrows | chevrons `x 0→4→0`, 1.6s | tabs, steps |
@@ -93,9 +93,9 @@ Grid texture: 1px lines `rgba(53,100,255,.07)` every 72px, with a few `#c3d3ff` 
 | Shared elements | — | news image → article hero, leader photo → profile (React `<ViewTransition>`) |
 | Rail timeline | — | history stations on the shuttle line; pinned and scroll-driven on large screens (About) |
 | Particle emblem | — | the logo gathers from scattered points, then re-forms as the slogan (About) |
-| Night hero | — | a night sky deepening to royal blue over three layers of CU hills that rise at its foot; a blue glow breathes under the horizon (home) |
-| Living picture | — | star dust gathers into a campus photo as a mosaic of dots, bursts, re-forms as the emblem ("thousands of students… one caravan"), then the next photo; dots shy from the pointer; runs only on screen, static first photo with reduced motion (home hero) |
-| Slogan settle | — | the slogan's letters arrive spaced out and soft, then draw together and sharpen; the second half shines lime (home hero) |
+| Aurora hero | — | blue, mint and a faint lime light drift slowly over the night behind one centred slogan (transform/opacity only); on desktop they lean toward the pointer; paused off screen, still with reduced motion (home) |
+| Photo ribbon | — | real campus photos as rounded 4:3 cards laid with a slight alternating tilt drift slowly under the hero; pause on hover, drag to scroll, caption on hover (home hero) |
+| Slogan rise | — | the slogan and intro rise into place from the first paint; the second half shines lime (home hero) |
 | Light sweep | a lime band wipes across the heading and reveals the highlight, 1.2s | dark-section titles |
 | Folder stack | full-width coloured "folder" cards pin and stack while scrolling | ৫ দফা; a covered card sinks back and each card's contents rise in as it arrives |
 | Problem chain | — | the problem slides in, a green line draws across with a spark, the answer card arrives and its tick draws (সমস্যা তোমার, লড়াই আমাদের) |
