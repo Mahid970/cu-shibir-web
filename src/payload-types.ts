@@ -1851,9 +1851,12 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface SiteSetting {
   id: number;
+  /**
+   * Not shown at the moment: the homepage hero shows the organisation's name and objective.
+   */
   tagline?: string | null;
   /**
-   * Wrap words in **double asterisks** to highlight them in blue.
+   * Not shown at the moment: the homepage hero shows the organisation's objective.
    */
   heroIntro?: string | null;
   /**

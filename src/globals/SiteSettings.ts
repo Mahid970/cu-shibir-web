@@ -16,6 +16,7 @@ export const SiteSettings: GlobalConfig = {
       localized: true,
       defaultValue: 'আমরা তরুণ, আমরাই পারি',
       label: { bn: 'স্লোগান', en: 'Tagline' },
+      admin: { description: 'Not shown at the moment: the homepage hero shows the organisation\'s name and objective.' },
     },
     {
       name: 'heroIntro',
@@ -24,7 +25,7 @@ export const SiteSettings: GlobalConfig = {
       defaultValue:
         'সৎ, দক্ষ ও দেশপ্রেমিক নাগরিক গড়ার লক্ষ্যে চট্টগ্রাম বিশ্ববিদ্যালয়ের শিক্ষার্থীদের পাশে — ক্লাসে, হলে, শাটলে, আন্দোলনে।',
       label: { bn: 'হিরো ভূমিকা', en: 'Hero intro' },
-      admin: { description: 'Wrap words in **double asterisks** to highlight them in blue.' },
+      admin: { description: 'Not shown at the moment: the homepage hero shows the organisation\'s objective.' },
     },
     {
       name: 'heroImage',

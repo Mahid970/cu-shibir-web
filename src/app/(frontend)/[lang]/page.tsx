@@ -9,8 +9,7 @@ import { LeadersSection } from '@/components/home/LeadersSection'
 import { NewsSection } from '@/components/home/NewsSection'
 import { ProblemSolution } from '@/components/home/ProblemSolution'
 import { TrustSection } from '@/components/home/TrustSection'
-import { HERO_DEFAULTS } from '@/content/home'
-import { alternates, cmsText, toLocale } from '@/i18n/config'
+import { alternates, toLocale } from '@/i18n/config'
 import { getAlbums, getLatestPosts, getLeaders, getPressCoverage, getSiteSettings, getVideos } from '@/lib/cms'
 import { SITE } from '@/lib/site'
 
@@ -34,14 +33,9 @@ export default async function HomePage({ params }: Props) {
     getVideos(3, lang),
   ])
 
-  const defaults = { bn: HERO_DEFAULTS.bn.tagline, en: HERO_DEFAULTS.en.tagline }
-
   return (
     <>
-      <Hero
-        tagline={cmsText(lang, settings.tagline, defaults)}
-        intro={cmsText(lang, settings.heroIntro, { bn: HERO_DEFAULTS.bn.intro, en: HERO_DEFAULTS.en.intro })}
-      />
+      <Hero />
       <NewsSection posts={posts} />
       <ProblemSolution />
       <TrustSection press={press} />

@@ -3,13 +3,14 @@
 import { useEffect, useRef, useState } from 'react'
 
 /** The loop's first frame at 32×18 (132 bytes), stretched and blurred until the video plays. */
-const PREVIEW = 'data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAACwBACdASogABIAPuFSpE2opCOiN/qoARAcCWUAwzQh2B+olySpWmkc/fjZL1YAAP6RY69Foi0AxhhtojTFszy8HyQZGhd8GUl+wTKxlE4CGdejKUJ82nTl3niNK2N+Y3+EOnByCXScyXyH+s2qQAAA'
+const PREVIEW = 'data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAACwBACdASogABIAPuFUpE2opCOiN/qoARAcCWUAAFuhCT5IfO0vcgrkyK0YeFXgAP6Rn/t6tATyIwRopbKqEPoY4+Uf4Mpu373IzTvI0o/xIHqV0WOtUSDDEpcmfcg47cUeIQ8wusizs7MOWBAEnO1AAAA='
 
-/** Two crops of the campus aerial loop: landscape for most screens, portrait for phones held upright. */
+/** Two crops of the campus aerial loop: landscape for most screens, portrait for phones held upright.
+ * Both drop the source's top 8 rows, which are black. */
 const PHONE = '(max-aspect-ratio: 2/3)'
 const LOOPS = {
-  landscape: { base: '/video/hero/campus-1080', width: 1920, height: 1080, bitrate: 1_200_000 },
-  portrait: { base: '/video/hero/campus-608x1080', width: 608, height: 1080, bitrate: 550_000 },
+  landscape: { base: '/video/hero/campus-1072', width: 1920, height: 1072, bitrate: 1_200_000 },
+  portrait: { base: '/video/hero/campus-608x1072', width: 608, height: 1072, bitrate: 550_000 },
 }
 
 /** AV1 only where the device decodes it smoothly (and, on phones, in hardware); H.264 everywhere else. */
