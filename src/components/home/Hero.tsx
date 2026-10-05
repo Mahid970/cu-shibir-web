@@ -31,8 +31,8 @@ const T = copy(
 
 /**
  * Home hero over a silent aerial loop of the campus: on wide screens the name, branch, objective
- * and buttons on the left and the emblem gathering from points of light on the right, in a box as
- * tall as the text; on phones the emblem sits above the text. The video's credit is at the foot,
+ * and buttons on the left and the emblem gathering from points of light on the right, larger than the
+ * text block; on phones the emblem sits above the text. The video's credit is at the foot,
  * and the lower part stays open so the campus shows.
  */
 export async function Hero() {
@@ -47,7 +47,7 @@ export async function Hero() {
         <p className="hero-watermark wrap">{t.branch}</p>
       </div>
 
-      <div className="wrap grid items-stretch gap-6 pb-[clamp(10rem,24vh,16rem)] pt-10 sm:pt-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12 lg:pt-20">
+      <div className="wrap grid items-center gap-6 pb-[clamp(10rem,24vh,16rem)] pt-10 sm:pt-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12 lg:pt-20">
         <div className="@container text-center lg:order-1 lg:text-left">
           <h1 id="hero-title" className="hero-text hero-rise font-bold leading-[1.22] text-white" style={vars({ '--d': '60ms' })}>
             {/* One line at every width: sized to the column (container units), capped on large screens. */}
@@ -68,9 +68,9 @@ export async function Hero() {
           </div>
         </div>
 
-        {/* The emblem gathers from points of light; its box matches the text column's height on wide screens. */}
+        {/* The emblem gathers from points of light, larger than the text block beside it. */}
         <div className="load-up -order-1 lg:order-2" style={vars({ '--d': '0ms' })}>
-          <ParticleEmblem slogan={null} className="relative mx-auto h-[150px] w-full sm:h-[190px] lg:h-full lg:min-h-[320px]" />
+          <ParticleEmblem slogan={null} className="relative mx-auto h-[210px] w-full sm:h-[260px] lg:h-[440px] xl:h-[480px]" />
         </div>
       </div>
 
