@@ -652,6 +652,15 @@
   animation: hero-rise 0.9s var(--ease-out) both;
   animation-delay: var(--d, 0ms);
 }
+/* The branch's name as a small, soft watermark at the foot of the video */
+.home-hero .hero-watermark {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: rgb(255 255 255 / 0.55);
+  text-shadow: 0 1px 3px rgb(0 0 0 / 0.35);
+}
 /* Hero buttons: cyan main button with a soft cyan glow, frosted glass beside it */
 .hero-cta {
   background: #29b6f6;

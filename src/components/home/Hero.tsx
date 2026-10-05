@@ -1,7 +1,7 @@
 import { Link } from '@/i18n/link'
 
 import { ParticleEmblem } from '@/components/about/ParticleEmblem'
-import { ArrowRight, Pin } from '@/components/ui/Icons'
+import { ArrowRight } from '@/components/ui/Icons'
 import { vars } from '@/components/ui/SectionTitle'
 import { copy } from '@/i18n/config'
 import { getLang } from '@/i18n/server'
@@ -42,15 +42,17 @@ export async function Hero() {
   return (
     <section className="home-hero relative isolate overflow-hidden text-white" aria-labelledby="hero-title">
       <HeroVideo />
+      {/* Watermark over the video: the branch's name, large and faint, behind the content. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-5 -z-10 sm:bottom-7">
+        <p className="hero-watermark wrap">{t.branch}</p>
+      </div>
 
       <div className="wrap grid items-stretch gap-6 pb-[clamp(10rem,24vh,16rem)] pt-10 sm:pt-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12 lg:pt-20">
-        <div className="text-center lg:order-1 lg:text-left">
+        <div className="@container text-center lg:order-1 lg:text-left">
           <h1 id="hero-title" className="hero-text hero-rise font-bold leading-[1.22] text-white" style={vars({ '--d': '60ms' })}>
-            <span className={`block ${lang === 'en' ? 'text-[2.1rem] sm:text-[3rem] xl:text-[3.4rem]' : 'text-[2.4rem] sm:text-[3.4rem] xl:text-[3.9rem]'}`}>{t.name}</span>
-            <span className="mt-2 inline-flex items-center gap-2 text-[1.35rem] text-[#5ec8ff] sm:text-[1.7rem] xl:text-[1.95rem]">
-              <Pin className="size-[0.8em]" aria-hidden="true" />
-              {t.branch}
-            </span>
+            {/* One line at every width: sized to the column (container units), capped on large screens. */}
+            <span className={`block whitespace-nowrap ${lang === 'en' ? 'text-[min(5.5cqw,3rem)]' : 'text-[min(8.4cqw,3.6rem)]'}`}>{t.name}</span>
+            <span className="mt-2 block text-[1.35rem] text-[#5ec8ff] sm:text-[1.7rem] xl:text-[1.95rem]">{t.branch}</span>
           </h1>
           <p className="hero-rise hero-text mx-auto mt-5 max-w-2xl text-[1.02rem] font-semibold leading-[1.85] text-white/90 sm:text-[1.12rem] lg:mx-0" style={vars({ '--d': '220ms' })}>
             {t.objective}

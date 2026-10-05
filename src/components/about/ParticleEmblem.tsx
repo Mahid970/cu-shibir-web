@@ -25,6 +25,57 @@ function sampleImage(img: HTMLImageElement, W: number, H: number, fill: number, 
   return toShape(pts)
 }
 
+/**
+ * The emblem filling a W×H box (home hero): the image's empty margin is trimmed, the emblem is
+ * scaled to fit the box, and redrawn at one point every `gap` px, so a large emblem gets more,
+ * denser dots than the 100 px source has pixels. Colours are lifted a touch to hold up over the video.
+ */
+function sampleLogoFit(img: HTMLImageElement, W: number, H: number, gap: number): Shape {
+  const src = document.createElement('canvas')
+  src.width = img.naturalWidth
+  src.height = img.naturalHeight
+  const sctx = src.getContext('2d', { willReadFrequently: true })!
+  sctx.drawImage(img, 0, 0)
+  const raw = sctx.getImageData(0, 0, src.width, src.height).data
+  let x0 = src.width
+  let y0 = src.height
+  let x1 = 0
+  let y1 = 0
+  for (let y = 0; y < src.height; y++) {
+    for (let x = 0; x < src.width; x++) {
+      if (raw[(y * src.width + x) * 4 + 3] > 140) {
+        if (x < x0) x0 = x
+        if (x > x1) x1 = x
+        if (y < y0) y0 = y
+        if (y > y1) y1 = y
+      }
+    }
+  }
+  const bw = x1 - x0 + 1
+  const bh = y1 - y0 + 1
+  const fit = Math.min(W / bw, H / bh)
+  const cols = Math.max(1, Math.round((bw * fit) / gap))
+  const rows = Math.max(1, Math.round((bh * fit) / gap))
+  const c = document.createElement('canvas')
+  c.width = cols
+  c.height = rows
+  const ctx = c.getContext('2d', { willReadFrequently: true })!
+  ctx.imageSmoothingQuality = 'high'
+  ctx.drawImage(img, x0, y0, bw, bh, 0, 0, cols, rows)
+  const data = ctx.getImageData(0, 0, cols, rows).data
+  const ox = (W - cols * gap) / 2
+  const oy = (H - rows * gap) / 2
+  const lift = (v: number) => Math.min(255, Math.round(v * 1.04 + 12))
+  const pts: number[][] = []
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      const i = (y * cols + x) * 4
+      if (data[i + 3] > 140) pts.push([ox + x * gap, oy + y * gap, lift(data[i]), lift(data[i + 1]), lift(data[i + 2])])
+    }
+  }
+  return toShape(pts)
+}
+
 /** Sample text drawn with the page's Bangla font. */
 function sampleText(lines: string[], W: number, H: number, font: string, step: number): Shape {
   const c = document.createElement('canvas')
@@ -116,12 +167,18 @@ export function ParticleEmblem({
       const scale = (Math.min(W, H) * fill) / 100
       const small = scale < 2
       const step = small ? Math.max(2, Math.round(2.8 / scale)) : narrow ? 2 : 1
-      const emblem = sampleImage(img, W, H, fill, step)
+      // Home hero (emblem alone): fill the whole box with denser, brighter dots.
+      // At most ~12k points: a taller box spaces them a little wider so it stays at full frame rate.
+      let gap = narrow ? 2 : 2.3
+      let emblem = slogan ? sampleImage(img, W, H, fill, step) : sampleLogoFit(img, W, H, gap)
+      if (!slogan && emblem.n > 12000) {
+        gap *= Math.sqrt(emblem.n / 12000)
+        emblem = sampleLogoFit(img, W, H, gap)
+      }
       const font = getComputedStyle(document.body).fontFamily
       const text = slogan && sampleText(narrow ? slogan : [slogan.join(' ')], W, H, font, 3)
       const n = Math.max(emblem.n, text ? text.n : 0)
-      // Over the home hero's video the emblem alone needs fuller dots to read; the About band keeps its finer ones.
-      const dot = !slogan ? Math.min(3, step * scale * 0.82) : small ? Math.min(1.8, step * scale * 0.7) : narrow ? 1.8 : 2.2
+      const dot = !slogan ? gap * 0.86 : small ? Math.min(1.8, step * scale * 0.7) : narrow ? 1.8 : 2.2
 
       if (calm) {
         for (let i = 0; i < emblem.n; i++) {
@@ -181,8 +238,8 @@ export function ParticleEmblem({
       const cy = H / 2
       const breath: Shape = { ...emblem, x: new Float32Array(emblem.n), y: new Float32Array(emblem.n) }
       for (let i = 0; i < emblem.n; i++) {
-        breath.x[i] = emblem.x[i] + (emblem.x[i] - cx) * 0.55 + (Math.random() - 0.5) * 26
-        breath.y[i] = emblem.y[i] + (emblem.y[i] - cy) * 0.55 + (Math.random() - 0.5) * 26
+        breath.x[i] = emblem.x[i] + (emblem.x[i] - cx) * 0.3 + (Math.random() - 0.5) * 18
+        breath.y[i] = emblem.y[i] + (emblem.y[i] - cy) * 0.3 + (Math.random() - 0.5) * 18
       }
       const phases = text
         ? [
