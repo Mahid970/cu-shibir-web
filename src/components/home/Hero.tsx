@@ -1,7 +1,7 @@
 import { Link } from '@/i18n/link'
 
 import { ParticleEmblem } from '@/components/about/ParticleEmblem'
-import { ArrowRight } from '@/components/ui/Icons'
+import { ArrowRight, Pin } from '@/components/ui/Icons'
 import { vars } from '@/components/ui/SectionTitle'
 import { copy } from '@/i18n/config'
 import { getLang } from '@/i18n/server'
@@ -41,7 +41,7 @@ const SLOGAN_COLORS: [number, number, number][] = [
  * Home hero over a silent aerial loop of the campus: on wide screens the name, branch, objective
  * and buttons on the left and on the right the emblem gathering from points of light and re-forming
  * as the slogan, larger than the text block; on phones the emblem sits above the text. The group is centred in a hero that fills
- * the first screen below the header; the watermark and the video's credit sit at the foot.
+ * the first screen below the header; the watermark sits in the top-left corner and the video's credit at the foot.
  */
 export async function Hero() {
   const lang = await getLang()
@@ -50,19 +50,22 @@ export async function Hero() {
   return (
     <section className="home-hero relative isolate flex min-h-[calc(100svh-73px)] flex-col justify-center overflow-hidden text-white" aria-labelledby="hero-title">
       <HeroVideo />
-      {/* Watermark over the video: the branch's name, large and faint, behind the content. */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-5 -z-10 sm:bottom-7">
-        <p className="hero-watermark wrap">{t.branch}</p>
+      {/* Watermark in the top-left corner: the branch's name with a pin, small and soft. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0">
+        <p className="hero-watermark wrap flex items-center gap-1.5 pt-4 sm:pt-6">
+          <Pin className="size-4" />
+          {t.branch}
+        </p>
       </div>
 
       <div className="wrap grid w-full items-center gap-6 py-14 sm:py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12 lg:py-20">
         <div className="@container text-center lg:order-1 lg:text-left">
           <h1 id="hero-title" className="hero-text hero-rise font-bold leading-[1.22] text-white" style={vars({ '--d': '60ms' })}>
-            {/* One line at every width: sized to the column (container units), capped on large screens. */}
-            <span className={`block whitespace-nowrap ${lang === 'en' ? 'text-[min(5.5cqw,3rem)]' : 'text-[min(8.4cqw,3.6rem)]'}`}>{t.name}</span>
+            {/* Sized to the column (container units), capped on large screens; one line in Bangla, English (longer) may wrap. */}
+            <span className={`block text-[min(8.4cqw,3.6rem)] ${lang === 'en' ? '' : 'whitespace-nowrap'}`}>{t.name}</span>
             <span className="mt-2 block text-[1.35rem] text-[#5ec8ff] sm:text-[1.7rem] xl:text-[1.95rem]">{t.branch}</span>
           </h1>
-          <p className="hero-rise hero-text mx-auto mt-5 max-w-2xl text-[1.02rem] font-semibold leading-[1.85] text-white/90 sm:text-[1.12rem] lg:mx-0" style={vars({ '--d': '220ms' })}>
+          <p className="hero-rise hero-text mx-auto mt-5 max-w-2xl text-[0.95rem] font-semibold leading-[1.85] text-white/90 sm:text-[1.04rem] lg:mx-0" style={vars({ '--d': '220ms' })}>
             {t.objective}
           </p>
           <div className="load-up mt-8 flex flex-wrap justify-center gap-3 lg:justify-start" style={vars({ '--d': '360ms' })}>
@@ -70,7 +73,7 @@ export async function Hero() {
               {t.join}
               <ArrowRight />
             </Link>
-            <Link href="/about" className="btn hero-glass">
+            <Link href="/about" className="btn hero-outline">
               {t.about}
             </Link>
           </div>

@@ -669,30 +669,53 @@
     inset 0 0 0 1px rgb(255 255 255 / 0.16),
     0 24px 60px rgb(0 0 0 / 0.35);
 }
-/* Hero buttons: cyan main button with a soft cyan glow, frosted glass beside it */
+/* Hero buttons: a deep cyan main button with a soft glow, and an outline button in the same cyan
+   that fills from the left on hover (and empties to the right when the pointer leaves). */
+.home-hero {
+  --hero-primary: #1ba1e2;
+}
 .hero-cta {
-  background: #29b6f6;
+  background: var(--hero-primary);
   color: #002545;
-  box-shadow: 0 12px 28px rgb(41 182 246 / 0.45);
+  box-shadow: 0 8px 20px rgb(27 161 226 / 0.28);
   transition:
     transform 0.2s var(--ease-out),
     background-color 0.2s,
     box-shadow 0.2s var(--ease-out);
 }
 .hero-cta:hover {
-  background: #4fc3f7;
+  background: #2aaeee;
   transform: translateY(-2px);
-  box-shadow: 0 16px 34px rgb(41 182 246 / 0.6);
+  box-shadow: 0 12px 26px rgb(27 161 226 / 0.4);
 }
-.hero-glass {
+.hero-outline {
+  overflow: hidden;
   color: var(--white);
-  background: rgb(255 255 255 / 0.14);
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.28);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--hero-primary);
+  transition:
+    color 0.35s var(--ease-out),
+    transform 0.2s var(--ease-out);
 }
-.hero-glass:hover {
-  background: rgb(255 255 255 / 0.22);
+.hero-outline::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--hero-primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s var(--ease-out);
+}
+.hero-outline:hover,
+.hero-outline:focus-visible {
+  color: #002545;
+  transform: translateY(-2px);
+}
+.hero-outline:hover::before,
+.hero-outline:focus-visible::before {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 @keyframes hero-rise {
   from {
