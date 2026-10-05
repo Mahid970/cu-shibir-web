@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 
+import { RailTimeline } from '@/components/about/RailTimeline'
 import { FivePoints } from '@/components/home/FivePoints'
 import { Gallery } from '@/components/home/Gallery'
 import { Hero } from '@/components/home/Hero'
@@ -9,6 +10,7 @@ import { LeadersSection } from '@/components/home/LeadersSection'
 import { NewsSection } from '@/components/home/NewsSection'
 import { ProblemSolution } from '@/components/home/ProblemSolution'
 import { TrustSection } from '@/components/home/TrustSection'
+import { historyStops } from '@/content/history'
 import { alternates, toLocale } from '@/i18n/config'
 import { getAlbums, getLatestPosts, getLeaders, getPressCoverage, getSiteSettings, getVideos } from '@/lib/cms'
 import { SITE } from '@/lib/site'
@@ -36,6 +38,7 @@ export default async function HomePage({ params }: Props) {
   return (
     <>
       <Hero />
+      <RailTimeline stops={historyStops(lang)} />
       <NewsSection posts={posts} />
       <ProblemSolution />
       <TrustSection press={press} />
