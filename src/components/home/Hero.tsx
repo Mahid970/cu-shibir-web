@@ -11,6 +11,7 @@ import { HeroVideo } from './HeroVideo'
 const T = copy(
   {
     name: 'বাংলাদেশ ইসলামী ছাত্রশিবির',
+    slogan: ['আমরা তরুণ,', 'আমরাই পারি'],
     branch: 'চট্টগ্রাম বিশ্ববিদ্যালয়',
     objective:
       'বাংলাদেশ ইসলামী ছাত্রশিবিরের লক্ষ্য ও উদ্দেশ্য হলো “আল্লাহ প্রদত্ত ও রাসূল (সা.) প্রদর্শিত বিধান অনুযায়ী মানুষের সার্বিক জীবনের পুনর্বিন্যাস সাধন করে আল্লাহর সন্তুষ্টি অর্জন”।',
@@ -20,6 +21,7 @@ const T = copy(
   },
   {
     name: 'Bangladesh Islami Chhatrashibir',
+    slogan: ['We are young,', 'we can do it'],
     branch: 'University of Chittagong',
     objective:
       'The aim and objective of Bangladesh Islami Chhatrashibir is “to win the pleasure of Allah by reshaping every part of human life according to the guidance given by Allah and shown by the Messenger (peace be upon him)”.',
@@ -29,10 +31,16 @@ const T = copy(
   },
 )
 
+/** The slogan's points: first line white, second cyan (solid colours, like the text beside it). */
+const SLOGAN_COLORS: [number, number, number][] = [
+  [255, 255, 255],
+  [94, 200, 255],
+]
+
 /**
  * Home hero over a silent aerial loop of the campus: on wide screens the name, branch, objective
- * and buttons on the left and the emblem gathering from points of light on the right, larger than the
- * text block; on phones the emblem sits above the text. The video's credit is at the foot,
+ * and buttons on the left and on the right the emblem gathering from points of light and re-forming
+ * as the slogan, larger than the text block; on phones the emblem sits above the text. The video's credit is at the foot,
  * and the lower part stays open so the campus shows.
  */
 export async function Hero() {
@@ -68,9 +76,9 @@ export async function Hero() {
           </div>
         </div>
 
-        {/* The emblem gathers from points of light, larger than the text block beside it. */}
+        {/* As on the About page: the emblem gathers from points of light, then re-forms as the slogan, and back. */}
         <div className="load-up -order-1 lg:order-2" style={vars({ '--d': '0ms' })}>
-          <ParticleEmblem slogan={null} className="relative mx-auto h-[210px] w-full sm:h-[260px] lg:h-[440px] xl:h-[480px]" />
+          <ParticleEmblem slogan={t.slogan} fit lineColors={SLOGAN_COLORS} className="relative mx-auto h-[210px] w-full sm:h-[260px] lg:h-[440px] xl:h-[480px]" />
         </div>
       </div>
 

@@ -77,7 +77,7 @@ function sampleLogoFit(img: HTMLImageElement, W: number, H: number, gap: number)
 }
 
 /** Sample text drawn with the page's Bangla font. */
-function sampleText(lines: string[], W: number, H: number, font: string, step: number): Shape {
+function sampleText(lines: string[], W: number, H: number, font: string, step: number, colors?: [number, number, number][]): Shape {
   const c = document.createElement('canvas')
   c.width = W
   c.height = H
@@ -90,15 +90,24 @@ function sampleText(lines: string[], W: number, H: number, font: string, step: n
   ctx.fillStyle = '#fff'
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
-  lines.forEach((l, i) => ctx.fillText(l, W / 2, H / 2 + (i - (lines.length - 1) / 2) * size * 1.35))
+  const lineY = lines.map((_, i) => H / 2 + (i - (lines.length - 1) / 2) * size * 1.35)
+  lines.forEach((l, i) => ctx.fillText(l, W / 2, lineY[i]))
   const data = ctx.getImageData(0, 0, W, H).data
   const pts: number[][] = []
   for (let y = 0; y < H; y += step) {
     for (let x = 0; x < W; x += step) {
       if (data[(y * W + x) * 4 + 3] > 128) {
-        // mint → white → sky across the line
-        const t = x / W
-        pts.push([x, y, Math.round(126 + 129 * t * 0.6), 247 - Math.round(40 * t), Math.round(168 + 87 * t)])
+        if (colors) {
+          // One solid colour per line (home hero): the line whose middle is nearest.
+          let li = 0
+          for (let k = 1; k < lineY.length; k++) if (Math.abs(y - lineY[k]) < Math.abs(y - lineY[li])) li = k
+          const [r, g, b] = colors[li] ?? colors[0]
+          pts.push([x, y, r, g, b])
+        } else {
+          // mint → white → sky across the line
+          const t = x / W
+          pts.push([x, y, Math.round(126 + 129 * t * 0.6), 247 - Math.round(40 * t), Math.round(168 + 87 * t)])
+        }
       }
     }
   }
@@ -128,9 +137,15 @@ const SLOGAN = ['আমরা তরুণ,', 'আমরাই পারি']
  */
 export function ParticleEmblem({
   slogan = SLOGAN,
+  fit = false,
+  lineColors,
   className = 'relative h-[340px] w-full sm:h-[380px] lg:h-[420px]',
 }: {
   slogan?: string[] | null
+  /** Home hero: the emblem fills its box with denser dots, and the slogan keeps its own lines. */
+  fit?: boolean
+  /** Solid colour per slogan line instead of the mint → sky sweep. */
+  lineColors?: [number, number, number][]
   className?: string
 }) {
   const wrap = useRef<HTMLDivElement>(null)
@@ -167,18 +182,20 @@ export function ParticleEmblem({
       const scale = (Math.min(W, H) * fill) / 100
       const small = scale < 2
       const step = small ? Math.max(2, Math.round(2.8 / scale)) : narrow ? 2 : 1
-      // Home hero (emblem alone): fill the whole box with denser, brighter dots.
+      // Home hero: fill the whole box with denser, slightly brighter dots.
       // At most ~12k points: a taller box spaces them a little wider so it stays at full frame rate.
+      const filled = fit || !slogan
       let gap = narrow ? 2 : 2.3
-      let emblem = slogan ? sampleImage(img, W, H, fill, step) : sampleLogoFit(img, W, H, gap)
-      if (!slogan && emblem.n > 12000) {
+      let emblem = filled ? sampleLogoFit(img, W, H, gap) : sampleImage(img, W, H, fill, step)
+      if (filled && emblem.n > 12000) {
         gap *= Math.sqrt(emblem.n / 12000)
         emblem = sampleLogoFit(img, W, H, gap)
       }
       const font = getComputedStyle(document.body).fontFamily
-      const text = slogan && sampleText(narrow ? slogan : [slogan.join(' ')], W, H, font, 3)
+      const lines = slogan && (narrow || fit ? slogan : [slogan.join(' ')])
+      const text = lines && sampleText(lines, W, H, font, filled ? 2 : 3, lineColors)
       const n = Math.max(emblem.n, text ? text.n : 0)
-      const dot = !slogan ? gap * 0.86 : small ? Math.min(1.8, step * scale * 0.7) : narrow ? 1.8 : 2.2
+      const dot = filled ? gap * 0.86 : small ? Math.min(1.8, step * scale * 0.7) : narrow ? 1.8 : 2.2
 
       if (calm) {
         for (let i = 0; i < emblem.n; i++) {
@@ -329,7 +346,7 @@ export function ParticleEmblem({
       el.removeEventListener('pointermove', onMove)
       el.removeEventListener('pointerleave', onLeave)
     }
-  }, [slogan])
+  }, [slogan, fit, lineColors])
 
   return (
     <div ref={wrap} className={className}>
