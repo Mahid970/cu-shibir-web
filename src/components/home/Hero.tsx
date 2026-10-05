@@ -76,9 +76,11 @@ export async function Hero() {
           </div>
         </div>
 
-        {/* As on the About page: the emblem gathers from points of light, then re-forms as the slogan, and back. */}
+        {/* In a framed panel, as on the About page: the emblem gathers from points of light, then re-forms as the slogan, and back. */}
         <div className="load-up -order-1 lg:order-2" style={vars({ '--d': '0ms' })}>
-          <ParticleEmblem slogan={t.slogan} fit lineColors={SLOGAN_COLORS} className="relative mx-auto h-[210px] w-full sm:h-[260px] lg:h-[440px] xl:h-[480px]" />
+          <div className="hero-panel rounded-3xl p-4 sm:p-6 lg:p-8">
+            <ParticleEmblem slogan={t.slogan} fit lineColors={SLOGAN_COLORS} className="relative mx-auto h-[178px] w-full sm:h-[212px] lg:h-[376px] xl:h-[416px]" />
+          </div>
         </div>
       </div>
 

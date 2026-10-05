@@ -661,6 +661,14 @@
   color: rgb(255 255 255 / 0.55);
   text-shadow: 0 1px 3px rgb(0 0 0 / 0.35);
 }
+/* The framed panel holding the emblem: translucent navy with a hairline border. No backdrop blur:
+   over the moving video it would be redrawn every frame and halve the frame rate on wide screens. */
+.hero-panel {
+  background: rgb(2 20 45 / 0.5);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.16),
+    0 24px 60px rgb(0 0 0 / 0.35);
+}
 /* Hero buttons: cyan main button with a soft cyan glow, frosted glass beside it */
 .hero-cta {
   background: #29b6f6;
