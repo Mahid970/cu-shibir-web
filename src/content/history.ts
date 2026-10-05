@@ -11,7 +11,7 @@ type L = Record<Locale, string>
 /** One station as the timeline shows it, already in the page's language. */
 export type Stop = { year: string; date?: string; title: string; text: string; tone: string }
 
-const HISTORY: { year: number; date?: L; title: L; text: L; tone: string }[] = [
+const HISTORY: { year: number | string | L; date?: L; title: L; text: L; tone: string }[] = [
   {
     year: 1977,
     date: { bn: '৬ ফেব্রুয়ারি', en: '6 February' },
@@ -32,15 +32,21 @@ const HISTORY: { year: number; date?: L; title: L; text: L; tone: string }[] = [
     tone: '#00fbee',
   },
   {
-    year: 1990,
-    title: { bn: 'শেষ চাকসু নির্বাচন', en: 'The last CUCSU election' },
-    text: { bn: 'এরপর দীর্ঘ ৩৫ বছর চাকসু নির্বাচন হয়নি।', en: 'No CUCSU election was held for the next 35 years.' },
-    tone: '#a5b4fc',
+    year: '1988–2014',
+    title: { bn: 'শহীদি কাফেলা', en: 'Ten martyrs' },
+    text: {
+      bn: '১৯৮৮ থেকে ২০১৪ সালের মধ্যে ছাত্রলীগ, বাম ছাত্রসংগঠন ও জাতীয় ছাত্রসমাজের হামলায় চবিকে ঘিরে শিবিরের ১০ জন জনশক্তি শাহাদাত বরণ করেন।',
+      en: 'Between 1988 and 2014, ten Shibir members were killed around the campus in attacks by Chhatra League, left-wing student groups and Jatiya Chhatra Samaj.',
+    },
+    tone: '#fca5a5',
   },
   {
     year: 2014,
-    title: { bn: 'কঠিন সময়', en: 'Hard times' },
-    text: { bn: 'ক্যাম্পাসে শাখার প্রকাশ্য সাংগঠনিক কার্যক্রম বন্ধ হয়ে যায়।', en: 'The branch’s open organisational work on campus comes to a halt.' },
+    title: { bn: 'স্বৈরাচারের নিপীড়ন', en: 'Under the dictatorship' },
+    text: {
+      bn: 'ছাত্রলীগের সন্ত্রাসী আক্রমণ ও হত্যাযজ্ঞের কারণে শাখাকে ক্যাম্পাস ত্যাগ করতে হয়।',
+      en: 'Chhatra League’s armed attacks and killings force the branch off campus.',
+    },
     tone: '#94a3b8',
   },
   {
@@ -48,8 +54,8 @@ const HISTORY: { year: number; date?: L; title: L; text: L; tone: string }[] = [
     date: { bn: '৫ আগস্ট', en: '5 August' },
     title: { bn: 'আবার প্রকাশ্যে', en: 'In the open again' },
     text: {
-      bn: 'গণঅভ্যুত্থানের পর শাখা আবার প্রকাশ্যে কার্যক্রম শুরু করে। সেপ্টেম্বরে কমিটি পুনর্গঠিত হয়।',
-      en: 'After the mass uprising the branch resumes its work in the open. The committee is reorganised in September.',
+      bn: 'জুলাই বিপ্লবে চট্টগ্রামে নেতৃত্ব দেয় চবি শিবির। গণঅভ্যুত্থানের পর শাখা আবার প্রকাশ্যে কার্যক্রম শুরু করে।',
+      en: 'In the July Revolution, CU Shibir leads the movement in Chattogram. After the uprising the branch works in the open again.',
     },
     tone: '#00fb97',
   },
@@ -64,16 +70,21 @@ const HISTORY: { year: number; date?: L; title: L; text: L; tone: string }[] = [
     tone: '#fbc900',
   },
   {
-    year: 2026,
-    date: { bn: 'জুন', en: 'June' },
-    title: { bn: 'নতুন কার্যকরী পরিষদ', en: 'A new executive committee' },
+    year: { bn: 'বর্তমান', en: 'Today' },
+    title: { bn: 'শিক্ষার্থীদের পাশে', en: 'Beside the students' },
     text: {
-      bn: 'সভাপতি ইব্রাহীম হোসেন রনি ও সেক্রেটারি হাবিব উল্লাহ খালেদের নেতৃত্বে নতুন পথচলা।',
-      en: 'A new chapter led by President Ibrahim Hossain Rony and Secretary Habib Ullah Khaled.',
+      bn: '৫ আগস্টের পর ক্যাম্পাসে শিক্ষার্থীবান্ধব শতাধিক কার্যক্রম, আর শিক্ষার্থীদের অধিকার আদায়ে সর্বদা সরব।',
+      en: 'More than a hundred programmes for students on campus since 5 August, and always speaking up for students’ rights.',
     },
     tone: '#f9a8d4',
   },
 ]
 
 export const historyStops = (lang: Locale): Stop[] =>
-  HISTORY.map((s) => ({ year: num(lang, s.year), date: s.date?.[lang], title: s.title[lang], text: s.text[lang], tone: s.tone }))
+  HISTORY.map((s) => ({
+    year: typeof s.year === 'object' ? s.year[lang] : num(lang, s.year),
+    date: s.date?.[lang],
+    title: s.title[lang],
+    text: s.text[lang],
+    tone: s.tone,
+  }))
