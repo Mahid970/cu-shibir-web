@@ -161,14 +161,16 @@ export function ParticleEmblem({
     let raf = 0
     let running = false
     let disposed = false
+    let run = 0 // each (re)start gets a number; a resize starts a new run and the old one stops
     const pointer = { x: -9999, y: -9999 }
 
     const img = new Image()
     img.src = '/brand/logo-legacy.png'
 
     const start = async () => {
+      const me = ++run
       await Promise.all([img.decode(), document.fonts.ready])
-      if (disposed) return
+      if (disposed || me !== run) return
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
       const W = box.clientWidth
       const H = box.clientHeight
@@ -309,7 +311,7 @@ export function ParticleEmblem({
           ctx.fillRect(px[i], py[i], dot, dot)
         }
         ctx.globalAlpha = 1
-        if (running) raf = requestAnimationFrame(tick)
+        if (running && me === run) raf = requestAnimationFrame(tick)
       }
 
       const io = new IntersectionObserver(([e]) => {
@@ -338,10 +340,32 @@ export function ParticleEmblem({
     el.addEventListener('pointermove', onMove)
     el.addEventListener('pointerleave', onLeave)
     start().catch(() => {})
+
+    // The points are laid out for the box's size, so when the window is resized (or maximised,
+    // or a phone turns) start again at the new size once the resizing settles.
+    let size = `${box.clientWidth}x${box.clientHeight}`
+    let resizeTimer = 0
+    const ro = new ResizeObserver(() => {
+      const now = `${box.clientWidth}x${box.clientHeight}`
+      if (now === size) return
+      size = now
+      clearTimeout(resizeTimer)
+      resizeTimer = window.setTimeout(() => {
+        running = false
+        cancelAnimationFrame(raf)
+        cleanup()
+        cleanup = () => {}
+        start().catch(() => {})
+      }, 150)
+    })
+    ro.observe(box)
+
     return () => {
       disposed = true
       running = false
       cancelAnimationFrame(raf)
+      clearTimeout(resizeTimer)
+      ro.disconnect()
       cleanup()
       el.removeEventListener('pointermove', onMove)
       el.removeEventListener('pointerleave', onLeave)
