@@ -39,10 +39,10 @@ export default async function HomePage({ params }: Props) {
     <>
       <Hero />
       <RailTimeline stops={historyStops(lang)} />
+      <FivePoints />
       <NewsSection posts={posts} />
       <ProblemSolution />
       <TrustSection press={press} />
-      <FivePoints />
       <JourneySection />
       <Gallery albums={albums} videos={videos} youtube={settings.socials?.youtube} />
       <LeadersSection leaders={leaders} />

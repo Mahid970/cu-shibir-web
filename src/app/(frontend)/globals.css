@@ -1044,11 +1044,49 @@
   transform: translateY(10px);
 }
 
-/* ৫ দফা: a covered card sinks back (--cover from StackDepth); a card's contents rise in on arrival */
-.five-stack > li > div {
-  transform-origin: 50% 0;
-  transform: scale(calc(1 - var(--cover, 0) * 0.05));
-  filter: brightness(calc(1 - var(--cover, 0) * 0.35));
+/* ৫ দফা folder stack (FolderStack). List by default; with data-pin the panel sticks just under the
+   73px header (at most 41rem tall), cards are layered in one box and JS slides them up. Room is kept
+   above the cards for the tucked tab row and below them for the waiting one. A card's contents rise
+   in on arrival. */
+.five-pin-tab {
+  display: none;
+}
+.five-stage[data-pin] {
+  --panel: min(calc(100svh - 73px), 41rem);
+  margin-top: 1.5rem;
+  height: calc(var(--panel) + var(--steps) * 70vh);
+}
+.five-stage[data-pin] .five-panel {
+  position: sticky;
+  top: 73px;
+  display: flex;
+  flex-direction: column;
+  height: var(--panel);
+  padding-block: 3.75rem 1.25rem;
+  overflow: hidden;
+}
+.five-stage[data-pin] .five-area {
+  position: relative;
+  display: block;
+  flex: 1 1 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+.five-stage[data-pin] .five-layer {
+  position: absolute;
+  inset: 0 0 2rem;
+  will-change: transform;
+}
+.five-stage[data-pin] .five-pin-tab {
+  display: block;
+}
+.five-stage[data-pin] .five-flow-tab {
+  display: none;
+}
+.five-stage[data-pin] .five-art {
+  aspect-ratio: auto;
+  height: 100%;
 }
 .motion [data-reveal='card'] .five-rise {
   transition:
@@ -1200,8 +1238,11 @@
   opacity: 0;
   transform: scale(0.92);
 }
-/* Clip wipe from left to right (eyebrow labels) */
-.motion [data-reveal='wipe']:not([data-state='visible']) {
+/* Clip wipe from left to right (eyebrow labels): the wrapper is observed, its label is clipped */
+.motion [data-reveal='wipe'] > span {
+  transition: clip-path 0.9s var(--ease-out);
+}
+.motion [data-reveal='wipe']:not([data-state='visible']) > span {
   clip-path: inset(0 100% 0 0);
 }
 /* Titles: each word group drops in with a blur, once */

@@ -107,7 +107,9 @@ export function SweepTitle({
 /** Bangla label in a tab hanging from the top edge of a night section; wipes in on view. */
 export function EyebrowTab({ text, fill = '#061327' }: { text: string; fill?: string }) {
   return (
-    <div className="eyebrow-tab">
+    // The wrapper is observed and only the label is clipped: an element clipped to nothing never
+    // registers as on screen, so a self-clipped label would stay hidden.
+    <div className="eyebrow-tab" data-reveal="wipe" data-amount="0.5">
       <svg viewBox="0 0 270 45" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0 0H270L263.99 23.06C261.23 33.63 251.69 41 240.76 41H29.24C18.31 41 8.77 33.63 6.01 23.06L0 0Z" fill={fill} />
         <path
@@ -117,9 +119,7 @@ export function EyebrowTab({ text, fill = '#061327' }: { text: string; fill?: st
           vectorEffect="non-scaling-stroke"
         />
       </svg>
-      <span data-reveal="wipe" data-amount="0.5">
-        {text}
-      </span>
+      <span>{text}</span>
     </div>
   )
 }
