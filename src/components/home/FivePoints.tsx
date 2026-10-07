@@ -57,7 +57,7 @@ function PinTab({ i, n, color, ink, label }: { i: number; n: number; color: stri
         <path d={edge ? TAB_EDGE : TAB_MID} fill={color} transform={last ? 'matrix(-1 0 0 1 261 0)' : undefined} />
       </svg>
       <span
-        className="absolute inset-x-0 top-1 flex h-9 items-center justify-center whitespace-nowrap font-mono text-xs font-bold tracking-[0.2em] uppercase"
+        className="absolute inset-x-0 top-1 flex h-9 items-center justify-center whitespace-nowrap font-mono text-[15px] font-bold tracking-[0.15em] uppercase"
         style={{ color: ink, transform: `translateX(${first ? '-15.9%' : last ? '15.9%' : '-2.5%'})` }}
       >
         {label}
@@ -107,7 +107,7 @@ export async function FivePoints() {
                           <path d={TAB_MID} fill={p.color} />
                         </svg>
                         <span
-                          className="absolute inset-x-0 top-0.5 flex h-8 items-center justify-center whitespace-nowrap font-mono text-xs font-bold tracking-[0.2em] uppercase"
+                          className="absolute inset-x-0 top-0.5 flex h-8 items-center justify-center whitespace-nowrap font-mono text-[15px] font-bold tracking-[0.15em] uppercase"
                           style={{ color: p.ink, transform: 'translateX(-2.5%)' }}
                         >
                           {label}
