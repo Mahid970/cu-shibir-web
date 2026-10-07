@@ -1,20 +1,18 @@
-import { Link } from '@/i18n/link'
+import Image from 'next/image'
 import type { ReactNode } from 'react'
 
 import { BallotBox, Medal, Trophy3D } from '@/components/art/Icons3D'
 import { CountUp } from '@/components/motion/CountUp'
 import { Marquee } from '@/components/motion/Marquee'
-import { ArrowRight } from '@/components/ui/Icons'
 import { SectionTitle } from '@/components/ui/SectionTitle'
-import { copy, langAttr, type Locale } from '@/i18n/config'
-import { date, num } from '@/i18n/format'
+import { cucsuWinners, TOP_VOTES, type Winner } from '@/content/cucsu'
+import { copy } from '@/i18n/config'
+import { num } from '@/i18n/format'
 import { getLang } from '@/i18n/server'
-import { outletName, pressHeadline } from '@/lib/press'
-import type { PressCoverage } from '@/payload-types'
 
 const T = copy(
   {
-    title: ['শিক্ষার্থীদের', 'আস্থার প্রতিদান'],
+    title: ['আমাদের উপর', 'শিক্ষার্থীদের আস্থা'],
     lede: 'চাকসু নির্বাচন ২০২৫-এ শিক্ষার্থীরা যে আস্থা রেখেছেন, তার মর্যাদা রাখাই আমাদের প্রতিদিনের কাজ।',
     tag: 'চাকসু নির্বাচন ২০২৫',
     won: 'পদে জয়',
@@ -23,17 +21,14 @@ const T = copy(
     voters: 'মোট ভোটার',
     turnout: 'ভোট পড়েছে',
     posts: 'মোট পদ',
-    history: 'চাকসুর ইতিহাসে',
-    fullPanel: 'পূর্ণ প্যানেলে জয়',
-    years: ' বছর',
-    wait: 'দীর্ঘ অপেক্ষা',
-    again: 'আবার আস্থা',
-    press: ['সংবাদমাধ্যমে', 'আমাদের কথা'],
-    pressLabel: 'সংবাদমাধ্যমে প্রকাশিত খবর',
-    allPress: 'সব প্রতিবেদন দেখুন',
+    votes: 'শীর্ষ দুই পদে ভোট',
+    vp: 'ভিপি পেয়েছেন',
+    gs: 'জিএস পেয়েছেন',
+    team: ['চাকসুতে', 'আমাদের ২৪ জন'],
+    teamLabel: 'চাকসু ২০২৫-এ নির্বাচিত ২৪ জন',
   },
   {
-    title: ['Repaying', 'students’ trust'],
+    title: ['Students’', 'trust in us'],
     lede: 'Students placed their trust in us in the 2025 CUCSU election. Living up to it is our everyday work.',
     tag: 'CUCSU election 2025',
     won: 'posts won',
@@ -42,15 +37,11 @@ const T = copy(
     voters: 'voters',
     turnout: 'turnout',
     posts: 'posts',
-    history: 'In CUCSU history',
-    fullPanel: 'full panel won',
-    // A suffix word would wrap in the narrow column; English puts "years" in the label.
-    years: '',
-    wait: 'years of waiting',
-    again: 'trusted again',
-    press: ['What the press', 'says about us'],
-    pressLabel: 'Press coverage',
-    allPress: 'See all coverage',
+    votes: 'Votes for the top two posts',
+    vp: 'for the VP',
+    gs: 'for the GS',
+    team: ['Our 24', 'at CUCSU'],
+    teamLabel: 'The 24 elected to CUCSU in 2025',
   },
 )
 
@@ -63,7 +54,7 @@ function StatPanel({ title, icon, figures }: { title: string; icon: ReactNode; f
         <span className="w-8">{icon}</span>
         {title}
       </p>
-      <dl className="mt-5 grid grid-cols-3 gap-3 text-center">
+      <dl className={`mt-5 grid gap-3 text-center ${figures.length === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
         {figures.map((f) => (
           <div key={f.label}>
             <dt className="sr-only">{f.label}</dt>
@@ -80,29 +71,31 @@ function StatPanel({ title, icon, figures }: { title: string; icon: ReactNode; f
   )
 }
 
-function PressCard({ item, lang }: { item: PressCoverage; lang: Locale }) {
+function WinnerCard({ winner }: { winner: Winner }) {
   return (
-    <a
-      href={item.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex w-[300px] shrink-0 flex-col gap-3 rounded-3xl bg-white/[0.07] p-5 text-white transition-colors hover:bg-white/[0.12] sm:w-[360px] sm:p-6"
-    >
-      <span className="flex flex-wrap gap-2">
-        <span className="rounded bg-[image:var(--gradient)] px-2 py-1 text-[0.85rem] font-semibold leading-tight">{outletName(item.outlet, lang)}</span>
-        <span className="rounded bg-success px-2 py-1 text-[0.85rem] font-semibold leading-tight">{date(lang, item.publishedAt, 'short')}</span>
+    <div className="flex h-[120px] w-[300px] shrink-0 overflow-hidden rounded-3xl bg-white/[0.07] text-white sm:h-[128px] sm:w-[360px]">
+      <span className="relative w-[104px] shrink-0 bg-[radial-gradient(80%_75%_at_50%_100%,#1d4ed8,#0b1428_75%)] sm:w-[120px]">
+        {winner.photo ? (
+          <Image src={winner.photo} alt="" fill sizes="120px" className="object-cover object-top" />
+        ) : (
+          <span aria-hidden="true" className="grid size-full place-items-center text-[1.8rem] font-bold text-white/80">
+            {[...winner.name][0]}
+          </span>
+        )}
       </span>
-      <span lang={langAttr(lang, pressHeadline(item, lang))} className="line-clamp-2 text-[1.1rem] font-semibold leading-snug">
-        {pressHeadline(item, lang)}
+      <span className="flex min-w-0 flex-1 flex-col justify-center p-5 sm:p-6">
+        <span className="block text-[1.1rem] font-semibold leading-snug">{winner.name}</span>
+        <span className="mt-1 line-clamp-2 block text-[0.85rem] leading-snug text-white/70">{winner.post}</span>
       </span>
-    </a>
+    </div>
   )
 }
 
-/** Night section: the CUCSU 2025 result, then press coverage drifting past in a marquee. */
-export async function TrustSection({ press }: { press: PressCoverage[] }) {
+/** Night section: the CUCSU 2025 result, then the 24 winners drifting past in a marquee. */
+export async function TrustSection() {
   const lang = await getLang()
   const t = T[lang]
+  const winners = cucsuWinners(lang)
   return (
     <section className="cv-auto relative isolate overflow-hidden bg-night pb-16 pt-14 md:pb-20 md:pt-20" aria-labelledby="trust">
       <div
@@ -138,39 +131,29 @@ export async function TrustSection({ press }: { press: PressCoverage[] }) {
               ]}
             />
             <StatPanel
-              title={t.history}
+              title={t.votes}
               icon={<Medal />}
               figures={[
-                { text: num(lang, 1981), label: t.fullPanel, color: 'text-mint' },
-                { value: 44, suffix: t.years, label: t.wait, color: 'text-aqua' },
-                { text: num(lang, 2025), label: t.again, color: 'text-[#6ea0ff]' },
+                { value: TOP_VOTES.vp, label: t.vp, color: 'text-mint' },
+                { value: TOP_VOTES.gs, label: t.gs, color: 'text-aqua' },
               ]}
             />
           </div>
         </div>
       </div>
 
-      {press.length > 0 && (
-        <div className="mt-20">
-          <h3 className="px-4 text-center text-[1.9rem] font-bold text-white md:text-[2.5rem]">
-            <span className="text-mint">{t.press[0]}</span> {t.press[1]}
-          </h3>
-          <div className="mt-8">
-            <Marquee label={t.pressLabel} duration={80}>
-              {press.map((item) => (
-                <PressCard key={item.id} item={item} lang={lang} />
-              ))}
-            </Marquee>
-          </div>
-          <div className="mt-8 flex justify-center px-4">
-            <Link href="/press" className="btn btn-ghost-light">
-              {t.allPress}
-              <ArrowRight />
-            </Link>
-          </div>
+      <div className="mt-20">
+        <h3 className="px-4 text-center text-[1.9rem] font-bold text-white md:text-[2.5rem]">
+          <span className="text-mint">{t.team[0]}</span> {t.team[1]}
+        </h3>
+        <div className="mt-8">
+          <Marquee label={t.teamLabel} duration={80}>
+            {winners.map((w) => (
+              <WinnerCard key={w.name} winner={w} />
+            ))}
+          </Marquee>
         </div>
-      )}
-
+      </div>
     </section>
   )
 }

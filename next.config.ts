@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
   // Question papers are uploaded through a server action (PDF or photo, up to 10 MB).
   experimental: { serverActions: { bodySizeLimit: '11mb' } },
   images: {
-    localPatterns: [{ pathname: '/api/media/file/**' }, { pathname: '/brand/**' }],
+    localPatterns: [{ pathname: '/api/media/file/**' }, { pathname: '/brand/**' }, { pathname: '/cucsu/**' }],
     // YouTube thumbnails for the branch's own videos
     remotePatterns: [{ protocol: 'https', hostname: 'i.ytimg.com', pathname: '/vi/**' }],
     formats: ['image/avif', 'image/webp'],

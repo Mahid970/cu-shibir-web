@@ -12,7 +12,7 @@ import { ProblemSolution } from '@/components/home/ProblemSolution'
 import { TrustSection } from '@/components/home/TrustSection'
 import { historyStops } from '@/content/history'
 import { alternates, toLocale } from '@/i18n/config'
-import { getAlbums, getLatestPosts, getLeaders, getPressCoverage, getSiteSettings, getVideos } from '@/lib/cms'
+import { getAlbums, getLatestPosts, getLeaders, getSiteSettings, getVideos } from '@/lib/cms'
 import { SITE } from '@/lib/site'
 
 export const revalidate = 3600
@@ -26,11 +26,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function HomePage({ params }: Props) {
   const lang = toLocale((await params).lang)
-  const [settings, posts, leaders, press, albums, videos] = await Promise.all([
+  const [settings, posts, leaders, albums, videos] = await Promise.all([
     getSiteSettings(lang),
     getLatestPosts(12, lang),
     getLeaders(lang),
-    getPressCoverage(10),
     getAlbums(5, lang),
     getVideos(3, lang),
   ])
@@ -42,7 +41,7 @@ export default async function HomePage({ params }: Props) {
       <FivePoints />
       <NewsSection posts={posts} />
       <ProblemSolution />
-      <TrustSection press={press} />
+      <TrustSection />
       <JourneySection />
       <Gallery albums={albums} videos={videos} youtube={settings.socials?.youtube} />
       <LeadersSection leaders={leaders} />
